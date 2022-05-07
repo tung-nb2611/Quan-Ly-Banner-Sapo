@@ -1,0 +1,14 @@
+.banner-list-choice-container .table {
+  border: 0.5px solid black;
+}
+
+.banner-list-choice-container .table .item .code,
+.banner-list-choice-container .table .item .name,
+.banner-list-choice-container .table .item .checkbox {
+  line-height: 80px;
+}
+
+.banner-list-choice-container .table .item .percentage input {
+  margin-top: 20px;
+}
+/*# sourceMappingURL=ListBannerChoice.css.map */

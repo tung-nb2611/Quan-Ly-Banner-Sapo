@@ -1,0 +1,22 @@
+.banner-list-choice-container {
+    .table {
+        border: 0.5px solid black;
+
+        .item {
+
+            .code,
+            .name,
+            .checkbox {
+                line-height: 80px;
+            }
+
+            .percentage {
+                input {
+                    margin-top: 20px;
+                }
+            }
+
+
+        }
+    }
+}

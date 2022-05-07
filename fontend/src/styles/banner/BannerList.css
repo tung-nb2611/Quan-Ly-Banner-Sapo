@@ -1,0 +1,13 @@
+.banner-list{
+    height: 90vh;
+}
+
+.banner-list .list{
+    border: 2px solid black;
+    height: 90%;
+    width: 100%;
+    overflow-y: scroll;
+
+    /* border-radius: 10px; */
+}
+
