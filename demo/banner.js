@@ -9,10 +9,12 @@ function getImg(sectionID) {
 
 }
 var img = new Image();
-var a = new a();
+var a = document.createElement('a');
 function _displayItems(data) {
     const tBody = document.getElementById('img');
-    tBody.appendChild(img);
+    tBody.appendChild(a);
+    a.appendChild(img);
+    a.href = "https://www.google.com.vn/?hl=vi";
     img.src = data.imgUrl;
 
 }
