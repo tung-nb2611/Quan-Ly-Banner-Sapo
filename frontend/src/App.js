@@ -91,10 +91,6 @@ const App = () => {
                   <Route path="/banner/update/:code">
                     <UpdateBanner showAdminBoard={showAdminBoard} />
                   </Route>
-                  {/* <Route path="/banner/display">
-
-                    <DisplayBanner showAdminBoard={showAdminBoard} />
-                  </Route> */}
                   <Route path="/banner/display/:id">
                     <DisplayBanner />
                   </Route>

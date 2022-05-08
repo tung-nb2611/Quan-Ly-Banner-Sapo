@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import BannerInfo from "./BannerInfo";
 import "../../styles/banner/BannerList.css";
 import axios from "axios";
@@ -13,7 +12,7 @@ const BannerList = () => {
   const [currentPage, setCurrentPage] = useState(0);
   // Ở đây dữ liệu nhận được từ API call đã được phân theo trang sẵn ở phần backend, chỉ cần lấy thông tin số trang
   // và trang hiện tại từ dữ liệu nhận về là được
-   
+
   useEffect(() => {
     axios.get(BASE_URL + currentPage).then((response) => {
 
@@ -23,19 +22,19 @@ const BannerList = () => {
       const pageNum = response.data.totalPages;
       setBannerList(data);
       setPageNumber(pageNum);
-    }); 
-  }, [currentPage]);   
+    });
+  }, [currentPage]);
 
   const displayBanner = bannerList.map((bannerInfo) => {
-    return <BannerInfo bannerInfo={bannerInfo} key={bannerInfo.id} bannerList={bannerList} setBannerList={setBannerList}/>;
+    return <BannerInfo bannerInfo={bannerInfo} key={bannerInfo.id} bannerList={bannerList} setBannerList={setBannerList} />;
   });
-  
+
   return (
     <div className="banner-list m-2">
       <div className="list">
         {displayBanner}
       </div>
-      <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber}/>
+      <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
     </div>
   );
 };

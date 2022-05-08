@@ -1,9 +1,22 @@
 .display-banner-container {
   font-size: 14px;
-  font-weight: 500;
+  width: calc(1535px - 240px);
+  margin: 0 5px;
 }
-.display-banner-container .header {
-  
+
+.display-banner-container .top {
+  height: 40px;
+}
+
+.display-banner-container .container {
+  margin-bottom: 0;
+}
+
+.display-banner-container .container .header {
+  margin-top: 0;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
 }
 
 .display-banner-container .container .header .header_right .btn-add {

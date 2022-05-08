@@ -72,48 +72,7 @@ export const SidebarData = [
         title: "Quản lý banner",
         path: "/banner/manage",
         icon: <MdIcons.MdPictureInPicture size={24} />,
-        iconClosed: <BiIcons.BiChevronRight size={24} />,
-        iconOpened: <BiIcons.BiChevronDown size={24} />,
 
-        subNav: [
-
-            {
-                title: "Cấu hình hiển thị banner",
-                path: "/banner/display",
-                icon: <MdIcons.MdRemoveRedEye size={24} />,
-            },
-        ]
     },
 
-
-
-
-
-    
-    {
-        title: "Dashboard",
-        path: "/dashboard",
-        icon: <MdIcons.MdDashboard size={24} />,
-        iconClosed: <BiIcons.BiChevronRight size={24} />,
-        iconOpened: <BiIcons.BiChevronDown size={24} />,
-
-        subNav: [
-
-            {
-                title: "SapoWeb",
-                path: "/dashboard/Sapoweb",
-                icon: <MdIcons.MdWeb size={24} />,
-            },
-            {
-                title: "Sapofnb",
-                path: "/dashboard/Sapofnb",
-                icon: <MdIcons.MdOutlinePointOfSale size={24} />,
-            },
-            {
-                title: "SapoOmni",
-                path: "/dashboard/SapoOmie",
-                icon: <RiIcons.RiBillFill size={24} />,
-            },
-        ]
-    }
 ];

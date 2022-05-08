@@ -1,25 +1,34 @@
 .update-banner-container {
   font-size: 14px;
-  font-weight: 500;
+  width: calc(1535px - 240px);
+  margin: 0 5px;
+}
+
+.update-banner-container .top {
+  height: 40px;
+}
+
+.update-banner-container .container {
+  margin-bottom: 0;
+}
+
+.update-banner-container .container .header-top {
+  margin-top: 0;
 }
 
 .update-banner-container .container .main-content {
   margin: 0 50px 100px 50px;
 }
 
-.update-banner-container .container .main-content .row .col-sm-12 h2,
-.update-banner-container .container .main-content .row .col-sm-12 h3 {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 600;
-  text-align: center;
-  line-height: 1;
+.update-banner-container .container .main-content .row .col-sm-12 h1 {
+  font-size: 18px;
 }
 
 .update-banner-container .container .main-content .row .col-sm-6.right #imgFrame {
   width: 500px;
   height: 250px;
   margin: 0 auto;
-  border: 2px dashed gray;
+  border: 1px dashed black;
 }
 
 .update-banner-container .container .main-content .row .col-sm-6.right #imgFrame img {
@@ -28,10 +37,10 @@
 }
 
 .update-banner-container .container .main-content .row .col-sm-6.right .button {
-  margin-top: 50px;
-  margin-right: 30px;
-  /* display: -webkit-inline-box;
-  display: -ms-inline-flexbox; */
+  margin-top: 100px;
+  margin-right: 40px;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
   display: inline-flex;
   float: right;
 }

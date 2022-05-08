@@ -11,16 +11,12 @@ import { useHistory, useParams } from "react-router-dom";
 
 function CreateBanner(props) {
     let { id } = useParams();
-    const [section, setSection] = useState([]);
     const history = useHistory();
-
     const [imageUpload, setImageUpload] = useState(null);
-    const [imageUrlonFirebase, setImageUrlonFirebase] = useState([]);
     const [bannerID, setBannerID] = useState('');
     const [name, setName] = useState('');
     const [imgPreview, setImgPreview] = useState('');
-    const [imgUrl, setImgUrl] = useState('');
-    // const [sectionId, setSectionId] = useState([]);
+    const [urlLink, setUrlLink] = useState('');
 
     const getImage = (e) => {
         if (e.target.files[0]) {
@@ -34,32 +30,32 @@ function CreateBanner(props) {
     }
     const saveBanner = (e) => {
         e.preventDefault();
-        if (imageUpload == null) return;
-        const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
-        uploadBytes(imageRef, imageUpload).then((snapshot) => {
-            getDownloadURL(snapshot.ref).then((url) => {
-                setImgUrl(url);
-                setImageUrlonFirebase((prev) => [...prev, url]);
-                let currentDay = new Date();
-                let state = 0;
-                let userAdd = "Luong Van Minh";
-                // let sectionId = 1;
-                let bannerItem = {
-                    sectionID: id,
-                    code: bannerID,
-                    name: name,
-                    imgUrl: url,
-                    state: state,
-                    userAdd: userAdd,
-                    createAt: currentDay
-                }
-                console.log('banner => ', bannerItem);
-                BannerService.createBanner(bannerItem).then(res => {
-                    console.log("ok")
-                    history.push('/banner/manage');
-                })
+        if (imageUpload == null) {
+            return;
+        }
+        else {
+            const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+            uploadBytes(imageRef, imageUpload).then((snapshot) => {
+                getDownloadURL(snapshot.ref).then((url) => {
+                    let currentDay = new Date();
+                    let userAdd = "Luong Van Minh";
+                    let bannerItem = {
+                        sectionID: id,
+                        code: bannerID,
+                        name: name,
+                        imgUrl: url,
+                        userAdd: userAdd,
+                        createAt: currentDay,
+                        url: urlLink
+                    }
+                    console.log('banner => ', bannerItem);
+                    BannerService.createBanner(bannerItem).then(res => {
+                        history.push('/banner/manage');
+                    })
+                });
             });
-        });
+        }
+
     }
 
 
@@ -92,15 +88,22 @@ function CreateBanner(props) {
                                 <div className="mt-3 form-group">
                                     <label htmlFor="bannerID">Mã banner</label>
                                     <input className="form-control" id="bannerID" type="text" name="bannerID"
-                                        placeholder="ex: 123..."
+                                        placeholder="ex: B10"
                                         value={bannerID} onChange={(e) => setBannerID(e.target.value)}
                                     />
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label htmlFor="name">Tên banner</label>
-                                    <input className="form-control" type="text" id="name" name="name"
-                                        placeholder="ex: quảng cáo cá tháng tư"
+                                    <input className="form-control" type="text"
+                                        placeholder="Ví dụ: Cá tháng tư"
                                         value={name} onChange={(e) => setName(e.target.value)}
+                                    />
+                                </div>
+                                <div className="mt-3 form-group">
+                                    <label htmlFor="name">Nhập liên kết</label>
+                                    <input className="form-control" type="text"
+                                        placeholder="Liên kết url"
+                                        value={urlLink} onChange={(e) => setUrlLink(e.target.value)}
                                     />
                                 </div>
                                 <div className="mt-3 form-group">
@@ -123,7 +126,7 @@ function CreateBanner(props) {
                             </div>
                             <div className="col-sm-12" id="imgFrame">
 
-                                <img className="img-rounded img-thumbnail" alt="ảnh banner" src={imgPreview} />
+                                <img className="img-rounded img-thumbnail" src={imgPreview} />
                             </div>
                             <div className="button">
                                 <button type="button" className="btn btn-cancel" name="btncancel" onClick={() => handClickReturn()} >Hủy</button>

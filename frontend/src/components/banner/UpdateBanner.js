@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import '../../styles/banner/UpdateBanner.css';
 import BannerService from "../../services/BannerService";
 import * as BiIcons from "react-icons/bi";
-import { useLocation, useHistory } from "react-router-dom";
-import { ref, uploadBytes, getDownloadURL, listAll, list } from "firebase/storage";
+import { useLocation, useHistory, Link } from "react-router-dom";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../common/Firebase";
 import { v4 } from "uuid";
 
@@ -19,12 +18,12 @@ function UpdateBanner(props) {
     if (typeof linkState.detailInfo !== 'undefined') {
         data = linkState.detailInfo;
     }
-    const [imageUpload, setImageUpload] = useState(null);
-    const [imageUrlonFirebase, setImageUrlonFirebase] = useState([]);
+    const [imageUpload, setImageUpload] = useState();
     const [bannerID, setBannerID] = useState(data.id);
     const [bannerCode, setBannerCode] = useState(data.code);
     const [name, setName] = useState(data.name);
-    const [imgUrl, setImgUrl] = useState(data.imgUrl); // Dùng để show ảnh
+    const [imgUrl, setImgUrl] = useState(data.imgUrl);
+    const [urlLink, setUrlLink] = useState(data.url)
 
 
 
@@ -39,14 +38,12 @@ function UpdateBanner(props) {
 
     }
     const saveBanner = (e) => {
-        console.log("vao day")
         e.preventDefault();
         if (imageUpload != null) {
             const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
             uploadBytes(imageRef, imageUpload).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then((url) => {
                     setImgUrl(url);
-                    setImageUrlonFirebase((prev) => [...prev, url]);
                     let currentDay = new Date();
                     let userFix = "Luong Van Minh";
                     let bannerItem = {
@@ -55,7 +52,8 @@ function UpdateBanner(props) {
                         name: name,
                         imgUrl: url,
                         userFix: userFix,
-                        modifiedAt: currentDay
+                        modifiedAt: currentDay,
+                        url: urlLink
                     }
                     console.log('banner => ', bannerItem);
                     BannerService.updateBanner(bannerItem, bannerID).then(res => {
@@ -72,7 +70,8 @@ function UpdateBanner(props) {
                 code: bannerCode,
                 name: name,
                 userFix: userFix,
-                modifiedAt: currentDay
+                modifiedAt: currentDay,
+                url: urlLink
             }
             console.log('banner => ', bannerItem);
             BannerService.updateBanner(bannerItem, bannerID).then(res => {
@@ -83,15 +82,15 @@ function UpdateBanner(props) {
     }
 
     return (
-        <div className="update-banner-container mx-3" > 
+        <div className="update-banner-container mx-3" >
             <div className="header-top">
                 <p className="mt-3 text-left">
                     {props.showAdminBoard ? (<span>Admin</span>) : (<span>User</span>)}
-                    <BiIcons.BiChevronRight size={18}/>
+                    <BiIcons.BiChevronRight size={18} />
                     <Link className="text-decoration-none" to="/banner/manage">Quản lý banner</Link>
-                    <BiIcons.BiChevronRight size={18}/>Thêm banner</p>
+                    <BiIcons.BiChevronRight size={18} />Thêm banner</p>
             </div>
-            <hr/>
+            <hr />
             <div className="container">
                 <div className="main-content">
                     <div className="row">
@@ -102,16 +101,21 @@ function UpdateBanner(props) {
                             <form method="post" encType="multipart/form-data">
                                 <div className="mt-1 form-group">
                                     <label htmlFor="bannerID">Mã banner</label>
-                                    <input className="form-control" id="bannerID" type="text" name="bannerID"
+                                    <input className="form-control" id="bannerID" type="text"
                                         placeholder="ex: 123..."
                                         value={bannerCode} onChange={(e) => setBannerCode(e.target.value)}
                                     />
                                 </div>
                                 <div className="mt-2 form-group">
                                     <label htmlFor="name">Tên banner</label>
-                                    <input className="form-control" type="text" id="name" name="name"
+                                    <input className="form-control" type="text"
                                         placeholder="ex: quảng cáo cá tháng tư"
                                         value={name} onChange={(e) => setName(e.target.value)} />
+                                </div>
+                                <div className="mt-2 form-group">
+                                    <label htmlFor="name">Liên kết</label>
+                                    <input className="form-control" type="text" placeholder=" Nhập liên kết url"
+                                        value={urlLink || ''} onChange={(e) => setUrlLink(e.target.value)} />
                                 </div>
                                 <div className="mt-2 form-group">
                                     <label id="upload-label" htmlFor="upload">Chọn Hình Ảnh</label>
@@ -128,7 +132,7 @@ function UpdateBanner(props) {
                                 <h3 className="text-center">Ảnh minh họa</h3>
                             </div>
                             <div className="col-sm-12" id="imgFrame">
-                                <img className="img-rounded" alt="ảnh banner" src={imgUrl} />
+                                <img className="img-rounded" src={imgUrl} />
                             </div>
                             <div className="button">
                                 <button type="button" className="btn btn-cancel" name="btncancel">Hủy</button>

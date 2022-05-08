@@ -7,9 +7,6 @@ import { useState } from "react";
 const BASE_URL = "http://localhost:8080/api/banners/";
 
 const BannerInfo = ({ bannerInfo, bannerList, setBannerList }) => {
-  // 'delete' has to remove the item from bannerList too so that
-  // the web will change immediately without having to reload the page
-  // as {bannerList} contains the list of banner the 'BannerList' component has
 
   const [detailInfo, setDetailInfo] = useState(bannerInfo);
 
@@ -28,7 +25,6 @@ const BannerInfo = ({ bannerInfo, bannerList, setBannerList }) => {
       axios
         .delete(BASE_URL + bannerInfo.id)
         .then(() => console.log("Delete successful"));
-      //bannerList.filter(info => info.id === bannerInfo.id);
       setBannerList(bannerList.filter(info => info.id !== bannerInfo.id));
     }
   };

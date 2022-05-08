@@ -25,8 +25,6 @@ function DisplayBanner(props) {
         section: section
     }
 
-
-
     const handleOnChangeChoice = (e) => {
         if (randomChecked === true) {
             setRandomChecked(false);
@@ -48,24 +46,16 @@ function DisplayBanner(props) {
         if (randomChecked === true) {
 
             let today = new Date();
-            let timeExpired = new Date();
-            timeExpired.setDate(today.getDate() + Number(timeDisplay))
 
             let bannerStatusItem = {
                 sectionID: id,
                 timeDisplay: today,
-                expired: timeExpired
             }
             BannerStatusService.updateBannerStatusViaRandom(bannerStatusItem);
-            history.push({
-                pathname: '/dashboard/Sapoweb',
-                state: { random: 1 }
-            })
+
         };
         if (percentageChecked === true) {
             let today = new Date();
-            let timeExpired = new Date();
-            timeExpired.setDate(today.getDate() + Number(timeDisplay))
             let bannerStatusArray = new Array();
             for (let i = 0; i < arrContext.countArr.length; i++) {
                 let bannerStatusItem = {
@@ -73,27 +63,11 @@ function DisplayBanner(props) {
                     sectionID: id,
                     percentage: arrContext.countArr[i].rate,
                     timeDisplay: today,
-                    expired: timeExpired
                 }
                 bannerStatusArray.push(bannerStatusItem);
             }
 
             BannerStatusService.updateBannerStatusViaPercentage(bannerStatusArray);
-
-            let listRateBanner = new Array();
-            for (let i = 0; i < arrContext.countArr.length; i++) {
-                let j = arrContext.countArr[i].rate / 10;
-                for (let k = 0; k < j; k++) {
-                    listRateBanner.push(arrContext.countArr[i].id);
-                }
-            }
-            listRateBanner = listRateBanner.sort(() => Math.random() - 0.5);
-            console.log("kiem tra list sau sap xep : " + listRateBanner);
-
-            history.push({
-                pathname: '/dashboard/Sapoweb',
-                state: { random: 0 }
-            })
         }
     }
 
