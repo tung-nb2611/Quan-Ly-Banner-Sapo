@@ -1,4 +1,4 @@
-import React, { useState, useRef, Component } from "react";
+import React, { useState, useRef } from "react";
 import { useHistory } from 'react-router-dom';
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
