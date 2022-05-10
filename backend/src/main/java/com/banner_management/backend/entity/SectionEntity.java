@@ -26,6 +26,9 @@ public class SectionEntity {
     @Column(name = "url")
     private String url;
 
+    @Column(name = "user_add")
+    private String user_add;
+
     public SectionEntity() {
     }
 
@@ -61,6 +64,14 @@ public class SectionEntity {
         this.url = url;
     }
 
+    public String getUser_add() {
+        return user_add;
+    }
+
+    public void setUser_add(String user_add) {
+        this.user_add = user_add;
+    }
+
     @Override
     public String toString() {
         return "SectionEntity{" +
@@ -68,6 +79,7 @@ public class SectionEntity {
                 ", position_web='" + position_web + '\'' +
                 ", code='" + code + '\'' +
                 ", url='" + url + '\'' +
+                ", user_add='" + user_add + '\'' +
                 '}';
     }
 }
