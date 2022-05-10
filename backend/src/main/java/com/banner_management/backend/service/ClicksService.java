@@ -17,7 +17,7 @@ public class ClicksService {
     @Autowired
     ClicksRepository clicksRepository;
 
-<<<<<<< HEAD
+
     public  int getCountClickByBannerId (Integer bannerID)
     {
          return clicksRepository.getClickbybannerId(bannerID);
@@ -31,8 +31,7 @@ public class ClicksService {
         return clicksRepository.findAll();
     }
 
-=======
->>>>>>> 42e13bd06211c4b65dc2adf1721b28ec24bcf415
+
     @Transactional
     public void save(ClicksEntity clicksEntity){
         clicksRepository.save(clicksEntity);
