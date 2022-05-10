@@ -1,34 +1,40 @@
 const urlGetRandomBanner = 'http://localhost:8080/api/banner-status/random/';
 const urlPost = "http://localhost:8080/api/clicks-banner"
-function getImg(sectionID) {
-    fetch(urlGetRandomBanner + sectionID)
-        .then(response => response.json())
-        .then(data => {
-            _displayItems(data);
+const urlSector = "http://localhost:8080/api/section_id="
 
-        })
-        .catch(error => console.error('Unable to get banner data.', error));
-
+function getAreaID(sectionID) {
+    fetch(urlSector + sectionID + "/sectors")
+    .then(response => response.json())
+    .then(data => { data.map((area) => {
+        let areaID = area.div_id;
+        fetch(urlGetRandomBanner + sectionID)
+            .then(response => response.json()
+            .then(img1 => {
+                _displayItems(img1, areaID)
+            }))
+    })}
+    ) 
 }
 
 var img = new Image();
 var a = document.createElement('a');
 // areaID la khi vu do nguoi dung nhap vao
-var areaID = "img";
-function _displayItems(data, areaID) {
+function _displayItems(img1, areaID) {
+    
+    // console.log(area);  
     const tBody = document.getElementById(areaID);
     tBody.appendChild(a);
     a.appendChild(img);
 
-    if (data.url != null) {
-        a.href = data.url;
+    if (img.url != null) {
+        a.href = img1.url;
     }
     else {
         a.href = "https://www.youtube.com/watch?v=bYAGcLnVNRI"
     }
 
-    img.src = data.imgUrl;
-    var bannerID = data.id;
+    img.src = img1.imgUrl;
+    var bannerID = img1.id;
 
     img.onclick = function () {
         _countClickBanner(bannerID);
@@ -47,8 +53,7 @@ function _countClickBanner(bannerID) {
                 code: 1,
                 bannerID: bannerID,
                 userClick: "Luong Van Minh",
-                timeClick: new Date(),
-                sectionID: sectionID
+                timeClick: new Date()
             })
     });
 }
