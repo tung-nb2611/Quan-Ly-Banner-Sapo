@@ -15,10 +15,24 @@ public class ClicksService {
     @Autowired
     ClicksRepository clicksRepository;
 
-
-
     @Transactional
     public void save(ClicksEntity clicksEntity){
         clicksRepository.save(clicksEntity);
+    }
+
+    public int getClickCountByPreviousDay(Integer bannerId) {
+        return clicksRepository.getClickCountPreviousDayByBannerId(bannerId);
+    }
+
+    public int getClickCountByPreviousWeek(Integer bannerId) {
+        return clicksRepository.getClickCountPreviousWeekByBannerId(bannerId);
+    }
+
+    public int getClickCountByPreviousMonth(Integer bannerId) {
+        return clicksRepository.getClickCountPreviousMonthByBannerId(bannerId);
+    }
+
+    public int getClickCountByPreviousYear(Integer bannerId) {
+        return clicksRepository.getClickCountPreviousYearByBannerId(bannerId);
     }
 }

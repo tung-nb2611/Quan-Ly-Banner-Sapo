@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -24,5 +25,10 @@ public class ViewsController {
     @GetMapping("/banners/views/{sectionID}/{bannerID}")
     public ViewsEntity getViewsBannerInSection(@PathVariable("sectionID") int sectionID, @PathVariable("bannerID") int bannerID){
         return viewsService.getByBannerIDAndSectionID(bannerID,sectionID);
+    }
+
+    @GetMapping("/banners/views/banner/{bannerId}")
+    public int getViewsByBannerId(@PathVariable("bannerId") int bannerId){
+            return viewsService.getViewsByBannerId(bannerId);
     }
 }

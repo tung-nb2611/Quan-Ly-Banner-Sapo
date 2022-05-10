@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @Service
@@ -43,6 +44,11 @@ public class ViewsService {
             viewsRepository.deleteById(id);
         }catch (NoSuchElementException e){
         }
+    }
+
+    public int getViewsByBannerId(int bannerId){
+
+        return viewsRepository.getViewsByBannerID(bannerId);
     }
 
 
