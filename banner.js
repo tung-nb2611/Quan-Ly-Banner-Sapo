@@ -47,7 +47,8 @@ function _countClickBanner(bannerID) {
                 code: 1,
                 bannerID: bannerID,
                 userClick: "Luong Van Minh",
-                timeClick: new Date()
+                timeClick: new Date(),
+                sectionID: sectionID
             })
     });
 }

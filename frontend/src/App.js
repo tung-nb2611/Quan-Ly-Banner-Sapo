@@ -28,6 +28,7 @@ import Report from './pages/Report';
 import BannerManage from "./pages/BannerManage";
 import BannerDetail from './components/banner/BannerDetail';
 import SapoWeb from './dashboard/SapoWeb';
+import DetailReport from './components/report/DetailReport';
 
 
 
@@ -91,6 +92,7 @@ const App = () => {
                   <Route path="/banner/update/:code">
                     <UpdateBanner showAdminBoard={showAdminBoard} />
                   </Route>
+
                   <Route path="/banner/display/:id">
                     <DisplayBanner />
                   </Route>
@@ -102,6 +104,9 @@ const App = () => {
                   </Route>
                   <Route path="/report">
                     <Report />
+                  </Route>
+                  <Route path="/views/detail/:code" >
+                    <DetailReport />
                   </Route>
                   <Route path="/banner1/manage" exact component={UserManage} />
                   <Route path="/banner1/create" exact component={CreateUser} />

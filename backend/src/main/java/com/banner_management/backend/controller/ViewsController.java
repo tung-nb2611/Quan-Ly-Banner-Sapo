@@ -20,6 +20,12 @@ public class ViewsController {
         return viewsService.listViewsBanner();
     }
 
+    // lay luot view cua banner dua theo khu vuc
+    @GetMapping("/banners/views/{bannerID}")
+    public ViewsEntity getViewsBannerByid( @PathVariable("bannerID") int bannerID){
+        return viewsService.getByBannerID(bannerID);
+    }
+
 // lay luot view cua banner dua theo khu vuc
     @GetMapping("/banners/views/{sectionID}/{bannerID}")
     public ViewsEntity getViewsBannerInSection(@PathVariable("sectionID") int sectionID, @PathVariable("bannerID") int bannerID){

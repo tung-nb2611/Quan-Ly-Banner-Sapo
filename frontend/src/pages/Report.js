@@ -1,9 +1,13 @@
 import React from "react";
+import ListBannerReport from "../components/report/ListBannerReport";
+import Views from "../components/report/Views";
 
 const Report = () => {
     return (
-        <div className="contact">
-            <h1>Report</h1>
+        <div >
+
+            <Views />
+            <ListBannerReport />
         </div>
     );
 };

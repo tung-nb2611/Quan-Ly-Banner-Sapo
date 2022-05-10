@@ -28,6 +28,11 @@ public class ViewsService {
         return viewsRepository.getByBannerIDAndSectionID(bannerID, sectionID);
     }
 
+    public ViewsEntity getByBannerID(Integer bannerID){
+        return viewsRepository.getByBannerByID(bannerID);
+    }
+
+
     @Transactional
     public void save(ViewsEntity viewsEntity){
         viewsRepository.save(viewsEntity);
