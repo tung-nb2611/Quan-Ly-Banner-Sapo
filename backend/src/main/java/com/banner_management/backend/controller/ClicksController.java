@@ -46,4 +46,24 @@ public List<ClicksEntity> getAllClick(){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/clicks-banner/day/{bannerId}")
+    public int getClickCountPreviousDayByBannerId(@PathVariable("bannerId") Integer bannerId){
+        return clicksService.getClickCountByPreviousDay(bannerId);
+    }
+
+    @GetMapping("/clicks-banner/week/{bannerId}")
+    public int getClickCountPreviousWeekByBannerId(@PathVariable("bannerId") Integer bannerId){
+        return clicksService.getClickCountByPreviousWeek(bannerId);
+    }
+
+    @GetMapping("/clicks-banner/month/{bannerId}")
+    public int getClickCountPreviousMonthByBannerId(@PathVariable("bannerId") Integer bannerId){
+        return clicksService.getClickCountByPreviousMonth(bannerId);
+    }
+
+    @GetMapping("/clicks-banner/year/{bannerId}")
+    public int getClickCountPreviousYearByBannerId(@PathVariable("bannerId") Integer bannerId){
+        return clicksService.getClickCountByPreviousYear(bannerId);
+    }
 }
