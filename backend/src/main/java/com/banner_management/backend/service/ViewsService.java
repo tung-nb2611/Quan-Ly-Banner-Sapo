@@ -51,10 +51,12 @@ public class ViewsService {
         }
     }
 
+
     public int getViewsByBannerId(int bannerId){
 
         return viewsRepository.getViewsByBannerID(bannerId);
     }
+
 
 
 }
