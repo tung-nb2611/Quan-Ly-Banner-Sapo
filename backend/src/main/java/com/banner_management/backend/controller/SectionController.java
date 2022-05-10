@@ -15,9 +15,9 @@ public class SectionController {
     @Autowired
     private SectionService sectionService;
 
-    @GetMapping("/{position_web}/sections")
-    public List<SectionEntity> listSection(@PathVariable("position_web") String position_web) {
-        return sectionService.listSectionByPosition_web(position_web);
+    @GetMapping("/sections/user={user_add}")
+    public List<SectionEntity> listSection(@PathVariable("user_add") String user_add) {
+        return sectionService.listSectionByUser_add(user_add);
     }
 
     @GetMapping("/{position_web}/sections/{id}")

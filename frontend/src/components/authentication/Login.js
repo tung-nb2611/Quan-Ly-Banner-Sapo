@@ -1,4 +1,4 @@
-import React, { useState, useRef, Component } from "react";
+import React, { useState, useRef } from "react";
 import { useHistory } from 'react-router-dom';
 import Form from "react-validation/build/form";
 import Input from "react-validation/build/input";
@@ -27,7 +27,9 @@ const Login = () => {
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
-
+  if (message === "Request failed with status code 401") {
+    setMessage("Wrong username or password!");
+  }
   const onChangeUsername = (e) => {
     const username = e.target.value;
     setUsername(username);
@@ -37,7 +39,7 @@ const Login = () => {
     const password = e.target.value;
     setPassword(password);
   };
-
+  
   const handleLogin = (e) => {
     e.preventDefault();
 
@@ -62,6 +64,10 @@ const Login = () => {
 
           setLoading(false);
           setMessage(resMessage);
+
+          if (resMessage === "Request failed with status code 401") {
+            return <p>Wrong username or password</p>;
+          }
         }
       );
     } else {
@@ -121,7 +127,7 @@ const Login = () => {
             </div>
 
             {message && (
-              <div className="form-group">
+              <div className="form-group mt-2">
                 <div className="alert alert-danger" role="alert">
                   {message}
                 </div>

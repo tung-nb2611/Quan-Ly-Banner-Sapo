@@ -26,7 +26,9 @@ function DisplayBanner(props) {
     }
 
     const handleOnChangeChoice = (e) => {
-        if (randomChecked === true) {
+
+        const choice = e.target.value;
+        if (choice === "Percentage") {
             setRandomChecked(false);
             setpercentageChecked(true);
             document.getElementById("showListBannerChoice").style.opacity = 1;
@@ -111,7 +113,18 @@ function DisplayBanner(props) {
                                             />
                                         </div>
                                     </div>
-
+                                    <div className='mt-3 col-12 form-group'>
+                                        <div className='col-2'>
+                                            <label htmlFor='bannerID'>Chế độ hiển thị</label>
+                                        </div>
+                                        <label className='col-12'>
+                                            <select className='col-5' style={{ fontSize: "17px"}} onChange={(e) => handleOnChangeChoice(e)}>
+                                                <option value="Random">Ngẫu nhiên</option>
+                                                <option value="Percentage">Tỉ trọng</option>
+                                            </select>
+                                        </label>
+                                    </div>
+{/*                         
                                     <div className="mt-3 col-12 form-group">
                                         <div className="col-2">
                                             <label htmlFor="bannerID">Hiển thị ngẫu nhiên</label>
@@ -132,7 +145,7 @@ function DisplayBanner(props) {
                                                 checked={percentageChecked} onChange={(e) => handleOnChangeChoice(e)} />
                                             <span className="checkmark"></span>
                                         </label>
-                                    </div>
+                                    </div> */}
                                 </form>
                             </div>
                         </div>

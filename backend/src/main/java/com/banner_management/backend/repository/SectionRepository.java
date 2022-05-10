@@ -9,6 +9,6 @@ import java.util.List;
 
 public interface SectionRepository extends JpaRepository<SectionEntity, Integer> {
 
-    @Query(value = "select * from sections where position_web = ?1", nativeQuery = true)
-    List<SectionEntity> getSectionEntitiesByPositionWeb(String position_web);
+    @Query(value = "select * from sections where user_add = ?1", nativeQuery = true)
+    List<SectionEntity> getSectionEntitiesByUser_add(String user_add);
 }

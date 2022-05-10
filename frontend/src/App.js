@@ -29,6 +29,11 @@ import BannerManage from "./pages/BannerManage";
 import BannerDetail from './components/banner/BannerDetail';
 import SapoWeb from './dashboard/SapoWeb';
 
+import DetailReport from './components/report/DetailReport';
+
+
+
+import NotFound from './components/NotFound';
 
 
 const App = () => {
@@ -36,7 +41,6 @@ const App = () => {
   const [currentUser, setCurrentUser] = useState(undefined);
   useEffect(() => {
     const user = AuthService.getCurrentUser();
-
     if (user) {
       setCurrentUser(user);
       setShowAdminBoard(user.roles.includes("ROLE_ADMIN"));
@@ -65,6 +69,7 @@ const App = () => {
           <Switch>
             {currentUser ?
               (
+
                 <Layout logOut={logOut} showAdminBoard={showAdminBoard}>
                   {/* <Redirect from="/" to="/home" /> */}
                   <Route exact path="/home">
@@ -91,6 +96,7 @@ const App = () => {
                   <Route path="/banner/update/:code">
                     <UpdateBanner showAdminBoard={showAdminBoard} />
                   </Route>
+
                   <Route path="/banner/display/:id">
                     <DisplayBanner />
                   </Route>
@@ -103,19 +109,24 @@ const App = () => {
                   <Route path="/report">
                     <Report />
                   </Route>
+                  <Route path="/views/detail/:code" >
+                    <DetailReport />
+                  </Route>
                   <Route path="/banner1/manage" exact component={UserManage} />
                   <Route path="/banner1/create" exact component={CreateUser} />
                   <Route path="/banner1/update/:code" exact component={UpdateUser} />
                   <Route path="/banner1/update" exact component={UpdateUser} />
-                </Layout>) :
-              (
+                </Layout>) : (
                 <>
-                  {/* <Redirect from="/*" to="/login" /> */}
+                  <Route path="/">
+                    <Redirect to='/login'></Redirect>
+                  </Route>
                   <Route exact path="/login">
                     <Login />
                   </Route>
                 </>
               )}
+
           </Switch>
         </CheckboxArrProvider>
       </CheckboxProvider>

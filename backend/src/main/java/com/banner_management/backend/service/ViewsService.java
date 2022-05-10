@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 @Service
@@ -27,6 +28,11 @@ public class ViewsService {
     public ViewsEntity getByBannerIDAndSectionID(Integer bannerID, Integer sectionID){
         return viewsRepository.getByBannerIDAndSectionID(bannerID, sectionID);
     }
+
+    public ViewsEntity getByBannerID(Integer bannerID){
+        return viewsRepository.getByBannerByID(bannerID);
+    }
+
 
     @Transactional
     public void save(ViewsEntity viewsEntity){
@@ -44,6 +50,13 @@ public class ViewsService {
         }catch (NoSuchElementException e){
         }
     }
+
+
+    public int getViewsByBannerId(int bannerId){
+
+        return viewsRepository.getViewsByBannerID(bannerId);
+    }
+
 
 
 }

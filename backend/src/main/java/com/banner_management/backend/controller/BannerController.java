@@ -24,6 +24,11 @@ public class BannerController {
 
     @Autowired
     private BannerStatusService bannerStatusService;
+    // lấy một banner theo id
+    @GetMapping("/banners")
+    public List<BannerEntity> getListBanner(){
+        return bannerService.listAllBanner();
+    }
 
     // lấy một banner theo id
     @GetMapping("/banners/{id}")
