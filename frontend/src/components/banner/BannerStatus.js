@@ -37,6 +37,7 @@ const BannerStatus = ({ item }) => {
       rate: rate,
     }));
     checkboxArrContext.updateCheckboxArr(id, rate);
+    
   };
 
   const changeRate = (e) => {
@@ -57,7 +58,7 @@ const BannerStatus = ({ item }) => {
         />
       </td>
       <td className="text-center ">
-        <select className="form-select text-center" onChange={changeRate}>
+        <select className="form-select text-center" onChange={changeRate} defaultValue={item.percentage} value={status.rate}>
           <option value="0">0</option>
           <option value="10">10</option>
           <option value="20">20</option>
