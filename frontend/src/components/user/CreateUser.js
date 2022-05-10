@@ -1,120 +1,59 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import '../../styles/user/CreateUser.css';
 import UserService from "../../services/UserService";
 import * as BiIcons from "react-icons/bi";
 import validator from 'validator'
+import { Controller, useForm } from "react-hook-form";
 
 function CreateUser(props) {
-    // THÊM:
-    // - USER ADD,
-    // - ROLE NEW USER.     
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [phone, setPhone] = useState('');
-    const [username, setUsername] = useState('');
-    const [password, setPassword] = useState('');
-    const [role, setRole] = useState([]);
-    const [formErorrs, setFormErrors] = useState({});
-
-    const [checked, setChecked] = useState(2);
-
-    const allRoles = [{
-        id: 1,
-        name: "Admin"
-    },
-    {
-        id: 2,
-        name: "User"
-    }]
-
-
+    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        saveUser(data);
+    };
 
     const handleCancel = () => {
         props.history.push('/banner1/manage');
     }
 
 
-    const inputEl = (null);
-
-    const saveUser = (e) => {
-        e.preventDefault();
-
+    const saveUser = (data) => {
         let userItem = {
-            name: name,
-            email: email,
-            username: username,
-            password: password,
-            phone: phone,
-            role: (checked == 1) ? ["admin"] : ["user"],
-        }
-        // setFormErrors(validate(userItem));
-
-        if (Object.keys(formErorrs).length === 0) {
-            console.log("cuong");
-            UserService.createUser(userItem).then(res => {
-                props.history.push('/banner1/manage');
-            })
+            name: data.name,
+            email: data.email,
+            username: data.username,
+            password: data.password,
+            phone: data.phone,
+            role: [data.role],
         }
 
-    }
-
-    const validate = (values) => {
-        const errors = {};
-        const regex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-        // Name
-        if (!values.name) {
-            errors.name = "Name is required!";
-        } else if (String(values.name).length > 50) {
-            errors.name = "Name must less than 50 characters!";
-        }
-
-        // Email
-        if (!values.email) {
-            errors.email = "Email is required!";
-        } else if (!String(email).toLowerCase().match(regex)) {
-            errors.email = "This is not a valid email fomat!";
-        } else if (String(values.email).length > 50) {
-            errors.email = "Email must less than 50 characters!";
-        }
-
-        // Username
-        if (!values.username) {
-            errors.username = "Username is required!";
-        } else if (String(values.username).length > 20) {
-            errors.username = "Username must less than 20 characters!";
-        }
-        // else {
-        //     UserService.checkUsername(values.username).then((response) => {
-        //         const checkID = response.data;
-        //         if (checkID != 0) {
-        //             errors.username = "Error: Username is already taken!";
-        //             console.log(checkID != 0);
-        //         }
-        //     })  
-        // }
-
-        // Password
-        if (!values.password) {
-            errors.password = "Password is required!";
-        } else if ((String(values.password).length > 120) || ((String(values.password).length < 5))) {
-            errors.password = "Password must less than 120 characters!";
-        }
-        // Phone
-        if (!values.phone) {
-            errors.phone = "Phone is required!";
-        } else if (!validator.isMobilePhone(values.phone)) {
-            errors.phone = "This is not a valid phone number!";
-        }
-        return errors;
+        UserService.createUser(userItem).then(res => {
+            props.history.push('/banner1/manage');
+        })
     }
 
 
+    UserService.checkUsername("cuongpc0128").then((response) => {
+        const checkID = response.data;
+        console.log(checkID == 0);
+
+    })
 
 
 
-    const handleComeBack = () => {
-        props.history.push('/user/manage');
+
+
+
+    let usernameIsAvai = (username) => {
+        if (!username) {
+            return false;
+        }
+        UserService.checkUsername(username).then((response) => {
+            const checkID = response.data;
+            console.log(checkID);
+            return checkID != 0;
+        })
     }
+
 
     return (
 
@@ -132,24 +71,30 @@ function CreateUser(props) {
                             <h1>Thêm mới người dùng</h1>
                         </div>
 
-                        <form >
+                        <form onSubmit={handleSubmit(onSubmit)}>
                             <div className="col-sm-6 left">
                                 <div className="mt-3 form-group">
                                     <label htmlFor="name">Tên người dùng</label>
-                                    <input className="form-control" type="text" id="name" name="name"
+                                    <input
+                                        className="form-control" type="text" id="name" name="name"
                                         placeholder="ex: Phung Cong Cuong"
-                                        value={name} onChange={(e) => setName(e.target.value)}
+                                        {...register("name", { required: true, minLength: 6, maxLength: 20 })}
                                     />
-                                    <p>{formErorrs.name}</p>
+                                    {errors.name && errors.name.type === "required" && <span>This is required</span>}
+                                    {errors.name && errors.name.type === "minLength" && <span>Min length is 6</span>}
+                                    {errors.name && errors.name.type === "maxLength" && <span>Max length is 20</span>}
                                 </div>
 
                                 <div className="mt-2 form-group">
                                     <label htmlFor="password">Email</label>
                                     <input className="form-control" id="email" type="text" name="email"
                                         placeholder="ex: sapo123@gmail.com"
-                                        value={email} onChange={(e) => setEmail(e.target.value)}
+                                
+                                        {...register("email", { required: true, maxLength: 50, pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })}
                                     />
-                                    <p>{formErorrs.email}</p>
+                                    {errors.email && errors.email.type === "required" && <span>This is required</span>}
+                                    {errors.email && errors.email.type === "maxLength" && <span>Max length is 50</span>}
+                                    {errors.email && errors.email.type === "pattern" && <span>This is an email</span>}
                                 </div>
                             </div>
                             <div className="col-sm-6 right">
@@ -157,12 +102,11 @@ function CreateUser(props) {
                                     <label htmlFor="password">Phone</label>
                                     <input className="form-control" id="phone" type="text" name="phone"
                                         placeholder="ex: 0934.567.890"
-                                        value={phone} onChange={(e) => {
-                                            setPhone(e.target.value)
-
-                                        }}
+                                        {...register("phone", { required: true, minLength: 6, maxLength: 15 })}
                                     />
-                                    <p>{formErorrs.phone}</p>
+                                    {errors.phone && errors.phone.type === "required" && <span>This is required</span>}
+                                    {errors.phone && errors.phone.type === "minLength" && <span>Min length is 6</span>}
+                                    {errors.phone && errors.phone.type === "maxLength" && <span>Max length is 15</span>}
 
                                 </div>
 
@@ -171,50 +115,38 @@ function CreateUser(props) {
                                     <label htmlFor="username">Username</label>
                                     <input className="form-control" id="username" type="text" name="username"
                                         placeholder="ex: sapo123"
-                                        value={username} onChange={(e) => setUsername(e.target.value)}
+                                        {...register("username", { required: true, minLength: 6, maxLength: 20, validate: usernameIsAvai })}
                                     />
-                                    <p>{formErorrs.username}</p>
+                                    {errors.username && errors.username.type === "required" && <span>This is required</span>}
+                                    {errors.username && errors.username.type === "minLength" && <span>Min length is 6</span>}
+                                    {errors.username && errors.username.type === "maxLength" && <span>Max length is 20</span>}
+                                    {/* {errors.username.type === "validate" && <span>CUONGPC0128</span>} */}
                                 </div>
 
                                 <div className="mt-2 form-group">
                                     <label htmlFor="password">Password</label>
-                                    <input className="form-control" id="password" type="password" name="password"
-                                        value={password} onChange={(e) => setPassword(e.target.value)}
+                                    <input 
+                                        className="form-control" id="password" type="password" name="password"
+                                        {...register("password", { required: true, minLength: 6, maxLength: 50 })}
                                     />
-                                    <p>{formErorrs.password}</p>
+                                    {errors.username && errors.username.type === "required" && <span>This is required</span>}
+                                    {errors.username && errors.username.type === "minLength" && <span>Min length is 6</span>}
+                                    {errors.username && errors.username.type === "maxLength" && <span>Max length is 50</span>}
                                 </div>
-
-
-
                                 <div className="chossing-role">
-                                    {allRoles.map(chossingRole => (
-                                        <div key={role.id}>
-                                            <input
-                                                type="radio"
-                                                checked={checked === chossingRole.id}
-                                                onChange={() => {
-                                                    setChecked(chossingRole.id)
-                                                }}
-                                            />
-                                            {chossingRole.name}
-                                        </div>
-                                    ))}
+                                    <select {...register("role")}>
+                                        <option value="User">User</option>
+                                        <option value="Admin">Admin</option>
+                                    </select>
                                 </div>
                             </div>
+                            <button type="button" className="btn btn-cancel" name="btncancel" onClick={() => handleCancel()} >Hủy</button>
+                            <button type="submit" className="btn btn-add " name="btnsubmit" >Thêm người dùng</button>
                         </form>
-
-                        <div className="col-sm-6 right">
-
-                            <div className="button">
-                                <button type="button" className="btn btn-cancel" name="btncancel" onClick={() => handleCancel()} >Hủy</button>
-
-                            </div>
-                        </div>
                     </div>
-
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
 
     );
 
