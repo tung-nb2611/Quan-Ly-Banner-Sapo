@@ -14,8 +14,8 @@ public class SectionService {
     @Autowired
     private SectionRepository sectionRepository;
 
-    public List<SectionEntity> listSectionByPosition_web(String position_web) {
-        return sectionRepository.getSectionEntitiesByPositionWeb(position_web);
+    public List<SectionEntity> listSectionByUser_add(String user_add) {
+        return sectionRepository.getSectionEntitiesByUser_add(user_add);
     }
 
     public SectionEntity getSectionById(int id) {
