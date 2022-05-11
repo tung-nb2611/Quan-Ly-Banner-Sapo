@@ -18,9 +18,7 @@ const Layout = React.memo((props) => {
         logOut={props.logOut}
       />
       <Wrapper>
-        <NavBar 
-          showAdminBoard={props.showAdminBoard}
-        />        
+        <NavBar showAdminBoard={props.showAdminBoard}/>        
         {props.children}
       </Wrapper>
     </div>

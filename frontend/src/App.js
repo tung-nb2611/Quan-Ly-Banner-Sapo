@@ -10,9 +10,6 @@ import { CheckboxArrProvider } from './context/CheckboxListContext'
 
 import Login from "./components/authentication/Login";
 import Home from "./components/authentication/Home";
-import Profile from './components/authentication/Profile';
-import BoardUser from './components/authentication/BoardUser';
-import BoardAdmin from './components/authentication/BoardAdmin';
 import CreateBanner from "./components/banner/CreateBanner";
 import UpdateBanner from "./components/banner/UpdateBanner";
 import DisplayBanner from "./components/section/DisplayBanner";
@@ -71,18 +68,9 @@ const App = () => {
               (
 
                 <Layout logOut={logOut} showAdminBoard={showAdminBoard}>
-                  {/* <Redirect from="/" to="/home" /> */}
+                  <Redirect from="/" to="/home" />
                   <Route exact path="/home">
                     <Home />
-                  </Route>
-                  <Route path="/profile">
-                    <Profile />
-                  </Route>
-                  <Route path="/user">
-                    <BoardUser />
-                  </Route>
-                  <Route path="/admin">
-                    <BoardAdmin />
                   </Route>
                   <Route path="/banner/manage">
                     <BannerManage />
@@ -116,7 +104,8 @@ const App = () => {
                   <Route path="/banner1/create" exact component={CreateUser} />
                   <Route path="/banner1/update/:code" exact component={UpdateUser} />
                   <Route path="/banner1/update" exact component={UpdateUser} />
-                </Layout>) : (
+                </Layout>
+              ) : (
                 <>
                   <Route path="/">
                     <Redirect to='/login'></Redirect>

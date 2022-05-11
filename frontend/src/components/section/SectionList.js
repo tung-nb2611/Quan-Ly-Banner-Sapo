@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Section from "./Section";
 import "../../styles/section/SectionList.css"
 import SectionService from "../../services/section/SectionImage";
-import PaginateList from '../PaginateList';
+// import PaginateList from '../PaginateList';
 function SectionList(props) {
   
     const [sectionList, setSectionList] = useState([]);
@@ -14,9 +14,9 @@ function SectionList(props) {
     useEffect(() => {
         SectionService.getSectionByPageAndUserAdd("user", currentPage).then((response) => {
             const info = response.data.content;
-            const pageNum = response.data.totalPages;
             setSectionList(info);
-            setPageNumber(pageNum);
+            // const pageNum = response.data.totalPages;
+            // setPageNumber(pageNum);
         })
     }, [currentPage])
 
@@ -35,7 +35,7 @@ function SectionList(props) {
                 <div className="list">
                 {displaySections}
                 </div>
-                <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
+                {/* <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} /> */}
             </div>
         )
 
