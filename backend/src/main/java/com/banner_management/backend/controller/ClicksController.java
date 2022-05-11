@@ -1,11 +1,14 @@
 package com.banner_management.backend.controller;
 
 import com.banner_management.backend.entity.ClicksEntity;
+import com.banner_management.backend.repository.ClicksRepository;
 import com.banner_management.backend.service.ClicksService;
 import org.apache.catalina.LifecycleState;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,11 +27,27 @@ public class ClicksController {
 //    public List<ClicksEntity> getAllBannerClick(){
 //        return clicksService.
 //    }
-
-@GetMapping("/clicks-banner")
-public List<ClicksEntity> getAllClick(){
+    @GetMapping("/clicks-banner")
+    public List<ClicksEntity> getAllClick(){
     return clicksService.getClick();
 }
+
+    // Lấy thông tin info click chuột theo từng banner
+    @GetMapping("/clicks-banner/info/{bannerID}")
+    public List<ClicksEntity> getClickInfoByBannerId(@PathVariable("bannerID") int bannerId){
+        return clicksService.getClickInfoByBannerId(bannerId);
+    }
+
+    @GetMapping("/clicks-banner/info/{bannerID}/{page}")
+    public ResponseEntity<Page<ClicksEntity>> getClickInfoByPage(@PathVariable("bannerID") int bannerId, @PathVariable("page") int page){
+        try {
+            Page<ClicksEntity> clicks = clicksService.getClickInfoPage(bannerId, page);
+            return new ResponseEntity<>(clicks, HttpStatus.OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/clicks-banner/count")
     public int getCountCLick(){
         return clicksService.getCountCLick();
