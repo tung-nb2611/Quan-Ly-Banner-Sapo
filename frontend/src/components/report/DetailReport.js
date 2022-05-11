@@ -106,10 +106,17 @@ function DetailReport(props) {
                             <div className="">
                                 <table className="table">
                                     <thead>
+<<<<<<< HEAD
                                         <tr className="col-6 bg-info">
                                             <th className="col-1 text-center" >Thời gian Click</th>
                                             <th className="col-2 text-center"> Người thực hiện</th>
                                             <th className="col-2 text-center"> ID Trang Web Hiển Thị </th>
+=======
+                                        <tr className="col-12 bg-info">
+                                        
+                                        <th className="col-2 text-center"> Người thực hiện</th>
+                                        <th className="col-1 text-center" >Thời gian Click</th>
+>>>>>>> b7f381cbccc2a2a7baf6cfb3c24a6d596be19662
                                         </tr>
                                     </thead>
                                     <tbody className="col-6 ">

@@ -100,7 +100,7 @@ const App = () => {
                   <Route path="/banner/display/:id">
                     <DisplayBanner />
                   </Route>
-                  <Route path="/section/:position_web">
+                  <Route path="/section">
                     <SectionList />
                   </Route>
                   <Route path="/dashboard/SapoWeb">

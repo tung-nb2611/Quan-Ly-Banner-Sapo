@@ -28,7 +28,6 @@ public interface ClicksRepository extends JpaRepository<ClicksEntity, Integer> {
     @Query(value = "select * from clicks where banner_id = ?1", nativeQuery = true)
     Page<ClicksEntity> getClicksByBannerId(int id, Pageable pageable);
 
-
     @Query(value = "SELECT sum(number) from views where banner_id = ?1", nativeQuery = true)
     Integer getViewsByBannerID(Integer bannerId);
 
