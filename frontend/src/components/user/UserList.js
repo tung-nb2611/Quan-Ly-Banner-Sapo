@@ -20,7 +20,7 @@ const UserList = () => {
 
       // Lấy thông tin user
       const data = response.data.content;
-      console.log(data)
+      // console.log(data)
       // Lấy thông tin tổng số trang 
       const pageNum = response.data.totalPages;
       setUserList(data);

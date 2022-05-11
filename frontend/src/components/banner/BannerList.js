@@ -30,8 +30,8 @@ const BannerList = () => {
   });
 
   return (
-    <div className="banner-list m-2">
-      <div className="list">
+    <div className="banner-list p-2 ">
+      <div className="list d-flex">
         {displayBanner}
       </div>
       <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />

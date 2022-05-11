@@ -17,7 +17,6 @@ import CreateUser from "./components/user/CreateUser";
 import UpdateUser from "./components/user/UpdateUser";
 import UserManage from "./pages/UserManage";
 
-
 import SectionList from './components/section/SectionList';
 import Layout from './components/dashboard/Layout';
 
@@ -27,9 +26,6 @@ import BannerDetail from './components/banner/BannerDetail';
 import SapoWeb from './dashboard/SapoWeb';
 
 import DetailReport from './components/report/DetailReport';
-
-
-
 import NotFound from './components/NotFound';
 
 
@@ -66,7 +62,6 @@ const App = () => {
           <Switch>
             {currentUser ?
               (
-
                 <Layout logOut={logOut} showAdminBoard={showAdminBoard}>
                   <Redirect from="/" to="/home" />
                   <Route exact path="/home">
