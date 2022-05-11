@@ -58,6 +58,7 @@ public class ClicksController {
 //        return clicksService.getCountClickByBannerId(bannerID);
 //    }
 
+
     @PostMapping("/clicks-banner")
     public ResponseEntity<ClicksEntity> updateClicksBanners (@RequestBody ClicksEntity clicksEntity) {
         try {
