@@ -1,15 +1,21 @@
-import React, { useState } from "react";
+
+import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-import '../../styles/banner/UpdateBanner.css';
-import BannerService from "../../services/BannerService";
+
+// import '../../styles/banner/UpdateBanner.css';
 import * as BiIcons from "react-icons/bi";
-import { useLocation } from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
+import ClickService from "../../services/clicks/ClickService";
+import DetailClick from "./DetailClick";
+import PaginateList from "../PaginateList";
+import '../../styles/report/DetailReport.css';
 
 
 function DetailReport(props) {
-
+    let { id } = useParams();
     // Vấn đề: Access link trực tiếp thì sẽ không có id
     // Lấy thông tin banner được chọn để cho vào state của component Update thông tin
+
     const history = useHistory();
     const linkState = useLocation();
     let data = {}
@@ -17,23 +23,28 @@ function DetailReport(props) {
     let clicks = {}
 
     if (typeof linkState.detailInfo !== 'undefined') {
-
         data = linkState.detailInfo;
         views = linkState.views;
-        clicks = linkState.clicks
-
-        console.log(data);
+        clicks = linkState.clicks;
     }
-    //
 
-    const [bannerCode, setBannerCode] = useState(data.code);
-    // const [sectionID, setSectionID] = useState(data.sectionID);
-    const [name, setName] = useState(data.name);
-    const [imgUrl, setImgUrl] = useState(data.imgUrl); // Dùng để show ảnh
-    const [imgName, setImgName] = useState(data.imgUrl);
-    const [createAt, setCreateAt] = useState(data.createAt);
-    const [urlLink, setUrlLink] = useState(data.url)
-    const [click, setClick] = useState(views.number)
+    const [pageNumber, setPageNumber] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0);
+    const [bannerCode] = useState(data.code);
+    const [name] = useState(data.name);
+    const [imgUrl] = useState(data.imgUrl); // Dùng để show ảnh
+    const [click] = useState(views.number);
+    const [clickInfoList, setClickInfoList] = useState([]);
+
+    useEffect(() => {
+        ClickService.getClickInfoByPage(data.id, currentPage).then((response) => {
+            const info = response.data.content;
+            const pageNum = response.data.totalPages;
+            console.log("click innfo", info)
+            setClickInfoList(info);
+            setPageNumber(pageNum);
+        })
+    }, [currentPage]);
 
     return (
 
@@ -61,14 +72,6 @@ function DetailReport(props) {
                                         value={bannerCode}
                                         disabled />
                                 </div>
-                                {/* 
-                                <div className="mt-2 form-group">
-                                    <label htmlFor="sectionID">Mã khu vực</label>
-                                    <input className="form-control" type="text" id="sectionID" name="sectionID"
-                                        placeholder="ex: 123..."
-                                        value={sectionID} />
-                                </div> */}
-
                                 <div className="mt-2 form-group">
                                     <label htmlFor="name">Tên banner</label>
                                     <input className="form-control" type="text"
@@ -97,9 +100,39 @@ function DetailReport(props) {
                             <div className="col-sm-12" id="imgFrame">
                                 <img className="img-rounded" alt="ảnh banner" src={imgUrl} />
                             </div>
+                        </div>
+                        <br />
+                        <div className="">
+                            <div className="">
+                                <table className="table">
+                                    <thead>
+
+                                        <tr className="col-6 bg-info">
+                                            <th className="col-1 text-center" >Thời gian Click</th>
+                                            <th className="col-2 text-center"> Người thực hiện</th>
+                                            <th className="col-2 text-center"> ID Trang Web Hiển Thị </th>
+
+
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody className="col-6 ">
+                                        {
+                                            clickInfoList.map((item) =>
+                                                <DetailClick key={item.id} clickInfo={item} />
+                                            )
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
+                            <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
+                        </div>
+                        <div className="col-sm-6 right">
                             <div className="button">
                                 <button type="button" className="btn btn-cancel" name="btncancel" onClick={() => history.push("/report")}>Quay lại</button>
                             </div>
+
                         </div>
                     </div>
                 </div>

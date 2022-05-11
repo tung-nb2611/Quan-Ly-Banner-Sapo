@@ -169,7 +169,7 @@ import { Bar } from 'react-chartjs-2';
 import ClickService from "../../services/clicks/ClickService";
 import ViewService from "../../services/views/ViewService";
 
-// ChartJS.register(ArcElement, Tooltip, Legend);
+
 
 
 const Views = () => {
@@ -180,16 +180,16 @@ const Views = () => {
     const [bannerName, setBannerName] = useState([])
     useEffect(() => {
         let Viewws = []
-
+        let id = []
         ViewService.getView().then(res => {
             console.log(res);
             for (const dataObj of res.data) {
                 Viewws.push(parseInt(dataObj.number));
-                console.log('viewsdata', dataObj.number)
-
+                console.log('viewsdata', dataObj.number);
+                id.push(parseInt(dataObj.bannerID))
             }
             setData2(Viewws)
-
+            setCategory(id)
         })
     }, []);
 
@@ -203,7 +203,7 @@ const Views = () => {
                 age.push(item.id);
                 salary.push(item.name)
             })
-            setCategory(salary)
+
             setData1(age)
 
             console.log("age", age, salary)
@@ -216,30 +216,10 @@ const Views = () => {
 
 
     }, []);
-    // useEffect(() => {
-    //     const clicks = [];
-
-    //     ClickService.getListClick().then((response) => {
-    //         response.data.map(item => {
-    //             console.log("itemclis", item)
-    //             clicks.push(item);
-
-    //         })
-
-    //         setData2(clicks)
-
-    //         console.log("clicks", clicks)
-    //     }).catch(e => {
-    //         alert(e);
 
 
 
-    //     });
-    // }, []);
-
-
-
-    console.log("Views", data2);
+    console.log("Views", data1, data2);
 
     var data = {
         labels: category,
@@ -248,38 +228,12 @@ const Views = () => {
                 label: 'lượng views banner',
                 data: data2,
                 borderColor: [
-                    // 'rgba(255, 99, 132, 1)',
-                    // 'rgba(255, 206, 86, 1)',
-                    // 'rgba(255, 206, 86, 1)',
-                    // 'rgba(75, 192, 192, 1)',
-                    // 'rgba(153, 102, 255, 1)',
-                    // 'rgba(255, 159, 64, 1)',
+
                 ],
                 borderWidth: 1,
                 fill: false
             },
-            // {
-            //     label: 'lượng clicks banner',
-            //     data: data2,
-            //     // backgroundColor: [
-            //     //     'rgba(255, 99, 132, 0.2)',
-            //     //     'rgba(54, 162, 235, 0.2)',
-            //     //     'rgba(255, 206, 86, 0.2)',
-            //     //     'rgba(75, 192, 192, 0.2)',
-            //     //     'rgba(153, 102, 255, 0.2)',
-            //     //     'rgba(255, 159, 64, 0.2)'
-            //     // ],
-            //     borderColor: [
-            //         'rgba(255, 99, 132, 1)',
-            //         'rgba(54, 162, 235, 1)',
-            //         'rgba(255, 206, 86, 1)',
-            //         'rgba(75, 192, 192, 1)',
-            //         'rgba(153, 102, 255, 1)',
-            //         'rgba(255, 159, 64, 1)'
-            //     ],
-            //     borderWidth: 1,
-            //     fill: false
-            // }
+
         ]
     };
 

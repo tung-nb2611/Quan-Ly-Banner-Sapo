@@ -5,6 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
 public interface NumberClickRepository extends JpaRepository<NumberClickEntity, Integer> {
 
@@ -16,4 +18,6 @@ public interface NumberClickRepository extends JpaRepository<NumberClickEntity, 
     @Query(value = "select * from number_clicks where banner_id = ?1 and section_id = ?2 and code = ?3", nativeQuery = true)
     NumberClickEntity getByBannerIDAndSectionIDAndCode(Integer bannerID, Integer sectionID, Integer code);
 
+    @Query(value = "select * from number_clicks where banner_id = ?1 ", nativeQuery = true)
+    List<NumberClickEntity> getByBannerID(Integer bannerID);
 }

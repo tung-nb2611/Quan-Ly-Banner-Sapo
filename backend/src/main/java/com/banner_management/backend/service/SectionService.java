@@ -3,6 +3,9 @@ package com.banner_management.backend.service;
 import com.banner_management.backend.entity.SectionEntity;
 import com.banner_management.backend.repository.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +21,19 @@ public class SectionService {
         return sectionRepository.getSectionEntitiesByUser_add(user_add);
     }
 
+    public Page<SectionEntity> getSectionPage(int number){
+        PagingAndSortingRepository<SectionEntity, Integer> sectionRepo = sectionRepository;
+        Page<SectionEntity> sections = ((SectionRepository) sectionRepo).getSectionByPage(PageRequest.of(number, 5));
+        return sections;
+    }
+
+    public Page<SectionEntity> getSectionByPageAndUserAdd(String userAdd, int number){
+        PagingAndSortingRepository<SectionEntity, Integer> sectionRepo = sectionRepository;
+        Page<SectionEntity> sections = ((SectionRepository) sectionRepo).getSectionByPageAndUserAdd(userAdd, PageRequest.of(number, 5));
+        return sections;
+    }
+
+
     public SectionEntity getSectionById(int id) {
         return sectionRepository.findById(id).get();
     }
@@ -31,4 +47,5 @@ public class SectionService {
     public void deleteSection(int id) {
         sectionRepository.deleteById(id);
     }
+
 }

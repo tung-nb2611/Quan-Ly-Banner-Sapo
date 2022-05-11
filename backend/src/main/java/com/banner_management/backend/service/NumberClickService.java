@@ -45,4 +45,8 @@ public class NumberClickService {
         }
     }
 
+    public List<NumberClickEntity> getByBannerID(Integer bannerID){
+        return numberClickRepository.getByBannerID(bannerID);
+    }
+
 }
