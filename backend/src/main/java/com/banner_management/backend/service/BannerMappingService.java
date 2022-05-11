@@ -1,64 +1,57 @@
 package com.banner_management.backend.service;
 
-import com.banner_management.backend.dto.BannerStatusDto;
-import com.banner_management.backend.entity.BannerEntity;
-import com.banner_management.backend.entity.BannerStatusEntity;
-import com.banner_management.backend.repository.BannerStatusRepository;
+import com.banner_management.backend.entity.BannerMappingEntity;
+import com.banner_management.backend.repository.BannerMappingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 
 @Service
-public class BannerStatusService {
+public class BannerMappingService {
 
     @Autowired
-    BannerStatusRepository repository;
+    BannerMappingRepository bannerMappingRepository;
 
     @Transactional
-    public void save(BannerStatusEntity bannerStatusEntity){
-        repository.save(bannerStatusEntity);
+    public void save(BannerMappingEntity BannerMappingEntity){
+        bannerMappingRepository.save(BannerMappingEntity);
     }
 
     @Transactional
     public void update(Timestamp timeDisplay, Integer sectionID){
-        repository.updateTimeDisplay(timeDisplay, sectionID);
+        bannerMappingRepository.updateTimeDisplay(timeDisplay, sectionID);
     }
-    public BannerStatusEntity getById(Integer id){
-        return repository.findById(id).get();
+    public BannerMappingEntity getById(Integer id){
+        return bannerMappingRepository.findById(id).get();
     }
 
     // lay banner da set ti trong de hien thi
-    public BannerStatusEntity getByBannerIDAndSectionID(Integer bannerID, Integer sectionID){
-        return repository.getPercentageByBannerIDAndSectionID(bannerID, sectionID);
+    public BannerMappingEntity getByBannerIDAndSectionID(Integer bannerID, Integer sectionID){
+        return bannerMappingRepository.getPercentageByBannerIDAndSectionID(bannerID, sectionID);
     }
 
-    public BannerStatusEntity listBannerStatusViaRandom(Integer sectionID){
-        return repository.getRandomBySectionID(sectionID);
+    public BannerMappingEntity listBannerStatusViaRandom(Integer sectionID){
+        return bannerMappingRepository.getRandomBySectionID(sectionID);
     }
 
     @Transactional
     public void updatePercentage(Timestamp time_display, Integer percentage, Integer bannerID, Integer sectionID){
-        repository.updatePercentageAndTimeDisplay(time_display, percentage, bannerID, sectionID);
+        bannerMappingRepository.updatePercentageAndTimeDisplay(time_display, percentage, bannerID, sectionID);
     }
     // Cách 1:
     //
     public String getImgUrlByPercentage(int sectionId){
         String imageUrl = "hello";
-        List<BannerStatusEntity> bannerList = repository.getListBannerBySections(sectionId);
+        List<BannerMappingEntity> bannerList = bannerMappingRepository.getListBannerBySections(sectionId);
         ArrayList<Integer> percentageList = new ArrayList<Integer>();
         if(!bannerList.isEmpty()) {
-            for (BannerStatusEntity banner : bannerList) {
+            for (BannerMappingEntity banner : bannerList) {
                 int bannerId = banner.getBannerID();
                 int count = banner.getPercentage() / 10;
                 if (count != 0) {
@@ -72,7 +65,7 @@ public class BannerStatusService {
             System.out.println(percentageList);
             System.out.println(randomParam + " : " + percentageList.get(randomParam));
             System.out.println("\n");
-            imageUrl = repository.getUrlByBannerId(percentageList.get(randomParam));
+            imageUrl = bannerMappingRepository.getUrlByBannerId(percentageList.get(randomParam));
         } else {
             imageUrl = "No banners available\n";
         }
@@ -86,9 +79,9 @@ public class BannerStatusService {
         List<Integer> bannerIdList = new ArrayList<Integer>();
         ArrayList<Integer> percentageList = new ArrayList<Integer>();
         ArrayList<Integer> generatedResult = new ArrayList<Integer>();
-        List<BannerStatusEntity> bannerList = repository.getListBannerBySections(sectionId);
+        List<BannerMappingEntity> bannerList = bannerMappingRepository.getListBannerBySections(sectionId);
         System.out.println("///////\n");
-        for(BannerStatusEntity banner : bannerList){
+        for(BannerMappingEntity banner : bannerList){
             bannerIdList.add(banner.getBannerID());
             percentageList.add(banner.getPercentage());
             int temp = (int) Math.floor(Math.random()*banner.getPercentage());
@@ -101,7 +94,7 @@ public class BannerStatusService {
             imageUrl = "No image available";
         } else {
             int position = findTheLargest(generatedResult);
-            imageUrl = repository.getUrlByBannerId(bannerIdList.get(position));
+            imageUrl = bannerMappingRepository.getUrlByBannerId(bannerIdList.get(position));
         }
 
         return imageUrl;

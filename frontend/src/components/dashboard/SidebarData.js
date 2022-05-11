@@ -47,26 +47,7 @@ export const SidebarData = [
         iconClosed: <BiIcons.BiChevronRight size={24} />,
         iconOpened: <BiIcons.BiChevronDown size={24} />,
 
-        subNav: [
-            {
-                title: "Sapo Web",
-                path: "/section/SapoWeb",
-                icon: <AiIcons.AiOutlineGlobal size={24} />,
-                cName: "sub-nav",
-            },
-            {
-                title: "Sapo Omni",
-                path: "/section/SapoOmni",
-                icon: <MdIcons.MdManageSearch size={24} />,
-                cName: "sub-nav",
-            },
-            {
-                title: "Sapo FnB",
-                path: "/section/SapoFnB",
-                icon: <BiIcons.BiFoodMenu size={24} />,
-                cName: "sub-nav",
-            }
-        ]
+
     },
     {
         title: "Quản lý banner",

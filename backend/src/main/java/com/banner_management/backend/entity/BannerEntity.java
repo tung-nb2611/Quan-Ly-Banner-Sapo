@@ -23,7 +23,7 @@ public class BannerEntity {
     @NotNull
     private String imgUrl;
 
-    @Column(name = "user_add")
+    @Column(name = "user_add" , nullable = false)
     @NotNull
     private String userAdd;
 

@@ -1,18 +1,11 @@
 package com.banner_management.backend.controller;
 
-import com.banner_management.backend.entity.BannerEntity;
-import com.banner_management.backend.entity.ViewsEntity;
-import com.banner_management.backend.service.ViewsService;
+import com.banner_management.backend.entity.ViewEntity;
+import com.banner_management.backend.service.ViewService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
-
-import java.util.Map;
-import java.util.NoSuchElementException;
 
 
 @RestController
@@ -21,11 +14,11 @@ import java.util.NoSuchElementException;
 public class ViewsController {
 
     @Autowired
-    ViewsService viewsService;
+    ViewService viewService;
 
     @GetMapping("/banners/views")
-    public List<ViewsEntity> getAllViews (){
-        return viewsService.listViewsBanner();
+    public List<ViewEntity> getAllViews (){
+        return viewService.listViewsBanner();
     }
 
 //    @GetMapping("/banners/{id}")
@@ -53,21 +46,21 @@ public class ViewsController {
 
     // lay luot view cua banner dua theo khu vuc
     @GetMapping("/banners/views/{bannerID}")
-    public List<ViewsEntity> getViewsBannerByid( @PathVariable("bannerID") int bannerID){
-        return viewsService.getByBannerID(bannerID);
+    public List<ViewEntity> getViewsBannerByid(@PathVariable("bannerID") int bannerID){
+        return viewService.getByBannerID(bannerID);
     }
 
 
 // lay luot view cua banner dua theo khu vuc
     @GetMapping("/banners/views/{sectionID}/{bannerID}")
-    public ViewsEntity getViewsBannerInSection(@PathVariable("sectionID") int sectionID, @PathVariable("bannerID") int bannerID){
-        return viewsService.getByBannerIDAndSectionID(bannerID,sectionID);
+    public ViewEntity getViewsBannerInSection(@PathVariable("sectionID") int sectionID, @PathVariable("bannerID") int bannerID){
+        return viewService.getByBannerIDAndSectionID(bannerID,sectionID);
     }
 
 
     @GetMapping("/banners/views/banner/{bannerId}")
     public int getViewsByBannerId(@PathVariable("bannerId") int bannerId){
-            return viewsService.getViewsByBannerId(bannerId);
+            return viewService.getViewsByBannerId(bannerId);
     }
 
 }

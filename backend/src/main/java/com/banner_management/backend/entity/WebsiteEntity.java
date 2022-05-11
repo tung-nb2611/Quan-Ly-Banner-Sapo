@@ -9,22 +9,21 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Entity
-@Table(name = "sectors")
-public class SectorEntity {
+@Table(name = "websites")
+public class WebsiteEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "div_id")
+    @Column(name = "name")
     @NotNull
-    private  String div_id;
+    private  String name;
 
-    @Column(name = "section_id")
+    @Column(name = "url")
     @NotNull
-    private int section_id;
+    private String url;
 
-
-    public SectorEntity() {
+    public WebsiteEntity() {
     }
 
     public int getId() {
@@ -35,28 +34,28 @@ public class SectorEntity {
         this.id = id;
     }
 
-    public String getDiv_id() {
-        return div_id;
+    public String getName() {
+        return name;
     }
 
-    public void setDiv_id(String div_id) {
-        this.div_id = div_id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public int getSection_id() {
-        return section_id;
+    public String getUrl() {
+        return url;
     }
 
-    public void setSection_id(int section_id) {
-        this.section_id = section_id;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     @Override
     public String toString() {
-        return "SectionEntity{" +
+        return "WebsitesEntity{" +
                 "id=" + id +
-                ", div_id='" + div_id + '\'' +
-                ", section_id='" + section_id + '\'' +
+                ", name='" + name + '\'' +
+                ", url='" + url + '\'' +
                 '}';
     }
 }

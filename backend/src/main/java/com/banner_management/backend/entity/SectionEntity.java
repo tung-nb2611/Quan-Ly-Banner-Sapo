@@ -15,21 +15,24 @@ public class SectionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column(name = "position_web")
+    @Column(name = "web_id")
     @NotNull
-    private  String position_web;
+    private  String webId;
 
-    @Column(name = "code")
+    @Column(name = "div_id")
     @NotNull
-    private String code;
-
-    @Column(name = "url")
-    private String url;
-
-    @Column(name = "user_add")
-    private String user_add;
+    private int divId;
 
     public SectionEntity() {
+    }
+
+    @Override
+    public String toString() {
+        return "SectionsEntity{" +
+                "id=" + id +
+                ", webId='" + webId + '\'' +
+                ", divId=" + divId +
+                '}';
     }
 
     public int getId() {
@@ -40,46 +43,19 @@ public class SectionEntity {
         this.id = id;
     }
 
-    public String getPosition_web() {
-        return position_web;
+    public String getWebId() {
+        return webId;
     }
 
-    public void setPosition_web(String position_web) {
-        this.position_web = position_web;
+    public void setWebId(String webId) {
+        this.webId = webId;
     }
 
-    public String getCode() {
-        return code;
+    public int getDivId() {
+        return divId;
     }
 
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getUser_add() {
-        return user_add;
-    }
-
-    public void setUser_add(String user_add) {
-        this.user_add = user_add;
-    }
-
-    @Override
-    public String toString() {
-        return "SectionEntity{" +
-                "id=" + id +
-                ", position_web='" + position_web + '\'' +
-                ", code='" + code + '\'' +
-                ", url='" + url + '\'' +
-                ", user_add='" + user_add + '\'' +
-                '}';
+    public void setDivId(int divId) {
+        this.divId = divId;
     }
 }

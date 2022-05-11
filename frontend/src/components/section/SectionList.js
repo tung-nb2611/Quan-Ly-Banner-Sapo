@@ -6,13 +6,13 @@ import "../../styles/section/SectionList.css"
 import SectionService from "../../services/section/SectionImage";
 import PaginateList from '../PaginateList';
 function SectionList(props) {
-  
+
     const [sectionList, setSectionList] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
-        SectionService.getSectionByPageAndUserAdd("user", currentPage).then((response) => {
+        SectionService.getSectionByPageAndUserAdd("tung", currentPage).then((response) => {
             const info = response.data.content;
             const pageNum = response.data.totalPages;
             setSectionList(info);
@@ -30,14 +30,14 @@ function SectionList(props) {
         }
     )
 
-        return (
-            <div className="banner-list m-2">
-                <div className="list">
+    return (
+        <div className="banner-list m-2">
+            <div className="list">
                 {displaySections}
-                </div>
-                <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
             </div>
-        )
+            <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
+        </div>
+    )
 
 }
 

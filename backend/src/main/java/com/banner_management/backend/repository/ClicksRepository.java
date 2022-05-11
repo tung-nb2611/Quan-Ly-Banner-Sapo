@@ -1,7 +1,6 @@
 package com.banner_management.backend.repository;
 
-import com.banner_management.backend.entity.ClicksEntity;
-import org.hibernate.mapping.Value;
+import com.banner_management.backend.entity.ClickEntity;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -11,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ClicksRepository extends JpaRepository<ClicksEntity, Integer> {
+public interface ClicksRepository extends JpaRepository<ClickEntity, Integer> {
 
     // Tính số lượng click ở 1 banner bất kì
     @Query(value=" select count(id) from clicks Where banner_id =?1",nativeQuery = true)
@@ -23,10 +22,10 @@ public interface ClicksRepository extends JpaRepository<ClicksEntity, Integer> {
 
     // Lấy thông tin click của từng banner
     // @Query(value="select * from clicks where banner_id = ?1", nativeQuery = true)
-    List<ClicksEntity> findClicksInfoByBannerID(int bannerId);
+    List<ClickEntity> findClicksInfoByBannerID(int bannerId);
 
     @Query(value = "select * from clicks where banner_id = ?1", nativeQuery = true)
-    Page<ClicksEntity> getClicksByBannerId(int id, Pageable pageable);
+    Page<ClickEntity> getClicksByBannerId(int id, Pageable pageable);
 
     @Query(value = "SELECT sum(number) from views where banner_id = ?1", nativeQuery = true)
     Integer getViewsByBannerID(Integer bannerId);
