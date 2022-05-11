@@ -21,8 +21,14 @@ public class ClicksEntity {
     @Column(name = "user_name")
     private String userClick;
 
+
+
     @Column(name = "banner_id")
     private int bannerID;
+
+    @Column(name = "section_id")
+    private int sectionID;
+
 
     public ClicksEntity() {
     }
@@ -66,6 +72,13 @@ public class ClicksEntity {
     public void setBannerID(int bannerID) {
         this.bannerID = bannerID;
     }
+    public int getSectionID() {
+        return sectionID;
+    }
+
+    public void setSectionID(int sectionID) {
+        this.sectionID = sectionID;
+    }
 
     @Override
     public String toString() {
@@ -75,6 +88,7 @@ public class ClicksEntity {
                 ", timeClick=" + timeClick +
                 ", userClick='" + userClick + '\'' +
                 ", bannerID=" + bannerID +
+                ", sectionID=" + sectionID +
                 '}';
     }
 }

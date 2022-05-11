@@ -30,7 +30,7 @@ public class ViewsService {
     }
 
     //lấy views theo bnner id
-    public ViewsEntity getByBannerID(Integer bannerID){
+    public List<ViewsEntity> getByBannerID(Integer bannerID){
         return viewsRepository.getByBannerByID(bannerID);
     }
 ////lấy view và clicks

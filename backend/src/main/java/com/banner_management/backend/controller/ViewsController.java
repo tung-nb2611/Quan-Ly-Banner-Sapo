@@ -53,7 +53,7 @@ public class ViewsController {
 
     // lay luot view cua banner dua theo khu vuc
     @GetMapping("/banners/views/{bannerID}")
-    public ViewsEntity getViewsBannerByid( @PathVariable("bannerID") int bannerID){
+    public List<ViewsEntity> getViewsBannerByid( @PathVariable("bannerID") int bannerID){
         return viewsService.getByBannerID(bannerID);
     }
 

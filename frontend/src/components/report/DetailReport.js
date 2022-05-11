@@ -2,13 +2,13 @@
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
 
-import '../../styles/banner/UpdateBanner.css';
+// import '../../styles/banner/UpdateBanner.css';
 import * as BiIcons from "react-icons/bi";
 import { useLocation, useParams } from "react-router-dom";
 import ClickService from "../../services/clicks/ClickService";
 import DetailClick from "./DetailClick";
 import PaginateList from "../PaginateList";
-
+import '../../styles/report/DetailReport.css';
 
 
 function DetailReport(props) {
@@ -40,6 +40,7 @@ function DetailReport(props) {
         ClickService.getClickInfoByPage(data.id, currentPage).then((response) => {
             const info = response.data.content;
             const pageNum = response.data.totalPages;
+            console.log("click innfo", info)
             setClickInfoList(info);
             setPageNumber(pageNum);
         })
@@ -105,12 +106,13 @@ function DetailReport(props) {
                             <div className="">
                                 <table className="table">
                                     <thead>
-                                        <tr className="col-12 bg-info">
+                                        <tr className="col-6 bg-info">
                                             <th className="col-1 text-center" >Thời gian Click</th>
                                             <th className="col-2 text-center"> Người thực hiện</th>
+                                            <th className="col-2 text-center"> ID Trang Web Hiển Thị </th>
                                         </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody className="col-6 ">
                                         {
                                             clickInfoList.map((item) =>
                                                 <DetailClick key={item.id} clickInfo={item} />
