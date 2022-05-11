@@ -20,18 +20,27 @@ public class ViewsService {
 
     @Autowired
     ViewsRepository viewsRepository;
-
+//Lấy thông tin  views
     public List<ViewsEntity> listViewsBanner(){
         return viewsRepository.findAll();
     }
-
+// lấy views theo bannerId và Sections
     public ViewsEntity getByBannerIDAndSectionID(Integer bannerID, Integer sectionID){
         return viewsRepository.getByBannerIDAndSectionID(bannerID, sectionID);
     }
 
+    //lấy views theo bnner id
     public ViewsEntity getByBannerID(Integer bannerID){
         return viewsRepository.getByBannerByID(bannerID);
     }
+////lấy view và clicks
+//    public  List<ViewsEntity>  getClicksAndViews() {
+//return
+//        viewsRepository.getViews();
+//    }
+
+
+
 
 
     @Transactional

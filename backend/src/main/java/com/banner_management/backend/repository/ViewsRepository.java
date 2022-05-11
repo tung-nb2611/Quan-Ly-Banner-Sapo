@@ -1,5 +1,6 @@
 package com.banner_management.backend.repository;
 
+import com.banner_management.backend.entity.BannerEntity;
 import com.banner_management.backend.entity.ViewsEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -28,5 +29,9 @@ public interface ViewsRepository extends JpaRepository<ViewsEntity, Integer> {
 
     @Query(value = "SELECT sum(number) from views where banner_id = ?1", nativeQuery = true)
     Integer getViewsByBannerID(Integer bannerId);
-
+////lấy thông tin views và tên banner
+//        @Query(value = "select banners.name, views.number as views, number_clicks.number as clicks  from banners join views  on banners.id= views.banner_id " +
+//                "                           join number_clicks on banners.id = number_clicks.banner_id",nativeQuery = true)
+//       List<ViewsEntity>  getViews();
+////
 }

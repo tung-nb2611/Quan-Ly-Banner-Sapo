@@ -34,10 +34,10 @@ public List<ClicksEntity> getAllClick(){
         return clicksService.getCountCLick();
     }
 
-    @GetMapping("/clicks-banner/count/{bannerID}")
-    public int getAllClickbyBannerId(@PathVariable("bannerID") int bannerID){
-        return clicksService.getCountClickByBannerId(bannerID);
-    }
+//    @GetMapping("/clicks-banner/count/{bannerID}")
+//    public int getAllClickbyBannerId(@PathVariable("bannerID") int bannerID){
+//        return clicksService.getCountClickByBannerId(bannerID);
+//    }
 
 
     @GetMapping("/clicks-banner/count/{bannerID}")

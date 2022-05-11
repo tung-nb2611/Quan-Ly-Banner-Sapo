@@ -1,13 +1,14 @@
 import React, { useState } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link, useHistory, useParams } from "react-router-dom";
 import '../../styles/banner/UpdateBanner.css';
 import BannerService from "../../services/BannerService";
 import * as BiIcons from "react-icons/bi";
 import { useLocation } from "react-router-dom";
 
 
-function DetailReport(props) {
 
+function DetailReport(props) {
+    let { id } = useParams();
     // Vấn đề: Access link trực tiếp thì sẽ không có id
     // Lấy thông tin banner được chọn để cho vào state của component Update thông tin
     const history = useHistory();
@@ -100,6 +101,7 @@ function DetailReport(props) {
                             <div className="button">
                                 <button type="button" className="btn btn-cancel" name="btncancel" onClick={() => history.push("/report")}>Quay lại</button>
                             </div>
+
                         </div>
                     </div>
                 </div>
