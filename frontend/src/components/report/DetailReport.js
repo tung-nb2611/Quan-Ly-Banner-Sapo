@@ -99,8 +99,9 @@ function DetailReport(props) {
                                 <table className="table">
                                     <thead>
                                         <tr className="col-12 bg-info">
-                                        <th className="col-1 text-center" >Thời gian Click</th>
+                                        
                                         <th className="col-2 text-center"> Người thực hiện</th>
+                                        <th className="col-1 text-center" >Thời gian Click</th>
                                         </tr>
                                     </thead>
                                     <tbody>

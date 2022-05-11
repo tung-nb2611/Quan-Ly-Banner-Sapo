@@ -58,11 +58,6 @@ public class ClicksController {
         return clicksService.getCountClickByBannerId(bannerID);
     }
 
-
-    @GetMapping("/clicks-banner/count/{bannerID}")
-    public int getAllClickbyBannerId(@PathVariable("bannerID") int bannerID){
-        return clicksService.getCountClickByBannerId(bannerID);
-    }
     @PostMapping("/clicks-banner")
     public ResponseEntity<ClicksEntity> updateClicksBanners (@RequestBody ClicksEntity clicksEntity) {
         try {

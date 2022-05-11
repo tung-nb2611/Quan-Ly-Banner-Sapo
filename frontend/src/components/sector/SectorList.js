@@ -1,30 +1,30 @@
 import { useParams } from 'react-router-dom';
 import React from "react-dom";
 import { useEffect, useState } from 'react';
-import Section from "./Section";
-import "../../styles/section/SectionList.css"
-import SectionService from "../../services/section/SectionImage";
+import Sector from "./sector";
+import "../../styles/sector/sectorList.css"
+import sectorService from "../../services/sector/sectorImage";
 import PaginateList from '../PaginateList';
-function SectionList(props) {
+function sectorList(props) {
   
-    const [sectionList, setSectionList] = useState([]);
+    const [sectorList, setsectorList] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
-        SectionService.getSectionByPageAndUserAdd("user", currentPage).then((response) => {
+        sectorService.getsectorByPageAndUserAdd("user", currentPage).then((response) => {
             const info = response.data.content;
             const pageNum = response.data.totalPages;
-            setSectionList(info);
+            setsectorList(info);
             setPageNumber(pageNum);
         })
     }, [currentPage])
 
-    const displaySections = sectionList.map(
+    const displaysectors = sectorList.map(
         (data) => {
             return (
                 <div key={data.id}>
-                    <Section data={data} />
+                    <sector data={data} />
                 </div>
             )
         }
@@ -33,7 +33,7 @@ function SectionList(props) {
         return (
             <div className="banner-list m-2">
                 <div className="list">
-                {displaySections}
+                {displaysectors}
                 </div>
                 <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
             </div>
@@ -41,4 +41,4 @@ function SectionList(props) {
 
 }
 
-export default SectionList;
+export default sectorList;
