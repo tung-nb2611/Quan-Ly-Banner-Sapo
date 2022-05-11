@@ -33,7 +33,7 @@ function SectionList(props) {
         return (
             <div className="banner-list m-2">
                 <div className="list">
-                {displaySections}
+                    {displaySections}
                 </div>
                 <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
             </div>

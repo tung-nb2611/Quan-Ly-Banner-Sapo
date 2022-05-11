@@ -49,7 +49,9 @@ function Section({ data }) {
                 <h4>Quản lý hiển thị banner</h4>
               </button>
             </Link>
-            <button>Sectors của trang web</button>
+            <Link to={"/section/sectors"}>
+              <button>Sectors của trang web</button>
+            </Link>
           </Col>
         </Row>
       </div>
