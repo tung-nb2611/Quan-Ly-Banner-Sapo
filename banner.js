@@ -1,16 +1,16 @@
-const urlGetRandomBanner = 'http://localhost:8080/api/banner-status/random/';
+const urlGetRandomBanner = 'http://localhost:8080/api/banner-mapping/random/';
 const urlPost = "http://localhost:8080/api/clicks-banner"
-const urlSector = "http://localhost:8080/api/section_id="
+const urlSector = "http://localhost:8080/api/web_id="
 
 
-function getAreaID(sectionID) {
+function getAreaID(WebID) {
 
-    fetch(urlSector + sectionID + "/sectors")
+    fetch(urlSector + WebID + "/sections")
         .then(response => response.json())
         .then(data => {
 
             data.forEach((item) => {
-                fetch(urlGetRandomBanner + sectionID)
+                fetch(urlGetRandomBanner + WebID)
                     .then(response => response.json()
                         .then(img1 => {
 

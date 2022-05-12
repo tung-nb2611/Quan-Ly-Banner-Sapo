@@ -10,6 +10,6 @@ import java.util.List;
 
 public interface SectionRepository extends JpaRepository<SectionEntity, Integer> {
 
-    @Query(value = "select * from sectors where section_id = ?1", nativeQuery = true)
-    List<SectionEntity> getSectorEntitiesBySection_id(int section_id);
+    @Query(value = "select * from sections where web_id = ?1", nativeQuery = true)
+    List<SectionEntity> getSectorEntitiesBySection_id(int web_id);
 }

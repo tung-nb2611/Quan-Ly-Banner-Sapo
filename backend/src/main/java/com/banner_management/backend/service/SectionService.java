@@ -14,8 +14,8 @@ public class SectionService {
     @Autowired
     private SectionRepository sectionRepository;
 
-    public List<SectionEntity> listSectorsBySection_id(int section_id) {
-        return sectionRepository.getSectorEntitiesBySection_id(section_id);
+    public List<SectionEntity> listSectorsBySection_id(int web_id) {
+        return sectionRepository.getSectorEntitiesBySection_id(web_id);
     }
 
 }

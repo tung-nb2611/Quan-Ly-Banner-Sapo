@@ -30,9 +30,9 @@ public interface ClickRepository extends JpaRepository<ClickEntity, Integer> {
 //    @Query(value = "SELECT sum(number) from views where banner_id = ?1", nativeQuery = true)
 //    Integer getViewsByBannerID(Integer bannerId);
 //
-//    // Tính số lượng click của 1 banner trong ngày vừa rồi
-//    @Query(value = "select count(id) from clicks where banner_id = ?1 and timestampdiff(day, time_click, sysdate()) <= 1", nativeQuery = true)
-//    int getClickCountPreviousDayByBannerId(Integer bannerId);
+    // Tính số lượng click của 1 banner trong ngày vừa rồi
+    @Query(value = "select * from clicks  and timestampdiff(day, time_click, sysdate()) <= 1", nativeQuery = true)
+    int getClickCountPreviousDayByBannerId();
 //
 //    // Tính số lượng click của 1 banner trong tuần vừa rồi
 //    @Query(value = "select count(id) from clicks where banner_id = ?1 and timestampdiff(week, time_click, sysdate()) <= 1", nativeQuery = true)

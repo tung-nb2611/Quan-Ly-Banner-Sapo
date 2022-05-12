@@ -1,6 +1,7 @@
 package com.banner_management.backend.controller;
 
 import com.banner_management.backend.entity.ClickEntity;
+import com.banner_management.backend.service.ClickService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -15,8 +16,8 @@ import java.util.NoSuchElementException;
 @RequestMapping("/api")
 public class ClicksController {
 
-//    @Autowired
-//    ClicksService clicksService;
+    @Autowired
+    ClickService clickService;
 ////
 ////    @GetMapping("banners/click")
 ////    public List<ClicksEntity> getAllBannerClick(){
@@ -53,17 +54,17 @@ public class ClicksController {
 ////        return clicksService.getCountClickByBannerId(bannerID);
 ////    }
 //
-//    @PostMapping("/clicks-banner")
-//    public ResponseEntity<ClickEntity> updateClicksBanners (@RequestBody ClickEntity clickEntity) {
-//        try {
-//            System.out.println("du lieu lay ve : "+ clickEntity);
-//            clicksService.save(clickEntity);
-//            return new ResponseEntity<ClickEntity>(clickEntity, HttpStatus.OK);
-//        }catch (NoSuchElementException e){
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
-//
+    @PostMapping("/clicks-banner")
+    public ResponseEntity<ClickEntity> updateClicksBanners (@RequestBody ClickEntity clickEntity) {
+        try {
+            System.out.println("du lieu lay ve : "+ clickEntity);
+            clickService.save(clickEntity);
+            return new ResponseEntity<ClickEntity>(clickEntity, HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 //    @GetMapping("/clicks-banner/day/{bannerId}")
 //    public int getClickCountPreviousDayByBannerId(@PathVariable("bannerId") Integer bannerId){
 //        return clicksService.getClickCountByPreviousDay(bannerId);

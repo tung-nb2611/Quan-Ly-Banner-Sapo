@@ -14,8 +14,8 @@ import java.util.List;
 @Service
 public class ClickService {
 
-//    @Autowired
-//    ClickRepository clickRepository;
+    @Autowired
+    ClickRepository clickRepository;
 //
 //    public  int getCountClickByBannerId (Integer bannerID)
 //    {
@@ -41,10 +41,10 @@ public class ClickService {
 //    }
 //
 //
-//    @Transactional
-//    public void save(ClickEntity clickEntity){
-//        clickRepository.save(clickEntity);
-//    }
+    @Transactional
+    public void save(ClickEntity clickEntity){
+        clickRepository.save(clickEntity);
+    }
 //
 //    public int getClickCountByPreviousDay(Integer bannerId) {
 //        return clickRepository.getClickCountPreviousDayByBannerId(bannerId);
