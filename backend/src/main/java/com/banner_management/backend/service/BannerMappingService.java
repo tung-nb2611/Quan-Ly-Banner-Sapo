@@ -36,7 +36,7 @@ public class BannerMappingService {
         return bannerMappingRepository.getPercentageByBannerIDAndSectionID(bannerID, sectionID);
     }
 
-    public BannerMappingEntity listBannerStatusViaRandom(Integer sectionID){
+    public BannerMappingEntity getRandomBannerBySectionID(Integer sectionID){
         return bannerMappingRepository.getRandomBySectionID(sectionID);
     }
 
@@ -52,7 +52,7 @@ public class BannerMappingService {
         ArrayList<Integer> percentageList = new ArrayList<Integer>();
         if(!bannerList.isEmpty()) {
             for (BannerMappingEntity banner : bannerList) {
-                int bannerId = banner.getBannerID();
+                int bannerId = banner.getBannerId();
                 int count = banner.getPercentage() / 10;
                 if (count != 0) {
                     for (int i = 0; i < count; i++) {
@@ -82,7 +82,7 @@ public class BannerMappingService {
         List<BannerMappingEntity> bannerList = bannerMappingRepository.getListBannerBySections(sectionId);
         System.out.println("///////\n");
         for(BannerMappingEntity banner : bannerList){
-            bannerIdList.add(banner.getBannerID());
+            bannerIdList.add(banner.getBannerId());
             percentageList.add(banner.getPercentage());
             int temp = (int) Math.floor(Math.random()*banner.getPercentage());
             generatedResult.add(temp);

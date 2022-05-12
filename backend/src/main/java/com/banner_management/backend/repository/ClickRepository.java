@@ -20,9 +20,9 @@ public interface ClickRepository extends JpaRepository<ClickEntity, Integer> {
 //    @Query(value=" select count(id) from clicks ", nativeQuery = true)
 //    int getCountClick();
 //
-//    // Lấy thông tin click của từng banner
-//    // @Query(value="select * from clicks where banner_id = ?1", nativeQuery = true)
-//    List<ClickEntity> findClicksInfoByBannerID(int bannerId);
+// Lấy thông tin click của từng banner
+    @Query(value="select * from clicks ", nativeQuery = true)
+    List<ClickEntity> getAllClick( );
 //
 //    @Query(value = "select * from clicks where banner_id = ?1", nativeQuery = true)
 //    Page<ClickEntity> getClicksByBannerId(int id, Pageable pageable);

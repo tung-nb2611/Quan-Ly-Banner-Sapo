@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class BannerMappingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "banner_id", nullable = false)
     @NotNull
@@ -40,20 +40,20 @@ public class BannerMappingEntity {
         this.state = state;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public int getBannerID() {
+    public int getBannerId() {
         return bannerId;
     }
 
-    public void setBannerID(int bannerID) {
-        this.bannerId = bannerID;
+    public void setBannerId(int bannerId) {
+        this.bannerId = bannerId;
     }
 
     public int getSectionID() {
@@ -111,8 +111,8 @@ public class BannerMappingEntity {
     public String toString() {
         return "BannerMappingEntity{" +
                 "id=" + id +
-                ", bannerID=" + bannerId +
-                ", sectionID=" + sectionId +
+                ", bannerId=" + bannerId +
+                ", sectionId=" + sectionId +
                 ", state=" + state +
                 ", percentage=" + percentage +
                 ", timeDisplay=" + timeDisplay +

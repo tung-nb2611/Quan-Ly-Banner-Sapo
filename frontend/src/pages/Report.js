@@ -7,8 +7,8 @@ const Report = () => {
     return (
         <div >
 
-            <CharViewAndClik />
-            <ListBannerReport />
+            <Views />
+            {/* <ListBannerReport /> */}
         </div>
     );
 };

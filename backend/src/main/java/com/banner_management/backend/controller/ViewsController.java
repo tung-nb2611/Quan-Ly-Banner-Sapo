@@ -1,6 +1,8 @@
 package com.banner_management.backend.controller;
 
+
 import com.banner_management.backend.entity.ViewEntity;
+import com.banner_management.backend.service.ViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,13 +14,14 @@ import java.util.List;
 @RequestMapping("/api")
 public class ViewsController {
 
-//    @Autowired
-//    ViewsService viewsService;
-//
-//    @GetMapping("/banners/views")
-//    public List<ViewEntity> getAllViews (){
-//        return viewsService.listViewsBanner();
-//    }
+
+    @Autowired
+    ViewService viewService;
+
+    @GetMapping("/views")
+    public List<ViewEntity> getAllViews (){
+        return viewService.listViewsBanner();
+    }
 //
 //    // lay luot view cua banner dua theo khu vuc
 //    @GetMapping("/banners/views/{bannerID}")

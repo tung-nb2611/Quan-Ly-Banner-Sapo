@@ -18,6 +18,11 @@ public class ClicksController {
 
     @Autowired
     ClickService clickService;
+
+@GetMapping("/clicks-banner")
+    public  List<ClickEntity> getAll(){
+    return clickService.getAllClick();
+}
 ////
 ////    @GetMapping("banners/click")
 ////    public List<ClicksEntity> getAllBannerClick(){

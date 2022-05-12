@@ -27,12 +27,31 @@ public class BannerMappingController {
     @Autowired
     private ViewService viewService;
 
+    @GetMapping("/banner-mapping/random/{sectionID}")
+    public BannerEntity randomBannerStatus(@PathVariable("sectionID") int sectionID) {
+        BannerMappingEntity bannerMappingEntity =  bannerMappingService.getRandomBannerBySectionID(sectionID);
+        System.out.println("banner mapping : "+ bannerMappingEntity);
+        BannerEntity bannerEntity = bannerService.getById(bannerMappingEntity.getBannerId());
+        System.out.println("banner entity : "+ bannerEntity);
+
+        if(bannerMappingEntity.getNumberView() == 0){
+            bannerMappingEntity.setNumberView(1);
+        }
+        else {
+            int countViews = bannerMappingEntity.getNumberView();
+            bannerMappingEntity.setNumberView(countViews + 1);
+        }
+        bannerMappingService.save(bannerMappingEntity);
+        System.out.println("banner random get ra :" + bannerEntity);
+        return bannerEntity;
+    }
+
     //  lấy random banner theo số lượng và khu vực
     @GetMapping("/banner-mapping/percentage/{sectionID}/{bannerID}")
     public BannerEntity listPercentageBannerStatus(@PathVariable("sectionID") int sectionID, @PathVariable("bannerID") int bannerID) {
         BannerMappingEntity bannerMappingEntity = bannerMappingService.getByBannerIDAndSectionID(bannerID, sectionID);
         System.out.println("kiem tra : "+ bannerMappingEntity);
-        BannerEntity bannerEntity = bannerService.getById(bannerMappingEntity.getBannerID());
+        BannerEntity bannerEntity = bannerService.getById(bannerMappingEntity.getBannerId());
         System.out.println("data : "+ bannerEntity);
         return  bannerEntity;
     }
@@ -65,7 +84,7 @@ public class BannerMappingController {
             BannerMappingEntity bannerMappingEntity = bannerMappingEntityList.get(i);
             System.out.println("phần tử "+ i + " "+ bannerMappingEntity);
             bannerMappingService.updatePercentage(bannerMappingEntity.getTimeDisplay(),
-                    bannerMappingEntity.getPercentage(), bannerMappingEntity.getBannerID(), bannerMappingEntity.getSectionID());
+                    bannerMappingEntity.getPercentage(), bannerMappingEntity.getBannerId(), bannerMappingEntity.getSectionID());
         }
     }
 

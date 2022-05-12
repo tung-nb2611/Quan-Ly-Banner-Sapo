@@ -10,6 +10,9 @@ import java.util.List;
 
 @Repository
 public interface ViewRepository extends JpaRepository<ViewEntity, Integer> {
+    @Query(value = "select * from views ", nativeQuery = true)
+    List<ViewEntity> getviews();
+
 
     @Query(value = "select * from views where banner_id = ?1 and section_id = ?2", nativeQuery = true)
     ViewEntity getByBannerIDAndSectionID(Integer bannerID, Integer sectionID);

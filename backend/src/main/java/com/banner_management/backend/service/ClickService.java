@@ -16,6 +16,10 @@ public class ClickService {
 
     @Autowired
     ClickRepository clickRepository;
+
+    public  List<ClickEntity> getAllClick (){
+        return  clickRepository.getAllClick();
+    }
 //
 //    public  int getCountClickByBannerId (Integer bannerID)
 //    {
