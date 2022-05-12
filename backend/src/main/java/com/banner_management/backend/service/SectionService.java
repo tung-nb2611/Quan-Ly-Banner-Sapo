@@ -21,6 +21,10 @@ public class SectionService {
         return sectionRepository.getSectionEntitiesByUser_add(user_add);
     }
 
+    public List<SectionEntity> getAllSections(){
+        return sectionRepository.findAll();
+    }
+
     public Page<SectionEntity> getSectionPage(int number){
         PagingAndSortingRepository<SectionEntity, Integer> sectionRepo = sectionRepository;
         Page<SectionEntity> sections = ((SectionRepository) sectionRepo).getSectionByPage(PageRequest.of(number, 5));

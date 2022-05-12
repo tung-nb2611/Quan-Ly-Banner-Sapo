@@ -19,6 +19,17 @@ public class SectionController {
     @Autowired
     private SectionService sectionService;
 
+
+    @GetMapping("/sections/all")
+    public ResponseEntity<List<SectionEntity>> getAllSection(){
+        try{
+            List<SectionEntity> sections = sectionService.getAllSections();
+            return new ResponseEntity<>(sections, HttpStatus.OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
     @GetMapping("/sections/user={user_add}")
     public List<SectionEntity> listSection(@PathVariable("user_add") String user_add) {
         return sectionService.listSectionByUser_add(user_add);

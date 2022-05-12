@@ -21,6 +21,7 @@ const CheckboxArrProvider = ({ children }) => {
         }));
     }
 
+
     const updateCheckboxArr = (id, value) => {
         const tempArr = countArr.map(banner => banner.id === id ? { ...banner, rate: value } : banner);
         setCountArr(tempArr);
@@ -34,6 +35,7 @@ const CheckboxArrProvider = ({ children }) => {
         removeArrItem
     }
 
+    console.log(countArr);
     return (
         <CheckboxArrContext.Provider value={checkboxArray}>
             {children}

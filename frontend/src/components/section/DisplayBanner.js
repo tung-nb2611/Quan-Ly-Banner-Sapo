@@ -8,7 +8,6 @@ import { CheckboxArrContext } from '../../context/CheckboxListContext';
 
 import { Link } from "react-router-dom";
 
-const BASE_URL = "http://localhost:8080/api/banners/page/";
 function DisplayBanner(props) {
 
     const arrContext = useContext(CheckboxArrContext);
@@ -17,8 +16,6 @@ function DisplayBanner(props) {
     const [percentageChecked, setpercentageChecked] = useState(false);
     const [timeDisplay, setTimeDisplay] = useState(0);
     const [section, setSection] = useState([]);
-    const [dataImg, setDataImg] = useState([]);
-    const history = useHistory();
 
     const createPage = {
         pathname: "/banner/create/" + id,

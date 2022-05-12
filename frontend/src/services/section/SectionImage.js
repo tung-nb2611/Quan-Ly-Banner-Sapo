@@ -14,6 +14,10 @@ class SectionService {
     getSectionByPage(number){
         return axios.get(SECTION_API_SECTION_URL + '/page/' + number);
     }
+
+    getAllSections(){
+        return axios.get(SECTION_API_SECTION_URL + '/all');
+    }
 }
 
 export default new SectionService();

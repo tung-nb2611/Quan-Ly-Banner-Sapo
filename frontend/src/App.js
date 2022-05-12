@@ -20,7 +20,6 @@ import CreateUser from "./components/user/CreateUser";
 import UpdateUser from "./components/user/UpdateUser";
 import UserManage from "./pages/UserManage";
 
-import SectorList from './components/sector/SectorList';
 import SectionList from './components/section/SectionList';
 import Layout from './components/dashboard/Layout';
 
@@ -31,9 +30,6 @@ import SapoWeb from './dashboard/SapoWeb';
 
 import DetailReport from './components/report/DetailReport';
 
-
-
-import NotFound from './components/NotFound';
 
 
 const App = () => {
@@ -102,9 +98,6 @@ const App = () => {
                   </Route>
                   <Route path="/section">
                     <SectionList />
-                  </Route>
-                  <Route path="/section/sectors">
-                    <SectorList />
                   </Route>
                   <Route path="/dashboard/SapoWeb">
                     <SapoWeb />

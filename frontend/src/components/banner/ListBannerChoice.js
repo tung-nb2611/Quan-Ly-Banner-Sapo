@@ -31,17 +31,18 @@ const ListBannerChoice = (props) => {
             <table className="table" >
                 <thead>
                     <tr className=" col-12 bg-info">
-                        <th className="col-1  text-center" >Mã </th>
+                        <th className="col-1  text-center">Mã </th>
                         <th className="col-2  text-center">Tên</th>
-                        <th className="col-4  text-center" >Ảnh banner</th>
-                        <th className="col-2  text-center" >Tỉ trọng (%)</th>
-                        <th className="col-2  text-center" > Thêm</th>
+                        <th className="col-4  text-center">Ảnh banner</th>
+                        <th className="col-2  text-center">Tỉ trọng (%)</th>
+                        <th className="col-2  text-center">Thêm</th>
+                        <th className="col-2  text-center">Ẩn</th>
                     </tr>
                 </thead>
                 <tbody>
                     {
                         bannerList.map((item, index) =>
-                            <BannerStatus key={item.id} item={item} />
+                            <BannerStatus key={item.id} item={item}/>
                         )
                     }
                 </tbody>

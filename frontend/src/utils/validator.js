@@ -1,34 +1,24 @@
-import methods from 'validator';
 
-class Validator {
-    constructor(rules) {
-        this.rules = rules;
-        this.initiate();
+
+const ValidateService = () => {
+
+    const checkEmpty = (value) => {
+        let result = false;
+
+        return result;
     }
 
-    initiate() {
-        this.isValid = true;
-        this.errors = {};
+    const checkTypeNumber = (value) => {
+        let result = false;
+    
+        return result;
     }
 
-    validate(state) {
-        this.initiate();
-        this.rules.forEach((rule) => {
-            if (this.errors[rule.field]) return;
-
-            const fieldValue = state[rule.field] || '';
-            const args = rule.args || [];
-            const validationMethod = typeof rule.method === 'string'
-                ? methods[rule.method]
-                : rule.method;
-
-            if (validationMethod(fieldValue, ...args, state) !== rule.validWhen) {
-                this.errors[rule.field] = rule.message;
-                this.isValid = false;
-            }
-        });
-        return this.errors;
+    const checkTypeString = (value) => {
+        let result = false;
+        
+        return result;
     }
 }
 
-export default Validator;
+export default ValidateService;

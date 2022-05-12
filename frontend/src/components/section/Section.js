@@ -10,7 +10,7 @@ function Section({ data }) {
   const [isLoaded, setIsLoaded] = useState(false);
   const [section, setSection] = useState([]);
   let id = data.id;
-  console.log(data);
+
   useEffect(() => {
     fetch(`http://localhost:8080/api/${position_web}/sections/${id}`)
       .then((res) => res.json())

@@ -1,22 +1,46 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import '../../styles/banner/CreateBanner.css';
 import BannerService from "../../services/BannerService";
+import SectorService from "../../services/sector/SectorService";
 import * as BiIcons from "react-icons/bi";
-import { ref, uploadBytes, getDownloadURL, listAll, list } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../common/Firebase";
 import { v4 } from "uuid";
 import { useHistory, useParams } from "react-router-dom";
-
+import SectionService from "../../services/section/SectionImage"
 
 function CreateBanner(props) {
     let { id } = useParams();
+
     const history = useHistory();
     const [imageUpload, setImageUpload] = useState(null);
     const [bannerID, setBannerID] = useState('');
     const [name, setName] = useState('');
     const [imgPreview, setImgPreview] = useState('');
     const [urlLink, setUrlLink] = useState('');
+    const [sectionId, setSectionId] = useState(id);
+
+    const [sectionList, setSectionList] = useState([]);
+    const [sectorList, setSectorList] = useState([]);
+    const [sectorChoice, setSectorChoice] = useState('');
+
+    useEffect(() => {
+        SectionService.getAllSections().then((response) => {
+            setSectionList(response.data);
+        })
+    }, []);
+
+    useEffect(() => {
+        if(typeof sectionId !== 'undefined' && sectionId !== ''){
+            SectorService.getSectorBySectionId(sectionId).then((response) => {
+                setSectorList(response.data);
+            })
+        } else {
+            console.log("nothing");
+        }
+    }, [sectionId])
+
 
     const getImage = (e) => {
         if (e.target.files[0]) {
@@ -28,19 +52,22 @@ function CreateBanner(props) {
     const handClickReturn = () => {
         history.push('/banner/manage');
     }
+
     const saveBanner = (e) => {
         e.preventDefault();
         if (imageUpload == null) {
+            console.log("No Image");
             return;
         }
         else {
+            console.log("Start");
             const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
             uploadBytes(imageRef, imageUpload).then((snapshot) => {
                 getDownloadURL(snapshot.ref).then((url) => {
                     let currentDay = new Date();
                     let userAdd = "Luong Van Minh";
                     let bannerItem = {
-                        sectionID: id,
+                        sectionID: sectionId,
                         code: bannerID,
                         name: name,
                         imgUrl: url,
@@ -54,6 +81,7 @@ function CreateBanner(props) {
                     })
                 });
             });
+            console.log("Finish ?");
         }
 
     }
@@ -80,10 +108,22 @@ function CreateBanner(props) {
                         <div className="col-sm-6 left">
                             <form>
                                 <div className="mt-3 form-group">
-                                    <label htmlFor="bannerID">Mã khu vực</label>
-                                    <input className="form-control"
-                                        value={id || ''} disabled
-                                    />
+                                    <label htmlFor="sectionId">Tên trang web</label>
+                                    <select className='col-5' style={{ fontSize: "17px"}} onChange={(e) => {
+                                        setSectionId(e.target.value)}}>
+                                        <option hidden></option>
+                                        {sectionList.map((section) => 
+                                            <option value={section.id} selected={(section.id == id) ? true : false}>{section.position_web}</option>
+                                        )} 
+                                    </select>
+                                </div>
+                                <div className="mt-3 form-group">
+                                    <label htmlFor="sector">Sector List</label>
+                                <select className='col-5' style={{ fontSize: "17px"}} onChange={(e) =>setSectorChoice(e.target.value)}>
+                                    {sectorList.map((item) => 
+                                        <option value={item.div_id}>{item.div_id}</option>
+                                    )}
+                                </select>
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label htmlFor="bannerID">Mã banner</label>
