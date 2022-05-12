@@ -27,14 +27,14 @@ const BannerList = () => {
 
   const displayBanner = bannerList.map((bannerInfo) => {
     return (
-      <div className="col-lg-12 col-xl-6">
-        <BannerInfo bannerInfo={bannerInfo} key={bannerInfo.id} bannerList={bannerList} setBannerList={setBannerList} />
+      <div className="col-md-12 col-lg-6 mb-3" key={bannerInfo.id}>
+        <BannerInfo bannerInfo={bannerInfo} bannerList={bannerList} setBannerList={setBannerList} />
       </div>
     );
   });
 
   return (
-    <div className="banner-list ">
+    <div className="banner-list pt-3 ps-3">
       <div className="list d-flex row">
         {displayBanner}
       </div>

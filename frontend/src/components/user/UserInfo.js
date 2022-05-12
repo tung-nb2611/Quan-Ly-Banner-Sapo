@@ -39,64 +39,23 @@ const UserInfo = ({ userInfo, userList, setUserList }) => {
   };
 
   return (
-    <div className="banner-info">
-      <Container>
-        <Row>
-          <Col xs={4} lg={4}>
-            <Row>
-              <Col xs={6} md={4} lg={4} xl={4} className="detail-info">
-                <p>Name</p>
-                <p>{userInfo.name}</p>
-              </Col>
-              <Col xs={6} md={4} lg={4} xl={4} className="detail-show">
-                <button onClick={(userInfo) => handleShowInfo(userInfo)}>Hide Show</button>
-              </Col>
-            </Row>
-            <Row>
-
-            </Row>
-          </Col>
-          <Col lg={7}>
-            <Row>
-              <Col xs={6} md={10} lg={10} xl={9} className="image-container">
-                <Image src="https://mdbootstrap.com/img/new/slides/041.webp" />
-              </Col>
-              <Col xs={3} md={3} lg={3} xl={2} className="button-choice">
-                <button type="button" className="btn btn-secondary"><Link to={updatePage}>Update</Link></button>
-                <button type="button" className="btn btn-danger" onClick={deleteConfirmation}>Delete</button>
-              </Col>
-            </Row>
-          </Col>
-        </Row>
-      </Container >
+    <div className="banner-info p-3">
+      <div className="row align-middle">
+        <div className="detail-info col-sm-12 order-sm-1 col-md-6 order-md-1 col-xl-3 order-xl-1">
+          <label>NAME</label>
+          <p>{userInfo.name}</p>
+        </div>
+        <div className="show col-sm-12 order-sm-2 col-md-12 order-md-3 col-xl-6 order-xl-2">
+          
+        </div>
+        <div className="button-choice col-sm-12 order-sm-3 col-md-6 order-md-2 col-xl-3 order-xl-3">
+          <button className="btn btn-secondary btn-block mt-3 w-100" onClick={(userInfo) => handleShowInfo(userInfo)}>Show</button>
+          {/* <Link type="button" className="btn btn-secondary btn-block" to={bannerDetail}>Show</Link> */}
+          <Link type="button" className="btn btn-outline-primary btn-block" to={updatePage}>Update</Link>
+          <button type="button" className="btn btn-outline-danger btn-block w-100" onClick={deleteConfirmation}>Delete</button>
+        </div>
+      </div>
     </div >
-    // <div>
-    //   <Container>
-    //     <table className="table table-striped">
-    //       {/* <thead>
-    //         <tr>
-    //           <th scope="col">Id</th>
-    //           <th scope="col">Tên banner</th>
-    //           <th scope="col"> HÌnh ảnh Banner</th>
-    //           <th scope="col"></th>
-    //         </tr>
-    //       </thead> */}
-    //       <tbody>
-    //         <tr>
-    //           <th scope="row">1</th>
-    //           <td className="name">{bannerInfo.name}</td>
-    //           <td className="img"><Image src="https://mdbootstrap.com/img/new/slides/041.webp" /></td>
-    //           <td>
-    //             <button><Link to={updatePage}>Update</Link></button>
-    //             <button onClick={deleteConfirmation}>Delete</button>
-
-    //           </td>
-    //         </tr>
-
-    //       </tbody>
-    //     </table>
-    //   </Container>
-    // </div>
   );
 };
 

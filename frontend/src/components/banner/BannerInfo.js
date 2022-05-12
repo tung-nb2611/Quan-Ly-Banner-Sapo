@@ -1,5 +1,4 @@
 import "../../styles/banner/BannerInfo.css";
-import { Row, Col, Image } from "react-bootstrap";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState } from "react";
@@ -30,22 +29,21 @@ const BannerInfo = ({ bannerInfo, bannerList, setBannerList }) => {
   };
 
   return (
-
-    <div className="banner-info m-3 p-3 pe-4">
-      <Row>
-        <Col lg={12} xl={3} className="detail-info">
+    <div className="banner-info p-3">
+      <div className="row align-middle">
+        <div className="detail-info col-sm-12 order-sm-1 col-md-6 order-md-1 col-xl-3 order-xl-1">
           <label>NAME</label>
           <p>{bannerInfo.name}</p>
-        </Col>
-        <Col lg={12} xl={6} className="image-container d-flex justify-content-center">
-          <Image src={bannerInfo.imgUrl}/>
-        </Col>
-        <Col lg={12} xl={3} className="button-choice d-flex flex-column mt-auto p-3">
-          <Link type="button" className="btn btn-secondary btn-block w-100 mb-2" to={bannerDetail}>Show</Link>
-          <Link type="button" className="btn btn-primary btn-block mb-2" to={updatePage}>Update</Link>
-          <button type="button" className="btn btn-danger btn-block w-100" onClick={deleteConfirmation}>Delete</button>
-        </Col>
-      </Row>
+        </div>
+        <div className="image-container col-sm-12 order-sm-2 col-md-12 order-md-3 col-xl-6 order-xl-2">
+          <img className="rounded mx-auto d-block pt-2" src={bannerInfo.imgUrl} alt={bannerInfo.code}/>
+        </div>
+        <div className="button-choice col-sm-12 order-sm-3 col-md-6 order-md-2 col-xl-3 order-xl-3">
+          <Link type="button" className="btn btn-secondary btn-block" to={bannerDetail}>Show</Link>
+          <Link type="button" className="btn btn-outline-primary btn-block" to={updatePage}>Update</Link>
+          <button type="button" className="btn btn-outline-danger btn-block w-100" onClick={deleteConfirmation}>Delete</button>
+        </div>
+      </div>
     </div >
 
   );
