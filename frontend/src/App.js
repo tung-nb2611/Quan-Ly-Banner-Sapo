@@ -8,33 +8,21 @@ import EventBus from "./common/EventBus";
 import { CheckboxProvider } from './context/CheckboxContext';
 import { CheckboxArrProvider } from './context/CheckboxListContext'
 
+import Layout from './components/dashboard/Layout';
 import Login from "./components/authentication/Login";
 import Home from "./components/authentication/Home";
-import Profile from './components/authentication/Profile';
-import BoardUser from './components/authentication/BoardUser';
-import BoardAdmin from './components/authentication/BoardAdmin';
 import CreateBanner from "./components/banner/CreateBanner";
 import UpdateBanner from "./components/banner/UpdateBanner";
 import DisplayBanner from "./components/section/DisplayBanner";
 import CreateUser from "./components/user/CreateUser";
 import UpdateUser from "./components/user/UpdateUser";
 import UserManage from "./pages/UserManage";
-
-
-import SectionList from './components/section/SectionList';
-import Layout from './components/dashboard/Layout';
-
 import Report from './pages/Report';
+import SectionList from './components/section/SectionList';
 import BannerManage from "./pages/BannerManage";
 import BannerDetail from './components/banner/BannerDetail';
 import SapoWeb from './dashboard/SapoWeb';
-
 import DetailReport from './components/report/DetailReport';
-
-
-
-import NotFound from './components/NotFound';
-
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -69,20 +57,10 @@ const App = () => {
           <Switch>
             {currentUser ?
               (
-
                 <Layout logOut={logOut} showAdminBoard={showAdminBoard}>
-                  {/* <Redirect from="/" to="/home" /> */}
+                  <Redirect from="/" to="/home" />
                   <Route exact path="/home">
                     <Home />
-                  </Route>
-                  <Route path="/profile">
-                    <Profile />
-                  </Route>
-                  <Route path="/user">
-                    <BoardUser />
-                  </Route>
-                  <Route path="/admin">
-                    <BoardAdmin />
                   </Route>
                   <Route path="/banner/manage">
                     <BannerManage />
@@ -116,7 +94,8 @@ const App = () => {
                   <Route path="/banner1/create" exact component={CreateUser} />
                   <Route path="/banner1/update/:code" exact component={UpdateUser} />
                   <Route path="/banner1/update" exact component={UpdateUser} />
-                </Layout>) : (
+                </Layout>
+              ) : (
                 <>
                   <Route path="/">
                     <Redirect to='/login'></Redirect>
