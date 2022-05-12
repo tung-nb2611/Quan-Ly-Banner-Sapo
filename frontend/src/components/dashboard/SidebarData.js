@@ -44,35 +44,11 @@ export const SidebarData = [
         title: "Quản lý khu vực",
         path: "/website",
         icon: <BiIcons.BiCollection size={24} />,
-        iconClosed: <BiIcons.BiChevronRight size={24} />,
-        iconOpened: <BiIcons.BiChevronDown size={24} />,
-
-        subNav: [
-            {
-                title: "Sapo Web",
-                path: "/section/SapoWeb",
-                icon: <AiIcons.AiOutlineGlobal size={24} />,
-                cName: "sub-nav",
-            },
-            {
-                title: "Sapo Omni",
-                path: "/section/SapoOmni",
-                icon: <MdIcons.MdManageSearch size={24} />,
-                cName: "sub-nav",
-            },
-            {
-                title: "Sapo FnB",
-                path: "/section/SapoFnB",
-                icon: <BiIcons.BiFoodMenu size={24} />,
-                cName: "sub-nav",
-            }
-        ]
     },
     {
         title: "Quản lý banner",
         path: "/banner/manage",
         icon: <MdIcons.MdPictureInPicture size={24} />,
-
     },
 
 ];
