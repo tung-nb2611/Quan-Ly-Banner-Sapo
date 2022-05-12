@@ -33,14 +33,14 @@ const BannerInfo = ({ bannerInfo, bannerList, setBannerList }) => {
 
     <div className="banner-info m-3 p-3 pe-4">
       <Row>
-        <Col xs={3} md={3} lg={3} xl={3} className="detail-info">
+        <Col lg={12} xl={3} className="detail-info">
           <label>NAME</label>
           <p>{bannerInfo.name}</p>
         </Col>
-        <Col xs={9} md={9} lg={6} xl={6} className="image-container d-flex justify-content-between">
+        <Col lg={12} xl={6} className="image-container d-flex justify-content-center">
           <Image src={bannerInfo.imgUrl}/>
         </Col>
-        <Col xs={12} md={12} lg={3} xl={3} className="button-choice d-flex flex-column mt-auto p-3">
+        <Col lg={12} xl={3} className="button-choice d-flex flex-column mt-auto p-3">
           <Link type="button" className="btn btn-secondary btn-block w-100 mb-2" to={bannerDetail}>Show</Link>
           <Link type="button" className="btn btn-primary btn-block mb-2" to={updatePage}>Update</Link>
           <button type="button" className="btn btn-danger btn-block w-100" onClick={deleteConfirmation}>Delete</button>

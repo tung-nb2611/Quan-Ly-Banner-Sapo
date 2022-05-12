@@ -45,13 +45,13 @@ public class BannerService  {
     }
     public Page<BannerEntity> getBannerPage(int number) {
         PagingAndSortingRepository<BannerEntity, Integer> bannerRepository = repository;
-        Page<BannerEntity> banners = bannerRepository.findAll(PageRequest.of(number, 5));
+        Page<BannerEntity> banners = bannerRepository.findAll(PageRequest.of(number, 10));
         return banners;
     }
 
     public Page<BannerEntity> getBannerStatusPage(int sectionId, int number){
         PagingAndSortingRepository<BannerEntity, Integer> bannerEntity = repository;
-        Pageable pageNumber = PageRequest.of(number, 5);
+        Pageable pageNumber = PageRequest.of(number, 10);
         Page<BannerEntity> banners = repository.getBannerStatusBySections(sectionId, pageNumber);
         return banners;
     }

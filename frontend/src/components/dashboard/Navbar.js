@@ -7,6 +7,7 @@ const NavWrap = styled.nav`
   height: 55px;
   background: linear-gradient(to left, #ffffff, #66B8FF);
   text-align: left;
+  align-items: center;
 `;
 
 export default function NavBar(props) {
@@ -14,9 +15,9 @@ export default function NavBar(props) {
     <>
       <NavWrap>
         {props.showAdminBoard ? (
-          <h1 className="mx-3 mt-2">Admin</h1>
+          <h1 className="mx-3 pt-2">Admin</h1>
         ):(
-          <h1 className="mx-3 mt-2">User</h1>
+          <h1 className="mx-3 pt-2">User</h1>
         )}
       </NavWrap>
     </>

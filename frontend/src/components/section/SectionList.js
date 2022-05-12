@@ -12,7 +12,7 @@ function SectionList(props) {
     const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
-        SectionService.getSectionByPageAndUserAdd("user", currentPage).then((response) => {
+        SectionService.getSectionByPageAndUserAdd("tung", currentPage).then((response) => {
             const info = response.data.content;
             setSectionList(info);
             // const pageNum = response.data.totalPages;

@@ -8,11 +8,14 @@ import '../../styles/dashboard/style.css'
 import { MdLogout } from "react-icons/md";
 
 const SidebarNav = styled.nav`
+  position: fixed;
+  height: 100%;
   min-width: 250px;
   min-height: 100vh;
   border-right: 3px solid #a7a7a7;
   z-index: 0;
   background: #182537;
+  overflow: auto;
 `;
 
 const SidebarWrap = styled.div`

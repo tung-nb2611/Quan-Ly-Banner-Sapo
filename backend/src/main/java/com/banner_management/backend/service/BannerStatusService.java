@@ -119,7 +119,7 @@ public class BannerStatusService {
             }
         } catch (IndexOutOfBoundsException e){
             e.printStackTrace();
-            System.out.println("No banners available in the sectións");
+            System.out.println("No banners available in the sections");
         }
         return position;
     }

@@ -17,7 +17,6 @@ const UserList = () => {
    
   useEffect(() => {
     axios.get(BASE_URL + currentPage).then((response) => {
-
       // Lấy thông tin user
       const data = response.data.content;
       // console.log(data)
@@ -34,13 +33,9 @@ const UserList = () => {
   
   return (
     <div className="banner-list">
-      <Container className="list">
-        <Row>
-          <Col sm={12} lg={10}>
-            {displayUser}
-          </Col>
-        </Row>
-      </Container>
+      <div className="list d-flex">
+        {displayUser}
+      </div>
       <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber}/>
     </div>
   );

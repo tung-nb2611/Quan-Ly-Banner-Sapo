@@ -26,12 +26,16 @@ const BannerList = () => {
   }, [currentPage]);
 
   const displayBanner = bannerList.map((bannerInfo) => {
-    return <BannerInfo bannerInfo={bannerInfo} key={bannerInfo.id} bannerList={bannerList} setBannerList={setBannerList} />;
+    return (
+      <div className="col-lg-12 col-xl-6">
+        <BannerInfo bannerInfo={bannerInfo} key={bannerInfo.id} bannerList={bannerList} setBannerList={setBannerList} />
+      </div>
+    );
   });
 
   return (
-    <div className="banner-list p-2 ">
-      <div className="list d-flex">
+    <div className="banner-list ">
+      <div className="list d-flex row">
         {displayBanner}
       </div>
       <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
