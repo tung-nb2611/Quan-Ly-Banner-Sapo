@@ -27,7 +27,6 @@ const ListBannerChoice = (props) => {
 
     return (
         <div className="banner-list-choice-container">
-
             <table className="table" >
                 <thead>
                     <tr className=" col-12 bg-info">

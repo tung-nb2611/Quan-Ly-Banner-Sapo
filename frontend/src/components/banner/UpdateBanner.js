@@ -24,8 +24,8 @@ function UpdateBanner(props) {
     const [name, setName] = useState(data.name);
     const [imgUrl, setImgUrl] = useState(data.imgUrl);
     const [urlLink, setUrlLink] = useState(data.url)
-    const back = {
-        pathname: "/banner/manage/"
+    const handClickReturn = () => {
+        history.push('/banner/manage');
     }
     const getImage = (e) => {
         if (e.target.files[0]) {
@@ -101,27 +101,39 @@ function UpdateBanner(props) {
                             <form method="post" encType="multipart/form-data">
                                 <div className="form-group">
                                     <label htmlFor="bannerID">Mã banner</label>
-                                    <input className="form-control" id="bannerID" type="text"
+                                    <input className="form-control" 
+                                        id="bannerID" 
+                                        type="text"
                                         placeholder="ex: 123..."
                                         value={bannerCode} onChange={(e) => setBannerCode(e.target.value)}
                                     />
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label htmlFor="name">Tên banner</label>
-                                    <input className="form-control" type="text"
+                                    <input className="form-control" 
+                                        type="text"
                                         placeholder="ex: quảng cáo cá tháng tư"
-                                        value={name} onChange={(e) => setName(e.target.value)} />
+                                        value={name} onChange={(e) => setName(e.target.value)} 
+                                    />
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label htmlFor="name">Liên kết</label>
-                                    <input className="form-control" type="text" placeholder=" Nhập liên kết url"
-                                        value={urlLink || ''} onChange={(e) => setUrlLink(e.target.value)} />
+                                    <input className="form-control" 
+                                        type="text" 
+                                        placeholder=" Nhập liên kết url"
+                                        value={urlLink || ''} 
+                                        onChange={(e) => setUrlLink(e.target.value)} 
+                                    />
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label id="upload-label" htmlFor="upload">Chọn Hình Ảnh</label>
                                     <div className="custom-file">
-                                        <input id="upload" type="file" className="form-control border-0" accept=".png,.gif,.jpg,.jpeg"
-                                            onChange={getImage} />
+                                        <input id="upload" 
+                                            type="file" 
+                                            className="form-control border-0" 
+                                            accept=".png,.gif,.jpg,.jpeg"
+                                            onChange={getImage} 
+                                        />
                                     </div>
                                 </div>
                             </form>
@@ -134,7 +146,7 @@ function UpdateBanner(props) {
                                 <img className="img-rounded" src={imgUrl} alt="new_banner"/>
                             </div>
                             <div className="button">
-                                <Link type="button" className="btn btn-outline-danger" name="btncancel" to={back}>Hủy</Link>
+                                <button type="button" className="btn btn-outline-danger" name="btncancel" onClick={() => handClickReturn()}>Hủy</button>
                                 <button type="submit" className="btn btn-primary" name="btnsubmit" onClick={(e) => saveBanner(e)}>Chỉnh sửa</button>
                             </div>
                         </div>

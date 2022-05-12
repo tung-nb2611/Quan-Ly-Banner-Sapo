@@ -46,7 +46,7 @@ export default function Sidebar(props) {
               return <SubMenu item={item} key={index}/>;
             }
           )}
-          <SidebarLink to={"/login"} onClick={props.logOut}>
+          <SidebarLink to={"/"} onClick={props.logOut}>
             <MdLogout size={24}/>
             <SidebarLabel className="l-0">Đăng xuất</SidebarLabel>
           </SidebarLink>

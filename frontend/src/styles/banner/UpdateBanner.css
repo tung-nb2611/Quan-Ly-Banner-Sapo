@@ -27,7 +27,6 @@
 .update-banner-container .container .main-content .row #imgFrame img {
   height: 100%;
   width: 100%;
-  overflow: auto;
 }
 
 .update-banner-container .container .main-content .row .button {

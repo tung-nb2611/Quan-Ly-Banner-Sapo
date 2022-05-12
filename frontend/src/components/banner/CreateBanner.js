@@ -58,7 +58,7 @@ function CreateBanner(props) {
     }
 
     return (
-        <div className="create-banner-container mx-3" >
+        <div className="create-banner-container px-3" >
             <div className="header-top">
                 <p className="mt-3 text-left">
                     {props.showAdminBoard ? (<span>Admin</span>) : (<span>User</span>)}
@@ -74,9 +74,9 @@ function CreateBanner(props) {
                         <h2>Thêm Mới Banner</h2>
                     </div>
                     <div className="row">
-                        <div className="col-md-12 col-lg-6">
+                        <div className="col-md-12 col-lg-6 pb-5">
                             <form className="form">
-                                <div className="mt-3 form-group">
+                                <div className="form-group">
                                     <label htmlFor="bannerID">Mã khu vực</label>
                                     <input className="form-control"
                                         value={id || ''} disabled
@@ -124,9 +124,9 @@ function CreateBanner(props) {
                             <div id="imgFrame">
                                 <img className="img-rounded img-thumbnail" src={imgPreview} alt=""/>
                             </div>
-                            <div className="button p-5">
-                                <button type="button" className="btn btn-cancel" name="btncancel" onClick={() => handClickReturn()} >Hủy</button>
-                                <button type="submit" className="btn btn-add " name="btnsubmit" onClick={(e) => saveBanner(e)}>Thêm banner</button>
+                            <div className="button">
+                                <button type="button" className="btn btn-outline-secondary" name="btncancel" onClick={() => handClickReturn()}>Hủy</button>
+                                <button type="submit" className="btn btn-primary" name="btnsubmit" onClick={(e) => saveBanner(e)}>Thêm banner</button>
                             </div>
                         </div>
                     </div>
