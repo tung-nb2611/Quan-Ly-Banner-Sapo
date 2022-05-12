@@ -13,15 +13,15 @@ public interface WebsiteRepository extends JpaRepository<WebsiteEntity, Integer>
 
     //
     @Query(value = "select * from websites where user_add = ?1", nativeQuery = true)
-    List<WebsiteEntity> getSectionEntitiesByUser_add(String user_add);
+    List<WebsiteEntity> getWebsiteEntitiesByUserAdd(String userAdd);
 
     //
     @Query(value = "select * from websites where user_add = ?1", nativeQuery = true)
-    Page<WebsiteEntity> getSectionByPageAndUserAdd(String userAdd, Pageable pageable);
+    Page<WebsiteEntity> getWebsiteByPageAndUserAdd(String userAdd, Pageable pageable);
 
     //
     @Query(value = "select * from websites", nativeQuery = true)
-    Page<WebsiteEntity> getSectionByPage(Pageable pageable);
+    Page<WebsiteEntity> getWebsiteByPage(Pageable pageable);
 
 
 }

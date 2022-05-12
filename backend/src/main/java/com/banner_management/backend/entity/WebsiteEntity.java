@@ -23,16 +23,22 @@ public class WebsiteEntity {
     @NotNull
     private String url;
 
-
+    @Column(name = "user_add")
+    @NotNull
+    private String userAdd;
 
     @Column(name = "code")
     @NotNull
-    private  String code;
-
-    @Column (name = "user_add")
-    private  String userAdd;
+    private String code;
 
     public WebsiteEntity() {
+    }
+
+    public WebsiteEntity(String name, String url, String userAdd, String code) {
+        this.name = name;
+        this.url = url;
+        this.userAdd = userAdd;
+        this.code = code;
     }
 
     public int getId() {
@@ -58,14 +64,6 @@ public class WebsiteEntity {
     public void setUrl(String url) {
         this.url = url;
     }
-    public String getCode() {
-        return code;
-    }
-
-
-    public void setCode(String code) {
-        this.code = code;
-    }
 
     public String getUserAdd() {
         return userAdd;
@@ -74,15 +72,22 @@ public class WebsiteEntity {
     public void setUserAdd(String userAdd) {
         this.userAdd = userAdd;
     }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     @Override
     public String toString() {
-        return "WebsiteEntity{" +
+        return "WebsitesEntity{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", url='" + url + '\'' +
-                ", code='" + code + '\'' +
-                ", userAdd='" + userAdd + '\'' +
+                ", user_add='" + userAdd + '\'' +
                 '}';
     }
-
 }

@@ -10,44 +10,53 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class WebsiteService {
 
     @Autowired
-    private WebsiteRepository WebsiteRepository;
+    private WebsiteRepository websiteRepository;
 
+<<<<<<< HEAD
 
 
     public List<WebsiteEntity> listSectionByUser_add(String user_add) {
         return WebsiteRepository.getSectionEntitiesByUser_add(user_add);
+=======
+    public List<WebsiteEntity> listWebsiteByUserAdd(String userAdd) {
+        return websiteRepository.getWebsiteEntitiesByUserAdd(userAdd);
+>>>>>>> c282122c50c793983c71e5be1694601bf8399438
     }
 
     public Page<WebsiteEntity> getSectionPage(int number){
-        PagingAndSortingRepository<WebsiteEntity, Integer> websiteRepo = WebsiteRepository;
-        Page<WebsiteEntity> websites = ((WebsiteRepository) websiteRepo).getSectionByPage(PageRequest.of(number, 5));
+        PagingAndSortingRepository<WebsiteEntity, Integer> websiteRepo = websiteRepository;
+        Page<WebsiteEntity> websites = ((WebsiteRepository) websiteRepo).getWebsiteByPage(PageRequest.of(number, 5));
         return websites;
     }
 
     public Page<WebsiteEntity> getSectionByPageAndUserAdd(String userAdd, int number){
-        PagingAndSortingRepository<WebsiteEntity, Integer> sectionRepo = WebsiteRepository;
-        Page<WebsiteEntity> sections = ((WebsiteRepository) sectionRepo).getSectionByPageAndUserAdd(userAdd, PageRequest.of(number, 5));
-        return sections;
+        PagingAndSortingRepository<WebsiteEntity, Integer> websiteRepo = websiteRepository;
+        Page<WebsiteEntity> websites = ((WebsiteRepository) websiteRepo).getWebsiteByPageAndUserAdd(userAdd, PageRequest.of(number, 5));
+        return websites;
     }
 
 
-    public WebsiteEntity getSectionById(int id) {
-        return WebsiteRepository.findById(id).get();
+    @Transactional
+    public void save(WebsiteEntity websiteEntity) {
+        websiteRepository.save(websiteEntity);
+    }
+
+    public WebsiteEntity getById(Integer id){
+        return websiteRepository.findById(id).get();
     }
 
     @Transactional
-    public void save(WebsiteEntity WebsiteEntity) {
-        WebsiteRepository.save(WebsiteEntity);
-    }
+    public void delete(Integer id){
+        try {
+            websiteRepository.deleteById(id);
+        }catch (NoSuchElementException e){
 
-    @Transactional
-    public void deleteSection(int id) {
-        WebsiteRepository.deleteById(id);
+        }
     }
-
 }

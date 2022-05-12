@@ -13,16 +13,30 @@ import Login from "./components/authentication/Login";
 import Home from "./components/authentication/Home";
 import CreateBanner from "./components/banner/CreateBanner";
 import UpdateBanner from "./components/banner/UpdateBanner";
-import DisplayBanner from "./components/section/DisplayBanner";
+import DisplayBanner from "./components/website/DisplayBanner";
 import CreateUser from "./components/user/CreateUser";
 import UpdateUser from "./components/user/UpdateUser";
 import UserManage from "./pages/UserManage";
+
+
+
+import Layout from './components/dashboard/Layout';
+
+
 import Report from './pages/Report';
 import SectionList from './components/section/SectionList';
 import BannerManage from "./pages/BannerManage";
 import BannerDetail from './components/banner/BannerDetail';
 import SapoWeb from './dashboard/SapoWeb';
 import DetailReport from './components/report/DetailReport';
+
+
+
+import NotFound from './components/NotFound';
+import WebsiteList from './components/website/WebsiteList';
+import SectionList from './components/section/SectionList';
+
+
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -78,14 +92,17 @@ const App = () => {
                   <Route path="/banner/display/:id">
                     <DisplayBanner />
                   </Route>
-                  <Route path="/section">
-                    <SectionList />
+                  <Route path="/website">
+                    <WebsiteList />
                   </Route>
                   <Route path="/dashboard/SapoWeb">
                     <SapoWeb />
                   </Route>
                   <Route path="/report">
                     <Report />
+                  </Route>
+                  <Route path="/websites/websiteId=:webId/sections" >
+                    <SectionList />
                   </Route>
                   <Route path="/views/detail/:code" >
                     <DetailReport />
