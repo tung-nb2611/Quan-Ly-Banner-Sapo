@@ -15,17 +15,20 @@ public class SectionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-
-
     @Column(name = "web_id")
     @NotNull
-    private  String webId;
+    private  int webId;
 
     @Column(name = "div_id")
     @NotNull
     private String divId;
 
     public SectionEntity() {
+    }
+
+    public SectionEntity(int webId, String divId) {
+        this.webId = webId;
+        this.divId = divId;
     }
 
     @Override
@@ -36,9 +39,7 @@ public class SectionEntity {
                 ", divId=" + divId +
                 '}';
     }
-    public void setDivId(String divId) {
-        this.divId = divId;
-    }
+
     public int getId() {
         return id;
     }
@@ -47,13 +48,19 @@ public class SectionEntity {
         this.id = id;
     }
 
-    public String getWebId() {
+    public int getWebId() {
         return webId;
     }
 
-    public void setWebId(String webId) {
+    public void setWebId(int webId) {
         this.webId = webId;
     }
 
+    public String getDivId() {
+        return divId;
+    }
 
+    public void setDivId(String divId) {
+        this.divId = divId;
+    }
 }

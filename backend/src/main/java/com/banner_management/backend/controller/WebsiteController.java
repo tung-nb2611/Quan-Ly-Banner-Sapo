@@ -1,5 +1,6 @@
 package com.banner_management.backend.controller;
 
+import com.banner_management.backend.dto.WebsiteDto;
 import com.banner_management.backend.entity.WebsiteEntity;
 import com.banner_management.backend.service.WebsiteService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,51 +20,70 @@ public class WebsiteController {
     @Autowired
     private WebsiteService websiteService;
 
-    @GetMapping("/sections/user={user_add}")
-    public List<WebsiteEntity> listSection(@PathVariable("user_add") String user_add) {
-        return websiteService.listSectionByUser_add(user_add);
+    @GetMapping("/websites/user={userAdd}")
+    public List<WebsiteEntity> listWebsite(@PathVariable("userAdd") String userAdd) {
+        return websiteService.listWebsiteByUserAdd(userAdd);
     }
 
-    @GetMapping("/sections/page/{page}")
-    public ResponseEntity<Page<WebsiteEntity>> getSectionListByPage(@PathVariable("page") int page){
+    @GetMapping("/websites/page/{page}")
+    public ResponseEntity<Page<WebsiteEntity>> getSectionList(@PathVariable("page") int page){
         try {
-            Page<WebsiteEntity> sections = websiteService.getSectionPage(page);
-            return new ResponseEntity<>(sections, HttpStatus.OK);
+            Page<WebsiteEntity> websites = websiteService.getSectionPage(page);
+            return new ResponseEntity<>(websites, HttpStatus.OK);
         }catch(NoSuchElementException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-    @GetMapping("/sections/page/user={userAdd}/{page}")
-    public ResponseEntity<Page<WebsiteEntity>> getSectionListByPageAndUserAdd(@PathVariable("userAdd") String userAdd, @PathVariable("page") int page){
+    @GetMapping("/websites/page/user={userAdd}/{page}")
+    public ResponseEntity<Page<WebsiteEntity>> getWebsiteListByPageAndUserAdd(@PathVariable("userAdd") String userAdd, @PathVariable("page") int page){
         try {
-            Page<WebsiteEntity> sections = websiteService.getSectionByPageAndUserAdd(userAdd, page);
-            return new ResponseEntity<>(sections, HttpStatus.OK);
+            Page<WebsiteEntity> websites = websiteService.getSectionByPageAndUserAdd(userAdd, page);
+            return new ResponseEntity<>(websites, HttpStatus.OK);
         }catch(NoSuchElementException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 
-
-
-    @GetMapping("/{position_web}/sections/{id}")
-    public WebsiteEntity getSectionById(@PathVariable("id") int id, @PathVariable("position_web") String position_web) {
-        return websiteService.getSectionById(id);
+    @PostMapping("/websites")
+    public ResponseEntity<WebsiteEntity> addWebsite(@RequestBody WebsiteDto websiteDto){
+        try {
+            System.out.println(" website dto " + websiteDto);
+            WebsiteEntity websiteEntity = new WebsiteEntity(websiteDto.getName(), websiteDto.getUrl(), websiteDto.getUserAdd(), websiteDto.getCode());
+            System.out.println("website : " + websiteEntity);
+            websiteService.save(websiteEntity);
+            System.out.println("website id : "+ websiteEntity.getId());
+            return new ResponseEntity<WebsiteEntity>(websiteEntity, HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
-    @PostMapping("/{position_web}/sections")
-    public void addSection(@RequestBody WebsiteEntity websiteEntity, @PathVariable("position_web") String position_web) {
-        websiteService.save(websiteEntity);
+    @PutMapping("/websites/{id}")
+    public ResponseEntity<WebsiteEntity> updateWebsite (@RequestBody WebsiteEntity website, @PathVariable Integer id){
+        try{
+            System.out.println("id: "+ id);
+            System.out.println(website);
+            WebsiteEntity item = websiteService.getById(id);
+            item.setCode(website.getCode());
+            item.setName(website.getName());
+            item.setUrl(website.getUrl());
+            item.setUserAdd(website.getUserAdd());
+            websiteService.save(item);
+            return new ResponseEntity<WebsiteEntity>(item, HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
-    @PutMapping("/{position_web}/sections/{id}")
-    public void updateSectionById(@RequestBody WebsiteEntity websiteEntity, @PathVariable("position_web") String position_web, @PathVariable("id") int id) {
-        websiteEntity.setId(id);
-        websiteService.save(websiteEntity);
+    @DeleteMapping("/websites/{id}")
+    public ResponseEntity<WebsiteEntity> deleteWebsite(@PathVariable Integer id){
+        try{
+            websiteService.delete(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
-    @DeleteMapping("/{position_web}/sections/{id}")
-    public void deleteSectionById(@PathVariable("position_web") String position_web, @PathVariable("id") int id) {
-        websiteService.deleteSection(id);
-    }
 }
