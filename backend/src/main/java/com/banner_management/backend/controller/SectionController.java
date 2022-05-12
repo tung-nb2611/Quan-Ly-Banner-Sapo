@@ -4,6 +4,7 @@ import com.banner_management.backend.dto.SectionDto;
 import com.banner_management.backend.entity.SectionEntity;
 import com.banner_management.backend.service.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,16 @@ public class SectionController {
     @GetMapping("/websiteID={websiteID}/sections")
     public List<SectionEntity> listSections(@PathVariable("websiteID") int webId) {
         return sectionService.listSectionByWebsiteID(webId);
+    }
+
+    @GetMapping("/sections/page/websiteId={webId}/{page}")
+    public ResponseEntity<Page<SectionEntity>> getWebsiteListByPageAndUserAdd(@PathVariable("webId") int webId, @PathVariable("page") int page){
+        try {
+            Page<SectionEntity> sections = sectionService.getSectionByPageAndWebsiteId(webId, page);
+            return new ResponseEntity<>(sections, HttpStatus.OK);
+        }catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @PostMapping("/sections")

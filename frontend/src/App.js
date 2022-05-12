@@ -15,13 +15,12 @@ import BoardUser from './components/authentication/BoardUser';
 import BoardAdmin from './components/authentication/BoardAdmin';
 import CreateBanner from "./components/banner/CreateBanner";
 import UpdateBanner from "./components/banner/UpdateBanner";
-import DisplayBanner from "./components/section/DisplayBanner";
+import DisplayBanner from "./components/website/DisplayBanner";
 import CreateUser from "./components/user/CreateUser";
 import UpdateUser from "./components/user/UpdateUser";
 import UserManage from "./pages/UserManage";
 
 
-import SectionList from './components/section/SectionList';
 import Layout from './components/dashboard/Layout';
 
 import Report from './pages/Report';
@@ -34,6 +33,8 @@ import DetailReport from './components/report/DetailReport';
 
 
 import NotFound from './components/NotFound';
+import WebsiteList from './components/website/WebsiteList';
+import SectionList from './components/section/SectionList';
 
 
 const App = () => {
@@ -100,14 +101,17 @@ const App = () => {
                   <Route path="/banner/display/:id">
                     <DisplayBanner />
                   </Route>
-                  <Route path="/section">
-                    <SectionList />
+                  <Route path="/website">
+                    <WebsiteList />
                   </Route>
                   <Route path="/dashboard/SapoWeb">
                     <SapoWeb />
                   </Route>
                   <Route path="/report">
                     <Report />
+                  </Route>
+                  <Route path="/websites/websiteId=:webId/sections" >
+                    <SectionList />
                   </Route>
                   <Route path="/views/detail/:code" >
                     <DetailReport />

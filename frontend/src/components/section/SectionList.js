@@ -1,24 +1,24 @@
-import { useParams } from 'react-router-dom';
+import "../../styles/section/SectionList.css"
 import React from "react-dom";
 import { useEffect, useState } from 'react';
 import Section from "./Section";
-import "../../styles/section/SectionList.css"
-import SectionService from "../../services/section/SectionImage";
 import PaginateList from '../PaginateList';
+import SectionService from "../../services/section/SectionService";
+import { useParams } from "react-router-dom";
 function SectionList(props) {
-
+    let webId = useParams();
     const [sectionList, setSectionList] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
-        SectionService.getSectionByPageAndUserAdd("tung", currentPage).then((response) => {
+        SectionService.getSectionByPageAndWebsiteId("2", currentPage).then((response) => {
             const info = response.data.content;
             const pageNum = response.data.totalPages;
             setSectionList(info);
             setPageNumber(pageNum);
         })
-    }, [currentPage])
+    }, [webId, currentPage])
 
     const displaySections = sectionList.map(
         (data) => {
@@ -30,14 +30,14 @@ function SectionList(props) {
         }
     )
 
-    return (
-        <div className="banner-list m-2">
-            <div className="list">
+        return (
+            <div className="banner-list m-2">
+                <div className="list">
                 {displaySections}
+                </div>
+                <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
             </div>
-            <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
-        </div>
-    )
+        )
 
 }
 

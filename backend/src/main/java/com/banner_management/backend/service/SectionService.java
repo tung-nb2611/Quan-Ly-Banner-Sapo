@@ -4,6 +4,9 @@ package com.banner_management.backend.service;
 import com.banner_management.backend.entity.SectionEntity;
 import com.banner_management.backend.repository.SectionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,6 +21,12 @@ public class SectionService {
 
     public List<SectionEntity> listSectionByWebsiteID(int webId) {
         return sectionRepository.getSectionEntitiesByWebsiteID(webId);
+    }
+
+    public Page<SectionEntity> getSectionByPageAndWebsiteId(int webId, int number){
+        PagingAndSortingRepository<SectionEntity, Integer> sectionRepo = sectionRepository;
+        Page<SectionEntity> sections = ((SectionRepository) sectionRepo).getSectionByPageAndWebsiteId(webId, PageRequest.of(number, 5));
+        return sections;
     }
 
     @Transactional
