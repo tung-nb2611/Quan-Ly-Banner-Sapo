@@ -3,40 +3,28 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import AuthService from "./services/Auth";
-import EventBus from "./common/EventBus";
 import { CheckboxProvider } from './context/CheckboxContext';
 import { CheckboxArrProvider } from './context/CheckboxListContext'
+import AuthService from "./services/Auth";
+import EventBus from "./common/EventBus";
 
 import Layout from './components/dashboard/Layout';
 import Login from "./components/authentication/Login";
 import Home from "./components/authentication/Home";
 import CreateBanner from "./components/banner/CreateBanner";
 import UpdateBanner from "./components/banner/UpdateBanner";
+import BannerDetail from './components/banner/BannerDetail';
 import DisplayBanner from "./components/website/DisplayBanner";
+import WebsiteList from './components/website/WebsiteList';
 import CreateUser from "./components/user/CreateUser";
 import UpdateUser from "./components/user/UpdateUser";
-import UserManage from "./pages/UserManage";
-
-
-
-import Layout from './components/dashboard/Layout';
-
-
-import Report from './pages/Report';
 import SectionList from './components/section/SectionList';
-import BannerManage from "./pages/BannerManage";
-import BannerDetail from './components/banner/BannerDetail';
-import SapoWeb from './dashboard/SapoWeb';
 import DetailReport from './components/report/DetailReport';
 
-
-
-import NotFound from './components/NotFound';
-import WebsiteList from './components/website/WebsiteList';
-import SectionList from './components/section/SectionList';
-
-
+import UserManage from "./pages/UserManage";
+import Report from './pages/Report';
+import BannerManage from "./pages/BannerManage";
+import SapoWeb from './dashboard/SapoWeb';
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -62,7 +50,6 @@ const App = () => {
     setShowAdminBoard(false);
     setCurrentUser(undefined);
   };
-
 
   return (
     <div className='wrapper'>
@@ -122,13 +109,11 @@ const App = () => {
                   </Route>
                 </>
               )}
-
           </Switch>
         </CheckboxArrProvider>
       </CheckboxProvider>
     </div>
   );
-
 };
 
 export default App;
