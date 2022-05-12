@@ -2,7 +2,7 @@ import { CheckboxContext } from "../../context/CheckboxContext";
 import { useContext, useState } from "react";
 import { CheckboxArrContext } from "../../context/CheckboxListContext";
 
-const BannerStatus = ({ item }) => {
+const BannerStatus = ({ item, displayUtil }) => {
   const countContext = useContext(CheckboxContext);
   const checkboxArrContext = useContext(CheckboxArrContext);
   const checkboxArray = checkboxArrContext.countArr;
@@ -10,6 +10,7 @@ const BannerStatus = ({ item }) => {
   // Dung de lay thong tin object co trong array
   const arrayItem = checkboxArray.find((banner) => banner.id === item.id);
 
+  console.log(displayUtil);
   // Thong tin luu vao trong array : gom co ti trong va id
   // 1!== 0 để kiếm tra xem banner có trong phần array trên context không
 
@@ -53,6 +54,7 @@ const BannerStatus = ({ item }) => {
       <td className="text-center image">
         <img src={item.imgUrl} width={300} height={80} alt={""} />
       </td>
+      { (displayUtil.random) ? <td></td> :
       <td className="text-center ">
         <select
           className="form-select text-center"
@@ -72,6 +74,8 @@ const BannerStatus = ({ item }) => {
           <option value="90">90</option>
         </select>
       </td>
+      }
+      { (displayUtil.random) ? <td></td> :
       <td className="text-center checkbox">
         <input
           type="checkbox"
@@ -87,6 +91,7 @@ const BannerStatus = ({ item }) => {
           onChange={(e) => handleAddClickBox(e, item.id)}
         />
       </td>
+      } 
       <td className="text-center checkbox">
         <input
           type="checkbox"

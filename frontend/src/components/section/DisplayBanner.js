@@ -22,19 +22,21 @@ function DisplayBanner(props) {
         section: section
     }
 
+    const displayUtil = {
+        random: randomChecked,
+        percent: percentageChecked,
+    }
+
     const handleOnChangeChoice = (e) => {
 
         const choice = e.target.value;
         if (choice === "Percentage") {
             setRandomChecked(false);
             setpercentageChecked(true);
-            document.getElementById("showListBannerChoice").style.opacity = 1;
         }
         else {
             setRandomChecked(true);
-            setpercentageChecked(false)
-            document.getElementById("showListBannerChoice").style.opacity = 0.6;
-
+            setpercentageChecked(false);
         }
     }
     const handleAddBanerForDisplay = () => {
@@ -147,7 +149,7 @@ function DisplayBanner(props) {
                             </div>
                         </div>
                         <div className="mt-3 col-10" id="showListBannerChoice">
-                            <ListBannerChoice id={id} ></ListBannerChoice>
+                            <ListBannerChoice id={id} displayUtil={displayUtil}></ListBannerChoice>
                         </div>
                         <div className="col-12">
                             <div className="button">
