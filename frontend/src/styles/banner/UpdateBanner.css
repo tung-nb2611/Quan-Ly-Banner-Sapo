@@ -1,64 +1,45 @@
 .update-banner-container {
   font-size: 14px;
-  width: calc(1535px - 240px);
-  margin: 0 5px;
-}
-
-.update-banner-container .top {
-  height: 40px;
-}
-
-.update-banner-container .container {
-  margin-bottom: 0;
-}
-
-.update-banner-container .container .header-top {
-  margin-top: 0;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
 }
 
 .update-banner-container .container .main-content {
   margin: 0 50px 100px 50px;
 }
 
-.update-banner-container .container .main-content .row .col-sm-12 h1 {
-  font-size: 18px;
+.update-banner-container .container .main-content h2 {
+  font-weight: 600;
 }
 
-.update-banner-container .container .main-content .row .col-sm-6.right #imgFrame {
-  width: 300px;
-  height: 250px;
+.update-banner-container .container .main-content .row #imgFrame {
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  max-height: 240px;
+
+  display: flex;
+  justify-content: center;
   margin: 0 auto;
   border: 1px dashed black;
 }
 
-.update-banner-container .container .main-content .row .col-sm-6.right #imgFrame img {
-  width: 100%;
+.update-banner-container .container .main-content .row #imgFrame img {
   height: 100%;
+  width: 100%;
+  overflow: auto;
 }
 
-.update-banner-container .container .main-content .row .col-sm-6.right .button {
-  margin-top: 100px;
-  margin-right: 40px;
-  display: -webkit-inline-box;
-  display: -ms-inline-flexbox;
-  display: inline-flex;
-  float: right;
+.update-banner-container .container .main-content .row .button {
+  display: flex;
+  margin-top: 50px;
+  justify-content: right;
+  flex-wrap: wrap;
 }
 
-.update-banner-container .container .main-content .row .col-sm-6.right .button .btn-cancel {
-  border: 1px solid #FF4D4D;
-  background-color: white;
-  color: #FF4D4D;
-  width: 180px;
-  height: 40px;
-  margin-right: 30px;
+.update-banner-container .container .main-content .row .button .btn-outline-danger,
+.update-banner-container .container .main-content .row .button .btn-primary,
+.update-banner-container .container .main-content .row .button .btn-secondary {
+  min-width: 150px;
+  margin: 5px;
 }
-
-.update-banner-container .container .main-content .row .col-sm-6.right .button .btn-add {
-  border: 1px solid #0088FF;
-  background-color: #0088FF;
-  color: white;
-  width: 180px;
-  height: 40px;
-}
-/*# sourceMappingURL=UpdateBanner.css.map */

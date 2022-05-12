@@ -1,9 +1,9 @@
 import BannerList from "../components/banner/BannerList"
-
+import "../styles/banner/BannerManage.css";
 
 const BannerManage = () => {
     return (
-        <div>
+        <div className="manage">
             <BannerList/>   
         </div>
     )

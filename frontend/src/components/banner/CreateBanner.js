@@ -55,12 +55,9 @@ function CreateBanner(props) {
                 });
             });
         }
-
     }
 
-
     return (
-
         <div className="create-banner-container mx-3" >
             <div className="header-top">
                 <p className="mt-3 text-left">
@@ -73,12 +70,12 @@ function CreateBanner(props) {
             <hr />
             <div className="container">
                 <div className="main-content">
+                    <div className="pb-4 text-center">
+                        <h2>Thêm Mới Banner</h2>
+                    </div>
                     <div className="row">
-                        <div className="col-sm-12 pb-4">
-                            <h2>Thêm Mới Banner</h2>
-                        </div>
-                        <div className="col-sm-6 left">
-                            <form>
+                        <div className="col-md-12 col-lg-6">
+                            <form className="form">
                                 <div className="mt-3 form-group">
                                     <label htmlFor="bannerID">Mã khu vực</label>
                                     <input className="form-control"
@@ -120,15 +117,14 @@ function CreateBanner(props) {
                             </form>
                         </div>
 
-                        <div className="col-sm-6 right">
-                            <div className="col-sm-12">
+                        <div className="col-md-12 col-lg-6">
+                            <div>
                                 <h3 className="text-center">Ảnh minh họa</h3>
                             </div>
-                            <div className="col-sm-12" id="imgFrame">
-
-                                <img className="img-rounded img-thumbnail" src={imgPreview} />
+                            <div id="imgFrame">
+                                <img className="img-rounded img-thumbnail" src={imgPreview} alt=""/>
                             </div>
-                            <div className="button">
+                            <div className="button p-5">
                                 <button type="button" className="btn btn-cancel" name="btncancel" onClick={() => handClickReturn()} >Hủy</button>
                                 <button type="submit" className="btn btn-add " name="btnsubmit" onClick={(e) => saveBanner(e)}>Thêm banner</button>
                             </div>
