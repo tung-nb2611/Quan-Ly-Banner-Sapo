@@ -97,16 +97,19 @@ public class BannerMappingController {
         }
     }
 
-    // New:
-    @GetMapping("/banner-status/percentage/{sectionId}")
-    public String getImageUrlByPercentage(@PathVariable("sectionId") int sectionId){
-        String imageUrl = bannerMappingService.getImageUrlByPercentage(sectionId);
-        return imageUrl;
-    }
-    // New:
-    @GetMapping("/banner-status/percents/{sectionId}")
-    public String getImgUrlByPercentage(@PathVariable("sectionId") int sectionId){
-        String imageUrl = bannerMappingService.getImgUrlByPercentage(sectionId);
-        return imageUrl;
+    @GetMapping("/banner-mapping/percentage/{sectionId}")
+    public BannerEntity getImageUrlByPercentage(@PathVariable("sectionId") int sectionId){
+
+        BannerMappingEntity bannerMappingEntity =  bannerMappingService.getBannerByPercentage(sectionId);
+        BannerEntity bannerEntity = bannerService.getById(bannerMappingEntity.getBannerID());
+        if(bannerMappingEntity.getNumberView() == 0){
+            bannerMappingEntity.setNumberView(1);
+        }
+        else {
+            int countViews = bannerMappingEntity.getNumberView();
+            bannerMappingEntity.setNumberView(countViews + 1);
+        }
+        bannerMappingService.save(bannerMappingEntity);
+        return bannerEntity;
     }
 }
