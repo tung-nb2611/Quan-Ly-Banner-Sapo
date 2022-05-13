@@ -14,20 +14,12 @@ public class ViewService {
 
     @Autowired
     ViewRepository viewRepository;
-<<<<<<< HEAD
 
 
     public List<ViewEntity> listViewsBanner(){
         return viewRepository.findAll();
     }
 
-=======
-//Lấy thông tin  views
-    public List<ViewEntity> listViewsBanner(){
-        return viewRepository.findAll();
-    }
-// lấy views theo bannerId và Sections
->>>>>>> main
     public ViewEntity getByBannerIDAndSectionID(Integer bannerID, Integer sectionID){
         return viewRepository.getByBannerIDAndSectionID(bannerID, sectionID);
     }
@@ -36,18 +28,6 @@ public class ViewService {
     public List<ViewEntity> getByBannerID(Integer bannerID){
         return viewRepository.getByBannerByID(bannerID);
     }
-<<<<<<< HEAD
-=======
-////lấy view và clicks
-//    public  List<ViewsEntity>  getClicksAndViews() {
-//return
-//        viewsRepository.getViews();
-//    }
-
-
-
-
->>>>>>> main
 
     @Transactional
     public void save(ViewEntity viewsEntity){
@@ -66,13 +46,7 @@ public class ViewService {
         }
     }
 
-<<<<<<< HEAD
     public int getViewsByBannerId(int bannerId){
-=======
-
-    public int getViewsByBannerId(int bannerId){
-
->>>>>>> main
         return viewRepository.getViewsByBannerID(bannerId);
     }
 
