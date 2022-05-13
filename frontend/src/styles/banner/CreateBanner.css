@@ -41,4 +41,17 @@
   min-width: 150px;
   margin: 5px;
 }
+
+.create-banner-container .container .main-content .row select {
+  border-radius: 4px;
+  border-color: rgb(193, 193, 193);
+  padding: 9px;
+}
+.create-banner-container .container .main-content .row select .option {
+  padding: 5px;
+}
+.create-banner-container .container .main-content .row .button .btn-user {
+  min-width: 200px;
+  margin: 5px;
+}
 /*# sourceMappingURL=CreateBanner.css.map */
