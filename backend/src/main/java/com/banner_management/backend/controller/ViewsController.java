@@ -45,7 +45,6 @@ public class ViewsController {
 
     @PostMapping("/banners/views")
     public void insertViewBanner (@RequestBody ViewEntity viewEntity){
-        System.out.println("body lay views : "+ viewEntity);
         viewService.save(viewEntity);
     }
 }

@@ -1,6 +1,9 @@
 package com.banner_management.backend.controller;
 
+import com.banner_management.backend.entity.BannerMappingEntity;
 import com.banner_management.backend.entity.ClickEntity;
+import com.banner_management.backend.service.BannerMappingService;
+import com.banner_management.backend.service.BannerService;
 import com.banner_management.backend.service.ClickService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,6 +22,7 @@ public class ClicksController {
     @Autowired
     ClickService clickService;
 
+<<<<<<< HEAD
 @GetMapping("/clicks-banner")
     public  List<ClickEntity> getAll(){
     return clickService.getAllClick();
@@ -67,26 +71,26 @@ public class ClicksController {
             return new ResponseEntity<ClickEntity>(clickEntity, HttpStatus.OK);
         }catch (NoSuchElementException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+=======
+    @Autowired
+    BannerMappingService bannerMappingService;
+
+    @PostMapping("/banners/clicks")
+    public void updateClickBanner(@RequestBody ClickEntity clickEntity){
+        System.out.println("check du lieu click nhan ve : "+ clickEntity);
+        clickService.save(clickEntity);
+        BannerMappingEntity bannerMappingEntity = bannerMappingService.getByBannerIDAndSectionID(clickEntity.getBannerId(), clickEntity.getSectionId());
+        System.out.println("banner mapping lay ra: "+ bannerMappingEntity);
+        int numberClick = bannerMappingEntity.getNumberClick();
+        System.out.println("check number click :"+ numberClick);
+        if(numberClick == 0){
+            bannerMappingEntity.setNumberClick(1);
         }
+        else {
+            bannerMappingEntity.setNumberClick(numberClick + 1);
+>>>>>>> a0fb9389283267b8426b0096bf281f0331995ba9
+        }
+        bannerMappingService.save(bannerMappingEntity);
     }
 
-//    @GetMapping("/clicks-banner/day/{bannerId}")
-//    public int getClickCountPreviousDayByBannerId(@PathVariable("bannerId") Integer bannerId){
-//        return clicksService.getClickCountByPreviousDay(bannerId);
-//    }
-//
-//    @GetMapping("/clicks-banner/week/{bannerId}")
-//    public int getClickCountPreviousWeekByBannerId(@PathVariable("bannerId") Integer bannerId){
-//        return clicksService.getClickCountByPreviousWeek(bannerId);
-//    }
-//
-//    @GetMapping("/clicks-banner/month/{bannerId}")
-//    public int getClickCountPreviousMonthByBannerId(@PathVariable("bannerId") Integer bannerId){
-//        return clicksService.getClickCountByPreviousMonth(bannerId);
-//    }
-//
-//    @GetMapping("/clicks-banner/year/{bannerId}")
-//    public int getClickCountPreviousYearByBannerId(@PathVariable("bannerId") Integer bannerId){
-//        return clicksService.getClickCountByPreviousYear(bannerId);
-//    }
 }
