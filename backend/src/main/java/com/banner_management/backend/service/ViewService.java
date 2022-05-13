@@ -1,7 +1,7 @@
 package com.banner_management.backend.service;
 
 import com.banner_management.backend.entity.ViewEntity;
-import com.banner_management.backend.repository.ViewsRepository;
+import com.banner_management.backend.repository.ViewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,83 +14,41 @@ import java.util.NoSuchElementException;
 public class ViewService {
 
     @Autowired
-<<<<<<< HEAD
-    ViewsRepository viewsRepository;
-//Lấy thông tin  views
-=======
     ViewRepository viewRepository;
 
 
-
-
-
-
-
->>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
     public List<ViewEntity> listViewsBanner(){
-        return viewsRepository.findAll();
+        return viewRepository.findAll();
     }
-// lấy views theo bannerId và Sections
-
-
 
     public ViewEntity getByBannerIDAndSectionID(Integer bannerID, Integer sectionID){
-        return viewsRepository.getByBannerIDAndSectionID(bannerID, sectionID);
+        return viewRepository.getByBannerIDAndSectionID(bannerID, sectionID);
     }
 
     //lấy views theo bnner id
     public List<ViewEntity> getByBannerID(Integer bannerID){
-        return viewsRepository.getByBannerByID(bannerID);
+        return viewRepository.getByBannerByID(bannerID);
     }
 
-
-
-////lấy view và clicks
-//    public  List<ViewsEntity>  getClicksAndViews() {
-//return
-//        viewsRepository.getViews();
-//    }
-
-
-
-
-
-
-
-
     @Transactional
-    public void save(ViewEntity viewEntity){
-        viewsRepository.save(viewEntity);
+    public void save(ViewEntity viewsEntity){
+        viewRepository.save(viewsEntity);
     }
 
     public ViewEntity getById(Integer id){
-        return viewsRepository.findById(id).get();
+        return viewRepository.findById(id).get();
     }
 
     @Transactional
     public void delete(Integer id){
         try {
-            viewsRepository.deleteById(id);
+            viewRepository.deleteById(id);
         }catch (NoSuchElementException e){
         }
     }
 
-
-
-<<<<<<< HEAD
-        return viewsRepository.getViewsByBannerID(bannerId);
-=======
-
-
-
-
-
-
-
     public int getViewsByBannerId(int bannerId){
-
         return viewRepository.getViewsByBannerID(bannerId);
->>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
     }
 
     public int getSumViewBySectionIDForYear(int year, int sectionID){

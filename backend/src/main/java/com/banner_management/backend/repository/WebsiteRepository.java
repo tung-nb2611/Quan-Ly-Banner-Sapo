@@ -1,9 +1,5 @@
 package com.banner_management.backend.repository;
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 46b52ec208244197b799b99e415dc224194e1c51
 import com.banner_management.backend.entity.WebsiteEntity;
 
 import org.springframework.data.domain.Page;

@@ -8,48 +8,34 @@ import java.sql.Timestamp;
 public class BannerMappingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer id;
 
     @Column(name = "banner_id", nullable = false)
     @NotNull
-    private int bannerID;
+    private Integer bannerId;
 
     @Column(name = "section_id", nullable = false)
     @NotNull
-    private int sectionID;
+    private Integer sectionId;
 
     @Column(name = "state", nullable = false)
     @NotNull
-    private short state;
+    private Short state;
 
     @Column(name = "percentage")
-    private int percentage;
+    private Integer percentage;
 
-<<<<<<< HEAD
-
-=======
-<<<<<<< HEAD
-    @Column(name = "time_display", nullable = false)
-    @NotNull
-    private Timestamp timeDisplay;
-
-    @Column(name = "number_click")
-    private int numberClick;
-=======
-<<<<<<< HEAD
-    @Column(name = "number_click", nullable = true)
-=======
->>>>>>> d6595a70b2439bff7d3a697097217eaa6608f583
     @Column(name = "number_click", nullable = true , columnDefinition = "0")
-
     private Integer numberClick;
 
     @Column(name = "number_view", nullable = true, columnDefinition = "0")
     private Integer numberView;
->>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
 
-    @Column(name = "number_view")
-    private int numberView;
+    public BannerMappingEntity(int bannerId, int sectionId, short state) {
+        this.bannerId = bannerId;
+        this.sectionId = sectionId;
+        this.state = state;
+    }
 
     public int getId() {
         return id;
@@ -60,19 +46,19 @@ public class BannerMappingEntity {
     }
 
     public int getBannerID() {
-        return bannerID;
+        return bannerId;
     }
 
     public void setBannerID(int bannerID) {
-        this.bannerID = bannerID;
+        this.bannerId = bannerID;
     }
 
     public int getSectionID() {
-        return sectionID;
+        return sectionId;
     }
 
     public void setSectionID(int sectionID) {
-        this.sectionID = sectionID;
+        this.sectionId = sectionID;
     }
 
     public short getState() {
@@ -114,8 +100,8 @@ public class BannerMappingEntity {
     public String toString() {
         return "BannerMappingEntity{" +
                 "id=" + id +
-                ", bannerID=" + bannerID +
-                ", sectionID=" + sectionID +
+                ", bannerID=" + bannerId +
+                ", sectionID=" + sectionId +
                 ", state=" + state +
                 ", percentage=" + percentage +
                 ", numberClick=" + numberClick +

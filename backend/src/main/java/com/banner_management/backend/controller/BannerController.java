@@ -7,21 +7,12 @@ import com.banner_management.backend.dto.BannerDto;
 import com.banner_management.backend.dto.BannerMappingDto;
 import com.banner_management.backend.entity.BannerEntity;
 import com.banner_management.backend.entity.BannerMappingEntity;
-<<<<<<< HEAD
-
-
-import com.banner_management.backend.service.BannerService;
-import com.banner_management.backend.service.BannerMappingService;
-
-
-=======
 import com.banner_management.backend.entity.SectionEntity;
 import com.banner_management.backend.entity.WebsiteEntity;
 import com.banner_management.backend.service.BannerMappingService;
 import com.banner_management.backend.service.BannerService;
 import com.banner_management.backend.service.SectionService;
 import com.banner_management.backend.service.WebsiteService;
->>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -37,10 +28,7 @@ public class BannerController {
     BannerService bannerService;
 
     @Autowired
-
-    private BannerMappingService bannerMappingService;
-
-
+    BannerMappingService bannerMappingService;
 
     @Autowired
     SectionService sectionService;
@@ -85,8 +73,6 @@ public class BannerController {
         }
     }
 
-
-
     // tạo mới một banner
     @PostMapping("/banners")
     public ResponseEntity<BannerEntity> addBanner(@RequestBody BannerDto bannerDto){
@@ -105,7 +91,6 @@ public class BannerController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
 
     // cập nhật một banner theo id
     @PutMapping("/banners/{id}")

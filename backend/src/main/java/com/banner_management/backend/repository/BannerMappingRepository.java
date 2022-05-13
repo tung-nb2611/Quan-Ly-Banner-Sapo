@@ -31,13 +31,7 @@ public interface BannerMappingRepository extends JpaRepository<BannerMappingEnti
     @Query(value = "select * from banner_mapping where banner_mapping.section_id = ?1 and state != 0", nativeQuery = true)
     List<BannerMappingEntity> getListBannerBySections(Integer sectionId);
 
-   // Lọc theo bannerID
+    // Lọc theo bannerID
     @Query(value = "select * from banner_mapping where banner_id = ?1", nativeQuery = true)
     List<BannerMappingEntity> getListByBannerId(Integer bannerId);
 }
-
-    // Lấy thông tin image url từ id banner đã cho
-    @Query(value = "select img_url from banners where banners.id = ?1", nativeQuery = true)
-    String getUrlByBannerId(Integer bannerId);
-}
-

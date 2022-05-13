@@ -10,13 +10,6 @@ import java.util.List;
 @Repository
 public interface BannerRepository extends JpaRepository<BannerEntity, Integer> {
 
-<<<<<<< HEAD
-    @Query(value = "select * from banner_mapping left join banners on banner_mapping.banner_id = banners.id where section_id = ?1 ", nativeQuery = true)
-    List<BannerEntity> getAllBySectionID(Integer sectionID);
-
-
-=======
->>>>>>> 46b52ec208244197b799b99e415dc224194e1c51
     @Query(value = "select * from banners left join banner_mapping on banner_mapping.banner_id = banners.id where banner_mapping.section_id = ?1", nativeQuery = true)
     Page<BannerEntity> getBannerStatusBySections(int id, Pageable pageable);
 
