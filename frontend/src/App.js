@@ -40,6 +40,7 @@ import DetailReport from './components/report/DetailReport';
 
 
 import NotFound from './components/NotFound';
+import SectionListReport from './components/report/SectionListReport';
 
 
 
@@ -79,7 +80,7 @@ const App = () => {
             {currentUser ?
               (
                 <Layout logOut={logOut} showAdminBoard={showAdminBoard}>
-                  <Redirect from="/" to="/home" />
+                  {/* <Redirect from="/" to="/home" /> */}
                   <Route exact path="/home">
                     <Home />
                   </Route>
@@ -111,6 +112,9 @@ const App = () => {
                   <Route path="/websites/websiteId=:webId/sections" >
                     <SectionList />
                   </Route>
+                  <Route path="/websites/websiteId=:webId/report" >
+                    <SectionListReport />
+                  </Route>
                   <Route path="/views/detail/:code" >
                     <DetailReport />
                   </Route>
@@ -121,9 +125,9 @@ const App = () => {
                 </Layout>
               ) : (
                 <>
-                  <Route path="/">
+                  {/* <Route path="/">
                     <Redirect to='/login'></Redirect>
-                  </Route>
+                  </Route> */}
                   <Route exact path="/login">
                     <Login />
                   </Route>

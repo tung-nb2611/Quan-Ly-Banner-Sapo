@@ -28,7 +28,7 @@ function WebsiteList(props) {
             return (
                 <div key={data.id}>
                     <Website data={data} />
-                    <ChoiceSection data={data} />
+
                 </div>
             )
         }

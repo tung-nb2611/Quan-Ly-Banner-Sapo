@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 public class BannerMappingEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Integer id;
 
     @Column(name = "banner_id", nullable = false)
     @NotNull
@@ -22,23 +22,13 @@ public class BannerMappingEntity {
     @NotNull
     private Short state;
 
-    @Column(name = "percentage",columnDefinition = "0")
+    @Column(name = "percentage")
     private Integer percentage;
 
-<<<<<<< HEAD
-=======
-    @Column(name = "time_display", nullable = false)
-    private Timestamp timeDisplay;
-
-<<<<<<< HEAD
-    @Column(name = "number_click",columnDefinition = "0",nullable = true)
-=======
->>>>>>> main
     @Column(name = "number_click", nullable = true)
->>>>>>> 4cb99eb01b240916530f6c77e34cfcabe3358b07
     private Integer numberClick;
 
-    @Column(name = "number_view", columnDefinition = "0",nullable = true)
+    @Column(name = "number_view", nullable = true)
     private Integer numberView;
 
     public BannerMappingEntity(int bannerId, int sectionId, short state) {
@@ -47,20 +37,20 @@ public class BannerMappingEntity {
         this.state = state;
     }
 
-    public Long getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
-    public int getBannerId() {
+    public int getBannerID() {
         return bannerId;
     }
 
-    public void setBannerId(int bannerId) {
-        this.bannerId = bannerId;
+    public void setBannerID(int bannerID) {
+        this.bannerId = bannerID;
     }
 
     public int getSectionID() {
@@ -87,17 +77,6 @@ public class BannerMappingEntity {
         this.percentage = percentage;
     }
 
-<<<<<<< HEAD
-=======
-    public Timestamp getTimeDisplay() {
-        return timeDisplay;
-    }
-
-    public void setTimeDisplay(Timestamp timeDisplay) {
-        this.timeDisplay = timeDisplay;
-    }
-
->>>>>>> main
     public int getNumberClick() {
         return numberClick;
     }
@@ -121,14 +100,10 @@ public class BannerMappingEntity {
     public String toString() {
         return "BannerMappingEntity{" +
                 "id=" + id +
-                ", bannerId=" + bannerId +
-                ", sectionId=" + sectionId +
+                ", bannerID=" + bannerId +
+                ", sectionID=" + sectionId +
                 ", state=" + state +
                 ", percentage=" + percentage +
-<<<<<<< HEAD
-=======
-                ", timeDisplay=" + timeDisplay +
->>>>>>> main
                 ", numberClick=" + numberClick +
                 ", numberView=" + numberView +
                 '}';
