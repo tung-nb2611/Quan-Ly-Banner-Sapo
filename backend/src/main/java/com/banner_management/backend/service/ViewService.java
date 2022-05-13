@@ -16,10 +16,18 @@ public class ViewService {
     ViewRepository viewRepository;
 
 
+
+<<<<<<< HEAD
+
+
+
     public List<ViewEntity> listViewsBanner(){
         return viewRepository.findAll();
     }
+// lấy views theo bannerId và Sections
 
+=======
+>>>>>>> a0fb9389283267b8426b0096bf281f0331995ba9
     public ViewEntity getByBannerIDAndSectionID(Integer bannerID, Integer sectionID){
         return viewRepository.getByBannerIDAndSectionID(bannerID, sectionID);
     }
@@ -28,6 +36,21 @@ public class ViewService {
     public List<ViewEntity> getByBannerID(Integer bannerID){
         return viewRepository.getByBannerByID(bannerID);
     }
+<<<<<<< HEAD
+
+
+////lấy view và clicks
+//    public  List<ViewsEntity>  getClicksAndViews() {
+//return
+//        viewsRepository.getViews();
+//    }
+
+
+
+
+
+=======
+>>>>>>> a0fb9389283267b8426b0096bf281f0331995ba9
 
     @Transactional
     public void save(ViewEntity viewsEntity){
@@ -46,7 +69,17 @@ public class ViewService {
         }
     }
 
+<<<<<<< HEAD
+
     public int getViewsByBannerId(int bannerId){
+
+
+
+
+
+=======
+    public int getViewsByBannerId(int bannerId){
+>>>>>>> a0fb9389283267b8426b0096bf281f0331995ba9
         return viewRepository.getViewsByBannerID(bannerId);
     }
 

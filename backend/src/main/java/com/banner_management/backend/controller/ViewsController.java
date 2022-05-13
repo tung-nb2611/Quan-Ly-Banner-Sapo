@@ -29,7 +29,7 @@ public class ViewsController {
     }
 
 
-// lay luot view cua banner dua theo khu vuc
+    // lay luot view cua banner dua theo khu vuc
     @GetMapping("/banners/views/{sectionID}/{bannerID}")
     public ViewEntity getViewsBannerInSection(@PathVariable("sectionID") int sectionID, @PathVariable("bannerID") int bannerID){
         return viewService.getByBannerIDAndSectionID(bannerID,sectionID);
@@ -38,7 +38,7 @@ public class ViewsController {
 
     @GetMapping("/banners/views/banner/{bannerId}")
     public int getViewsByBannerId(@PathVariable("bannerId") int bannerId){
-            return viewService.getViewsByBannerId(bannerId);
+        return viewService.getViewsByBannerId(bannerId);
     }
 
     //

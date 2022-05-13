@@ -18,13 +18,34 @@ import DisplayBanner from "./components/website/DisplayBanner";
 import WebsiteList from './components/website/WebsiteList';
 import CreateUser from "./components/user/CreateUser";
 import UpdateUser from "./components/user/UpdateUser";
-import SectionList from './components/section/SectionList';
-import DetailReport from './components/report/DetailReport';
 
 import UserManage from "./pages/UserManage";
+
+
+
+
+
+
+import SectionList from './components/section/SectionList';
+
+
+
+
 import Report from './pages/Report';
 import BannerManage from "./pages/BannerManage";
 import SapoWeb from './dashboard/SapoWeb';
+
+import DetailReport from './components/report/DetailReport';
+
+
+
+import NotFound from './components/NotFound';
+import SectionListReport from './components/report/SectionListReport';
+
+
+
+
+
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -59,7 +80,7 @@ const App = () => {
             {currentUser ?
               (
                 <Layout logOut={logOut} showAdminBoard={showAdminBoard}>
-                  <Redirect from="/" to="/home" />
+                  {/* <Redirect from="/" to="/home" /> */}
                   <Route exact path="/home">
                     <Home />
                   </Route>
@@ -91,6 +112,9 @@ const App = () => {
                   <Route path="/websites/websiteId=:webId/sections" >
                     <SectionList />
                   </Route>
+                  <Route path="/websites/websiteId=:webId/report" >
+                    <SectionListReport />
+                  </Route>
                   <Route path="/views/detail/:code" >
                     <DetailReport />
                   </Route>
@@ -101,9 +125,9 @@ const App = () => {
                 </Layout>
               ) : (
                 <>
-                  <Route path="/">
+                  {/* <Route path="/">
                     <Redirect to='/login'></Redirect>
-                  </Route>
+                  </Route> */}
                   <Route exact path="/login">
                     <Login />
                   </Route>

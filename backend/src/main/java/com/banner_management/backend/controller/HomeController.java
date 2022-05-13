@@ -31,7 +31,7 @@ public class HomeController {
 //        List<ClickBannerDto> clickBannerDtoList = new ArrayList<>();
 //        List<BannerEntity> bannerEntityList = bannerService.listAllBanner();
 //        int numberViews = 0;
-//        int numberClicks = 0;
+//        int numberClicks = 0q;
 //        for(int i = 0 ; i < bannerEntityList.size() ; i ++){
 //            // lay so luong view
 //            List<ViewEntity> viewEntityList = viewsService.getByBannerID(bannerEntityList.get(i).getId());
