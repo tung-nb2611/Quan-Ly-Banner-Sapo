@@ -119,11 +119,11 @@ function DetailReport(props) {
                                         </tr>
                                     </thead>
                                     <tbody className="col-6 ">
-                                        {
+                                        {/* {
                                             clickInfoList.map((item) =>
                                                 <DetailClick key={item.id} clickInfo={item} />
                                             )
-                                        }
+                                        } */}
                                     </tbody>
                                 </table>
                             </div>

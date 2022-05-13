@@ -4,6 +4,7 @@ import Website from "./Website";
 import "../../styles/section/SectionList.css"
 import PaginateList from '../PaginateList';
 import WebsiteService from '../../services/website/WebsiteService';
+import ChoiceSection from "../report/ChoiceSection";
 function WebsiteList(props) {
 
     const [websiteList, setWebsiteList] = useState([]);
@@ -11,11 +12,10 @@ function WebsiteList(props) {
     const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
-<<<<<<< HEAD
+
         WebsiteService.getWebsiteByPageAndUserAdd("tung", currentPage).then((response) => {
-=======
-        WebsiteService.getWebsiteByPageAndUserAdd("Luong Van Minh", currentPage).then((response) => {
->>>>>>> 261adca06a379c7eb7da214a0e5fdaad215206ce
+
+
             const info = response.data.content;
             const pageNum = response.data.totalPages;
             setWebsiteList(info);
@@ -28,6 +28,7 @@ function WebsiteList(props) {
             return (
                 <div key={data.id}>
                     <Website data={data} />
+                    <ChoiceSection data={data} />
                 </div>
             )
         }
