@@ -16,7 +16,6 @@ const SidebarNav = styled.nav`
   background: #182537;
   overflow: auto;
 `;
-
 const SidebarWrap = styled.div`
   width: 100%;
   margin: 0;
@@ -29,9 +28,7 @@ const SideBarHead = styled.div`
   border-bottom: solid 1px #46515F;
 `;
 
-
 export default function Sidebar(props) {
-
   return (
     <>
       <SidebarNav>
@@ -49,10 +46,9 @@ export default function Sidebar(props) {
               return <SubMenu item={item} key={index}/>;
             }
           )}
-          <SidebarLink to={"/login"} onClick={props.logOut}>
+          <SidebarLink to={"/"} onClick={props.logOut}>
             <MdLogout size={24}/>
             <SidebarLabel className="l-0">Đăng xuất</SidebarLabel>
-            <div></div>
           </SidebarLink>
         </SidebarWrap>
       </SidebarNav>

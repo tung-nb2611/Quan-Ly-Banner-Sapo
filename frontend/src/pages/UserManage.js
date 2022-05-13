@@ -1,6 +1,5 @@
 import UserList from "../components/user/UserList"
 
-
 const UserManage = () => {
     return (
         <div>

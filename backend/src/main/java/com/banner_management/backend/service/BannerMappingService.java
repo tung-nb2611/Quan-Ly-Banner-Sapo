@@ -18,8 +18,8 @@ public class BannerMappingService {
     @Autowired
     BannerMappingRepository bannerMappingRepository;
 
-    public  List<BannerMappingEntity> getAllByBannerId(Integer bannerID){
-        return bannerMappingRepository.getAllByBannerId(bannerID);
+    public  List<BannerMappingEntity> getAllByBannerId(Integer bannerId){
+        return bannerMappingRepository.getAllByBannerId(bannerId);
 
     }
 

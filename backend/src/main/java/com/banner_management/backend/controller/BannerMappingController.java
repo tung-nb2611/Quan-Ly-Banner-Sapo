@@ -26,9 +26,11 @@ public class BannerMappingController {
 
     @Autowired
     private ViewService viewService;
+
+    //lấy thông tin banner-mapping theo bannerId
     @GetMapping("/banner-mapping/{bannerId}")
-    public  List<BannerMappingEntity> getAllBybannerId(@PathVariable("bannerId") int bannerID){
-        return bannerMappingService.getAllByBannerId(bannerID);
+    public  List<BannerMappingEntity> getAllBybannerId(@PathVariable("bannerId") int bannerId){
+        return bannerMappingService.getAllByBannerId(bannerId);
 
     }
 

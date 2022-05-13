@@ -22,16 +22,16 @@ public class BannerMappingEntity {
     @NotNull
     private Short state;
 
-    @Column(name = "percentage")
+    @Column(name = "percentage",columnDefinition = "0")
     private Integer percentage;
 
     @Column(name = "time_display", nullable = false)
     private Timestamp timeDisplay;
 
-    @Column(name = "number_click", nullable = true)
+    @Column(name = "number_click",columnDefinition = "0",nullable = true)
     private Integer numberClick;
 
-    @Column(name = "number_view", nullable = true)
+    @Column(name = "number_view", columnDefinition = "0",nullable = true)
     private Integer numberView;
 
     public BannerMappingEntity(int bannerId, int sectionId, short state) {
