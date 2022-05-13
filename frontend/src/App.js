@@ -97,6 +97,9 @@ const App = () => {
                 <Route path="/websites/websiteId=:webId/sections" >
                   <SectionList />
                 </Route>
+                <Route path="/websites/websiteId=:webId/report" >
+                  <SectionListReport />
+                </Route>
                 <Route path="/views/detail/:code" >
                   <DetailReport />
                 </Route>
@@ -110,7 +113,7 @@ const App = () => {
                   <UpdateUser />
                 </Route>
                 <Route path="/user/update">
-                  <UpdateUser/>
+                  <UpdateUser />
                 </Route>
               </Layout>
             ) : (

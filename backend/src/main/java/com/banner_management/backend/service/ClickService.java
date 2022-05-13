@@ -9,8 +9,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.sql.Date;
-import java.util.List;
+
 
 @Service
 public class ClickService {
@@ -31,7 +30,7 @@ public class ClickService {
         return clickRepository.getSumClickBySectionIDForMonth(year, month, sectionID);
     }
 
-    public int getSumClickBySectionIDForDay(Date day , int sectionID){
-        return clickRepository.getSumClickBySectionIDForDay(day, sectionID);
-    }
+//    public int getSumClickBySectionIDForDay(Date day , int sectionID){
+//        return clickRepository.getSumClickBySectionIDForDay(day, sectionID);
+//    }
 }

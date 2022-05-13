@@ -74,18 +74,18 @@ public class ReportController {
         return clickAndViewDto;
     }
 
-    // api lay tong view va click theo ngày theo khu vuc
-    @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/date={date}")
-    public ClickAndViewDto getListViewAndClickSortByDay(@PathVariable("date") Date date, @PathVariable("sectionID") int sectionID){
-
-        int sumView = viewService.getSumViewBySectionIDForDay(date, sectionID);
-        int sumClick = clickService.getSumClickBySectionIDForDay(date, sectionID);
-
-        SectionEntity sectionEntity = sectionService.getById(sectionID);
-        WebsiteEntity websiteEntity = websiteService.getById(sectionEntity.getWebId());
-
-        ClickAndViewDto clickAndViewDto = new ClickAndViewDto(
-                websiteEntity.getName(), sectionID, sumClick, sumView);
-        return clickAndViewDto;
-    }
+//    // api lay tong view va click theo ngày theo khu vuc
+//    @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/date={date}")
+//    public ClickAndViewDto getListViewAndClickSortByDay(@PathVariable("date") Date date, @PathVariable("sectionID") int sectionID){
+//
+//        int sumView = viewService.getSumViewBySectionIDForDay(date, sectionID);
+//        int sumClick = clickService.getSumClickBySectionIDForDay(date, sectionID);
+//
+//        SectionEntity sectionEntity = sectionService.getById(sectionID);
+//        WebsiteEntity websiteEntity = websiteService.getById(sectionEntity.getWebId());
+//
+//        ClickAndViewDto clickAndViewDto = new ClickAndViewDto(
+//                websiteEntity.getName(), sectionID, sumClick, sumView);
+//        return clickAndViewDto;
+//    }
 }
