@@ -12,7 +12,7 @@ function SectionList(props) {
     const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
-        SectionService.getSectionByPageAndWebsiteId("2", currentPage).then((response) => {
+        SectionService.getSectionByPageAndWebsiteId("1", currentPage).then((response) => {
             const info = response.data.content;
             const pageNum = response.data.totalPages;
             setSectionList(info);
@@ -30,14 +30,14 @@ function SectionList(props) {
         }
     )
 
-        return (
-            <div className="banner-list m-2">
-                <div className="list">
+    return (
+        <div className="banner-list m-2">
+            <div className="list">
                 {displaySections}
-                </div>
-                <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
             </div>
-        )
+            <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
+        </div>
+    )
 
 }
 

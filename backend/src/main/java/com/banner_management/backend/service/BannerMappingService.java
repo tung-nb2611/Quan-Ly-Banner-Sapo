@@ -18,6 +18,11 @@ public class BannerMappingService {
     @Autowired
     BannerMappingRepository bannerMappingRepository;
 
+    public  List<BannerMappingEntity> getAllByBannerId(Integer bannerID){
+        return bannerMappingRepository.getAllByBannerId(bannerID);
+
+    }
+
     @Transactional
     public void save(BannerMappingEntity BannerMappingEntity){
         bannerMappingRepository.save(BannerMappingEntity);

@@ -26,8 +26,15 @@ public class BannerMappingController {
 
     @Autowired
     private ViewService viewService;
+    @GetMapping("/banner-mapping/{bannerId}")
+    public  List<BannerMappingEntity> getAllBybannerId(@PathVariable("bannerId") int bannerID){
+        return bannerMappingService.getAllByBannerId(bannerID);
+
+    }
 
     @GetMapping("/banner-mapping/random/{sectionID}")
+
+
     public BannerEntity randomBannerStatus(@PathVariable("sectionID") int sectionID) {
         BannerMappingEntity bannerMappingEntity =  bannerMappingService.getRandomBannerBySectionID(sectionID);
         System.out.println("banner mapping : "+ bannerMappingEntity);

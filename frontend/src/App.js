@@ -20,7 +20,7 @@ import UserManage from "./pages/UserManage";
 
 
 
-import Layout from './components/dashboard/Layout';
+
 
 
 import Report from './pages/Report';
@@ -34,7 +34,7 @@ import DetailReport from './components/report/DetailReport';
 
 import NotFound from './components/NotFound';
 import WebsiteList from './components/website/WebsiteList';
-import SectionList from './components/section/SectionList';
+
 
 
 

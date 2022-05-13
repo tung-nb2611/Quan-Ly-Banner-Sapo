@@ -18,16 +18,20 @@ public class WebsiteService {
     @Autowired
     private WebsiteRepository websiteRepository;
 
-<<<<<<< HEAD
 
 
-    public List<WebsiteEntity> listSectionByUser_add(String user_add) {
-        return WebsiteRepository.getSectionEntitiesByUser_add(user_add);
-=======
+
+//    public List<WebsiteEntity> listSectionByUser_add(String user_add) {
+//        return WebsiteRepository.getSectionEntitiesByUser_add(user_add);
+
     public List<WebsiteEntity> listWebsiteByUserAdd(String userAdd) {
         return websiteRepository.getWebsiteEntitiesByUserAdd(userAdd);
->>>>>>> c282122c50c793983c71e5be1694601bf8399438
+
     }
+
+
+
+
 
     public Page<WebsiteEntity> getSectionPage(int number){
         PagingAndSortingRepository<WebsiteEntity, Integer> websiteRepo = websiteRepository;

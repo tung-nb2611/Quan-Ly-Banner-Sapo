@@ -8,7 +8,7 @@ const Report = () => {
         <div >
 
             <Views />
-            {/* <ListBannerReport /> */}
+            <ListBannerReport />
         </div>
     );
 };

@@ -11,7 +11,7 @@ function WebsiteList(props) {
     const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
-        WebsiteService.getWebsiteByPageAndUserAdd("trong", currentPage).then((response) => {
+        WebsiteService.getWebsiteByPageAndUserAdd("tung", currentPage).then((response) => {
             const info = response.data.content;
             const pageNum = response.data.totalPages;
             setWebsiteList(info);
