@@ -9,6 +9,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.sql.Date;
 import java.util.List;
 
 @Service
@@ -16,6 +17,8 @@ public class ClickService {
 
     @Autowired
     ClickRepository clickRepository;
+
+
 
     public  List<ClickEntity> getAllClick (){
         return  clickRepository.getAllClick();
@@ -45,24 +48,21 @@ public class ClickService {
 //    }
 //
 //
+
     @Transactional
     public void save(ClickEntity clickEntity){
         clickRepository.save(clickEntity);
     }
-//
-//    public int getClickCountByPreviousDay(Integer bannerId) {
-//        return clickRepository.getClickCountPreviousDayByBannerId(bannerId);
-//    }
-//
-//    public int getClickCountByPreviousWeek(Integer bannerId) {
-//        return clickRepository.getClickCountPreviousWeekByBannerId(bannerId);
-//    }
-//
-//    public int getClickCountByPreviousMonth(Integer bannerId) {
-//        return clickRepository.getClickCountPreviousMonthByBannerId(bannerId);
-//    }
-//
-//    public int getClickCountByPreviousYear(Integer bannerId) {
-//        return clickRepository.getClickCountPreviousYearByBannerId(bannerId);
-//    }
+
+    public int getSumClickBySectionIDForYear(int year, int sectionID){
+        return clickRepository.getSumClickBySectionIDForYear(year, sectionID);
+    }
+
+    public int getSumClickBySectionIDForMonth(int year, int month , int sectionID){
+        return clickRepository.getSumClickBySectionIDForMonth(year, month, sectionID);
+    }
+
+    public int getSumClickBySectionIDForDay(Date day , int sectionID){
+        return clickRepository.getSumClickBySectionIDForDay(day, sectionID);
+    }
 }

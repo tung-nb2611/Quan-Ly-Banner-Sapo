@@ -30,6 +30,11 @@ public class WebsiteService {
     }
 
 
+    public WebsiteEntity getWebNameByID(int websiteID){
+        return websiteRepository.getById(websiteID);
+    }
+
+
 
 
 

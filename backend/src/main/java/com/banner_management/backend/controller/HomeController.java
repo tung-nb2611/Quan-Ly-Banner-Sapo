@@ -1,21 +1,15 @@
 package com.banner_management.backend.controller;
 
-import com.banner_management.backend.dto.ClickBannerDto;
-import com.banner_management.backend.entity.BannerEntity;
-import com.banner_management.backend.entity.ViewEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")
 public class HomeController {
+
+
 
 //    @Autowired
 //    BannerService bannerService;
@@ -61,4 +55,5 @@ public class HomeController {
 //
 //        return clickBannerDtoList;
 //    }
+
 }
