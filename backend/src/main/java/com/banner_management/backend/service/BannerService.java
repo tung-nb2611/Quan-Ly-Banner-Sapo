@@ -23,6 +23,12 @@ public class BannerService  {
         return repository.findAll();
     }
 
+    //loc banner theo trang web và khu vực
+
+    public List<BannerEntity> listBannerGroupByWebsiteAndSection(int bannerID){
+        return repository.getBannerGroupByWebsiteAndSection(bannerID);
+    }
+
     @Transactional
     public void save(BannerEntity bannerEntity){
         repository.save(bannerEntity);
@@ -52,5 +58,6 @@ public class BannerService  {
         Page<BannerEntity> banners = repository.getBannerStatusBySections(sectionId, pageNumber);
         return banners;
     }
+
 
 }
