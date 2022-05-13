@@ -6,7 +6,7 @@ import BannerService from "../../services/BannerService";
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 
 
-import { Bar, Line } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 import ViewService from "../../services/views/ViewService";
 import ReportService from "../../services/ReportService";
@@ -23,18 +23,15 @@ const Views = () => {
     useEffect(() => {
         let Viewws = []
         let Name = []
-        let Clicks = []
         ReportService.getClickAndView().then(res => {
             console.log(res);
             for (const dataObj of res.data) {
                 Viewws.push(parseInt(dataObj.numberViews));
-                Clicks.push(parseInt(dataObj.numberClicks));
                 console.log('viewsdata', dataObj);
                 Name.push(dataObj.bannerName)
             }
             setData2(Viewws)
             setCategory(Name)
-            setData1(Clicks)
         })
     }, []);
 
@@ -43,7 +40,7 @@ const Views = () => {
 
 
 
-    console.log("Views", category, data2, data1);
+    console.log("Views", category, data2);
 
     var data = {
         labels: category,
@@ -52,24 +49,6 @@ const Views = () => {
                 label: 'lượng views banner',
                 data: data2,
                 borderColor: [
-
-                ],
-                borderWidth: 1,
-                fill: false
-            },
-            {
-                label: 'lượng Clicks banner',
-                data: data1,
-                borderColor: [
-                    'red',
-                    'red',
-                    'red',
-                    'red',
-                    'red',
-                    'red',
-                    'red',
-                    'red',
-
 
                 ],
                 borderWidth: 1,

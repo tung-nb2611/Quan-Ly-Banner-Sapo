@@ -23,10 +23,6 @@ public class SectionService {
         return sectionRepository.getSectionEntitiesByWebsiteID(webId);
     }
 
-    public SectionEntity getWebsiteIDBySectionID(int sectionID){
-        return sectionRepository.getById(sectionID);
-    }
-
     public Page<SectionEntity> getSectionByPageAndWebsiteId(int webId, int number){
         PagingAndSortingRepository<SectionEntity, Integer> sectionRepo = sectionRepository;
         Page<SectionEntity> sections = ((SectionRepository) sectionRepo).getSectionByPageAndWebsiteId(webId, PageRequest.of(number, 5));

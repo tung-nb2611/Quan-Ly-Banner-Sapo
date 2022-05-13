@@ -57,7 +57,6 @@ const ReportBannerInfor = ({ bannerInfo, bannerList, setBannerList }) => {
 
     return (
         <>
-
             <div className="banner-info m-4 p-3">
                 <Row>
                     <Col xs={6} md={6} lg={3} xl={3} className="detail-info">

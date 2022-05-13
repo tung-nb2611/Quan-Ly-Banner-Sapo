@@ -22,9 +22,15 @@ public class WebsiteService {
         return websiteRepository.getWebsiteEntitiesByUserAdd(userAdd);
     }
 
+<<<<<<< HEAD
     public WebsiteEntity getWebNameByID(int websiteID){
         return websiteRepository.getById(websiteID);
     }
+=======
+
+
+
+>>>>>>> ffdc1ceeb71f17b32af0e6e9e2a3b673c16fd898
 
     public Page<WebsiteEntity> getSectionPage(int number){
         PagingAndSortingRepository<WebsiteEntity, Integer> websiteRepo = websiteRepository;

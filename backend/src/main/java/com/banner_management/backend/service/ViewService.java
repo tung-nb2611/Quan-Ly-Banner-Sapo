@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.sql.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -16,7 +15,10 @@ public class ViewService {
     @Autowired
     ViewRepository viewRepository;
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> ffdc1ceeb71f17b32af0e6e9e2a3b673c16fd898
     public List<ViewEntity> listViewsBanner(){
         return viewRepository.findAll();
     }
@@ -51,15 +53,6 @@ public class ViewService {
         return viewRepository.getViewsByBannerID(bannerId);
     }
 
-    public int getSumViewBySectionIDForYear(int year, int sectionID){
-        return viewRepository.getSumViewBySectionIDForYear(year, sectionID);
-    }
 
-    public int getSumViewBySectionIDForMonth(int year, int month , int sectionID){
-        return viewRepository.getSumViewBySectionIDForMonth(year, month, sectionID);
-    }
 
-    public int getSumViewBySectionIDForDay(Date day , int sectionID){
-        return viewRepository.getSumViewBySectionIDForDay(day, sectionID);
-    }
 }
