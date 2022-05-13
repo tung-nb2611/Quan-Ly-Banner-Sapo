@@ -25,10 +25,17 @@ public class BannerMappingEntity {
     @Column(name = "percentage",columnDefinition = "0")
     private Integer percentage;
 
+<<<<<<< HEAD
+=======
     @Column(name = "time_display", nullable = false)
     private Timestamp timeDisplay;
 
+<<<<<<< HEAD
     @Column(name = "number_click",columnDefinition = "0",nullable = true)
+=======
+>>>>>>> main
+    @Column(name = "number_click", nullable = true)
+>>>>>>> 4cb99eb01b240916530f6c77e34cfcabe3358b07
     private Integer numberClick;
 
     @Column(name = "number_view", columnDefinition = "0",nullable = true)
@@ -80,6 +87,8 @@ public class BannerMappingEntity {
         this.percentage = percentage;
     }
 
+<<<<<<< HEAD
+=======
     public Timestamp getTimeDisplay() {
         return timeDisplay;
     }
@@ -88,6 +97,7 @@ public class BannerMappingEntity {
         this.timeDisplay = timeDisplay;
     }
 
+>>>>>>> main
     public int getNumberClick() {
         return numberClick;
     }
@@ -115,7 +125,10 @@ public class BannerMappingEntity {
                 ", sectionId=" + sectionId +
                 ", state=" + state +
                 ", percentage=" + percentage +
+<<<<<<< HEAD
+=======
                 ", timeDisplay=" + timeDisplay +
+>>>>>>> main
                 ", numberClick=" + numberClick +
                 ", numberView=" + numberView +
                 '}';

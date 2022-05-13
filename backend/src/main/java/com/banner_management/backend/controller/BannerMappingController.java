@@ -65,6 +65,10 @@ public class BannerMappingController {
         return  bannerEntity;
     }
 
+<<<<<<< HEAD
+    // cap nhat du lieu thoi gian bat dau khi chon random
+    @PutMapping("/banner-mapping/random/{id}")
+=======
     //   cập nhật banner status .... chua su dung
     @PutMapping("/banner-status/random")
     public ResponseEntity<BannerMappingEntity> updateRandomBanner(@RequestBody BannerMappingEntity bannerMappingEntity) {
@@ -75,6 +79,7 @@ public class BannerMappingController {
 
     // cap nhat du lieu thoi gian bat dau khi chon random
     @PutMapping("/banner-status/random/{id}")
+>>>>>>> main
     public void updateBannerStatus (@RequestBody BannerMappingEntity bannerMappingEntity, @PathVariable("id") Integer id){
         BannerMappingEntity existBannerMappingEntity = bannerMappingService.getById(id);
         System.out.println("banner status dau vao o day : "+ bannerMappingEntity);
@@ -85,15 +90,27 @@ public class BannerMappingController {
     }
 
 //     cap nhat du lieu khi chon hien thi theo ti trong
+<<<<<<< HEAD
+    @PutMapping("/banner-mapping/percentage")
+=======
     @PutMapping("/banner-status/percentage")
+>>>>>>> main
     public void updateBannerStatusOnPercentage(@RequestBody List<BannerMappingEntity> bannerMappingEntityList){
         // du lieu can co bannerID, sectionID, percentage, timeDisplay, expired
         System.out.println("du lieu dau vao list : "+ bannerMappingEntityList);
         for(int i = 0; i < bannerMappingEntityList.size(); i++){
             BannerMappingEntity bannerMappingEntity = bannerMappingEntityList.get(i);
             System.out.println("phần tử "+ i + " "+ bannerMappingEntity);
+<<<<<<< HEAD
+            bannerMappingService.updatePercentage(bannerMappingEntity.getPercentage(), bannerMappingEntity.getBannerID(), bannerMappingEntity.getSectionID());
+=======
             bannerMappingService.updatePercentage(bannerMappingEntity.getTimeDisplay(),
+<<<<<<< HEAD
                     bannerMappingEntity.getPercentage(), bannerMappingEntity.getBannerId(), bannerMappingEntity.getSectionID());
+=======
+                    bannerMappingEntity.getPercentage(), bannerMappingEntity.getBannerID(), bannerMappingEntity.getSectionID());
+>>>>>>> main
+>>>>>>> 4cb99eb01b240916530f6c77e34cfcabe3358b07
         }
     }
 
