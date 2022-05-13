@@ -34,7 +34,7 @@ const BannerStatus = ({ item }) => {
   const changeInfo = (id, rate) => {
     setStatus((prevState) => ({
       id: id,
-      rate: rate,
+      rate: rate
     }));
     checkboxArrContext.updateCheckboxArr(id, rate);
     
@@ -53,12 +53,12 @@ const BannerStatus = ({ item }) => {
         <img
           src={item.imgUrl}
           width={300}
-          height={80}
+          height={120}
           alt={""}
         />
       </td>
-      <td className="text-center ">
-        <select className="form-select text-center" onChange={changeRate} defaultValue={item.percentage} value={status.rate}>
+      <td className="text-center">
+        <select className="form-select text-center mt-4" onChange={changeRate} defaultValue={item.percentage} value={status.rate}>
           <option value="0">0</option>
           <option value="10">10</option>
           <option value="20">20</option>
@@ -69,7 +69,6 @@ const BannerStatus = ({ item }) => {
           <option value="70">70</option>
           <option value="80">80</option>
           <option value="90">90</option>
-
         </select>
       </td>
       <td className="text-center checkbox">

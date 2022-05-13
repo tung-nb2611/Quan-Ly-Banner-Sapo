@@ -28,7 +28,7 @@ function UpdateUser(props) {
         updateUser(data);
     };
     const handleCancel = () => {
-        props.history.push('/banner1/manage');
+        props.history.push('/user/manage');
     }
     const updateUser = (data) => {
         let userItem = {
@@ -39,7 +39,7 @@ function UpdateUser(props) {
             phone: data.phone,
         }
         UserService.updateUser(userItem, userID).then(res => {
-            props.history.push('/banner1/manage');
+            props.history.push('/user/manage');
         })
     }
     return (

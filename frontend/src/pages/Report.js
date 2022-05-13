@@ -7,10 +7,9 @@ import Views from "../components/report/Views";
 const Report = () => {
     return (
         <div >
-            <ChoiceSection></ChoiceSection>
-
+            <ChoiceSection/>
             {/* <Views /> */}
-            {/* <ListBannerReport /> */}
+            <ListBannerReport />
         </div>
     );
 };
