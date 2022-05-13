@@ -1,5 +1,5 @@
 import axios from "axios";
-const BANNER_API_BASE_URL = "http://localhost:8080/api/banners/views";
+const BANNER_API_BASE_URL = "http://localhost:8080/api/views";
 class ViewService {
     // lay thông tin Luong view
     getListView(bannerId) {

@@ -24,24 +24,21 @@
 =======
 package com.banner_management.backend.controller;
 
-import com.banner_management.backend.dto.ClickBannerDto;
-import com.banner_management.backend.entity.BannerEntity;
-import com.banner_management.backend.entity.ViewEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")
 public class HomeController {
 
+<<<<<<< HEAD
 >>>>>>> 46b52ec208244197b799b99e415dc224194e1c51
+=======
+
+
+>>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
 //    @Autowired
 //    BannerService bannerService;
 //
@@ -64,7 +61,7 @@ public class HomeController {
 //        List<ClickBannerDto> clickBannerDtoList = new ArrayList<>();
 //        List<BannerEntity> bannerEntityList = bannerService.listAllBanner();
 //        int numberViews = 0;
-//        int numberClicks = 0;
+//        int numberClicks = 0q;
 //        for(int i = 0 ; i < bannerEntityList.size() ; i ++){
 //            // lay so luong view
 <<<<<<< HEAD
@@ -99,7 +96,11 @@ public class HomeController {
 //        return clickBannerDtoList;
 //    }
 <<<<<<< HEAD
+<<<<<<< HEAD
 //}
 =======
+=======
+
+>>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
 }
 >>>>>>> 46b52ec208244197b799b99e415dc224194e1c51

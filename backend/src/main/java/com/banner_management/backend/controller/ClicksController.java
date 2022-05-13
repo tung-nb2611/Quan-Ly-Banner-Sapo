@@ -1,10 +1,17 @@
 package com.banner_management.backend.controller;
 
+import com.banner_management.backend.entity.BannerMappingEntity;
 import com.banner_management.backend.entity.ClickEntity;
+<<<<<<< HEAD
 
 import com.banner_management.backend.service.ClickService;
 
 
+=======
+import com.banner_management.backend.service.BannerMappingService;
+import com.banner_management.backend.service.BannerService;
+import com.banner_management.backend.service.ClickService;
+>>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -19,6 +26,7 @@ import java.util.NoSuchElementException;
 @RequestMapping("/api")
 public class ClicksController {
 
+<<<<<<< HEAD
 
     @Autowired
     ClickService clickService;
@@ -52,6 +60,52 @@ public class ClicksController {
 
 
 
+=======
+    @Autowired
+    ClickService clickService;
+
+<<<<<<< HEAD
+@GetMapping("/clicks-banner")
+    public  List<ClickEntity> getAll(){
+    return clickService.getAllClick();
+}
+////
+////    @GetMapping("banners/click")
+////    public List<ClicksEntity> getAllBannerClick(){
+////        return clicksService.
+////    }
+//    @GetMapping("/clicks-banner")
+//    public List<ClickEntity> getAllClick(){
+//    return clicksService.getClick();
+//}
+//
+//    // Lấy thông tin info click chuột theo từng banner
+//    @GetMapping("/clicks-banner/info/{bannerID}")
+//    public List<ClickEntity> getClickInfoByBannerId(@PathVariable("bannerID") int bannerId){
+//        return clicksService.getClickInfoByBannerId(bannerId);
+//    }
+//
+//    @GetMapping("/clicks-banner/info/{bannerID}/{page}")
+//    public ResponseEntity<Page<ClickEntity>> getClickInfoByPage(@PathVariable("bannerID") int bannerId, @PathVariable("page") int page){
+//        try {
+//            Page<ClickEntity> clicks = clicksService.getClickInfoPage(bannerId, page);
+//            return new ResponseEntity<>(clicks, HttpStatus.OK);
+//        } catch(NoSuchElementException e){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
+//
+//    @GetMapping("/clicks-banner/count")
+//    public int getCountCLick(){
+//        return clicksService.getCountCLick();
+//    }
+//
+////    @GetMapping("/clicks-banner/count/{bannerID}")
+////    public int getAllClickbyBannerId(@PathVariable("bannerID") int bannerID){
+////        return clicksService.getCountClickByBannerId(bannerID);
+////    }
+//
+>>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
     @PostMapping("/clicks-banner")
     public ResponseEntity<ClickEntity> updateClicksBanners (@RequestBody ClickEntity clickEntity) {
         try {
@@ -60,6 +114,7 @@ public class ClicksController {
             return new ResponseEntity<ClickEntity>(clickEntity, HttpStatus.OK);
         }catch (NoSuchElementException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+<<<<<<< HEAD
         }
     }
 
@@ -81,6 +136,28 @@ public class ClicksController {
     @GetMapping("/clicks-banner/year/{bannerId}")
     public int getClickCountPreviousYearByBannerId(@PathVariable("bannerId") Integer bannerId){
         return clickService.getClickCountByPreviousYear(bannerId);
+=======
+=======
+    @Autowired
+    BannerMappingService bannerMappingService;
+
+    @PostMapping("/banners/clicks")
+    public void updateClickBanner(@RequestBody ClickEntity clickEntity){
+        System.out.println("check du lieu click nhan ve : "+ clickEntity);
+        clickService.save(clickEntity);
+        BannerMappingEntity bannerMappingEntity = bannerMappingService.getByBannerIDAndSectionID(clickEntity.getBannerId(), clickEntity.getSectionId());
+        System.out.println("banner mapping lay ra: "+ bannerMappingEntity);
+        int numberClick = bannerMappingEntity.getNumberClick();
+        System.out.println("check number click :"+ numberClick);
+        if(numberClick == 0){
+            bannerMappingEntity.setNumberClick(1);
+        }
+        else {
+            bannerMappingEntity.setNumberClick(numberClick + 1);
+>>>>>>> a0fb9389283267b8426b0096bf281f0331995ba9
+        }
+        bannerMappingService.save(bannerMappingEntity);
+>>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
     }
 
 }

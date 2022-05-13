@@ -22,9 +22,6 @@ public class ClickEntity {
     @NotNull
     private int sectionId;
 
-    @Column(name = "status")
-    private short status;
-
     @Column(name = "browser_name")
     @NotNull
     private String browserName;
@@ -46,7 +43,6 @@ public class ClickEntity {
                 "ID=" + ID +
                 ", bannerId=" + bannerId +
                 ", sectionId=" + sectionId +
-                ", status=" + status +
                 ", browserName='" + browserName + '\'' +
                 ", timeClick=" + timeClick +
                 ", userClick='" + userClick + '\'' +
@@ -75,14 +71,6 @@ public class ClickEntity {
 
     public void setSectionId(int sectionId) {
         this.sectionId = sectionId;
-    }
-
-    public short getStatus() {
-        return status;
-    }
-
-    public void setStatus(short status) {
-        this.status = status;
     }
 
     public String getBrowserName() {

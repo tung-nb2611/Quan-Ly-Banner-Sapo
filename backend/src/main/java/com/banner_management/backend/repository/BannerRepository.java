@@ -19,4 +19,11 @@ public interface BannerRepository extends JpaRepository<BannerEntity, Integer> {
 >>>>>>> 46b52ec208244197b799b99e415dc224194e1c51
     @Query(value = "select * from banners left join banner_mapping on banner_mapping.banner_id = banners.id where banner_mapping.section_id = ?1", nativeQuery = true)
     Page<BannerEntity> getBannerStatusBySections(int id, Pageable pageable);
+
+    // query lọc banner theo website và khu vực
+    @Query(value = "select banners.id, banners.name, banners.img_url " +
+            "from banners left join banner_mapping on banners.id = banner_mapping.banner_id " +
+            "left join sections on banner_mapping.section_id = sections.id " +
+            "left join websites on websites.id = sections.web_id where banners.id = ?1", nativeQuery = true)
+    List<BannerEntity> getBannerGroupByWebsiteAndSection(Integer bannerID);
 }

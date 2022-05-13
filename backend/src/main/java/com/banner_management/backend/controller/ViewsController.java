@@ -2,12 +2,17 @@ package com.banner_management.backend.controller;
 
 import com.banner_management.backend.entity.ViewEntity;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import com.banner_management.backend.service.ViewService;
 =======
 >>>>>>> 46b52ec208244197b799b99e415dc224194e1c51
+=======
+import com.banner_management.backend.service.ViewService;
+>>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 
@@ -17,6 +22,9 @@ import java.util.List;
 public class ViewsController {
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
     @Autowired
     ViewService viewService;
 
@@ -25,6 +33,7 @@ public class ViewsController {
         return viewService.listViewsBanner();
     }
 
+<<<<<<< HEAD
 //    @GetMapping("/banners/{id}")
 //    public ResponseEntity<BannerEntity> getBannerById(@PathVariable Integer id){
 //        try{
@@ -64,6 +73,8 @@ public class ViewsController {
 <<<<<<< HEAD
 
 
+=======
+>>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
     // lay luot view cua banner dua theo khu vuc
     @GetMapping("/banners/views/{bannerID}")
     public List<ViewEntity> getViewsBannerByid(@PathVariable("bannerID") int bannerID){
@@ -71,7 +82,11 @@ public class ViewsController {
     }
 
 
+<<<<<<< HEAD
 // lay luot view cua banner dua theo khu vuc
+=======
+    // lay luot view cua banner dua theo khu vuc
+>>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
     @GetMapping("/banners/views/{sectionID}/{bannerID}")
     public ViewEntity getViewsBannerInSection(@PathVariable("sectionID") int sectionID, @PathVariable("bannerID") int bannerID){
         return viewService.getByBannerIDAndSectionID(bannerID,sectionID);
@@ -80,9 +95,22 @@ public class ViewsController {
 
     @GetMapping("/banners/views/banner/{bannerId}")
     public int getViewsByBannerId(@PathVariable("bannerId") int bannerId){
+<<<<<<< HEAD
             return viewService.getViewsByBannerId(bannerId);
     }
 =======
 >>>>>>> 46b52ec208244197b799b99e415dc224194e1c51
 
 }
+=======
+        return viewService.getViewsByBannerId(bannerId);
+    }
+
+    //
+
+    @PostMapping("/banners/views")
+    public void insertViewBanner (@RequestBody ViewEntity viewEntity){
+        viewService.save(viewEntity);
+    }
+}
+>>>>>>> d34c6622482e00a544694f489b2cd781d36f1184

@@ -42,18 +42,20 @@ export const SidebarData = [
     },
     {
         title: "Quản lý khu vực",
-        path: "/section",
+        path: "/website",
         icon: <BiIcons.BiCollection size={24} />,
+<<<<<<< HEAD
         iconClosed: <BiIcons.BiChevronRight size={24} />,
         iconOpened: <BiIcons.BiChevronDown size={24} />,
 
 
+=======
+>>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
     },
     {
         title: "Quản lý banner",
         path: "/banner/manage",
         icon: <MdIcons.MdPictureInPicture size={24} />,
-
     },
 
 ];

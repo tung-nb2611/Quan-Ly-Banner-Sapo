@@ -25,74 +25,80 @@ function BannerDetail(props) {
     // const [sectionID, setSectionID] = useState(data.sectionID);
     const [name, setName] = useState(data.name);
     const [imgUrl, setImgUrl] = useState(data.imgUrl); // Dùng để show ảnh
-    const [imgName, setImgName] = useState(data.imgUrl);
+    // const [imgName, setImgName] = useState(data.imgUrl);
     const [createAt, setCreateAt] = useState(data.createAt);
     const [urlLink, setUrlLink] = useState(data.url)
 
     return (
-
-        <div className="update-banner-container mx-3">
+        <div className="update-banner-container px-3">
             <div className="header-top">
-                <p className="mt-3 text-left">
+                <p className="pt-3 text-left">
                     {props.showAdminBoard ? (<span>Admin</span>) : (<span>User</span>)}
                     <BiIcons.BiChevronRight size={18} />
                     <Link className="text-decoration-none" to="/banner/manage">Quản lý banner</Link>
-                    <BiIcons.BiChevronRight size={18} />Thông tin banner</p>
+                    <BiIcons.BiChevronRight size={18} />Thông tin banner
+                </p>
             </div>
             <hr />
             <div className="container">
                 <div className="main-content">
+                    <div className="pb-4 text-center">
+                        <h2>Thông tin banner</h2>
+                    </div>
                     <div className="row">
-                        <div className="col-sm-12 pb-4">
-                            <h2>Thông tin banner</h2>
-                        </div>
-                        <div className="col-sm-6 left mt-2">
+                        <div className="col-md-12 col-lg-6 pb-5">
                             <form method="post" encType="multipart/form-data">
-                                <div className="mt-1 form-group">
+                                <div className="form-group">
                                     <label htmlFor="bannerID">Mã banner</label>
                                     <input className="form-control" type="text"
                                         placeholder="ex: 123..."
                                         value={bannerCode}
-                                        disabled />
+                                        disabled 
+                                    />
                                 </div>
                                 {/* 
-                                <div className="mt-2 form-group">
+                                <div className="mt-3 form-group">
                                     <label htmlFor="sectionID">Mã khu vực</label>
                                     <input className="form-control" type="text" id="sectionID" name="sectionID"
                                         placeholder="ex: 123..."
-                                        value={sectionID} />
+                                        value={sectionID} 
+                                    />
                                 </div> */}
 
-                                <div className="mt-2 form-group">
+                                <div className="mt-3 form-group">
                                     <label htmlFor="name">Tên banner</label>
-                                    <input className="form-control" type="text"
+                                    <input className="form-control" 
+                                        type="text"
                                         placeholder="ex: quảng cáo cá tháng tư"
                                         value={name}
-                                        disabled />
+                                        disabled 
+                                    />
                                 </div>
-                                <div className="mt-2 form-group">
+                                <div className="mt-3 form-group">
                                     <label htmlFor="sectionID">Ngày tạo </label>
-                                    <input className="form-control" type="text"
-
-                                        value={createAt} disabled />
+                                    <input className="form-control" 
+                                        type="text"
+                                        value={createAt} disabled 
+                                    />
                                 </div>
-                                <div className="mt-2 form-group">
+                                <div className="mt-3 form-group">
                                     <label htmlFor="lienket">Liên kết </label>
-                                    <input className="form-control" type="text"
-
-                                        value={urlLink} disabled />
+                                    <input className="form-control" 
+                                        type="text"
+                                        value={urlLink} disabled 
+                                    />
                                 </div>
                             </form>
                         </div>
-                        <div className="col-sm-6 right">
-                            <div className="col-sm-12">
+                        <div className="col-md-12 col-lg-6">
+                            <div>
                                 <h3 className="text-center">Hình ảnh Banner</h3>
                             </div>
-                            <div className="col-sm-12" id="imgFrame">
+                            <div id="imgFrame">
                                 <img className="img-rounded" alt="ảnh banner" src={imgUrl} />
                             </div>
                             <div className="button">
-                                <button type="button" className="btn btn-cancel" name="btncancel" onClick={() => history.push("/banner/manage")}>Quay lại</button>
+                                <button type="button" className="btn btn-secondary" name="btncancel" onClick={() => history.push("/banner/manage")}>Quay lại</button>
                             </div>
                         </div>
                     </div>
