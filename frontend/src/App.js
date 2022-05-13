@@ -3,38 +3,28 @@ import { Switch, Route, Redirect } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import AuthService from "./services/Auth";
-import EventBus from "./common/EventBus";
 import { CheckboxProvider } from './context/CheckboxContext';
 import { CheckboxArrProvider } from './context/CheckboxListContext'
+import AuthService from "./services/Auth";
+import EventBus from "./common/EventBus";
 
+import Layout from './components/dashboard/Layout';
 import Login from "./components/authentication/Login";
 import Home from "./components/authentication/Home";
-import Profile from './components/authentication/Profile';
-import BoardUser from './components/authentication/BoardUser';
-import BoardAdmin from './components/authentication/BoardAdmin';
 import CreateBanner from "./components/banner/CreateBanner";
 import UpdateBanner from "./components/banner/UpdateBanner";
-import DisplayBanner from "./components/section/DisplayBanner";
+import BannerDetail from './components/banner/BannerDetail';
+import DisplayBanner from "./components/website/DisplayBanner";
+import WebsiteList from './components/website/WebsiteList';
 import CreateUser from "./components/user/CreateUser";
 import UpdateUser from "./components/user/UpdateUser";
-import UserManage from "./pages/UserManage";
-
-
 import SectionList from './components/section/SectionList';
-import Layout from './components/dashboard/Layout';
-
-import Report from './pages/Report';
-import BannerManage from "./pages/BannerManage";
-import BannerDetail from './components/banner/BannerDetail';
-import SapoWeb from './dashboard/SapoWeb';
-
 import DetailReport from './components/report/DetailReport';
 
-
-
-import NotFound from './components/NotFound';
-
+import UserManage from "./pages/UserManage";
+import Report from './pages/Report';
+import BannerManage from "./pages/BannerManage";
+import SapoWeb from './dashboard/SapoWeb';
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -61,7 +51,6 @@ const App = () => {
     setCurrentUser(undefined);
   };
 
-
   return (
     <div className='wrapper'>
       <CheckboxProvider>
@@ -69,20 +58,10 @@ const App = () => {
           <Switch>
             {currentUser ?
               (
-
                 <Layout logOut={logOut} showAdminBoard={showAdminBoard}>
-                  {/* <Redirect from="/" to="/home" /> */}
+                  <Redirect from="/" to="/home" />
                   <Route exact path="/home">
                     <Home />
-                  </Route>
-                  <Route path="/profile">
-                    <Profile />
-                  </Route>
-                  <Route path="/user">
-                    <BoardUser />
-                  </Route>
-                  <Route path="/admin">
-                    <BoardAdmin />
                   </Route>
                   <Route path="/banner/manage">
                     <BannerManage />
@@ -100,14 +79,17 @@ const App = () => {
                   <Route path="/banner/display/:id">
                     <DisplayBanner />
                   </Route>
-                  <Route path="/section/:position_web">
-                    <SectionList />
+                  <Route path="/website">
+                    <WebsiteList />
                   </Route>
                   <Route path="/dashboard/SapoWeb">
                     <SapoWeb />
                   </Route>
                   <Route path="/report">
                     <Report />
+                  </Route>
+                  <Route path="/websites/websiteId=:webId/sections" >
+                    <SectionList />
                   </Route>
                   <Route path="/views/detail/:code" >
                     <DetailReport />
@@ -116,7 +98,8 @@ const App = () => {
                   <Route path="/banner1/create" exact component={CreateUser} />
                   <Route path="/banner1/update/:code" exact component={UpdateUser} />
                   <Route path="/banner1/update" exact component={UpdateUser} />
-                </Layout>) : (
+                </Layout>
+              ) : (
                 <>
                   <Route path="/">
                     <Redirect to='/login'></Redirect>
@@ -126,13 +109,11 @@ const App = () => {
                   </Route>
                 </>
               )}
-
           </Switch>
         </CheckboxArrProvider>
       </CheckboxProvider>
     </div>
   );
-
 };
 
 export default App;

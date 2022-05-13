@@ -1,11 +1,16 @@
 package com.banner_management.backend.controller;
 
+import com.banner_management.backend.dto.SectionDto;
 import com.banner_management.backend.entity.SectionEntity;
 import com.banner_management.backend.service.SectionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -15,29 +20,57 @@ public class SectionController {
     @Autowired
     private SectionService sectionService;
 
-    @GetMapping("/sections/user={user_add}")
-    public List<SectionEntity> listSection(@PathVariable("user_add") String user_add) {
-        return sectionService.listSectionByUser_add(user_add);
+    @GetMapping("/websiteID={websiteID}/sections")
+    public List<SectionEntity> listSections(@PathVariable("websiteID") int webId) {
+        return sectionService.listSectionByWebsiteID(webId);
     }
 
-    @GetMapping("/{position_web}/sections/{id}")
-    public SectionEntity getSectionById( @PathVariable("id") int id,@PathVariable("position_web") String position_web) {
-        return sectionService.getSectionById(id);
+    @GetMapping("/sections/page/websiteId={webId}/{page}")
+    public ResponseEntity<Page<SectionEntity>> getWebsiteListByPageAndUserAdd(@PathVariable("webId") int webId, @PathVariable("page") int page){
+        try {
+            Page<SectionEntity> sections = sectionService.getSectionByPageAndWebsiteId(webId, page);
+            return new ResponseEntity<>(sections, HttpStatus.OK);
+        }catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
-    @PostMapping("/{position_web}/sections")
-    public void addSection(@RequestBody SectionEntity sectionEntity, @PathVariable("position_web") String position_web) {
-        sectionService.save(sectionEntity);
+    @PostMapping("/sections")
+    public ResponseEntity<SectionEntity> addSection(@RequestBody SectionDto sectionDto){
+        try {
+            System.out.println(" section dto " + sectionDto);
+            SectionEntity sectionEntity = new SectionEntity( sectionDto.getWebId(),sectionDto.getDivId());
+            System.out.println("section : " + sectionEntity);
+            sectionService.save(sectionEntity);
+            System.out.println("section id : "+ sectionEntity.getId());
+            return new ResponseEntity<SectionEntity>(sectionEntity, HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
-    @PutMapping("/{position_web}/sections/{id}")
-    public void updateSectionById(@RequestBody SectionEntity sectionEntity,@PathVariable("position_web") String position_web, @PathVariable("id") int id) {
-        sectionEntity.setId(id);
-        sectionService.save(sectionEntity);
+    @PutMapping("/sections/{id}")
+    public ResponseEntity<SectionEntity> updateSection(@RequestBody SectionEntity section, @PathVariable Integer id){
+        try{
+            System.out.println("id: "+ id);
+            System.out.println(section);
+            SectionEntity item = sectionService.getById(id);
+            item.setDivId(section.getDivId());
+            item.setWebId(section.getWebId());
+            sectionService.save(item);
+            return new ResponseEntity<SectionEntity>(item, HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
-    @DeleteMapping("/{position_web}/sections/{id}")
-    public void deleteSectionById(@PathVariable("position_web") String position_web, @PathVariable("id") int id) {
-        sectionService.deleteSection(id);
+    @DeleteMapping("/sections/{id}")
+    public ResponseEntity<SectionEntity> deleteSection(@PathVariable Integer id){
+        try{
+            sectionService.delete(id);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }

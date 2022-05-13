@@ -20,10 +20,10 @@ public class BannerEntity {
     private String name;
 
     @Column(name = "img_url", nullable = false)
-    @NotNull
+
     private String imgUrl;
 
-    @Column(name = "user_add")
+    @Column(name = "user_add" , nullable = false)
     @NotNull
     private String userAdd;
 

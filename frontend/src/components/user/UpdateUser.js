@@ -3,56 +3,46 @@ import '../../styles/banner/UpdateBanner.css';
 import UserService from "../../services/UserService";
 import * as BiIcons from "react-icons/bi";
 import { useLocation } from "react-router-dom";
-
+import { Controller, useForm } from "react-hook-form";
 
 function UpdateUser(props) {
-
-    // Vấn đề: Access link trực tiếp thì sẽ không có id
-    // Lấy thông tin banner được chọn để cho vào state của component Update thông tin
     let data = {}
     const linkState = useLocation();
     console.log(linkState);
     if (typeof linkState.detailInfo !== 'undefined') {
-
         data = linkState.detailInfo;
         console.log(data);
     }
-
-
     const [userID, setUserID] = useState(data.id);
-    const [name, setName] = useState(data.name);
-    const [email, setEmail] = useState(data.email);
-    const [userName, setUserName] = useState(data.username);
-    const [password, setPassword] = useState(data.password);
-    const [phone, setPhone] = useState(data.phone);
-    const [roles, setRole] = useState(data.roles);
-    console.log(data)
-
+    const { register, handleSubmit, watch, formState: { errors } } = useForm({
+        defaultValues: {        
+            name: data.name,
+            email: data.email,
+            username: data.username,
+            password: data.password,
+            phone: data.phone,
+        },
+    });
+    console.log(register.name);
+    const onSubmit = data => {
+        updateUser(data);
+    };
     const handleCancel = () => {
         props.history.push('/banner1/manage');
-
-
-
     }
-    const updateUser = (e) => {
-        e.preventDefault();
-
+    const updateUser = (data) => {
         let userItem = {
-            name: name,
-            email: email,
-            username: userName,
-            password: password,
-            phone: phone,
+            name: data.name,
+            email: data.email,
+            username: data.username,
+            password: data.password,
+            phone: data.phone,
         }
-        console.log('user => ', userItem);
-
         UserService.updateUser(userItem, userID).then(res => {
             props.history.push('/banner1/manage');
         })
     }
-
     return (
-
         <div className="update-banner-container" >
             <div className="top bg-success text-white">Admin</div>
             <div className="container">
@@ -66,82 +56,64 @@ function UpdateUser(props) {
                             <h1>Chỉnh sửa người dùng</h1>
                         </div>
                         <div className="col-sm-6 left">
-                            <form method="post" encType="multipart/form-data">
+                            <form onSubmit={handleSubmit(onSubmit)}>
 
                                 <div className="mt-2 form-group">
                                     <label htmlFor="sectionID">Tên người dùng</label>
                                     <input className="form-control" type="text" id="name" name="name"
                                         placeholder="ex: Phung Cong Cuong."
-                                        value={name} onChange={(e) => setName(e.target.value)}
+                                        defaultValue={register.name}
+                                        {...register("name", { required: true, minLength: 6, maxLength: 20 })}
                                     />
+                                    {errors.name && errors.name.type === "required" && <span>This is required</span>}
+                                    {errors.name && errors.name.type === "minLength" && <span>Min length is 6</span>}
+                                    {errors.name && errors.name.type === "maxLength" && <span>Max length is 20</span>}
                                 </div>
 
                                 <div className="mt-2 form-group">
                                     <label htmlFor="name">Email</label>
                                     <input className="form-control" type="email" id="email" name="email"
                                         placeholder="ex: sapo1@gmail.com"
-                                        value={email} onChange={(e) => setEmail(e.target.value)} />
+                                        defaultValue={register.email}
+                                        {...register("email", { required: true, maxLength: 50, pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })}
+                                    />
+                                    {errors.email && errors.email.type === "required" && <span>This is required</span>}
+                                    {errors.email && errors.email.type === "maxLength" && <span>Max length is 50</span>}
+                                    {errors.email && errors.email.type === "pattern" && <span>This is an email</span>}
                                 </div>
 
                                 <div className="mt-2 form-group">
                                     <label htmlFor="name">Phone</label>
                                     <input className="form-control" type="text" id="password" name="password"
                                         placeholder="ex: 0934.333.444"
-                                        value={phone} onChange={(e) => setPhone(e.target.value)} />
+                                        defaultValue={register.phone}
+                                        {...register("phone", { required: true, minLength: 6, maxLength: 15 })}
+                                    />
+                                    {errors.phone && errors.phone.type === "required" && <span>This is required</span>}
+                                    {errors.phone && errors.phone.type === "minLength" && <span>Min length is 6</span>}
+                                    {errors.phone && errors.phone.type === "maxLength" && <span>Max length is 15</span>}
                                 </div>
 
                                 <div className="mt-2 form-group">
                                     <label htmlFor="name">Username</label>
                                     <input className="form-control" type="text" id="username" name="username"
                                         placeholder="ex: sapo1"
-                                        value={userName} onChange={(e) => setUserName(e.target.value)} />
+                                        defaultValue={register.username}
+                                        {...register("username", { required: true, minLength: 6, maxLength: 20})}
+                                    />
+                                    {errors.username && errors.username.type === "required" && <span>This is required</span>}
+                                    {errors.username && errors.username.type === "minLength" && <span>Min length is 6</span>}
+                                    {errors.username && errors.username.type === "maxLength" && <span>Max length is 20</span>}
                                 </div>
-
-
-
-
-
-
-
-
-
-                                <div className="mt-2 form-group">
-                                    {/* <label id="upload-label" htmlFor="upload">Chọn Hình Ảnh</label> */}
-
-                                    {/* <div className="custom-file">
-                                        <input id="upload" type="file" className="form-control border-0" accept=".png,.gif,.jpg,.jpeg"
-                                            onChange={getImage} />
-                                    </div> */}
-                                </div>
-
+                                <button type="button" className="btn btn-cancel" name="btncancel" onClick={() => handleCancel()} >Hủy</button>
+                                <button type="submit" className="btn btn-add " name="btnsubmit" >Thêm người dùng</button>
                             </form>
                         </div>
-                        <div className="col-sm-6 right">
-
-                            <div className="button">
-
-                                <button type="button" className="btn btn-cancel" name="btncancel" onClick={() => handleCancel()}>Hủy</button>
-                                <button type="submit" className="btn btn-add " name="btnsubmit" onClick={(e) => updateUser(e)}>Chỉnh sửa</button>
-
-                            </div>
-                        </div>
                     </div>
-
-
                 </div>
             </div>
         </div>
-
     );
-
-
-    const handleComeBack = () => {
-        props.history.push('/banner/manage');
-    }
-    const handleLogout = () => {
-        props.history.push('/home')
-    }
-
 }
 
 

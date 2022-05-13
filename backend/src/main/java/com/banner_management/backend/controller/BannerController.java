@@ -1,13 +1,12 @@
 package com.banner_management.backend.controller;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 import com.banner_management.backend.dto.BannerDto;
 import com.banner_management.backend.entity.BannerEntity;
-import com.banner_management.backend.entity.BannerStatusEntity;
+import com.banner_management.backend.entity.BannerMappingEntity;
+import com.banner_management.backend.service.BannerMappingService;
 import com.banner_management.backend.service.BannerService;
-import com.banner_management.backend.service.BannerStatusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -20,10 +19,11 @@ import org.springframework.web.bind.annotation.*;
 public class BannerController {
 
     @Autowired
-    private BannerService bannerService;
+    BannerService bannerService;
 
     @Autowired
-    private BannerStatusService bannerStatusService;
+    BannerMappingService bannerMappingService;
+
     // lấy một banner theo id
     @GetMapping("/banners")
     public List<BannerEntity> getListBanner(){
@@ -51,9 +51,9 @@ public class BannerController {
             System.out.println("banner : " + bannerEntity);
             bannerService.save(bannerEntity);
             System.out.println("banner id : "+ bannerEntity.getId());
-            BannerStatusEntity bannerStatusEntity = new BannerStatusEntity(bannerEntity.getId(),bannerDto.getSectionID(), (short) 1);
-            System.out.println("banner status : " + bannerStatusEntity);
-            bannerStatusService.save(bannerStatusEntity);
+            BannerMappingEntity bannerMappingEntity = new BannerMappingEntity(bannerEntity.getId(),bannerDto.getSectionID(), (short) 1);
+            System.out.println("banner mapping : " + bannerMappingEntity);
+            bannerMappingService.save(bannerMappingEntity);
             return new ResponseEntity<BannerEntity>(bannerEntity, HttpStatus.OK);
         }catch (NoSuchElementException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);

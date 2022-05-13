@@ -1,54 +1,44 @@
-import { useParams } from 'react-router-dom';
+import "../../styles/section/SectionList.css"
 import React from "react-dom";
 import { useEffect, useState } from 'react';
 import Section from "./Section";
-import "../../styles/section/SectionList.css"
-
+import PaginateList from '../PaginateList';
+import SectionService from "../../services/section/SectionService";
+import { useParams } from "react-router-dom";
 function SectionList(props) {
-    let { position_web } = useParams();
-    const [error, setError] = useState(null);
-    const [isLoaded, setIsLoaded] = useState(false);
-    const [sections, setSections] = useState([]);
-    // position_web = props.position_web;
+    let webId = useParams();
+    const [sectionList, setSectionList] = useState([]);
+    const [pageNumber, setPageNumber] = useState(0);
+    const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
-        fetch(`http://localhost:8080/api/${position_web}/sections`)
-            .then(res => res.json())
-            .then(
-                (sections) => {
-                    setIsLoaded(true);
-                    setSections(sections);
-                },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
-                (error) => {
-                    setIsLoaded(true);
-                    setError(error);
-                }
-            )
-    }, [position_web])
-    const displaySections = sections.map(
-        (data) => {
+        SectionService.getSectionByPageAndWebsiteId("2", currentPage).then((response) => {
+            const info = response.data.content;
+            const pageNum = response.data.totalPages;
+            setSectionList(info);
+            setPageNumber(pageNum);
+        })
+    }, [webId, currentPage])
 
+    const displaySections = sectionList.map(
+        (data) => {
             return (
                 <div key={data.id}>
-                    <Section id={data.id} />
+                    <Section data={data} />
                 </div>
             )
         }
     )
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    } else if (!isLoaded) {
-        return <div>Loading...</div>;
-    } else {
+
         return (
-            <div className="container">
+            <div className="banner-list m-2">
+                <div className="list">
                 {displaySections}
+                </div>
+                <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
             </div>
         )
-    }
+
 }
 
 export default SectionList;
