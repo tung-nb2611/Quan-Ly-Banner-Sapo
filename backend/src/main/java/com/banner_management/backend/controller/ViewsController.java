@@ -1,7 +1,10 @@
 package com.banner_management.backend.controller;
 
 import com.banner_management.backend.entity.ViewEntity;
+<<<<<<< HEAD
 import com.banner_management.backend.service.ViewService;
+=======
+>>>>>>> 46b52ec208244197b799b99e415dc224194e1c51
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,6 +16,7 @@ import java.util.List;
 @RequestMapping("/api")
 public class ViewsController {
 
+<<<<<<< HEAD
     @Autowired
     ViewService viewService;
 
@@ -29,19 +33,35 @@ public class ViewsController {
 //        }catch (NoSuchElementException e){
 //            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 //        }
+=======
+//    @Autowired
+//    ViewsService viewsService;
+//
+//    @GetMapping("/banners/views")
+//    public List<ViewEntity> getAllViews (){
+//        return viewsService.listViewsBanner();
+>>>>>>> 46b52ec208244197b799b99e415dc224194e1c51
 //    }
-
-
-//    @GetMapping("/banners/views-cliks")
-//    public List<ViewsEntity> getViewsClicks() {
-//        return viewsService.getClicksAndViews();
-
-//       try{ ViewsEntity viewsEntity = viewsService.getClicksAndViews();
-//           return  new ResponseEntity<ViewsEntity>(viewsEntity, HttpStatus.OK);}
-//       catch (NoSuchElementException e) {
-//           return  new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//       }
+//
+//    // lay luot view cua banner dua theo khu vuc
+//    @GetMapping("/banners/views/{bannerID}")
+//    public List<ViewEntity> getViewsBannerByid(@PathVariable("bannerID") int bannerID){
+//        return viewsService.getByBannerID(bannerID);
 //    }
+//
+//
+//// lay luot view cua banner dua theo khu vuc
+//    @GetMapping("/banners/views/{sectionID}/{bannerID}")
+//    public ViewEntity getViewsBannerInSection(@PathVariable("sectionID") int sectionID, @PathVariable("bannerID") int bannerID){
+//        return viewsService.getByBannerIDAndSectionID(bannerID,sectionID);
+//    }
+//
+//
+//    @GetMapping("/banners/views/banner/{bannerId}")
+//    public int getViewsByBannerId(@PathVariable("bannerId") int bannerId){
+//            return viewsService.getViewsByBannerId(bannerId);
+//    }
+<<<<<<< HEAD
 
 
     // lay luot view cua banner dua theo khu vuc
@@ -62,5 +82,7 @@ public class ViewsController {
     public int getViewsByBannerId(@PathVariable("bannerId") int bannerId){
             return viewService.getViewsByBannerId(bannerId);
     }
+=======
+>>>>>>> 46b52ec208244197b799b99e415dc224194e1c51
 
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //package com.banner_management.backend.controller;
 //
 //import com.banner_management.backend.entity.NumberClickEntity;
@@ -10,6 +11,19 @@
 //@CrossOrigin(origins = "*")
 //@RequestMapping("/api")
 //public class NumberClickController {
+=======
+package com.banner_management.backend.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+@CrossOrigin(origins = "*")
+@RequestMapping("/api")
+public class NumberClickController {
+>>>>>>> 46b52ec208244197b799b99e415dc224194e1c51
 //
 //    @Autowired
 //    NumberClickService numberClickService;
@@ -42,4 +56,8 @@
 //            numberClickService.save(newNumberClickEntity);
 //        }
 //    }
+<<<<<<< HEAD
 //}
+=======
+}
+>>>>>>> 46b52ec208244197b799b99e415dc224194e1c51

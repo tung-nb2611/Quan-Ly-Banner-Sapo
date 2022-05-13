@@ -6,8 +6,11 @@ import com.banner_management.backend.dto.BannerDto;
 import com.banner_management.backend.entity.BannerEntity;
 import com.banner_management.backend.entity.BannerMappingEntity;
 
+
 import com.banner_management.backend.service.BannerService;
 import com.banner_management.backend.service.BannerMappingService;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -20,10 +23,14 @@ import org.springframework.web.bind.annotation.*;
 public class BannerController {
 
     @Autowired
-    private BannerService bannerService;
+    BannerService bannerService;
 
     @Autowired
+
     private BannerMappingService bannerMappingService;
+
+
+
     // lấy một banner theo id
     @GetMapping("/banners")
     public List<BannerEntity> getListBanner(){
@@ -41,24 +48,27 @@ public class BannerController {
         }
     }
 
-//    // tạo mới một banner
-//    @PostMapping("/banners")
-//    public ResponseEntity<BannerEntity> addBanner(@RequestBody BannerDto bannerDto){
-//        try {
-//            System.out.println(" banner dto " + bannerDto);
-//            BannerEntity bannerEntity = new BannerEntity(bannerDto.getCode(), bannerDto.getName(), bannerDto.getImgUrl(),
-//                    bannerDto.getUserAdd(), bannerDto.getCreateAt(), bannerDto.getUrl());
-//            System.out.println("banner : " + bannerEntity);
-//            bannerService.save(bannerEntity);
-//            System.out.println("banner id : "+ bannerEntity.getId());
-//            BannerMappingEntity bannerMappingEntity = new BannerMappingEntity(bannerEntity.getId(),bannerDto.getSectionID(), (short) 1);
-//            System.out.println("banner status : " + bannerMappingEntity);
-//            bannerMappingService.save(bannerMappingEntity);
-//            return new ResponseEntity<BannerEntity>(bannerEntity, HttpStatus.OK);
-//        }catch (NoSuchElementException e){
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+
+
+    // tạo mới một banner
+    @PostMapping("/banners")
+    public ResponseEntity<BannerEntity> addBanner(@RequestBody BannerDto bannerDto){
+        try {
+            System.out.println(" banner dto " + bannerDto);
+            BannerEntity bannerEntity = new BannerEntity(bannerDto.getCode(), bannerDto.getName(), bannerDto.getImgUrl(),
+                    bannerDto.getUserAdd(), bannerDto.getCreateAt(), bannerDto.getUrl());
+            System.out.println("banner : " + bannerEntity);
+            bannerService.save(bannerEntity);
+            System.out.println("banner id : "+ bannerEntity.getId());
+            BannerMappingEntity bannerMappingEntity = new BannerMappingEntity(bannerEntity.getId(),bannerDto.getSectionID(), (short) 1);
+            System.out.println("banner mapping : " + bannerMappingEntity);
+            bannerMappingService.save(bannerMappingEntity);
+            return new ResponseEntity<BannerEntity>(bannerEntity, HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
     // cập nhật một banner theo id
     @PutMapping("/banners/{id}")

@@ -6,7 +6,10 @@ import javax.transaction.Transactional;
 
 import com.banner_management.backend.entity.BannerEntity;
 import com.banner_management.backend.repository.BannerRepository;
+<<<<<<< HEAD
 
+=======
+>>>>>>> 46b52ec208244197b799b99e415dc224194e1c51
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

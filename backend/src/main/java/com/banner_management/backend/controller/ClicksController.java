@@ -1,7 +1,10 @@
 package com.banner_management.backend.controller;
 
 import com.banner_management.backend.entity.ClickEntity;
+
 import com.banner_management.backend.service.ClickService;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -16,13 +19,11 @@ import java.util.NoSuchElementException;
 @RequestMapping("/api")
 public class ClicksController {
 
+
     @Autowired
     ClickService clickService;
-//
-//    @GetMapping("banners/click")
-//    public List<ClicksEntity> getAllBannerClick(){
-//        return clicksService.
-//    }
+
+
     @GetMapping("/clicks-banner")
     public List<ClickEntity> getAllClick(){
     return clickService.getClick();
@@ -49,10 +50,7 @@ public class ClicksController {
         return clickService.getCountCLick();
     }
 
-//    @GetMapping("/clicks-banner/count/{bannerID}")
-//    public int getAllClickbyBannerId(@PathVariable("bannerID") int bannerID){
-//        return clicksService.getCountClickByBannerId(bannerID);
-//    }
+
 
     @PostMapping("/clicks-banner")
     public ResponseEntity<ClickEntity> updateClicksBanners (@RequestBody ClickEntity clickEntity) {
@@ -84,4 +82,5 @@ public class ClicksController {
     public int getClickCountPreviousYearByBannerId(@PathVariable("bannerId") Integer bannerId){
         return clickService.getClickCountByPreviousYear(bannerId);
     }
+
 }
