@@ -1,5 +1,6 @@
 package com.banner_management.backend.service;
 
+import com.banner_management.backend.entity.BannerEntity;
 import com.banner_management.backend.entity.BannerMappingEntity;
 import com.banner_management.backend.repository.BannerMappingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ public class BannerMappingService {
 
     @Autowired
     BannerMappingRepository bannerMappingRepository;
+
+    @Autowired
+    BannerService bannerService;
 
     @Transactional
     public void save(BannerMappingEntity BannerMappingEntity){
@@ -36,7 +40,8 @@ public class BannerMappingService {
         return bannerMappingRepository.getPercentageByBannerIDAndSectionID(bannerID, sectionID);
     }
 
-    public BannerMappingEntity listBannerStatusViaRandom(Integer sectionID){
+
+    public BannerMappingEntity getRandomBannerBySectionID(Integer sectionID){
         return bannerMappingRepository.getRandomBySectionID(sectionID);
     }
 
@@ -44,60 +49,33 @@ public class BannerMappingService {
     public void updatePercentage(Timestamp time_display, Integer percentage, Integer bannerID, Integer sectionID){
         bannerMappingRepository.updatePercentageAndTimeDisplay(time_display, percentage, bannerID, sectionID);
     }
-    // Cách 1:
-    //
-    public String getImgUrlByPercentage(int sectionId){
-        String imageUrl = "hello";
-        List<BannerMappingEntity> bannerList = bannerMappingRepository.getListBannerBySections(sectionId);
-        ArrayList<Integer> percentageList = new ArrayList<Integer>();
-        if(!bannerList.isEmpty()) {
-            for (BannerMappingEntity banner : bannerList) {
-                int bannerId = banner.getBannerID();
-                int count = banner.getPercentage() / 10;
-                if (count != 0) {
-                    for (int i = 0; i < count; i++) {
-                        percentageList.add(bannerId);
-                    }
-                }
-            }
-            int randomParam = (int) Math.floor(Math.random() * percentageList.size());
-
-            System.out.println(percentageList);
-            System.out.println(randomParam + " : " + percentageList.get(randomParam));
-            System.out.println("\n");
-            imageUrl = bannerMappingRepository.getUrlByBannerId(percentageList.get(randomParam));
-        } else {
-            imageUrl = "No banners available\n";
-        }
-        return imageUrl;
-    }
-    // Cách 2:
-    //
-    //
-    public String getImageUrlByPercentage(int sectionId){
-        String imageUrl;
+    public BannerMappingEntity getBannerByPercentage(int sectionId){
+        BannerMappingEntity newBannerMappingEntity = new BannerMappingEntity();
         List<Integer> bannerIdList = new ArrayList<Integer>();
         ArrayList<Integer> percentageList = new ArrayList<Integer>();
         ArrayList<Integer> generatedResult = new ArrayList<Integer>();
         List<BannerMappingEntity> bannerList = bannerMappingRepository.getListBannerBySections(sectionId);
-        System.out.println("///////\n");
-        for(BannerMappingEntity banner : bannerList){
-            bannerIdList.add(banner.getBannerID());
-            percentageList.add(banner.getPercentage());
-            int temp = (int) Math.floor(Math.random()*banner.getPercentage());
+        System.out.println("banner list lay ra:  "+ bannerList);
+        for(BannerMappingEntity bannerMappingEntity : bannerList){
+            System.out.println("banner mapping entity : "+ bannerMappingEntity);
+            bannerIdList.add(bannerMappingEntity.getId());
+            percentageList.add(bannerMappingEntity.getPercentage());
+            int temp = (int) Math.floor(Math.random()*bannerMappingEntity.getPercentage());
+            System.out.println("temp : " + temp);
             generatedResult.add(temp);
         }
-        System.out.println(bannerIdList);
-        System.out.println(generatedResult);
-        System.out.println(percentageList);
+        System.out.println("list banner ID : " + bannerIdList);
+        System.out.println("ket qua generate : " + generatedResult);
+        System.out.println("list ti trong  :"  + percentageList);
         if(bannerIdList.isEmpty()){
-            imageUrl = "No image available";
+            return null;
         } else {
             int position = findTheLargest(generatedResult);
-            imageUrl = bannerMappingRepository.getUrlByBannerId(bannerIdList.get(position));
+            System.out.println("xem position : "+ position);
+            newBannerMappingEntity = bannerMappingRepository.getById(bannerIdList.get(position));
+            System.out.println("banner mapping entity lay ra theo ti trong : "+ newBannerMappingEntity);
         }
-
-        return imageUrl;
+        return newBannerMappingEntity;
     }
 
     int findTheLargest(ArrayList<Integer> array){
