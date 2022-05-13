@@ -13,11 +13,7 @@ import java.util.List;
 
 public interface SectionRepository extends JpaRepository<SectionEntity, Integer> {
 
-<<<<<<< HEAD
     @Query(value = "select * from sections where web_id = ?1", nativeQuery = true)
-=======
-    @Query(value = "select * from sections where websiteID = ?1", nativeQuery = true)
->>>>>>> main
     List<SectionEntity> getSectionEntitiesByWebsiteID(int webId);
 
     @Query(value = "select * from sections where web_id = ?1", nativeQuery = true)

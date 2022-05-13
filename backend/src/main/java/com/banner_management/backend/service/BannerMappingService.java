@@ -27,13 +27,6 @@ public class BannerMappingService {
         bannerMappingRepository.save(BannerMappingEntity);
     }
 
-<<<<<<< HEAD
-=======
-    @Transactional
-    public void update(Timestamp timeDisplay, Integer sectionID){
-        bannerMappingRepository.updateTimeDisplay(timeDisplay, sectionID);
-    }
->>>>>>> main
     public BannerMappingEntity getById(Integer id){
         return bannerMappingRepository.findById(id).get();
     }
@@ -42,21 +35,9 @@ public class BannerMappingService {
     public BannerMappingEntity getByBannerIDAndSectionID(Integer bannerID, Integer sectionID){
         return bannerMappingRepository.getPercentageByBannerIDAndSectionID(bannerID, sectionID);
     }
-<<<<<<< HEAD
         @Transactional
     public void updatePercentage(Integer percentage, Integer bannerID, Integer sectionID){
         bannerMappingRepository.updatePercentageAndTimeDisplay(percentage, bannerID, sectionID);
-=======
-
-
-    public BannerMappingEntity getRandomBannerBySectionID(Integer sectionID){
-        return bannerMappingRepository.getRandomBySectionID(sectionID);
-    }
-
-    @Transactional
-    public void updatePercentage(Timestamp time_display, Integer percentage, Integer bannerID, Integer sectionID){
-        bannerMappingRepository.updatePercentageAndTimeDisplay(time_display, percentage, bannerID, sectionID);
->>>>>>> main
     }
     public BannerMappingEntity getBannerByPercentage(int sectionId){
         BannerMappingEntity newBannerMappingEntity = new BannerMappingEntity();
@@ -64,37 +45,17 @@ public class BannerMappingService {
         ArrayList<Integer> percentageList = new ArrayList<Integer>();
         ArrayList<Integer> generatedResult = new ArrayList<Integer>();
         List<BannerMappingEntity> bannerList = bannerMappingRepository.getListBannerBySections(sectionId);
-<<<<<<< HEAD
         for(BannerMappingEntity bannerMappingEntity : bannerList){
             bannerIdList.add(bannerMappingEntity.getId());
             percentageList.add(bannerMappingEntity.getPercentage());
             int temp = (int) Math.floor(Math.random()*bannerMappingEntity.getPercentage());
             generatedResult.add(temp);
         }
-=======
-        System.out.println("banner list lay ra:  "+ bannerList);
-        for(BannerMappingEntity bannerMappingEntity : bannerList){
-            System.out.println("banner mapping entity : "+ bannerMappingEntity);
-            bannerIdList.add(bannerMappingEntity.getId());
-            percentageList.add(bannerMappingEntity.getPercentage());
-            int temp = (int) Math.floor(Math.random()*bannerMappingEntity.getPercentage());
-            System.out.println("temp : " + temp);
-            generatedResult.add(temp);
-        }
-        System.out.println("list banner ID : " + bannerIdList);
-        System.out.println("ket qua generate : " + generatedResult);
-        System.out.println("list ti trong  :"  + percentageList);
->>>>>>> main
         if(bannerIdList.isEmpty()){
             return null;
         } else {
             int position = findTheLargest(generatedResult);
-<<<<<<< HEAD
-=======
-            System.out.println("xem position : "+ position);
->>>>>>> main
             newBannerMappingEntity = bannerMappingRepository.getById(bannerIdList.get(position));
-            System.out.println("banner mapping entity lay ra theo ti trong : "+ newBannerMappingEntity);
         }
         return newBannerMappingEntity;
     }

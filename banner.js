@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 const urlGetRandomBanner = 'http://localhost:8080/api/banner-mapping/percentage/';
-const urlPostClick = "http://localhost:8080/api/clicks-banner"
+const urlPostClick = "http://localhost:8080/api/banners/clicks"
 const urlSector = "http://localhost:8080/api/websiteID="
 const urlPostView = "http://localhost:8080/api/banners/views";
 
@@ -8,65 +7,38 @@ function showImage(webID) {
     fetch(urlSector + webID + "/sections")
         .then(response => response.json())
         .then(data => {
+            // data dang la cac khu vuc cua trang web
             data.forEach((item) => {
-                fetch(urlGetRandomBanner + webID)
-                    .then(response => response.json()
-                        .then(banner => {
-                            _displayItems(banner, item.divId, item.id)
-=======
-const urlGetRandomBanner = 'http://localhost:8080/api/banner-mapping/random/';
-const urlPost = "http://localhost:8080/api/clicks-banner"
-const urlSector = "http://localhost:8080/api/web_id="
-
-
-function getAreaID(WebID) {
-
-    fetch(urlSector + WebID + "/sections")
-        .then(response => response.json())
-        .then(data => {
-
-            data.forEach((item) => {
-                fetch(urlGetRandomBanner + WebID)
-                    .then(response => response.json()
-                        .then(img1 => {
-
-                            _displayItems(img1, item.div_id)
->>>>>>> main
-                        }))
+                fetch(urlGetRandomBanner + item.id).then(response => response.json())
+                    .then(data => {
+                        console.log("item cos div id : " + item.id)
+                        console.log("section cua banner : " + data.sectionID)
+                        if (item.id === data.sectionID) {
+                            _displayItems(data, item.divId, item.id)
+                        }
+                    })
             });
         })
 }
 
 
 
-<<<<<<< HEAD
 // divId la khi vuc do nguoi dung nhap vao
 function _displayItems(banner, divId, sectionID) {
     let img = new Image();
     let a = document.createElement('a');
-=======
-
-// areaID la khi vu do nguoi dung nhap vao
-function _displayItems(img1, areaID) {
-    var img = new Image();
-    var a = document.createElement('a');
->>>>>>> main
-    // console.log(area);  
     const tBody = document.getElementById(divId);
-
-    a.href = banner.url;
-
-    let bannerID = banner.id;
-
-    let browserName = navigator.appVersion;
-
+    // let bannerID = banner.id;
+    let urlWeb = banner.url;
     img.src = banner.imgUrl;
 
     if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
-        _viewBanner(bannerID, sectionID, browserName);
+        _viewBanner(banner.id, sectionID, navigator.appVersion);
     }
-    img.onclick = function () {
-        _countClickBanner(bannerID, sectionID, browserName);
+
+    a.onclick = function (bannerID,) {
+        _clickBanner(banner.id, sectionID, navigator.appVersion);
+        window.open(urlWeb, '_blank');
     }
 
     tBody.appendChild(a);
@@ -74,7 +46,8 @@ function _displayItems(img1, areaID) {
 }
 
 // id là id của thẻ a chứa ảnh banner đó, data là biến chứa thông tin về banner
-function _countClickBanner(bannerID, divId) {
+function _clickBanner(bannerID, divId, browserName) {
+
     fetch(urlPostClick, {
         method: "POST", //  GET, POST, PUT, DELETE, etc.
         headers: {
@@ -82,11 +55,10 @@ function _countClickBanner(bannerID, divId) {
         },
         body: JSON.stringify(
             {
-                bannerID: bannerID,
+                bannerId: bannerID,
                 userClick: "Luong Van Minh",
                 timeClick: new Date(),
-<<<<<<< HEAD
-                sectionID: divId,
+                sectionId: divId,
                 browserName: browserName
             })
     });
@@ -106,9 +78,6 @@ function _viewBanner(bannerID, sectionId, browserName) {
                 userView: "Luong Van Minh",
                 timeView: new Date(),
                 browserName: browserName
-=======
-                sectionID: 1,
->>>>>>> main
             })
     });
 }
