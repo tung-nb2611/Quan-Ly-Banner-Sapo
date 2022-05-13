@@ -36,11 +36,28 @@ public class BannerMappingService {
         return bannerMappingRepository.getPercentageByBannerIDAndSectionID(bannerID, sectionID);
     }
 
+<<<<<<< HEAD
         @Transactional
 
+=======
+
+
+=
+
+    @Transactional
+
+        @Transactional
+
+
+>>>>>>> d6595a70b2439bff7d3a697097217eaa6608f583
     public void updatePercentage(Integer percentage, Integer bannerID, Integer sectionID){
         bannerMappingRepository.updatePercentageAndTimeDisplay(percentage, bannerID, sectionID);
     }
+
+    public List<BannerMappingEntity> getListBannerByBannerID(int bannerID){
+        return bannerMappingRepository.getListByBannerId(bannerID);
+    }
+
     public BannerMappingEntity getBannerByPercentage(int sectionId){
         BannerMappingEntity newBannerMappingEntity = new BannerMappingEntity();
         List<Integer> bannerIdList = new ArrayList<Integer>();
@@ -78,4 +95,13 @@ public class BannerMappingService {
         }
         return position;
     }
+
+    // lay tong view theo khu vuc
+    public int getSumViewInSectionID(int sectionID){
+        return bannerMappingRepository.sumNumberViewInSectionID(sectionID);
+    }
+
+ 
 }
+
+

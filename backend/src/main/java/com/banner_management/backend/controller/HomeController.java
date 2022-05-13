@@ -1,32 +1,62 @@
+<<<<<<< HEAD
+//package com.banner_management.backend.controller;
+//
+//import com.banner_management.backend.dto.ClickBannerDto;
+//import com.banner_management.backend.entity.BannerEntity;
+//import com.banner_management.backend.entity.NumberClickEntity;
+//import com.banner_management.backend.entity.ViewEntity;
+//import com.banner_management.backend.service.BannerService;
+//import com.banner_management.backend.service.ViewService;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.web.bind.annotation.CrossOrigin;
+//import org.springframework.web.bind.annotation.GetMapping;
+//import org.springframework.web.bind.annotation.RequestMapping;
+//import org.springframework.web.bind.annotation.RestController;
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//@RestController
+//@CrossOrigin(origins = "*")
+//@RequestMapping("/api")
+//public class HomeController {
+//
+=======
 package com.banner_management.backend.controller;
 
-import com.banner_management.backend.dto.ClickBannerDto;
-import com.banner_management.backend.entity.BannerEntity;
-import com.banner_management.backend.entity.ViewEntity;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")
 public class HomeController {
 
+<<<<<<< HEAD
+>>>>>>> 46b52ec208244197b799b99e415dc224194e1c51
+=======
+
+
+>>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
 //    @Autowired
 //    BannerService bannerService;
 //
 //    @Autowired
+<<<<<<< HEAD
+//    ViewService viewService;
+=======
 //    ViewsService viewsService;
+>>>>>>> 46b52ec208244197b799b99e415dc224194e1c51
 //
 //    @Autowired
 //    NumberClickService numberClickService;
 //
+<<<<<<< HEAD
+//        @GetMapping("/banners/repor0t")
+=======
 //        @GetMapping("/banners/report")
+>>>>>>> 46b52ec208244197b799b99e415dc224194e1c51
 //    public List<ClickBannerDto> getAll(){
 //        List<ClickBannerDto> clickBannerDtoList = new ArrayList<>();
 //        List<BannerEntity> bannerEntityList = bannerService.listAllBanner();
@@ -34,7 +64,11 @@ public class HomeController {
 //        int numberClicks = 0q;
 //        for(int i = 0 ; i < bannerEntityList.size() ; i ++){
 //            // lay so luong view
+<<<<<<< HEAD
+//            List<ViewEntity> viewEntityList = viewService.getByBannerID(bannerEntityList.get(i).getId());
+=======
 //            List<ViewEntity> viewEntityList = viewsService.getByBannerID(bannerEntityList.get(i).getId());
+>>>>>>> 46b52ec208244197b799b99e415dc224194e1c51
 //            if(viewEntityList.size() > 0){
 //                for(int j = 0; j < viewEntityList.size() ; j ++){
 //                    numberViews += viewEntityList.get(j).getNumber();
@@ -61,4 +95,12 @@ public class HomeController {
 //
 //        return clickBannerDtoList;
 //    }
+<<<<<<< HEAD
+<<<<<<< HEAD
+//}
+=======
+=======
+
+>>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
 }
+>>>>>>> 46b52ec208244197b799b99e415dc224194e1c51

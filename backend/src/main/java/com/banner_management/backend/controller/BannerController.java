@@ -1,12 +1,27 @@
 package com.banner_management.backend.controller;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
 import com.banner_management.backend.dto.BannerDto;
+import com.banner_management.backend.dto.BannerMappingDto;
 import com.banner_management.backend.entity.BannerEntity;
 import com.banner_management.backend.entity.BannerMappingEntity;
+<<<<<<< HEAD
+
+
+import com.banner_management.backend.service.BannerService;
+import com.banner_management.backend.service.BannerMappingService;
+
+
+=======
+import com.banner_management.backend.entity.SectionEntity;
+import com.banner_management.backend.entity.WebsiteEntity;
 import com.banner_management.backend.service.BannerMappingService;
 import com.banner_management.backend.service.BannerService;
+import com.banner_management.backend.service.SectionService;
+import com.banner_management.backend.service.WebsiteService;
+>>>>>>> d34c6622482e00a544694f489b2cd781d36f1184
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
@@ -22,12 +37,41 @@ public class BannerController {
     BannerService bannerService;
 
     @Autowired
-    BannerMappingService bannerMappingService;
+
+    private BannerMappingService bannerMappingService;
+
+
+
+    @Autowired
+    SectionService sectionService;
+
+    @Autowired
+    WebsiteService websiteService;
 
     // lấy một banner theo id
     @GetMapping("/banners")
     public List<BannerEntity> getListBanner(){
         return bannerService.listAllBanner();
+    }
+
+    // api lọc banner theo website và khu vực
+    @GetMapping("/banners/report/filter/bannerID={bannerID}")
+    public List<BannerMappingDto> getListBannerGroupByWebsiteAndSection(@PathVariable("bannerID") int bannerID){
+
+        List<BannerMappingDto> bannerMappingDtoList = new ArrayList<>();
+
+        List<BannerMappingEntity> bannerMappingEntityList =  bannerMappingService.getListBannerByBannerID(bannerID);
+        for (int i = 0 ; i < bannerMappingEntityList.size() ; i ++){
+            BannerEntity bannerEntity = bannerService.getById(bannerMappingEntityList.get(i).getBannerID());
+            SectionEntity sectionEntity = sectionService.getById(bannerMappingEntityList.get(i).getSectionID());
+            WebsiteEntity websiteEntity = websiteService.getById(sectionEntity.getWebId());
+            BannerMappingDto bannerMappingDto = new BannerMappingDto(
+                    bannerEntity.getId(), bannerEntity.getName(), bannerEntity.getImgUrl(), bannerEntity.getUrl(),
+                    bannerMappingEntityList.get(i).getNumberView(),bannerMappingEntityList.get(i).getNumberClick(),
+                    bannerMappingEntityList.get(i).getSectionID(), websiteEntity.getName());
+            bannerMappingDtoList.add(bannerMappingDto);
+        }
+        return bannerMappingDtoList;
     }
 
     // lấy một banner theo id
@@ -40,6 +84,8 @@ public class BannerController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+
 
     // tạo mới một banner
     @PostMapping("/banners")
@@ -59,6 +105,7 @@ public class BannerController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
 
     // cập nhật một banner theo id
     @PutMapping("/banners/{id}")
