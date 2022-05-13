@@ -18,8 +18,17 @@ public interface BannerMappingRepository extends JpaRepository<BannerMappingEnti
     BannerMappingEntity getPercentageByBannerIDAndSectionID(Integer bannerID, Integer sectionID);
 
     @Modifying
+<<<<<<< HEAD
     @Query(value = "update banner_mapping set percentage = ?3 where state = 1 and banner_id = ?4 and section_id = ?5", nativeQuery = true)
     void updatePercentageAndTimeDisplay(Integer percentage, Integer bannerID, Integer sectionID);
+=======
+    @Query(value = "update banner_mapping set time_display = ?1 where state = 1 and section_id = ?3", nativeQuery = true)
+    void updateTimeDisplay(Timestamp timeDisplay, Integer sectionID);
+
+    @Modifying
+    @Query(value = "update banner_mapping set time_display = ?1, percentage = ?3 where state = 1 and banner_id = ?4 and section_id = ?5", nativeQuery = true)
+    void updatePercentageAndTimeDisplay(Timestamp time_display, Integer percentage, Integer bannerID, Integer sectionID);
+>>>>>>> main
 
 //    @Query(value = "select * from banner_mapping left join banners on banner_mapping.banner_id = banners.id where banner_mapping.section_id = ?1", nativeQuery = true)
 //    Page<BannerMappingEntity> getBannerStatusBySections(int id, Pageable pageable);

@@ -16,31 +16,37 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `banner_status`
+-- Table structure for table `banner_mapping`
 --
 
-DROP TABLE IF EXISTS `banner_status`;
+DROP TABLE IF EXISTS `banner_mapping`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `banner_status` (
+CREATE TABLE `banner_mapping` (
   `id` int NOT NULL AUTO_INCREMENT,
   `banner_id` int NOT NULL,
   `section_id` int NOT NULL,
   `state` smallint NOT NULL,
+  `percentage` int DEFAULT NULL,
   `time_display` timestamp NULL DEFAULT NULL,
-  `percentage` int DEFAULT '0',
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  `number_click` int DEFAULT NULL,
+  `number_view` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `banner_id` (`banner_id`),
+  KEY `section_id` (`section_id`),
+  CONSTRAINT `banner_mapping_ibfk_1` FOREIGN KEY (`banner_id`) REFERENCES `banners` (`id`),
+  CONSTRAINT `banner_mapping_ibfk_2` FOREIGN KEY (`section_id`) REFERENCES `sections` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `banner_status`
+-- Dumping data for table `banner_mapping`
 --
 
-LOCK TABLES `banner_status` WRITE;
-/*!40000 ALTER TABLE `banner_status` DISABLE KEYS */;
-INSERT INTO `banner_status` VALUES (25,77,1,1,'2022-05-04 09:10:16',40),(26,78,1,1,'2022-05-04 09:10:16',60),(27,79,1,1,'2022-05-04 09:10:16',30),(28,80,1,1,'2022-05-04 09:10:16',30),(29,81,1,1,'2022-05-04 09:10:16',10),(30,82,1,1,'2022-05-04 09:10:16',0),(31,77,2,1,'2022-05-04 03:00:25',0),(32,83,2,1,NULL,0),(33,84,1,1,NULL,0);
-/*!40000 ALTER TABLE `banner_status` ENABLE KEYS */;
+LOCK TABLES `banner_mapping` WRITE;
+/*!40000 ALTER TABLE `banner_mapping` DISABLE KEYS */;
+INSERT INTO `banner_mapping` VALUES (1,1,1,1,10,'2022-05-04 02:10:16',NULL,NULL),(2,2,1,1,NULL,'2022-05-04 02:10:16',NULL,NULL),(3,3,1,1,NULL,'2022-05-04 02:10:16',NULL,NULL),(4,4,1,1,NULL,'2022-05-04 02:10:16',NULL,NULL),(5,5,1,1,NULL,'2022-05-04 02:10:16',NULL,NULL),(6,6,1,1,NULL,'2022-05-04 02:10:16',NULL,NULL),(7,7,1,1,NULL,'2022-05-04 02:10:16',NULL,NULL),(8,8,1,1,NULL,'2022-05-04 02:10:16',NULL,NULL);
+/*!40000 ALTER TABLE `banner_mapping` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -88,6 +94,10 @@ CREATE TABLE `clicks` (
   `time_click` datetime DEFAULT NULL,
   `user_name` varchar(45) DEFAULT NULL,
   `banner_id` int DEFAULT NULL,
+  `browser_name` varchar(255) NOT NULL,
+  `section_id` int NOT NULL,
+  `status` smallint DEFAULT NULL,
+  `user_click` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -98,7 +108,7 @@ CREATE TABLE `clicks` (
 
 LOCK TABLES `clicks` WRITE;
 /*!40000 ALTER TABLE `clicks` DISABLE KEYS */;
-INSERT INTO `clicks` VALUES (1,'1','2022-05-09 00:16:57','Luong Van Minh',78),(2,'1','2022-05-09 00:17:37','Luong Van Minh',78),(3,'1','2022-05-09 00:17:54','Luong Van Minh',79),(4,'1','2022-05-09 00:18:05','Luong Van Minh',82),(5,'1','2022-05-09 00:18:18','Luong Van Minh',78),(6,'1','2022-05-09 00:18:39','Luong Van Minh',79),(7,'1','2022-05-09 00:19:13','Luong Van Minh',80),(8,'1','2022-05-09 00:19:20','Luong Van Minh',77),(9,'1','2022-05-09 00:19:36','Luong Van Minh',84),(10,'1','2022-05-09 00:19:45','Luong Van Minh',81);
+INSERT INTO `clicks` VALUES (1,'1','2022-05-09 00:16:57','Luong Van Minh',78,'',0,NULL,''),(2,'1','2022-05-09 00:17:37','Luong Van Minh',78,'',0,NULL,''),(3,'1','2022-05-09 00:17:54','Luong Van Minh',79,'',0,NULL,''),(4,'1','2022-05-09 00:18:05','Luong Van Minh',82,'',0,NULL,''),(5,'1','2022-05-09 00:18:18','Luong Van Minh',78,'',0,NULL,''),(6,'1','2022-05-09 00:18:39','Luong Van Minh',79,'',0,NULL,''),(7,'1','2022-05-09 00:19:13','Luong Van Minh',80,'',0,NULL,''),(8,'1','2022-05-09 00:19:20','Luong Van Minh',77,'',0,NULL,''),(9,'1','2022-05-09 00:19:36','Luong Van Minh',84,'',0,NULL,''),(10,'1','2022-05-09 00:19:45','Luong Van Minh',81,'',0,NULL,'');
 /*!40000 ALTER TABLE `clicks` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,6 +148,8 @@ CREATE TABLE `sections` (
   `position_web` varchar(255) NOT NULL,
   `code` varchar(255) NOT NULL,
   `url` text,
+  `div_id` int NOT NULL,
+  `web_id` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -148,33 +160,8 @@ CREATE TABLE `sections` (
 
 LOCK TABLES `sections` WRITE;
 /*!40000 ALTER TABLE `sections` DISABLE KEYS */;
-INSERT INTO `sections` VALUES (1,'sapofnb','fnb3',NULL),(2,'sapoomni','web1',NULL),(3,'sapoweb','web2',NULL);
+INSERT INTO `sections` VALUES (1,'sapofnb','fnb3',NULL,0,''),(2,'sapoomni','web1',NULL,0,''),(3,'sapoweb','web2',NULL,0,'');
 /*!40000 ALTER TABLE `sections` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `sectors`
---
-
-DROP TABLE IF EXISTS `sectors`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `sectors` (
-  `id` int NOT NULL,
-  `div_id` varchar(45) DEFAULT NULL,
-  `section_id` int DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  KEY `fk_setion_id_idx` (`section_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `sectors`
---
-
-LOCK TABLES `sectors` WRITE;
-/*!40000 ALTER TABLE `sectors` DISABLE KEYS */;
-/*!40000 ALTER TABLE `sectors` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -244,6 +231,9 @@ CREATE TABLE `views` (
   `banner_id` int NOT NULL,
   `section_id` int NOT NULL,
   `number` int DEFAULT NULL,
+  `browser_name` varchar(255) DEFAULT NULL,
+  `time_view` datetime(6) DEFAULT NULL,
+  `user_view` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `banner_id` (`banner_id`),
   CONSTRAINT `views_ibfk_1` FOREIGN KEY (`banner_id`) REFERENCES `banners` (`id`)
@@ -256,8 +246,34 @@ CREATE TABLE `views` (
 
 LOCK TABLES `views` WRITE;
 /*!40000 ALTER TABLE `views` DISABLE KEYS */;
-INSERT INTO `views` VALUES (1,82,1,11),(2,84,1,10),(3,81,1,8),(4,79,1,8),(5,80,1,8),(6,78,1,9),(7,77,1,7);
+INSERT INTO `views` VALUES (1,82,1,11,NULL,NULL,NULL),(2,84,1,10,NULL,NULL,NULL),(3,81,1,8,NULL,NULL,NULL),(4,79,1,8,NULL,NULL,NULL),(5,80,1,8,NULL,NULL,NULL),(6,78,1,9,NULL,NULL,NULL),(7,77,1,7,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `views` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `websites`
+--
+
+DROP TABLE IF EXISTS `websites`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `websites` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) DEFAULT NULL,
+  `url` text NOT NULL,
+  `user_add` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `websites`
+--
+
+LOCK TABLES `websites` WRITE;
+/*!40000 ALTER TABLE `websites` DISABLE KEYS */;
+INSERT INTO `websites` VALUES (1,'sapoweb','sapoweb_url',''),(2,'sapoonmi','sapoonmi_url',''),(3,'sapofnb','sapofnb_url','');
+/*!40000 ALTER TABLE `websites` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -269,4 +285,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-05-09  0:23:46
+-- Dump completed on 2022-05-11 17:28:23

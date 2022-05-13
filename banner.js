@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 const urlGetRandomBanner = 'http://localhost:8080/api/banner-mapping/percentage/';
 const urlPostClick = "http://localhost:8080/api/clicks-banner"
 const urlSector = "http://localhost:8080/api/websiteID="
@@ -12,6 +13,25 @@ function showImage(webID) {
                     .then(response => response.json()
                         .then(banner => {
                             _displayItems(banner, item.divId, item.id)
+=======
+const urlGetRandomBanner = 'http://localhost:8080/api/banner-mapping/random/';
+const urlPost = "http://localhost:8080/api/clicks-banner"
+const urlSector = "http://localhost:8080/api/web_id="
+
+
+function getAreaID(WebID) {
+
+    fetch(urlSector + WebID + "/sections")
+        .then(response => response.json())
+        .then(data => {
+
+            data.forEach((item) => {
+                fetch(urlGetRandomBanner + WebID)
+                    .then(response => response.json()
+                        .then(img1 => {
+
+                            _displayItems(img1, item.div_id)
+>>>>>>> main
                         }))
             });
         })
@@ -19,10 +39,18 @@ function showImage(webID) {
 
 
 
+<<<<<<< HEAD
 // divId la khi vuc do nguoi dung nhap vao
 function _displayItems(banner, divId, sectionID) {
     let img = new Image();
     let a = document.createElement('a');
+=======
+
+// areaID la khi vu do nguoi dung nhap vao
+function _displayItems(img1, areaID) {
+    var img = new Image();
+    var a = document.createElement('a');
+>>>>>>> main
     // console.log(area);  
     const tBody = document.getElementById(divId);
 
@@ -57,6 +85,7 @@ function _countClickBanner(bannerID, divId) {
                 bannerID: bannerID,
                 userClick: "Luong Van Minh",
                 timeClick: new Date(),
+<<<<<<< HEAD
                 sectionID: divId,
                 browserName: browserName
             })
@@ -77,6 +106,9 @@ function _viewBanner(bannerID, sectionId, browserName) {
                 userView: "Luong Van Minh",
                 timeView: new Date(),
                 browserName: browserName
+=======
+                sectionID: 1,
+>>>>>>> main
             })
     });
 }
