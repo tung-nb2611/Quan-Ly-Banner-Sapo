@@ -42,7 +42,7 @@ export const SidebarData = [
     },
     {
         title: "Quản lý khu vực",
-        path: "/website",
+        path: "/websites/manage",
         icon: <BiIcons.BiCollection size={24} />,
     },
     {

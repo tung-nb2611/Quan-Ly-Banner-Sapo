@@ -16,13 +16,8 @@ function Website({ data }) {
             <label>Url: {data.url}</label>
           </Col>
           <Col>
-            <Link to={"/banner/display/" + data.id}>
-              <button className="section">
-                <h4>Quản lý hiển thị banner</h4>
-              </button>
-            </Link>
             <Link to={"/websites/websiteId=" + data.id + "/sections"}>
-              <button>Sections của trang web</button>
+              <button>Các khu vực banner của trang web</button>
             </Link>
           </Col>
         </Row>

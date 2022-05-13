@@ -5,6 +5,7 @@ import "../../styles/section/SectionList.css"
 import PaginateList from '../PaginateList';
 import WebsiteService from '../../services/website/WebsiteService';
 import ChoiceSection from "../report/ChoiceSection";
+import {Link} from 'react-router-dom';
 function WebsiteList(props) {
 
     const [websiteList, setWebsiteList] = useState([]);
@@ -13,7 +14,7 @@ function WebsiteList(props) {
 
     useEffect(() => {
 
-        WebsiteService.getWebsiteByPageAndUserAdd("tung", currentPage).then((response) => {
+        WebsiteService.getWebsiteByPageAndUserAdd("trong", currentPage).then((response) => {
 
 
             const info = response.data.content;
@@ -38,6 +39,11 @@ function WebsiteList(props) {
         <div className="banner-list m-2">
             <div className="list">
                 {displayWebsites}
+                <Link to={"/website/create"}>
+                    <button className="section">
+                        <h4>Thêm mới website</h4>
+                    </button>
+                </Link>
             </div>
             <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
         </div>

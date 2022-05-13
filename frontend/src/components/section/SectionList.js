@@ -5,14 +5,15 @@ import Section from "./Section";
 import PaginateList from '../PaginateList';
 import SectionService from "../../services/section/SectionService";
 import { useParams } from "react-router-dom";
+import {Link} from'react-router-dom';
 function SectionList(props) {
-    let webId = useParams();
+    let {webId} = useParams();
     const [sectionList, setSectionList] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
-        SectionService.getSectionByPageAndWebsiteId("1", currentPage).then((response) => {
+        SectionService.getSectionByPageAndWebsiteId(webId, currentPage).then((response) => {
             const info = response.data.content;
             const pageNum = response.data.totalPages;
             setSectionList(info);
@@ -34,6 +35,11 @@ function SectionList(props) {
         <div className="banner-list m-2">
             <div className="list">
                 {displaySections}
+                <Link to={"/websites/websiteId=" + webId + "/createSection"}>
+                    <button className="section">
+                        <h4>Thêm mới khu vực</h4>
+                    </button>
+                </Link>
             </div>
             <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
         </div>
