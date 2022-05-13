@@ -21,7 +21,7 @@ function Website({ data }) {
                 <h4>Quản lý hiển thị banner</h4>
               </button>
             </Link>
-            <Link to={"/websites/websiteId="+data.id+"/sections"}>
+            <Link to={"/websites/websiteId=" + data.id + "/sections"}>
               <button>Sections của trang web</button>
             </Link>
           </Col>

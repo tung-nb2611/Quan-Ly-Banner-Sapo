@@ -36,7 +36,15 @@ public class BannerMappingService {
         return bannerMappingRepository.getPercentageByBannerIDAndSectionID(bannerID, sectionID);
     }
 
+
+
+=
+
     @Transactional
+
+        @Transactional
+
+
     public void updatePercentage(Integer percentage, Integer bannerID, Integer sectionID){
         bannerMappingRepository.updatePercentageAndTimeDisplay(percentage, bannerID, sectionID);
     }
@@ -88,8 +96,7 @@ public class BannerMappingService {
         return bannerMappingRepository.sumNumberViewInSectionID(sectionID);
     }
 
-    // lay tong click theo khu vuc
-    public int getSumClickInSectionID(int sectionID){
-        return bannerMappingRepository.sumNumberClickInSectionID(sectionID);
-    }
+ 
 }
+
+

@@ -7,9 +7,12 @@ class SectionService {
     //     return axios.get(SECTION_API_SECTION_URL + '/' + sectionId);
     // }
 
-    getSectionByPageAndWebsiteId(webId, number){
+    getSectionByPageAndWebsiteId(webId, number) {
         return axios.get(SECTION_API_SECTION_URL + '/page/websiteId=' + webId + '/' + number);
+
     }
+
+
 
     // getWebsiteByPage(number){
     //     return axios.get(SECTION_API_SECTION_URL + '/page/' + number);

@@ -9,6 +9,7 @@ import ClickService from "../../services/clicks/ClickService";
 import DetailClick from "./DetailClick";
 import PaginateList from "../PaginateList";
 import '../../styles/report/DetailReport.css';
+import BannerService from "../../services/BannerService";
 
 
 function DetailReport(props) {
@@ -37,14 +38,14 @@ function DetailReport(props) {
     const [clickInfoList, setClickInfoList] = useState([]);
 
     useEffect(() => {
-        ClickService.getClickInfoByPage(data.id, currentPage).then((response) => {
+        BannerService.getBannerById(data.id).then((response) => {
             const info = response.data.content;
-            const pageNum = response.data.totalPages;
+
             console.log("click innfo", info)
             setClickInfoList(info);
-            setPageNumber(pageNum);
+
         })
-    }, [currentPage]);
+    }, []);
 
     return (
 
@@ -118,15 +119,15 @@ function DetailReport(props) {
                                         </tr>
                                     </thead>
                                     <tbody className="col-6 ">
-                                        {
+                                        {/* {
                                             clickInfoList.map((item) =>
                                                 <DetailClick key={item.id} clickInfo={item} />
                                             )
-                                        }
+                                        } */}
                                     </tbody>
                                 </table>
                             </div>
-                            <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
+
                         </div>
                         <div className="col-sm-6 right">
                             <div className="button">

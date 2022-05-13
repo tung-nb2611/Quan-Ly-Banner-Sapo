@@ -22,6 +22,56 @@ public class ClicksController {
     @Autowired
     ClickService clickService;
 
+<<<<<<< HEAD
+@GetMapping("/clicks-banner")
+    public  List<ClickEntity> getAll(){
+    return clickService.getAllClick();
+}
+////
+////    @GetMapping("banners/click")
+////    public List<ClicksEntity> getAllBannerClick(){
+////        return clicksService.
+////    }
+//    @GetMapping("/clicks-banner")
+//    public List<ClickEntity> getAllClick(){
+//    return clicksService.getClick();
+//}
+//
+//    // Lấy thông tin info click chuột theo từng banner
+//    @GetMapping("/clicks-banner/info/{bannerID}")
+//    public List<ClickEntity> getClickInfoByBannerId(@PathVariable("bannerID") int bannerId){
+//        return clicksService.getClickInfoByBannerId(bannerId);
+//    }
+//
+//    @GetMapping("/clicks-banner/info/{bannerID}/{page}")
+//    public ResponseEntity<Page<ClickEntity>> getClickInfoByPage(@PathVariable("bannerID") int bannerId, @PathVariable("page") int page){
+//        try {
+//            Page<ClickEntity> clicks = clicksService.getClickInfoPage(bannerId, page);
+//            return new ResponseEntity<>(clicks, HttpStatus.OK);
+//        } catch(NoSuchElementException e){
+//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+//        }
+//    }
+//
+//    @GetMapping("/clicks-banner/count")
+//    public int getCountCLick(){
+//        return clicksService.getCountCLick();
+//    }
+//
+////    @GetMapping("/clicks-banner/count/{bannerID}")
+////    public int getAllClickbyBannerId(@PathVariable("bannerID") int bannerID){
+////        return clicksService.getCountClickByBannerId(bannerID);
+////    }
+//
+    @PostMapping("/clicks-banner")
+    public ResponseEntity<ClickEntity> updateClicksBanners (@RequestBody ClickEntity clickEntity) {
+        try {
+            System.out.println("du lieu lay ve : "+ clickEntity);
+            clickService.save(clickEntity);
+            return new ResponseEntity<ClickEntity>(clickEntity, HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+=======
     @Autowired
     BannerMappingService bannerMappingService;
 
@@ -38,6 +88,7 @@ public class ClicksController {
         }
         else {
             bannerMappingEntity.setNumberClick(numberClick + 1);
+>>>>>>> a0fb9389283267b8426b0096bf281f0331995ba9
         }
         bannerMappingService.save(bannerMappingEntity);
     }
