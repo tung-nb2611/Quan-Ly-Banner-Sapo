@@ -21,8 +21,10 @@ public class ClicksController {
 
     @Autowired
     ClickService clickService;
+    @Autowired
+    BannerMappingService bannerMappingService;
 
-<<<<<<< HEAD
+
 @GetMapping("/clicks-banner")
     public  List<ClickEntity> getAll(){
     return clickService.getAllClick();
@@ -66,14 +68,14 @@ public class ClicksController {
     @PostMapping("/clicks-banner")
     public ResponseEntity<ClickEntity> updateClicksBanners (@RequestBody ClickEntity clickEntity) {
         try {
-            System.out.println("du lieu lay ve : "+ clickEntity);
+            System.out.println("du lieu lay ve : " + clickEntity);
             clickService.save(clickEntity);
             return new ResponseEntity<ClickEntity>(clickEntity, HttpStatus.OK);
-        }catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-=======
-    @Autowired
-    BannerMappingService bannerMappingService;
+        }
+    }
+
 
     @PostMapping("/banners/clicks")
     public void updateClickBanner(@RequestBody ClickEntity clickEntity){
@@ -88,7 +90,7 @@ public class ClicksController {
         }
         else {
             bannerMappingEntity.setNumberClick(numberClick + 1);
->>>>>>> a0fb9389283267b8426b0096bf281f0331995ba9
+
         }
         bannerMappingService.save(bannerMappingEntity);
     }

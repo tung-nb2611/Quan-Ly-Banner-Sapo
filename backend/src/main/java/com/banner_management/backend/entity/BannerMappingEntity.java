@@ -25,11 +25,9 @@ public class BannerMappingEntity {
     @Column(name = "percentage")
     private Integer percentage;
 
-<<<<<<< HEAD
-    @Column(name = "number_click", nullable = true)
-=======
+
     @Column(name = "number_click", nullable = true , columnDefinition = "0")
->>>>>>> a0fb9389283267b8426b0096bf281f0331995ba9
+
     private Integer numberClick;
 
     @Column(name = "number_view", nullable = true, columnDefinition = "0")

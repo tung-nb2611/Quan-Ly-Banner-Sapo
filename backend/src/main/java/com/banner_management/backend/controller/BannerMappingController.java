@@ -66,16 +66,13 @@ public class BannerMappingController {
         return  bannerEntity;
     }
 
-<<<<<<< HEAD
 
 
-    // cap nhat du lieu thoi gian bat dau khi chon random
-    @PutMapping("/banner-status/random/{id}")
 
-=======
+
     // cap nhat du lieu thoi gian bat dau khi chon random
     @PutMapping("/banner-mapping/random/{id}")
->>>>>>> a0fb9389283267b8426b0096bf281f0331995ba9
+
     public void updateBannerStatus (@RequestBody BannerMappingEntity bannerMappingEntity, @PathVariable("id") Integer id){
         BannerMappingEntity existBannerMappingEntity = bannerMappingService.getById(id);
         System.out.println("banner status dau vao o day : "+ bannerMappingEntity);
@@ -86,21 +83,21 @@ public class BannerMappingController {
     }
 
 //     cap nhat du lieu khi chon hien thi theo ti trong
-<<<<<<< HEAD
 
 
-    @PutMapping("/banner-status/percentage")
 
-=======
+
+
+
     @PutMapping("/banner-mapping/percentage")
->>>>>>> a0fb9389283267b8426b0096bf281f0331995ba9
+
     public void updateBannerStatusOnPercentage(@RequestBody List<BannerMappingEntity> bannerMappingEntityList){
         // du lieu can co bannerID, sectionID, percentage, timeDisplay, expired
         System.out.println("du lieu dau vao list : "+ bannerMappingEntityList);
         for(int i = 0; i < bannerMappingEntityList.size(); i++){
             BannerMappingEntity bannerMappingEntity = bannerMappingEntityList.get(i);
             System.out.println("phần tử "+ i + " "+ bannerMappingEntity);
-<<<<<<< HEAD
+
 
             bannerMappingService.updatePercentage(bannerMappingEntity.getPercentage(), bannerMappingEntity.getBannerID(), bannerMappingEntity.getSectionID());
 
@@ -108,9 +105,8 @@ public class BannerMappingController {
 
 
 
-=======
-            bannerMappingService.updatePercentage(bannerMappingEntity.getPercentage(), bannerMappingEntity.getBannerID(), bannerMappingEntity.getSectionID());
->>>>>>> a0fb9389283267b8426b0096bf281f0331995ba9
+
+
         }
     }
 

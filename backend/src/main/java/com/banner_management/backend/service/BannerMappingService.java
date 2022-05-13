@@ -35,11 +35,9 @@ public class BannerMappingService {
     public BannerMappingEntity getByBannerIDAndSectionID(Integer bannerID, Integer sectionID){
         return bannerMappingRepository.getPercentageByBannerIDAndSectionID(bannerID, sectionID);
     }
-<<<<<<< HEAD
-    @Transactional
-=======
+
         @Transactional
->>>>>>> a0fb9389283267b8426b0096bf281f0331995ba9
+
     public void updatePercentage(Integer percentage, Integer bannerID, Integer sectionID){
         bannerMappingRepository.updatePercentageAndTimeDisplay(percentage, bannerID, sectionID);
     }
