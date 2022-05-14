@@ -20,16 +20,7 @@ import CreateUser from "./components/user/CreateUser";
 import UpdateUser from "./components/user/UpdateUser";
 
 import UserManage from "./pages/UserManage";
-
-
-
-
-
-
 import SectionList from './components/section/SectionList';
-
-
-
 
 import Report from './pages/Report';
 import BannerManage from "./pages/BannerManage";
@@ -37,17 +28,10 @@ import SapoWeb from './dashboard/SapoWeb';
 
 import DetailReport from './components/report/DetailReport';
 
-
-
 import NotFound from './components/NotFound';
 import SectionListReport from './components/report/SectionListReport';
 import CreateWebsite from './components/website/CreateWebsite';
 import CreateSection from './components/section/CreateSection';
-
-
-
-
-
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -79,6 +63,7 @@ const App = () => {
       <CheckboxProvider>
         <CheckboxArrProvider>
           <Switch>
+
             {currentUser ?
               (
                 <Layout logOut={logOut} showAdminBoard={showAdminBoard}>
@@ -140,6 +125,7 @@ const App = () => {
                   </Route>
                 </>
               )}
+
           </Switch>
         </CheckboxArrProvider>
       </CheckboxProvider>

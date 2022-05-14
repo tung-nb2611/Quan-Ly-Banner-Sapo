@@ -24,7 +24,7 @@ function SectionList(props) {
     const displaySections = sectionList.map(
         (data) => {
             return (
-                <div key={data.id}>
+                <div className="col-md-12 col-lg-6 mb-3" key={data.id}>
                     <Section data={data} />
                 </div>
             )
@@ -32,8 +32,8 @@ function SectionList(props) {
     )
 
     return (
-        <div className="banner-list m-2">
-            <div className="list">
+        <div className="section-list p-3">
+            <div className="list d-flex row">
                 {displaySections}
                 <Link to={"/websites/websiteId=" + webId + "/createSection"}>
                     <button className="section">

@@ -1,8 +1,9 @@
-import { Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
+import "../../styles/section/Section.css"
 
 function Website({ data }) {
   return (
+
     <div>
       <div className="banner-info m-4 p-3">
         <Row>
@@ -21,6 +22,7 @@ function Website({ data }) {
             </Link>
           </Col>
         </Row>
+
       </div>
     </div>
   );
