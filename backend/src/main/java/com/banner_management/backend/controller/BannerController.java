@@ -18,6 +18,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import com.banner_management.backend.dto.BannerInfoDto;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -164,5 +165,38 @@ public class BannerController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    // Lay thong tin banner
+    @GetMapping("/banners/list/enabled/{sectionID}")
+    public ResponseEntity<List<BannerEntity>> getBannerEnabledBySectionId(@PathVariable("sectionID") int sectionId ){
+        try{
+            List<BannerEntity> banners = bannerService.getBannerEnabledBySectionId(sectionId);
+            return new ResponseEntity<>(banners, HttpStatus.OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // Lay thong tin banner hidden
+    @GetMapping("/banners/dto/hidden/{sectionID}")
+    public ResponseEntity<List<BannerInfoDto>> getBannerHiddenBySectionId(@PathVariable("sectionID") int sectionId){
+        try{
+            List<BannerInfoDto> banners = bannerService.getBannerHidden(sectionId);
+            return new ResponseEntity<>(banners, HttpStatus.OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/banners/dto/enabled/{sectionID}")
+    public ResponseEntity<List<BannerInfoDto>> getBannerDtoEnabledBySectionId(@PathVariable("sectionID") int sectionId ){
+        try{
+            List<BannerInfoDto> banners = bannerService.getBannerEnabled(sectionId);
+            return new ResponseEntity<>(banners, HttpStatus.OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 
 }

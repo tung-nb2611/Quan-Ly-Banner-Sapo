@@ -13,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-
+import com.banner_management.backend.dto.BannerInfoDto;
 
 @RestController
 @CrossOrigin(origins = "*")
@@ -84,6 +84,20 @@ public class BannerMappingController {
                 bannerEntity.getId(), bannerEntity.getImgUrl(), bannerEntity.getUrl(),bannerMappingEntity.getSectionID() );
         System.out.println("banner Dto : "+ bannerMappingDto);
         return bannerMappingDto;
+    }
+
+    @PutMapping("/banner-status/update")
+    public void updateBannerStatus(@RequestBody List<BannerInfoDto> bannerDtoList){
+        System.out.println(bannerDtoList);
+        for(int i = 0; i < bannerDtoList.size(); i++){
+            BannerInfoDto bannerInfoDto = bannerDtoList.get(i);
+            BannerMappingEntity bannerMappingEntity = bannerMappingService.getById(bannerInfoDto.getId());
+            short state = bannerInfoDto.getState();
+            int percentage = bannerInfoDto.getPercentage();
+            bannerMappingEntity.setState(state);
+            bannerMappingEntity.setPercentage(percentage);
+            bannerMappingService.save(bannerMappingEntity);
+        }
     }
 }
 

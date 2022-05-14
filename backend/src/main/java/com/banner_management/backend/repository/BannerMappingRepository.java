@@ -47,4 +47,8 @@ public interface BannerMappingRepository extends JpaRepository<BannerMappingEnti
     Integer getSumCliksByBannerId(Integer bannerId);
     @Query(value = "SELECT  SUM(number_view) AS views  from banner_mapping where banner_id = ?1", nativeQuery = true)
     Integer getSumViewByBannerId(Integer bannerId);
+
+    // Lấy banner có sectionId đã cho và có state = 0
+    @Query(value = "select * from banner_mapping left join banners on banner_mapping.banner_id = banners.id where banner_mapping.section_id = ?1 and state = 0", nativeQuery = true)
+    List<BannerMappingEntity> getListBannerHiddenBySections(Integer sectionId);
 }
