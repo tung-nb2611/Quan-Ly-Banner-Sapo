@@ -139,7 +139,7 @@ function CreateBanner(props) {
                     onChange={(e) => setSectorChoice(e.target.value)}
                   >
                     {sectorList.map((item) => (
-                      <option value={item.div_id}>{item.divId}</option>
+                      <option value={item.id}>{item.divId}</option>
                     ))}
                   </select>
                 </div>

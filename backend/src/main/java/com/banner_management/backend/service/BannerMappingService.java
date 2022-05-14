@@ -121,5 +121,6 @@ public class BannerMappingService {
         return bannerMappingRepository.getListBannerHiddenBySections(sectionId);
     }
 
+    public List<BannerMappingEntity> getAllBannerStatus() {return bannerMappingRepository.findAll();}
 
 }
