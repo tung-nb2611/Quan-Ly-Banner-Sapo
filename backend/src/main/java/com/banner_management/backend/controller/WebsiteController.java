@@ -86,4 +86,14 @@ public class WebsiteController {
         }
     }
 
+    @GetMapping("/websites/all")
+    public ResponseEntity<List<WebsiteEntity>> getAllSection(){
+        try{
+            List<WebsiteEntity> sections = websiteService.getAllSections();
+            return new ResponseEntity<>(sections, HttpStatus.OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

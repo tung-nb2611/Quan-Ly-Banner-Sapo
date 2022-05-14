@@ -15,7 +15,9 @@ class SectionService {
         return axios.post(SECTION_API_SECTION_URL, sectionItem);
     }
 
-
+    getAllSections(){
+        return axios.get('http://localhost:8080/api/websites/all');
+    }
 
     // getWebsiteByPage(number){
     //     return axios.get(SECTION_API_SECTION_URL + '/page/' + number);
