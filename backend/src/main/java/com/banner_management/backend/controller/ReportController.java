@@ -93,21 +93,21 @@ public class ReportController {
         return clickAndViewDto;
     }
 
-    // api lay tong view va click theo nam theo khu vuc
-    @GetMapping("/banners/report/click-and-view/sectionID={sectionID}")
-    public ClickAndViewDto getListViewAndClickSortByMount( @PathVariable("sectionID") int sectionID){
-
-        int sumView = viewService.getSumViewBySectionIDForMonth( sectionID);
-        int sumClick = clickService.getSumClickBySectionIDForMonth( sectionID);
-        string month = viewService.getSumViewBySectionIDForMonth(sectionID);
-
-        SectionEntity sectionEntity = sectionService.getById(sectionID);
-
-
-
-        ClickAndViewDto clickAndViewDto = new ClickAndViewDto(sectionID, sumClick, sumView, month);
-        return clickAndViewDto;
-    }
+//    // api lay tong view va click theo nam theo khu vuc
+//    @GetMapping("/banners/report/click-and-view/sectionID={sectionID}")
+//    public ClickAndViewDto getListViewAndClickSortByMount( @PathVariable("sectionID") int sectionID){
+//
+//        int sumView = viewService.getSumViewBySectionIDForMonth( sectionID);
+//        int sumClick = clickService.getSumClickBySectionIDForMonth( sectionID);
+//        string month = viewService.getSumViewBySectionIDForMonth(sectionID);
+//
+//        SectionEntity sectionEntity = sectionService.getById(sectionID);
+//
+//
+//
+//        ClickAndViewDto clickAndViewDto = new ClickAndViewDto(sectionID, sumClick, sumView, month);
+//        return clickAndViewDto;
+//    }
 
 //    // api lay tong view va click theo tháng theo khu vuc
 //    @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}/month={month}")
