@@ -111,4 +111,15 @@ public class BannerMappingService {
 
     }
 
+    // New
+    public List<BannerMappingEntity> getListBannerEnabledBySectionId(int sectionId){
+        return bannerMappingRepository.getListBannerBySections(sectionId);
+    }
+
+    //New
+    public List<BannerMappingEntity> getListBannerHiddenBySectionId(int sectionId){
+        return bannerMappingRepository.getListBannerHiddenBySections(sectionId);
+    }
+
+
 }
