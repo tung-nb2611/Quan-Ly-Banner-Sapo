@@ -9,11 +9,13 @@ import com.banner_management.backend.service.BannerMappingService;
 import com.banner_management.backend.service.BannerService;
 import com.banner_management.backend.service.ViewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 
 @RestController
@@ -101,5 +103,17 @@ public class BannerMappingController {
             bannerMappingService.save(bannerMappingEntity);
         }
     }
+
+
+    @GetMapping("/banner-status/all")
+    public ResponseEntity<List<BannerMappingEntity>> getAllBannerStatus(){
+        try {
+            List<BannerMappingEntity> banners = bannerMappingService.getAllBannerStatus();
+            return new ResponseEntity<>(banners, HttpStatus.OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
 
