@@ -8,7 +8,7 @@ import * as BiIcons from "react-icons/bi";
 
 const Report = () => {
     return (
-        <div className=" p-3 d-flex flex-column gap-4">
+        <div className="p-3 d-flex flex-column gap-4">
             <div className="d-inline-flex gap-3">
                 <h3>WEBSITE</h3>
                 <BiIcons.BiRightArrow className="mt-2"/>

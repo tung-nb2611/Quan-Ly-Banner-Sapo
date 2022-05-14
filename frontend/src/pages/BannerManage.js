@@ -1,6 +1,5 @@
 import BannerList from "../components/banner/BannerList"
 import "../styles/banner/BannerManage.css";
-
 import { Link } from "react-router-dom";
 
 const BannerManage = () => {

@@ -1,18 +1,9 @@
 import React, { useState, useEffect } from "react";
-
-
 import BannerService from "../../services/BannerService";
-
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
-
-
 import { Bar } from 'react-chartjs-2';
-
 import ViewService from "../../services/views/ViewService";
 import ReportService from "../../services/ReportService";
-
-
-
 
 const Views = () => {
     const [category, setCategory] = useState([])
@@ -35,11 +26,6 @@ const Views = () => {
         })
     }, []);
 
-
-
-
-
-
     console.log("Views", category, data2);
 
     var data = {
@@ -49,7 +35,6 @@ const Views = () => {
                 label: 'lượng views banner',
                 data: data2,
                 borderColor: [
-
                 ],
                 borderWidth: 1,
                 fill: false

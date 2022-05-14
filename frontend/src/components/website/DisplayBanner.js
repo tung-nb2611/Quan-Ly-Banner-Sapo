@@ -73,7 +73,8 @@ function DisplayBanner(props) {
   return (
     <div className="display-banner-container px-3">
       <div className='header mt-3 d-flex justify-content-between'>
-        <p className="text-left pt-2 mb-0"> Admin 
+        <p className="text-left pt-2 mb-0">
+          {props.showAdminBoard ? <span>Admin</span> : <span>User</span>}
           <BiIcons.BiChevronRight size={18} /> Quản lý hiển thị banner trong khu vực 
           {/* <BiIcons.BiChevronRight size={18} /> Quản lý hiển thị banner */}
         </p>
