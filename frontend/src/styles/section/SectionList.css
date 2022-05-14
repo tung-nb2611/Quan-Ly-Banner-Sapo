@@ -1,0 +1,18 @@
+.section-list{
+    width: 100%;
+}
+
+.section-list .section-create{
+    border-radius: 10px;
+    width: -moz-fit-content;
+    width: fit-content;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.section-list .section{
+    border-radius: 10px;
+}
+/* .section-list .list{
+    width: 100%;
+} */
+

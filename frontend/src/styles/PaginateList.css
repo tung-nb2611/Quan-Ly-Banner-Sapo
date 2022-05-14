@@ -1,0 +1,13 @@
+.pagination{
+    margin: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination li{
+    padding: 5px;
+    font-weight: bold;
+    font-size: large;
+    /* background-color: #66B8FF; */
+    /* border: none; */
+}
