@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import com.banner_management.backend.dto.BannerDto;
+import com.banner_management.backend.dto.BannerInfoDto;
 import com.banner_management.backend.dto.BannerMappingDto;
 import com.banner_management.backend.entity.BannerEntity;
 import com.banner_management.backend.entity.BannerMappingEntity;
@@ -159,6 +160,38 @@ public class BannerController {
     public ResponseEntity<Page<BannerEntity>> getBannerStatusPage(@PathVariable("sectionID") int sectionId, @PathVariable("number") int number ){
         try{
             Page<BannerEntity> banners = bannerService.getBannerStatusPage(sectionId, number);
+            return new ResponseEntity<>(banners, HttpStatus.OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // Lay thong tin banner
+    @GetMapping("/banners/list/enabled/{sectionID}")
+    public ResponseEntity<List<BannerEntity>> getBannerEnabledBySectionId(@PathVariable("sectionID") int sectionId ){
+        try{
+            List<BannerEntity> banners = bannerService.getBannerEnabledBySectionId(sectionId);
+            return new ResponseEntity<>(banners, HttpStatus.OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // Lay thong tin banner hidden
+    @GetMapping("/banners/dto/hidden/{sectionID}")
+    public ResponseEntity<List<BannerInfoDto>> getBannerHiddenBySectionId(@PathVariable("sectionID") int sectionId){
+        try{
+            List<BannerInfoDto> banners = bannerService.getBannerHidden(sectionId);
+            return new ResponseEntity<>(banners, HttpStatus.OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/banners/dto/enabled/{sectionID}")
+    public ResponseEntity<List<BannerInfoDto>> getBannerDtoEnabledBySectionId(@PathVariable("sectionID") int sectionId ){
+        try{
+            List<BannerInfoDto> banners = bannerService.getBannerEnabled(sectionId);
             return new ResponseEntity<>(banners, HttpStatus.OK);
         } catch(NoSuchElementException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
