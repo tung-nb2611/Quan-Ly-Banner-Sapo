@@ -72,9 +72,10 @@ public class BannerMappingController {
 
     @GetMapping("/banner-mapping/percentage/{websiteID}")
     public BannerMappingDto getImageUrlByPercentage(@PathVariable("websiteID") int sectionId){
-
         BannerMappingEntity bannerMappingEntity =  bannerMappingService.getBannerByPercentage(sectionId);
+        System.out.println(" 12 : "+ bannerMappingEntity);
         BannerEntity bannerEntity = bannerService.getById(bannerMappingEntity.getBannerID());
+        System.out.println("banner 123 : " + bannerEntity);
         if(bannerMappingEntity.getNumberView() == 0){
             bannerMappingEntity.setNumberView(1);
         }

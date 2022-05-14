@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import '../../styles/banner/CreateBanner.css';
-// import BannerService from "../../services/SectionService";
+
 import * as BiIcons from "react-icons/bi";
-// import { ref, uploadBytes, getDownloadURL, listAll, list } from "firebase/storage";
-// import { storage } from "../../common/Firebase";
-// import { v4 } from "uuid";
 import { useHistory } from "react-router-dom";
 import WebsiteService from "../../services/website/WebsiteService";
+import "../../styles/website/CreateWebsite.css";
 
 
 function CreateWebsite(props) {
@@ -16,38 +13,90 @@ function CreateWebsite(props) {
     const [code, setCode] = useState('');
     const [urlLink, setUrlLink] = useState('');
 
-    // const getImage = (e) => {
-    //     if (e.target.files[0]) {
-    //         setImgPreview(URL.createObjectURL(e.target.files[0]));  //đặt bản xem trước 
-    //     } else console.log("file not found");
-    //     setImageUpload(e.target.files[0]);
-    // }
+
 
     const handClickReturn = () => {
-        history.push('/website');
+        history.push('/websites/manage');
     }
     const saveSection = (e) => {
         e.preventDefault();
-        let userAdd = "trong";
+
+        let user = JSON.parse(window.localStorage.getItem("user"));
         let websiteItem = {
             name: websiteName,
-            url: urlLink ,
-            userAdd: userAdd,
+            url: urlLink,
+            userAdd: user.username,
             code: code,
         }
         console.log('section => ', websiteItem);
-        WebsiteService.createWebsite(websiteItem)
+        WebsiteService.createWebsite(websiteItem).then(
+            history.push('/websites/manage')
+        )
+    }
+
+    const handleChangeValidateWebsiteName = (e) => {
+        setWebsiteName(e.target.value)
+        if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(e.target.value))) {
+            document.getElementById("websiteName").style.display = "none";
+        }
+        else {
+            document.getElementById("websiteName").style.display = "block";
+            document.getElementById("websiteName").style.color = "red";
+            document.getElementById("websiteName").innerText = "Tên website không được chứa các kí tự đặc biệt";
+        }
+    }
+
+    const validateBeforeAdd = (e) => {
+        if (websiteName.length === 0 || code.length === 0 || urlLink.length === 0) {
+            if (websiteName.length === 0) {
+                document.getElementById("websiteName").style.display = "block";
+                document.getElementById("websiteName").style.color = "red";
+                document.getElementById("websiteName").innerText = "Tên website không được để trống";
+            }
+            else {
+                document.getElementById("websiteName").style.display = "none";
+            }
+
+            if (code.length === 0) {
+                document.getElementById("websiteId").style.display = "block";
+                document.getElementById("websiteId").style.color = "red";
+                document.getElementById("websiteId").innerText = "Mã website không được để trống";
+            }
+            else {
+                document.getElementById("websiteId").style.display = "none";
+            }
+            if (urlLink.length === 0) {
+                document.getElementById("url").style.display = "block";
+                document.getElementById("url").style.color = "red";
+                document.getElementById("url").innerText = "Liên kết website không được để trống";
+            }
+            else {
+                document.getElementById("url").style.display = "none";
+            }
+        }
+        else {
+            saveSection(e);
+        }
+
+
+
     }
 
 
     return (
 
+
+
         <div className="create-banner-container mx-3" >
+
             <div className="header-top">
                 <p className="mt-3 text-left">
                     {props.showAdminBoard ? (<span>Admin</span>) : (<span>User</span>)}
                     <BiIcons.BiChevronRight size={18} />
-                    <Link className="text-decoration-none" to="/website"> Quản lý khu vực </Link>
+
+                    <Link className="text-decoration-none" to="/websites/manage"> Quản lý khu vực </Link>
+
+
                     <BiIcons.BiChevronRight size={18} />Thêm khu vực
                 </p>
             </div>
@@ -60,18 +109,15 @@ function CreateWebsite(props) {
                         </div>
                         <div className="col-sm-6 left">
                             <form>
-                                {/* <div className="mt-3 form-group">
-                                    <label htmlFor="bannerID">Mã khu vực</label>
-                                    <input className="form-control"
-                                        value={id || ''} disabled
-                                    />
-                                </div> */}
+
                                 <div className="mt-3 form-group">
                                     <label htmlFor="websiteName">Tên website</label>
-                                    <input className="form-control" id="websiteName" type="text" name="websiteName"
-                                        placeholder="ex: SapoCore"
-                                        value={websiteName} onChange={(e) => setWebsiteName(e.target.value)}
+                                    <input className="form-control" type="text"
+                                        placeholder="Ví dụ: SapoCore"
+                                        value={websiteName} onChange={(e) => handleChangeValidateWebsiteName(e)}
                                     />
+                                    <p id="websiteName"></p>
+
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label htmlFor="code">Mã Website</label>
@@ -79,6 +125,9 @@ function CreateWebsite(props) {
                                         placeholder="Ví dụ: Core1"
                                         value={code} onChange={(e) => setCode(e.target.value)}
                                     />
+
+                                    <p id="websiteId"></p>
+
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label htmlFor="url">Nhập liên kết</label>
@@ -86,32 +135,22 @@ function CreateWebsite(props) {
                                         placeholder="Liên kết url"
                                         value={urlLink} onChange={(e) => setUrlLink(e.target.value)}
                                     />
+                                   <p id="url"></p>
                                 </div>
-                                {/* <div className="mt-3 form-group">
-                                    <label id="upload-label" htmlFor="upload">Chọn Hình Ảnh</label>
-                                    <div className="custom-file">
-                                        <input id="upload"
-                                            type="file"
-                                            className="form-control border-0"
-                                            accept=".png,.gif,.jpg,.jpeg"
-                                            onChange={getImage}
-                                        />
-                                    </div>
-                                </div> */}
+
+
+                          
+
                             </form>
                         </div>
 
                         <div className="col-sm-6 right">
-                            {/* <div className="col-sm-12">
-                                <h3 className="text-center">Ảnh minh họa</h3>
-                            </div> */}
-                            {/* <div className="col-sm-12" id="imgFrame">
 
-                                <img className="img-rounded img-thumbnail" src={imgPreview} />
-                            </div> */}
+
                             <div className="button">
                                 <button type="button" className="btn btn-cancel" name="btncancel" onClick={() => handClickReturn()} >Hủy</button>
-                                <button type="submit" className="btn btn-add " name="btnsubmit" onClick={(e) => saveSection(e)}>Thêm website</button>
+                                <button type="submit" className="btn btn-add " name="btnsubmit" onClick={(e) => validateBeforeAdd(e)}>Thêm website</button>
+
                             </div>
                         </div>
                     </div>

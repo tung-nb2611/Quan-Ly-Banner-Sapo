@@ -49,9 +49,95 @@ function CreateBanner(props) {
         setImageUpload(e.target.files[0]);
     }
 
+    const handleChangeValidateBannerID = (e) => {
+        setBannerID(e.target.value)
+        if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(e.target.value))) {
+            document.getElementById("bannerID").style.display = "none";
+        }
+        else {
+            document.getElementById("bannerID").style.display = "block";
+            document.getElementById("bannerID").innerText = "Banner id không được chứa các kí tự đặc biệt";
+        }
+
+    }
+    const handleChangeValidateName = (e) => {
+        setName(e.target.value)
+        if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(e.target.value))) {
+            document.getElementById("name").style.display = "none";
+        }
+        else {
+            document.getElementById("name").style.display = "block";
+            document.getElementById("name").innerText = "Tên banner không được chứa các kí tự đặc biệt";
+        }
+
+    }
+
     const handClickReturn = () => {
         history.push('/banner/manage');
     }
+
+    const validateBeforeAdd = (e) => {
+        if (bannerID.length === 0 || name.length === 0 || urlLink.length === 0 || imgPreview === 0) {
+            if (bannerID.length === 0) {
+                document.getElementById("bannerID").style.display = "block";
+                document.getElementById("bannerID").innerText = "Banner id không được để trống";
+            }
+            else {
+                document.getElementById("bannerID").style.display = "none";
+            }
+
+            if (name.length === 0) {
+                document.getElementById("name").style.display = "block";
+                document.getElementById("name").innerText = "Tên banner không được để trống";
+            }
+            else {
+                document.getElementById("name").style.display = "none";
+            }
+            if (urlLink.length === 0) {
+                document.getElementById("url").style.display = "block";
+                document.getElementById("url").innerText = "Liên kết không được để trống";
+            }
+            else {
+                document.getElementById("url").style.display = "none";
+            }
+
+            if (imgPreview.length === 0) {
+                document.getElementById("image").style.display = "block";
+                document.getElementById("image").innerText = "Tên banner không được để trống";
+            }
+            else {
+                document.getElementById("image").style.display = "none";
+            }
+        }
+        else {
+            saveBanner(e);
+        }
+
+    }
+
+    const saveBanner = (e) => {
+        e.preventDefault();
+        const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
+        uploadBytes(imageRef, imageUpload).then((snapshot) => {
+            getDownloadURL(snapshot.ref).then((url) => {
+                let currentDay = new Date();
+                let userAdd = "Luong Van Minh";
+                let bannerItem = {
+                    sectionID: id,
+                    code: bannerID,
+                    name: name,
+                    imgUrl: url,
+                    userAdd: userAdd,
+                    createAt: currentDay,
+                    url: urlLink
+                }
+                console.log('banner => ', bannerItem);
+                BannerService.createBanner(bannerItem).then(res => {
+                    history.push('/banner/manage');
+                })
+            });
+        });
+
 
     const saveBanner = (e) => {
         e.preventDefault();
@@ -84,6 +170,7 @@ function CreateBanner(props) {
             console.log("Finish ?");
         }
 
+
     }
 
 
@@ -102,6 +189,16 @@ function CreateBanner(props) {
             <div className="container">
                 <div className="main-content">
                     <div className="row">
+
+      <div className="col-md-12 col-lg-6 pb-5">
+                            <form className="form">
+                                <div className="form-group">
+                                    <label htmlFor="bannerID">Mã khu vực</label>
+                                    <input className="form-control"
+                                        value={id || ''} disabled
+                                    />
+
+
                         <div className="col-sm-12 pb-4">
                             <h2>Thêm Mới Banner</h2>
                         </div>
@@ -124,20 +221,24 @@ function CreateBanner(props) {
                                         <option value={item.div_id}>{item.divId}</option>
                                     )}
                                 </select>
+
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label htmlFor="bannerID">Mã banner</label>
-                                    <input className="form-control" id="bannerID" type="text" name="bannerID"
+                                    <input className="form-control" type="text" name="bannerID"
                                         placeholder="ex: B10"
-                                        value={bannerID} onChange={(e) => setBannerID(e.target.value)}
+                                        value={bannerID} onChange={(e) => { handleChangeValidateBannerID(e) }}
                                     />
+                                    <p style={{ color: "red" }} id="bannerID" ></p>
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label htmlFor="name">Tên banner</label>
                                     <input className="form-control" type="text"
                                         placeholder="Ví dụ: Cá tháng tư"
-                                        value={name} onChange={(e) => setName(e.target.value)}
+                                        value={name} onChange={(e) => handleChangeValidateName(e)}
                                     />
+                                    <p style={{ color: "red" }} id="name" ></p>
+
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label htmlFor="name">Nhập liên kết</label>
@@ -145,6 +246,7 @@ function CreateBanner(props) {
                                         placeholder="Liên kết url"
                                         value={urlLink} onChange={(e) => setUrlLink(e.target.value)}
                                     />
+                                    <p style={{ color: "red" }} id="url"></p>
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label id="upload-label" htmlFor="upload">Chọn Hình Ảnh</label>
@@ -156,6 +258,7 @@ function CreateBanner(props) {
                                             onChange={getImage}
                                         />
                                     </div>
+                                    <p style={{ color: "red" }} id="image"></p>
                                 </div>
                             </form>
                         </div>
@@ -164,13 +267,17 @@ function CreateBanner(props) {
                             <div className="col-sm-12">
                                 <h3 className="text-center">Ảnh minh họa</h3>
                             </div>
-                            <div className="col-sm-12" id="imgFrame">
 
-                                <img className="img-rounded img-thumbnail" src={imgPreview} />
+                            <div id="imgFrame">
+                                <img className="img-rounded img-thumbnail" src={imgPreview} alt="" />
                             </div>
                             <div className="button">
-                                <button type="button" className="btn btn-cancel" name="btncancel" onClick={() => handClickReturn()} >Hủy</button>
-                                <button type="submit" className="btn btn-add " name="btnsubmit" onClick={(e) => saveBanner(e)}>Thêm banner</button>
+                                <button type="button" className="btn btn-outline-secondary" name="btncancel" onClick={() => handClickReturn()}>Hủy</button>
+
+                            <div className="col-sm-12" id="imgFrame">
+
+                            
+
                             </div>
                         </div>
                     </div>

@@ -18,9 +18,11 @@ public class WebsiteService {
     @Autowired
     private WebsiteRepository websiteRepository;
 
+
     public List<WebsiteEntity> getAllSections(){
         return websiteRepository.findAll();
     }
+
 
 
 

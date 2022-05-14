@@ -13,19 +13,28 @@ function WebsiteList(props) {
     const [pageNumber, setPageNumber] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
 
+
+
+    let user = JSON.parse(window.localStorage.getItem("user"));
     useEffect(() => {
+        if (user.roles === '["ROLE_USER"]') {
+            WebsiteService.getWebsiteByPageAndUserAdd(user.username, currentPage).then((response) => {
+                const info = response.data.content;
+                const pageNum = response.data.totalPages;
+                setWebsiteList(info);
+                setPageNumber(pageNum);
+            })
+        } else {
+            WebsiteService.getWebsiteByPage(currentPage).then((response) => {
+                const info = response.data.content;
+                const pageNum = response.data.totalPages;
+                setWebsiteList(info);
+                setPageNumber(pageNum);
+            }
+            )
+        }
+    }, [user, currentPage])
 
-        WebsiteService.getWebsiteByPageAndUserAdd("tung", currentPage).then((response) => {
-
-
-
-
-            const info = response.data.content;
-            const pageNum = response.data.totalPages;
-            setWebsiteList(info);
-            setPageNumber(pageNum);
-        })
-    }, [currentPage])
 
     const displayWebsites = websiteList.map(
         (data) => {

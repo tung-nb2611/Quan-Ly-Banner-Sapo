@@ -24,8 +24,6 @@ import SectionList from './components/section/SectionList';
 
 import Report from './pages/Report';
 import BannerManage from "./pages/BannerManage";
-import SapoWeb from './dashboard/SapoWeb';
-
 import DetailReport from './components/report/DetailReport';
 
 import NotFound from './components/NotFound';
@@ -97,9 +95,7 @@ const App = () => {
                   <Route exact path="/websites/manage">
                     <WebsiteList />
                   </Route>
-                  <Route path="/dashboard/SapoWeb">
-                    <SapoWeb />
-                  </Route>
+
                   <Route path="/report">
                     <Report />
                   </Route>
@@ -107,7 +103,10 @@ const App = () => {
                     <SectionList />
                   </Route>
 
+
+
                   <Route exact path="/banner/report/section/:id" >
+
                     <ListBannerInSection />
                   </Route>
                   <Route exact path="/websites/websiteId=:webId/createSection" >

@@ -7,6 +7,10 @@ public class ClickAndViewDto {
     private int numberView;
     private  int bannerID;
 
+
+
+
+
     public int getBannerID() {
         return bannerID;
     }
@@ -22,11 +26,16 @@ public class ClickAndViewDto {
     }
 
     public ClickAndViewDto(String webName, int sectionID, int numberClick, int numberView, int bannerID) {
+
         this.webName = webName;
         this.sectionID = sectionID;
         this.numberClick = numberClick;
         this.numberView = numberView;
+
+
+
         this.bannerID = bannerID;
+
     }
 
     @Override
@@ -36,7 +45,7 @@ public class ClickAndViewDto {
                 ", sectionID=" + sectionID +
                 ", numberClick=" + numberClick +
                 ", numberView=" + numberView +
-                ", bannerID=" + bannerID +
+          ", bannerID=" + bannerID +
                 '}';
     }
 
@@ -47,6 +56,7 @@ public class ClickAndViewDto {
         this.numberView = numberView;
 
     }
+
 
 
     public String getWebName() {

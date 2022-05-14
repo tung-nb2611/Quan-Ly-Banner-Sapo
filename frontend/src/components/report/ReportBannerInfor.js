@@ -7,7 +7,10 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { GrView } from "@react-icons/all-files/gr/GrView";
 import { HiOutlineCursorClick } from "@react-icons/all-files/hi/HiOutlineCursorClick"
+
+
 import ReportService from "../../services/ReportService";
+
 
 // import BannerStatusService from "../../services/ReportService";
 const BASE_URL = "http://localhost:8080/api/banners/";
@@ -29,6 +32,7 @@ const ReportBannerInfor = ({ bannerInfo, bannerList, setBannerList }) => {
         clicks: clicks
 
     }
+
 
     useEffect(() => {
         // Lay thong tin view

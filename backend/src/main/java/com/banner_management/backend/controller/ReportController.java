@@ -32,6 +32,8 @@ public class ReportController {
 
     @Autowired
     ClickService clickService;
+
+
     //lấy theo banner
     @GetMapping("/banners/report/click-and-view/bannerID={bannerID}")
     public  ClickAndViewDto getListSumClickAndViewByBannerID(@PathVariable("bannerID") int bannerID){
