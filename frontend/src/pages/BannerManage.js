@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 
 const BannerManage = () => {
     return (
-        <div className="manage">
-            <Link to={"/banner/create/0"}><button>Thêm Banner</button></Link>
+        <div className="manage p-3">
+            <Link className="link btn btn-primary mb-3" to={"/banner/create/0"}>Thêm Banner</Link>
             <BannerList/>   
         </div>
     )
