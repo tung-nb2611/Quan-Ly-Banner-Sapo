@@ -1,0 +1,11 @@
+#logo {
+    height: 30px;
+}
+
+button{
+    border: none;
+    background-color: #182537;
+    width: min-content;
+    height: min-content;
+    color: #ffffff;
+}
