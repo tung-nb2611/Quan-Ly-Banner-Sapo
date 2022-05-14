@@ -111,4 +111,11 @@ public class BannerMappingService {
 
     }
 
+    public  int getSumClickInBannerBySectionId(int bannerID, int sectionID){
+        return  bannerMappingRepository.getSumCliksByBannerIdInSectionId(bannerID,sectionID);
+    }
+    public  int getSumViewInBannerBySectionId(int bannerID, int sectionID){
+        return  bannerMappingRepository.getSumViewsByBannerIdInSectionId(bannerID,sectionID);
+    }
+
 }

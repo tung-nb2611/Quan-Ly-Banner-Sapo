@@ -23,6 +23,7 @@ function DetailReport(props) {
     let views = {}
     let clicks = {}
 
+
     if (typeof linkState.detailInfo !== 'undefined') {
         data = linkState.detailInfo;
         views = linkState.views;
@@ -31,7 +32,7 @@ function DetailReport(props) {
 
     const [pageNumber, setPageNumber] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
-    const [bannerCode] = useState(data.code);
+    const [bannerCode] = useState(data.id);
     const [name] = useState(data.name);
     const [imgUrl] = useState(data.imgUrl); // Dùng để show ảnh
     const [click] = useState(views.number);
@@ -84,7 +85,7 @@ function DetailReport(props) {
                                     <label htmlFor="sectionID">Lượt Views </label>
                                     <input className="form-control" type="text"
 
-                                        value={click} disabled />
+                                        value={views} disabled />
                                 </div>
                                 <div className="mt-2 form-group">
                                     <label htmlFor="lienket">Lượt clicks </label>

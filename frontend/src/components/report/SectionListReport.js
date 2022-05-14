@@ -7,13 +7,14 @@ import PaginateList from '../PaginateList';
 import SectionService from "../../services/section/SectionService";
 import { useParams, Link } from "react-router-dom";
 function SectionListReport(props) {
-    let webId = useParams();
+    let { webId } = useParams();
     const [sectionList, setSectionList] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
 
+
     useEffect(() => {
-        SectionService.getSectionByPageAndWebsiteId("1", currentPage).then((response) => {
+        SectionService.getSectionByPageAndWebsiteId(webId, currentPage).then((response) => {
             const info = response.data.content;
             const pageNum = response.data.totalPages;
             setSectionList(info);
@@ -21,8 +22,11 @@ function SectionListReport(props) {
         })
     }, [webId, currentPage])
 
+
+
     const displaySections = sectionList.map(
         (data) => {
+
             return (
                 <div key={data.id}>
                     <div>

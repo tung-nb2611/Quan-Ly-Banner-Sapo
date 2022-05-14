@@ -6,8 +6,14 @@ class ReportService {
     getClickAndView() {
         return axios.get(REPORT_API_SECTION_URL);
     }
-    getSumClickAndViewInBannerId(bannerID){
+    getSumClickAndViewInBannerId(bannerID) {
         return axios.get("http://localhost:8080/api/banners/report/click-and-view/bannerID=" + bannerID)
+    }
+    getSumClickAndViewInSection(sectionID) {
+        return axios.get("http://localhost:8080/api/banners/report/click-and-view/sectionID" + sectionID)
+    }
+    getSumClickAndViewInBannerIdBySectionId(bannerID, sectionID) {
+        return axios.get("http://localhost:8080/api/banners/report/click-and-view/" + sectionID + '/' + bannerID)
     }
 }
 
