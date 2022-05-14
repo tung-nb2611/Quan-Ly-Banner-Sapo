@@ -1,6 +1,7 @@
-.section{
-    border-radius:10px;
-    border:1px solid rgb(143, 136, 136);
-    box-shadow: 3px 3px 2px 2px #717070;
-    
+.section-list{
+    width: 100%;
 }
+/* .section-list .list{
+    width: 100%;
+} */
+

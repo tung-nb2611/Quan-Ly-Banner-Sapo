@@ -20,31 +20,20 @@ import CreateUser from "./components/user/CreateUser";
 import UpdateUser from "./components/user/UpdateUser";
 
 import UserManage from "./pages/UserManage";
-
-
-
-
-
-
 import SectionList from './components/section/SectionList';
-
-
-
 
 import Report from './pages/Report';
 import BannerManage from "./pages/BannerManage";
-import SapoWeb from './dashboard/SapoWeb';
-
 import DetailReport from './components/report/DetailReport';
-
-
 
 import NotFound from './components/NotFound';
 import SectionListReport from './components/report/SectionListReport';
 
+import ListBannerInSection from './components/report/ListBannerInSection';
 
 
-
+import CreateWebsite from './components/website/CreateWebsite';
+import CreateSection from './components/section/CreateSection';
 
 
 const App = () => {
@@ -77,6 +66,7 @@ const App = () => {
       <CheckboxProvider>
         <CheckboxArrProvider>
           <Switch>
+
             {currentUser ?
               (
                 <Layout logOut={logOut} showAdminBoard={showAdminBoard}>
@@ -96,21 +86,28 @@ const App = () => {
                   <Route path="/banner/update/:code">
                     <UpdateBanner showAdminBoard={showAdminBoard} />
                   </Route>
-
-                  <Route path="/banner/display/:id">
+                  <Route exact path="/website/create">
+                    <CreateWebsite />
+                  </Route>
+                  <Route exact path="/banner/display/:id">
                     <DisplayBanner />
                   </Route>
-                  <Route path="/website">
+                  <Route exact path="/websites/manage">
                     <WebsiteList />
                   </Route>
-                  <Route path="/dashboard/SapoWeb">
-                    <SapoWeb />
-                  </Route>
+
                   <Route path="/report">
                     <Report />
                   </Route>
-                  <Route path="/websites/websiteId=:webId/sections" >
+                  <Route exact path="/websites/websiteId=:webId/sections" >
                     <SectionList />
+                  </Route>
+
+                  <Route exact path="/banner/report/section=:id" >
+                    <ListBannerInSection />
+                  </Route>
+                  <Route exact path="/websites/websiteId=:webId/createSection" >
+                    <CreateSection />
                   </Route>
                   <Route path="/websites/websiteId=:webId/report" >
                     <SectionListReport />
@@ -133,6 +130,7 @@ const App = () => {
                   </Route>
                 </>
               )}
+
           </Switch>
         </CheckboxArrProvider>
       </CheckboxProvider>

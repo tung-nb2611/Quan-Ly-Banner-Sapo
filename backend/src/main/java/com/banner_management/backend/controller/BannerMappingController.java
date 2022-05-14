@@ -1,3 +1,4 @@
+
 package com.banner_management.backend.controller;
 
 import com.banner_management.backend.dto.BannerMappingDto;
@@ -27,34 +28,11 @@ public class BannerMappingController {
 
     @Autowired
     private ViewService viewService;
+//     @GetMapping("/banner-mapping/clisk-views/{bannerID}")
+//         public  List<BannerMappingEntity> listBanerMapping (@PathVariable("bannerID") int bannerID){
+//         return  bannerMappingService.getSumBannerByBannerID(bannerID);
+//     }
 
-//    //lấy thông tin banner-mapping theo bannerId
-//    @GetMapping("/banner-mapping/{bannerId}")
-//    public  List<BannerMappingEntity> getAllBybannerId(@PathVariable("bannerId") int bannerId){
-//        return bannerMappingService.getAllByBannerId(bannerId);
-//
-//    }
-
-//    @GetMapping("/banner-mapping/random/{sectionID}")
-//
-//
-//    public BannerEntity randomBannerStatus(@PathVariable("sectionID") int sectionID) {
-//        BannerMappingEntity bannerMappingEntity =  bannerMappingService.getRandomBannerBySectionID(sectionID);
-//        System.out.println("banner mapping : "+ bannerMappingEntity);
-//        BannerEntity bannerEntity = bannerService.getById(bannerMappingEntity.getBannerID());
-//        System.out.println("banner entity : "+ bannerEntity);
-//
-//        if(bannerMappingEntity.getNumberView() == 0){
-//            bannerMappingEntity.setNumberView(1);
-//        }
-//        else {
-//            int countViews = bannerMappingEntity.getNumberView();
-//            bannerMappingEntity.setNumberView(countViews + 1);
-//        }
-//        bannerMappingService.save(bannerMappingEntity);
-//        System.out.println("banner random get ra :" + bannerEntity);
-//        return bannerEntity;
-//    }
 
     //  lấy random banner theo số lượng và khu vực
     @GetMapping("/banner-mapping/percentage/{sectionID}/{bannerID}")
@@ -66,16 +44,8 @@ public class BannerMappingController {
         return  bannerEntity;
     }
 
-<<<<<<< HEAD
-
-
-    // cap nhat du lieu thoi gian bat dau khi chon random
-    @PutMapping("/banner-status/random/{id}")
-
-=======
     // cap nhat du lieu thoi gian bat dau khi chon random
     @PutMapping("/banner-mapping/random/{id}")
->>>>>>> a0fb9389283267b8426b0096bf281f0331995ba9
     public void updateBannerStatus (@RequestBody BannerMappingEntity bannerMappingEntity, @PathVariable("id") Integer id){
         BannerMappingEntity existBannerMappingEntity = bannerMappingService.getById(id);
         System.out.println("banner status dau vao o day : "+ bannerMappingEntity);
@@ -86,39 +56,23 @@ public class BannerMappingController {
     }
 
 //     cap nhat du lieu khi chon hien thi theo ti trong
-<<<<<<< HEAD
-
-
-    @PutMapping("/banner-status/percentage")
-
-=======
     @PutMapping("/banner-mapping/percentage")
->>>>>>> a0fb9389283267b8426b0096bf281f0331995ba9
     public void updateBannerStatusOnPercentage(@RequestBody List<BannerMappingEntity> bannerMappingEntityList){
         // du lieu can co bannerID, sectionID, percentage, timeDisplay, expired
         System.out.println("du lieu dau vao list : "+ bannerMappingEntityList);
         for(int i = 0; i < bannerMappingEntityList.size(); i++){
             BannerMappingEntity bannerMappingEntity = bannerMappingEntityList.get(i);
             System.out.println("phần tử "+ i + " "+ bannerMappingEntity);
-<<<<<<< HEAD
-
             bannerMappingService.updatePercentage(bannerMappingEntity.getPercentage(), bannerMappingEntity.getBannerID(), bannerMappingEntity.getSectionID());
-
-
-
-
-
-=======
-            bannerMappingService.updatePercentage(bannerMappingEntity.getPercentage(), bannerMappingEntity.getBannerID(), bannerMappingEntity.getSectionID());
->>>>>>> a0fb9389283267b8426b0096bf281f0331995ba9
         }
     }
 
     @GetMapping("/banner-mapping/percentage/{websiteID}")
     public BannerMappingDto getImageUrlByPercentage(@PathVariable("websiteID") int sectionId){
-
         BannerMappingEntity bannerMappingEntity =  bannerMappingService.getBannerByPercentage(sectionId);
+        System.out.println(" 12 : "+ bannerMappingEntity);
         BannerEntity bannerEntity = bannerService.getById(bannerMappingEntity.getBannerID());
+        System.out.println("banner 123 : " + bannerEntity);
         if(bannerMappingEntity.getNumberView() == 0){
             bannerMappingEntity.setNumberView(1);
         }
@@ -133,3 +87,4 @@ public class BannerMappingController {
         return bannerMappingDto;
     }
 }
+

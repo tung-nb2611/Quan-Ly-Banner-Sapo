@@ -5,23 +5,34 @@ import "../../styles/section/SectionList.css"
 import PaginateList from '../PaginateList';
 import WebsiteService from '../../services/website/WebsiteService';
 import ChoiceSection from "../report/ChoiceSection";
+
+import { Link } from 'react-router-dom';
 function WebsiteList(props) {
 
     const [websiteList, setWebsiteList] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
 
+
+    let user = JSON.parse(window.localStorage.getItem("user"));
     useEffect(() => {
-
-        WebsiteService.getWebsiteByPageAndUserAdd("tung", currentPage).then((response) => {
-
-
-            const info = response.data.content;
-            const pageNum = response.data.totalPages;
-            setWebsiteList(info);
-            setPageNumber(pageNum);
-        })
-    }, [currentPage])
+        if (user.roles === '["ROLE_USER"]') {
+            WebsiteService.getWebsiteByPageAndUserAdd(user.username, currentPage).then((response) => {
+                const info = response.data.content;
+                const pageNum = response.data.totalPages;
+                setWebsiteList(info);
+                setPageNumber(pageNum);
+            })
+        } else {
+            WebsiteService.getWebsiteByPage(currentPage).then((response) => {
+                const info = response.data.content;
+                const pageNum = response.data.totalPages;
+                setWebsiteList(info);
+                setPageNumber(pageNum);
+            }
+            )
+        }
+    }, [user, currentPage])
 
     const displayWebsites = websiteList.map(
         (data) => {
@@ -38,11 +49,21 @@ function WebsiteList(props) {
         <div className="banner-list m-2">
             <div className="list">
                 {displayWebsites}
+                <Link to={"/website/create"}>
+                    <button className="section">
+                        <h4>Thêm mới website</h4>
+                    </button>
+                </Link>
             </div>
             <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
+
         </div>
     )
-
 }
+
+
+
+
+
 
 export default WebsiteList;

@@ -14,7 +14,6 @@ import java.util.List;
 @Repository
 public interface ClickRepository extends JpaRepository<ClickEntity, Integer> {
 
-
     // query tính lượng view theo năm và theo khu vực
     @Query(value = "select count(id) from clicks where year(clicks.time_click) = ?1 and section_id = ?2", nativeQuery = true)
     Integer getSumClickBySectionIDForYear(int year, int sectionID);
@@ -29,39 +28,6 @@ public interface ClickRepository extends JpaRepository<ClickEntity, Integer> {
 
     // query tinh luong view theo tháng theo khu vuc
     @Query(value = "select count(id) from clicks where date(clicks.time_click) = ?1 and section_id = ?2", nativeQuery = true)
-
-//    // Tính số lượng click ở 1 banner bất kì
-//    @Query(value=" select count(id) from clicks Where banner_id =?1",nativeQuery = true)
-//    int getClickbybannerId (Integer bannerId);
-//
-//    // Tính tổng số lượng click tất cả các banner
-//    @Query(value=" select count(id) from clicks ", nativeQuery = true)
-//    int getCountClick();
-//
-// Lấy thông tin click của từng banner
-    @Query(value="select * from clicks ", nativeQuery = true)
-    List<ClickEntity> getAllClick( );
-//
-//    @Query(value = "select * from clicks where banner_id = ?1", nativeQuery = true)
-//    Page<ClickEntity> getClicksByBannerId(int id, Pageable pageable);
-//
-//    @Query(value = "SELECT sum(number) from views where banner_id = ?1", nativeQuery = true)
-//    Integer getViewsByBannerID(Integer bannerId);
-//
-    // Tính số lượng click của 1 banner trong ngày vừa rồi
-    @Query(value = "select * from clicks  and timestampdiff(day, time_click, sysdate()) <= 1", nativeQuery = true)
-    int getClickCountPreviousDayByBannerId();
-//
-//    // Tính số lượng click của 1 banner trong tuần vừa rồi
-//    @Query(value = "select count(id) from clicks where banner_id = ?1 and timestampdiff(week, time_click, sysdate()) <= 1", nativeQuery = true)
-//    int getClickCountPreviousWeekByBannerId(Integer bannerId);
-//
-//    // Tính số lượng click của 1 banner trong tháng vừa rồi
-//    @Query(value = "select count(id) from clicks where banner_id = ?1 and timestampdiff(month, time_click, sysdate()) <= 1", nativeQuery = true)
-//    int getClickCountPreviousMonthByBannerId(Integer bannerId);
-//
-//    // Tính số lượng click của 1 banner trong năm vừa rồi
-//    @Query(value = "select count(id) from clicks where banner_id = ?1 and timestampdiff(year, time_click, sysdate()) <= 1", nativeQuery = true)
-//    int getClickCountPreviousYearByBannerId(Integer bannerId);
+    Integer getSumClickBySectionIDForDay(Date day, int sectionID);
 
 }

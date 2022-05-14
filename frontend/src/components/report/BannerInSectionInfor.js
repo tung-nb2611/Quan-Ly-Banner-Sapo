@@ -9,10 +9,10 @@ import { GrView } from "@react-icons/all-files/gr/GrView";
 import { HiOutlineCursorClick } from "@react-icons/all-files/hi/HiOutlineCursorClick"
 
 // import BannerStatusService from "../../services/ReportService";
-const BASE_URL = "http://localhost:8080/api/banners/";
+// const BASE_URL = "http://localhost:8080/api/banners/";
 
 
-const ReportBannerInfor = ({ bannerInfo, bannerList, setBannerList }) => {
+const BannerInSectionInfor = ({ bannerInfo, bannerList, setBannerList }) => {
     // 'delete' has to remove the item from bannerList too so that
     // the web will change immediately without having to reload the page
     // as {bannerList} contains the list of banner the 'BannerList' component has
@@ -80,4 +80,4 @@ const ReportBannerInfor = ({ bannerInfo, bannerList, setBannerList }) => {
     );
 };
 
-export default ReportBannerInfor;
+export default BannerInSectionInfor;

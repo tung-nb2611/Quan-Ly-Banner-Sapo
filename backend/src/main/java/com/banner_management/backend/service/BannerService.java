@@ -23,10 +23,14 @@ public class BannerService  {
         return repository.findAll();
     }
 
-    //loc banner theo trang web và khu vực
+    //lấy chi tiết banner theo trang web và khu vực
 
     public List<BannerEntity> listBannerGroupByWebsiteAndSection(int bannerID){
         return repository.getBannerGroupByWebsiteAndSection(bannerID);
+    }
+
+    public List<BannerEntity> listBannerByWebsiteAndSection(int setionID){
+        return repository.getBanneByWebsiteAndSection(setionID);
     }
 
     @Transactional

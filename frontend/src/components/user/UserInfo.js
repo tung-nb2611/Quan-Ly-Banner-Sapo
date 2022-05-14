@@ -12,7 +12,7 @@ const UserInfo = ({ userInfo, userList, setUserList }) => {
   const [detailInfo, setDetailInfo] = useState(userInfo);
 
   const updatePage = {
-    pathname: "/banner1/update/" + userInfo.code,
+    pathname: "/user/update/" + userInfo.code,
     detailInfo: detailInfo
   }
 
