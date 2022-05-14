@@ -1,9 +1,7 @@
 package com.banner_management.backend.controller;
 
 import com.banner_management.backend.dto.ClickAndViewDto;
-import com.banner_management.backend.entity.BannerEntity;
-import com.banner_management.backend.entity.SectionEntity;
-import com.banner_management.backend.entity.WebsiteEntity;
+import com.banner_management.backend.entity.*;
 import com.banner_management.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -99,7 +97,7 @@ public class ReportController {
 //
 //        int sumView = viewService.getSumViewBySectionIDForMonth( sectionID);
 //        int sumClick = clickService.getSumClickBySectionIDForMonth( sectionID);
-//        string month = viewService.getSumViewBySectionIDForMonth(sectionID);
+//       ViewEntity viewEntity = viewService.getListMonth(viewService.getTimeView());
 //
 //        SectionEntity sectionEntity = sectionService.getById(sectionID);
 //

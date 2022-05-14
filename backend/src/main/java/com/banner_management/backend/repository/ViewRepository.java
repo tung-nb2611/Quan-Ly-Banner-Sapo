@@ -1,5 +1,6 @@
 package com.banner_management.backend.repository;
 
+import com.banner_management.backend.entity.ClickEntity;
 import com.banner_management.backend.entity.ViewEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -44,5 +45,9 @@ public interface ViewRepository extends JpaRepository<ViewEntity, Integer> {
 
     //Lấy tổng lượng view theo tháng
     @Query(value ="SELECT (monthname(time_view)) AS  month , COUNT(*) AS views FROM views where section_id =?1 GROUP BY month ORDER BY month ASC",nativeQuery = true)
-    Integer getSumViewBySectionIDForMonth( int sectionID);
+    Integer getSumViewBySectionIDForMonth(int sectionID);
+
+    @Query(value ="SELECT (monthname(time_view)) AS  month  FROM views where section_id =?1 GROUP BY month ",nativeQuery = true)
+    List<ClickEntity> getListMonth(int sectionID);
+
 }

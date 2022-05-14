@@ -8,6 +8,7 @@ public class ClickAndViewDto {
     private  int bannerID;
     private  String month;
 
+
     @Override
     public String toString() {
         return "ClickAndViewDto{" +
