@@ -1,5 +1,7 @@
+import { useBootstrapBreakpoints } from "react-bootstrap/esm/ThemeProvider";
 import { Link } from "react-router-dom";
-import "../../styles/section/Section.css"
+import "../../styles/section/Section.css";
+import { Row, Col } from "react-bootstrap";
 
 function Website({ data }) {
   return (

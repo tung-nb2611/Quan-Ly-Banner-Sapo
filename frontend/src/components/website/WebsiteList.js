@@ -6,7 +6,7 @@ import PaginateList from '../PaginateList';
 import WebsiteService from '../../services/website/WebsiteService';
 import ChoiceSection from "../report/ChoiceSection";
 
-import {Link} from 'react-router-dom';
+import { Link } from 'react-router-dom';
 function WebsiteList(props) {
 
     const [websiteList, setWebsiteList] = useState([]);
@@ -15,7 +15,7 @@ function WebsiteList(props) {
 
     useEffect(() => {
 
-        WebsiteService.getWebsiteByPageAndUserAdd("trong", currentPage).then((response) => {
+        WebsiteService.getWebsiteByPageAndUserAdd("tung", currentPage).then((response) => {
 
 
 
@@ -51,19 +51,12 @@ function WebsiteList(props) {
             <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
 
         </div>
-      )
-    }
-  )
-
-  return (
-    <div className="section-list p-3">
-      <div className="list d-flex row">
-        {displayWebsites}
-      </div>
-      <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
-    </div>
-  )
-
+    )
 }
+
+
+
+
+
 
 export default WebsiteList;
