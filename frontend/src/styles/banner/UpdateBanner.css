@@ -1,0 +1,44 @@
+.update-banner-container {
+  font-size: 14px;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.update-banner-container .container .main-content {
+  margin: 0 50px 100px 50px;
+}
+
+.update-banner-container .container .main-content h2 {
+  font-weight: 600;
+}
+
+.update-banner-container .container .main-content .row #imgFrame {
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  max-height: 240px;
+
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+  border: 1px dashed black;
+}
+
+.update-banner-container .container .main-content .row #imgFrame img {
+  height: 100%;
+  width: 100%;
+}
+
+.update-banner-container .container .main-content .row .button {
+  display: flex;
+  margin-top: 50px;
+  justify-content: right;
+  flex-wrap: wrap;
+}
+
+.update-banner-container .container .main-content .row .button .btn-outline-danger,
+.update-banner-container .container .main-content .row .button .btn-primary,
+.update-banner-container .container .main-content .row .button .btn-secondary {
+  min-width: 150px;
+  margin: 5px;
+}
