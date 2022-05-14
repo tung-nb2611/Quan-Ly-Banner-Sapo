@@ -1,11 +1,20 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import '../../styles/banner/CreateBanner.css';
+
+
+
+
+// import BannerService from "../../services/SectionService";
 import * as BiIcons from "react-icons/bi";
+// import { ref, uploadBytes, getDownloadURL, listAll, list } from "firebase/storage";
+// import { storage } from "../../common/Firebase";
+// import { v4 } from "uuid";
 
 import { useHistory } from "react-router-dom";
 import SectionService from "../../services/section/SectionService";
 import { useParams } from "react-router-dom";
+
 
 
 function CreateSection(props) {
@@ -40,6 +49,9 @@ function CreateSection(props) {
             document.getElementById("divId").style.color = "red";
             document.getElementById("divId").innerText = "Tên thẻ div không được chứa các kí tự đặc biệt";
         }
+
+
+
     }
 
 
@@ -65,6 +77,7 @@ function CreateSection(props) {
                             <form>
                                 <div className="mt-3 form-group">
                                     <label htmlFor="webId">Id website</label>
+
                                     <input className="form-control" type="text"
                                         value={webId} disabled
                                     />
@@ -75,8 +88,9 @@ function CreateSection(props) {
                                         placeholder="Ví dụ: img"
                                         value={divId || ''} onChange={(e) => handleChangeValidateDivId(e)}
                                     />
-                                    <p id="divId"></p>
-                                </div>
+
+                                  
+                 </div>
                             </form>
                         </div>
 

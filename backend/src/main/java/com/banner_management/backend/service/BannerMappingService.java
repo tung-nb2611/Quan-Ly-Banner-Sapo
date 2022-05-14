@@ -109,6 +109,30 @@ public class BannerMappingService {
     public int getSumClickInBannerTd(int bannerID){
         return  bannerMappingRepository.getSumCliksByBannerId(bannerID);
 
+
+
+
     }
+
+
+    public  int getSumClickInBannerBySectionId(int bannerID, int sectionID){
+        return  bannerMappingRepository.getSumCliksByBannerIdInSectionId(bannerID,sectionID);
+    }
+    public  int getSumViewInBannerBySectionId(int bannerID, int sectionID){
+        return  bannerMappingRepository.getSumViewsByBannerIdInSectionId(bannerID,sectionID);
+    }
+
+    public List<BannerMappingEntity> getListBannerEnabledBySectionId(int sectionId){
+        return bannerMappingRepository.getListBannerBySections(sectionId);
+    }
+
+    //New
+    public List<BannerMappingEntity> getListBannerHiddenBySectionId(int sectionId){
+        return bannerMappingRepository.getListBannerHiddenBySections(sectionId);
+    }
+
+    public List<BannerMappingEntity> getAllBannerStatus() {return bannerMappingRepository.findAll();}
+
+
 
 }

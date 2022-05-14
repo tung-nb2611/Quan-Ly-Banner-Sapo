@@ -1,6 +1,7 @@
 
 package com.banner_management.backend.controller;
 
+import com.banner_management.backend.dto.BannerInfoDto;
 import com.banner_management.backend.dto.BannerMappingDto;
 import com.banner_management.backend.entity.BannerEntity;
 import com.banner_management.backend.entity.BannerMappingEntity;
@@ -8,11 +9,13 @@ import com.banner_management.backend.service.BannerMappingService;
 import com.banner_management.backend.service.BannerService;
 import com.banner_management.backend.service.ViewService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 
 @RestController
@@ -86,5 +89,32 @@ public class BannerMappingController {
         System.out.println("banner Dto : "+ bannerMappingDto);
         return bannerMappingDto;
     }
+
+    //
+    @PutMapping("/banner-status/update")
+    public void updateBannerStatus(@RequestBody List<BannerInfoDto> bannerDtoList){
+        System.out.println(bannerDtoList);
+        for(int i = 0; i < bannerDtoList.size(); i++){
+            BannerInfoDto bannerInfoDto = bannerDtoList.get(i);
+            BannerMappingEntity bannerMappingEntity = bannerMappingService.getById(bannerInfoDto.getId());
+            short state = bannerInfoDto.getState();
+            int percentage = bannerInfoDto.getPercentage();
+            bannerMappingEntity.setState(state);
+            bannerMappingEntity.setPercentage(percentage);
+            bannerMappingService.save(bannerMappingEntity);
+        }
+    }
+
+
+    @GetMapping("/banner-status/all")
+    public ResponseEntity<List<BannerMappingEntity>> getAllBannerStatus(){
+        try {
+            List<BannerMappingEntity> banners = bannerMappingService.getAllBannerStatus();
+            return new ResponseEntity<>(banners, HttpStatus.OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
 

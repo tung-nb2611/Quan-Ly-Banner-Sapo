@@ -5,13 +5,36 @@ public class ClickAndViewDto {
     private int sectionID;
     private int numberClick;
     private int numberView;
+    private  int bannerID;
 
 
-    public ClickAndViewDto(String webName, int sectionID, int numberClick, int numberView) {
+
+
+
+    public int getBannerID() {
+        return bannerID;
+    }
+
+    public void setBannerID(int bannerID) {
+        this.bannerID = bannerID;
+    }
+
+    public ClickAndViewDto(int numberClick, int numberView, int bannerID) {
+        this.numberClick = numberClick;
+        this.numberView = numberView;
+        this.bannerID = bannerID;
+    }
+
+    public ClickAndViewDto(String webName, int sectionID, int numberClick, int numberView, int bannerID) {
+
         this.webName = webName;
         this.sectionID = sectionID;
         this.numberClick = numberClick;
         this.numberView = numberView;
+
+
+
+        this.bannerID = bannerID;
 
     }
 
@@ -22,10 +45,17 @@ public class ClickAndViewDto {
                 ", sectionID=" + sectionID +
                 ", numberClick=" + numberClick +
                 ", numberView=" + numberView +
-
+          ", bannerID=" + bannerID +
                 '}';
     }
 
+    public ClickAndViewDto(String webName, int sectionID, int numberClick, int numberView) {
+        this.webName = webName;
+        this.sectionID = sectionID;
+        this.numberClick = numberClick;
+        this.numberView = numberView;
+
+    }
 
 
 

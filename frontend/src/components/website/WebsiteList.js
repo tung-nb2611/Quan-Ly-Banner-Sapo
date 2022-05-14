@@ -14,6 +14,7 @@ function WebsiteList(props) {
     const [currentPage, setCurrentPage] = useState(0);
 
 
+
     let user = JSON.parse(window.localStorage.getItem("user"));
     useEffect(() => {
         if (user.roles === '["ROLE_USER"]') {
@@ -33,6 +34,7 @@ function WebsiteList(props) {
             )
         }
     }, [user, currentPage])
+
 
     const displayWebsites = websiteList.map(
         (data) => {

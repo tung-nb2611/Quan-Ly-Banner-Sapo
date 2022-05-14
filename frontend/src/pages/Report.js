@@ -10,7 +10,9 @@ const Report = () => {
         <div >
             <ChoiceSection />
             {/* <Views /> */}
-            {/* <ListBannerReport /> */}
+
+             <ListBannerReport /> 
+
             {/* <ListBannerInSection /> */}
         </div>
     );

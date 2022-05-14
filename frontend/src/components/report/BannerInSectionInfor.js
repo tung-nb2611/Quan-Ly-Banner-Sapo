@@ -8,6 +8,9 @@ import { useParams } from "react-router-dom";
 import { GrView } from "@react-icons/all-files/gr/GrView";
 import { HiOutlineCursorClick } from "@react-icons/all-files/hi/HiOutlineCursorClick"
 
+
+import ReportService from "../../services/ReportService";
+
 // import BannerStatusService from "../../services/ReportService";
 // const BASE_URL = "http://localhost:8080/api/banners/";
 
@@ -21,6 +24,7 @@ const BannerInSectionInfor = ({ bannerInfo, bannerList, setBannerList }) => {
     const [views, setViews] = useState([]);
     const [clicks, setClicks] = useState([]);
     let { id } = useParams();
+
     const reportDetail = {
         pathname: "/views/detail/" + bannerInfo.code,
         detailInfo: detailInfo,
@@ -29,18 +33,20 @@ const BannerInSectionInfor = ({ bannerInfo, bannerList, setBannerList }) => {
 
     }
 
-    // useEffect(() => {
-    //     // Lay thong tin view
-    //     ReportService.getSumClickAndViewInBannerId(bannerInfo.id).then((response) => {
-    //         const data = response.data;
-    //         console.log("res", response)
-    //         setViews(data.numberView);
-    //         setClicks(data.numberClick)
 
-    //         // console.log("views", data.numberView)
+    useEffect(() => {
+        // Lay thong tin view
+        ReportService.getSumClickAndViewInBannerIdBySectionId(id, bannerInfo.id).then((response) => {
+            const data = response.data;
+            console.log("res123", response)
+            setViews(data.numberView);
+            setClicks(data.numberClick)
 
-    //     });
-    // }, []);
+            // console.log("views", data.numberView)
+
+        });
+    }, []);
+
 
 
 
