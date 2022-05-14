@@ -37,26 +37,28 @@ function WebsiteList(props) {
     const displayWebsites = websiteList.map(
         (data) => {
             return (
-                <div key={data.id}>
+                <div className="col-md-12 col-lg-6 mb-3" key={data.id}>
                     <Website data={data} />
-
                 </div>
             )
         }
     )
 
     return (
-        <div className="banner-list m-2">
-            <div className="list">
+        <div className="section-list p-3">
+            <h2>
+                Danh sách các Websites
+            </h2>
+            <hr/>
+            <Link to={"/website/create"}>
+                <button className="section-create p-2">
+                    <h4>Thêm mới website</h4>
+                </button>
+            </Link>
+            <div className="list d-flex row mt-3">
                 {displayWebsites}
-                <Link to={"/website/create"}>
-                    <button className="section">
-                        <h4>Thêm mới website</h4>
-                    </button>
-                </Link>
             </div>
             <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
-
         </div>
     )
 }

@@ -33,13 +33,18 @@ function SectionList(props) {
 
     return (
         <div className="section-list p-3">
-            <div className="list d-flex row">
+            <h3>
+                Danh sách các khu vực của website
+            </h3>
+            <hr/>
+            <Link to={"/websites/websiteId=" + webId + "/createSection"}>
+                <button className="section-create p-2">
+                    <h4>Thêm mới khu vực</h4>
+                </button>
+            </Link>
+            <div className="list d-flex row mt-3">
                 {displaySections}
-                <Link to={"/websites/websiteId=" + webId + "/createSection"}>
-                    <button className="section">
-                        <h4>Thêm mới khu vực</h4>
-                    </button>
-                </Link>
+
             </div>
             <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
         </div>

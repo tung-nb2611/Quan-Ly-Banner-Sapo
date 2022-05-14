@@ -34,7 +34,11 @@ const BannerList = () => {
   });
 
   return (
-    <div className="section-list pt-3 ps-3">
+    <div className="section-list px-3">
+      <h2 className="mt-2">
+        Danh sách các banners
+      </h2>
+      <hr/>
       <div className="list d-flex row">
         {displayBanner}
       </div>
