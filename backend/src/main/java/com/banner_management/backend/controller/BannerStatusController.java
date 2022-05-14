@@ -7,10 +7,12 @@ import com.banner_management.backend.service.BannerService;
 import com.banner_management.backend.service.BannerStatusService;
 import com.banner_management.backend.service.ViewsService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 
 @RestController
@@ -103,4 +105,25 @@ public class BannerStatusController {
         String imageUrl = bannerStatusService.getImgUrlByPercentage(sectionId);
         return imageUrl;
     }
+
+    @GetMapping("/banner-status/all")
+    public ResponseEntity<List<BannerStatusEntity>> getAllBannerStatus(){
+        try {
+            List<BannerStatusEntity> banners = bannerStatusService.getAllBannerStatus();
+            return new ResponseEntity<>(banners, HttpStatus.OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @GetMapping("/banner-status/page/{sectionId}/{page}")
+    public ResponseEntity<Page<BannerStatusEntity>> getBannerStatusByPage(@PathVariable("sectionId") int sectionId, @PathVariable("page") int page){
+        try{
+            Page<BannerStatusEntity> bannerStatuses = bannerStatusService.getBannerStatusBySectionId(sectionId, page);
+            return new ResponseEntity<>(bannerStatuses, HttpStatus.OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }

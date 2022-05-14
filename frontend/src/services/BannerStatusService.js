@@ -2,6 +2,10 @@ import axios from "axios";
 
 // const BANNER_STATUS_API_BASE_URL = "http://localhost:8080/api/banner-status";
 class BannerStatusService {
+    getAllBannerStatus(){
+
+    }
+
     // lay danh sach banner
     getListBannerStatusViaRandom(sectionID) {
         return axios.get("http://localhost:8080/api/banner-status/random/" + sectionID);
@@ -28,5 +32,6 @@ class BannerStatusService {
     getImageUrlByPercentage(sectionId) {
         return axios.get("http://localhost:8080/api/banner-status/percents/" + sectionId);
     }
+
 }
 export default new BannerStatusService();

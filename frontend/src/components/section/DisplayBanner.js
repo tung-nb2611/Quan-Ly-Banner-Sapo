@@ -7,6 +7,7 @@ import BannerStatusService from '../../services/BannerStatusService'
 import { CheckboxArrContext } from '../../context/CheckboxListContext';
 
 import { Link } from "react-router-dom";
+import ListBannerHidden from '../banner/ListBannerHidden';
 
 function DisplayBanner(props) {
 
@@ -123,33 +124,15 @@ function DisplayBanner(props) {
                                             </select>
                                         </label>
                                     </div>
-{/*                         
-                                    <div className="mt-3 col-12 form-group">
-                                        <div className="col-2">
-                                            <label htmlFor="bannerID">Hiển thị ngẫu nhiên</label>
-                                        </div>
-                                        <label className="col-1">
-                                            <input type="checkbox" checked={randomChecked} style={{ transform: "scale(1.5)", marginLeft: "5px" }}
-                                                onChange={(e) => handleOnChangeChoice(e)}
-                                            />
-                                            <span className="checkmark"></span>
-                                        </label>
-                                    </div>
-                                    <div className="mt-3 col-12 form-group">
-                                        <div className="col-2">
-                                            <label htmlFor="bannerID">Hiển thị theo tỉ trọng</label>
-                                        </div>
-                                        <label className="col-1">
-                                            <input type="checkbox" style={{ transform: "scale(1.5)", marginLeft: "5px" }}
-                                                checked={percentageChecked} onChange={(e) => handleOnChangeChoice(e)} />
-                                            <span className="checkmark"></span>
-                                        </label>
-                                    </div> */}
                                 </form>
                             </div>
                         </div>
                         <div className="mt-3 col-10" id="showListBannerChoice">
                             <ListBannerChoice id={id} displayUtil={displayUtil}></ListBannerChoice>
+                        </div>
+                        <div className="mt-3 col-10">
+                            <h4>Banner đã ẩn</h4>
+                            <ListBannerHidden id={id} displayUtil={displayUtil}></ListBannerHidden>
                         </div>
                         <div className="col-12">
                             <div className="button">

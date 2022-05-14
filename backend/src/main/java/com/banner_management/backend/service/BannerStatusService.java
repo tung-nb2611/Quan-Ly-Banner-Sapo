@@ -9,9 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.Transactional;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -34,6 +36,9 @@ public class BannerStatusService {
     public void update(Timestamp timeDisplay, Integer sectionID){
         repository.updateTimeDisplay(timeDisplay, sectionID);
     }
+    
+    public List<BannerStatusEntity> getAllBannerStatus() {return repository.findAll();}
+    
     public BannerStatusEntity getById(Integer id){
         return repository.findById(id).get();
     }
@@ -47,10 +52,20 @@ public class BannerStatusService {
         return repository.getRandomBySectionID(sectionID);
     }
 
+    public Page<BannerStatusEntity> getBannerStatusBySectionId(int sectionId, int number){
+        PagingAndSortingRepository<BannerStatusEntity, Integer> bannerRepo = repository;
+        Pageable page = PageRequest.of(number, 5, Sort.by("banner_id").ascending());
+        Page<BannerStatusEntity> banners = ((BannerStatusRepository) bannerRepo).getBannerStatusBySections(sectionId, page);
+        return banners;
+    }
+
+
     @Transactional
     public void updatePercentage(Timestamp time_display, Integer percentage, Integer bannerID, Integer sectionID){
         repository.updatePercentageAndTimeDisplay(time_display, percentage, bannerID, sectionID);
     }
+
+
     // Cách 1:
     //
     public String getImgUrlByPercentage(int sectionId){
