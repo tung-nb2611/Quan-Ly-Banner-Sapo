@@ -1,6 +1,20 @@
 .section-list{
     width: 100%;
 }
+<<<<<<< HEAD
+=======
+
+.section-list .section-create{
+    border-radius: 10px;
+    width: -moz-fit-content;
+    width: fit-content;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.section-list .section{
+    border-radius: 10px;
+}
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 /* .section-list .list{
     width: 100%;
 } */

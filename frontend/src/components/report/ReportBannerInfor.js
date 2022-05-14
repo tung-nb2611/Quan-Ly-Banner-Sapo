@@ -7,7 +7,10 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { GrView } from "@react-icons/all-files/gr/GrView";
 import { HiOutlineCursorClick } from "@react-icons/all-files/hi/HiOutlineCursorClick"
+<<<<<<< HEAD
 import ReportService from "../../services/ReportService";
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 
 // import BannerStatusService from "../../services/ReportService";
 const BASE_URL = "http://localhost:8080/api/banners/";
@@ -30,6 +33,7 @@ const ReportBannerInfor = ({ bannerInfo, bannerList, setBannerList }) => {
 
     }
 
+<<<<<<< HEAD
     useEffect(() => {
         // Lay thong tin view
         ReportService.getSumClickAndViewInBannerId(bannerInfo.id).then((response) => {
@@ -42,6 +46,20 @@ const ReportBannerInfor = ({ bannerInfo, bannerList, setBannerList }) => {
 
         });
     }, []);
+=======
+    // useEffect(() => {
+    //     // Lay thong tin view
+    //     ReportService.getSumClickAndViewInBannerId(bannerInfo.id).then((response) => {
+    //         const data = response.data;
+    //         console.log("res", response)
+    //         setViews(data.numberView);
+    //         setClicks(data.numberClick)
+
+    //         // console.log("views", data.numberView)
+
+    //     });
+    // }, []);
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 
 
 

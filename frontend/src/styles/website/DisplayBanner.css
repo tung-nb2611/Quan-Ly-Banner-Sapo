@@ -1,0 +1,59 @@
+.display-banner-container {
+  font-size: 14px;
+  width: 100%;
+  font-family: 'Roboto', sans-serif;
+}
+
+.display-banner-container .container {
+  margin-bottom: 0;
+}
+
+.display-banner-container .container .header .header_right .btn-add {
+  margin-left: 45px;
+  border: 1px solid #0088FF;
+  background-color: #0088FF;
+  color: white;
+  width: 180px;
+  height: 40px;
+}
+
+.display-banner-container .container .main-content {
+  margin: 0 50px 100px 50px;
+}
+
+.display-banner-container .container .main-content h2 {
+  font-weight: 600;
+}
+
+.display-banner-container .container .main-content .form-group {
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+  font-size: large;
+}
+
+.display-banner-container .container .main-content .row .col-sm-12 .form-group label {
+  line-height: 40px;
+}
+
+.display-banner-container .container .main-content #showListBannerChoice {
+  display: block;
+  opacity: 0.3;
+}
+
+.display-banner-container .container .main-content .button {
+  display: flex;
+  justify-content: end;
+}
+@media (max-width: 720px) {
+  .display-banner-container .container .main-content .button {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+  }
+}
+
+.display-banner-container .container .main-content .button .btn-outline-secondary,
+.display-banner-container .container .main-content .button .btn-primary {
+    min-width: 150px;
+}

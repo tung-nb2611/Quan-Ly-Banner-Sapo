@@ -5,8 +5,20 @@ public class ClickAndViewDto {
     private int sectionID;
     private int numberClick;
     private int numberView;
+<<<<<<< HEAD
     private  int bannerID;
     private  String month;
+=======
+
+
+    public ClickAndViewDto(String webName, int sectionID, int numberClick, int numberView) {
+        this.webName = webName;
+        this.sectionID = sectionID;
+        this.numberClick = numberClick;
+        this.numberView = numberView;
+
+    }
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 
     @Override
     public String toString() {
@@ -15,6 +27,7 @@ public class ClickAndViewDto {
                 ", sectionID=" + sectionID +
                 ", numberClick=" + numberClick +
                 ", numberView=" + numberView +
+<<<<<<< HEAD
                 ", bannerID=" + bannerID +
                 ", month='" + month + '\'' +
                 '}';
@@ -64,6 +77,13 @@ public class ClickAndViewDto {
         this.numberView = numberView;
 
     }
+=======
+
+                '}';
+    }
+
+
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 
 
     public String getWebName() {

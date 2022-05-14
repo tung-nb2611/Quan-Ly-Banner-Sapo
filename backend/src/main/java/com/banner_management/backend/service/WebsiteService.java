@@ -18,12 +18,15 @@ public class WebsiteService {
     @Autowired
     private WebsiteRepository websiteRepository;
 
+<<<<<<< HEAD
     public List<WebsiteEntity> getAllSections(){
         return websiteRepository.findAll();
     }
 
 
 
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
     public List<WebsiteEntity> listWebsiteByUserAdd(String userAdd) {
         return websiteRepository.getWebsiteEntitiesByUserAdd(userAdd);
     }

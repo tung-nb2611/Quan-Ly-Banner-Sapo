@@ -31,9 +31,12 @@ class BannerStatusService {
     getListBannerMpaing(bannerID) {
         return axios.get("http://localhost:8080/api/banner-mapping/" + bannerID);
     }
+<<<<<<< HEAD
 
     updateBannerStatusList(bannerStatusArray){
         return axios.put("http://localhost:8080/api/banner-status/update", bannerStatusArray);
     }
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 }
 export default new BannerStatusService();

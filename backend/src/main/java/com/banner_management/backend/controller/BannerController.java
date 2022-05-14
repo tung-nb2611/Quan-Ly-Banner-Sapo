@@ -4,7 +4,10 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import com.banner_management.backend.dto.BannerDto;
+<<<<<<< HEAD
 import com.banner_management.backend.dto.BannerInfoDto;
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 import com.banner_management.backend.dto.BannerMappingDto;
 import com.banner_management.backend.entity.BannerEntity;
 import com.banner_management.backend.entity.BannerMappingEntity;
@@ -166,6 +169,7 @@ public class BannerController {
         }
     }
 
+<<<<<<< HEAD
     // Lay thong tin banner
     @GetMapping("/banners/list/enabled/{sectionID}")
     public ResponseEntity<List<BannerEntity>> getBannerEnabledBySectionId(@PathVariable("sectionID") int sectionId ){
@@ -198,4 +202,6 @@ public class BannerController {
         }
     }
 
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 }

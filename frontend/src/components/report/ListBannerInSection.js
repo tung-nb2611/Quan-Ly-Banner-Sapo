@@ -28,7 +28,10 @@ const ListBannerInSection = () => {
             <div className="list">
                 {displayBanner}
             </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
         </div>
     );
 

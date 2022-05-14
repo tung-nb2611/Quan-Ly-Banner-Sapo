@@ -55,6 +55,7 @@ public class ViewService {
         return viewRepository.getSumViewBySectionIDForYear(year, sectionID);
     }
 
+<<<<<<< HEAD
     public int getSumViewBySectionIDForMonth( int sectionID){
         return viewRepository.getSumViewBySectionIDForMonth(sectionID);
     }
@@ -62,4 +63,13 @@ public class ViewService {
 //    public int getSumViewBySectionIDForDay(Date day , int sectionID){
 //        return viewRepository.getSumViewBySectionIDForDay(day, sectionID);
 //    }
+=======
+    public int getSumViewBySectionIDForMonth(int year, int month , int sectionID){
+        return viewRepository.getSumViewBySectionIDForMonth(year, month, sectionID);
+    }
+
+    public int getSumViewBySectionIDForDay(Date day , int sectionID){
+        return viewRepository.getSumViewBySectionIDForDay(day, sectionID);
+    }
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 }

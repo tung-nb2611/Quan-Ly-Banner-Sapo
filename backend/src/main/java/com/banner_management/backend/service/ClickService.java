@@ -25,6 +25,7 @@ public class ClickService {
     public int getSumClickBySectionIDForYear(int year, int sectionID){
         return clickRepository.getSumClickBySectionIDForYear(year, sectionID);
     }
+<<<<<<< HEAD
     public int getSumClickBySectionIDForMonth( int sectionID){
         return clickRepository.getSumClickBySectionIDForMonth(sectionID);
     }
@@ -36,6 +37,12 @@ public class ClickService {
 //    public  int getSumClickBySectionIdForMonth(int sectionID){
 //        return clickRepository.get
 //    }
+=======
+
+    public int getSumClickBySectionIDForMonth(int year, int month , int sectionID){
+        return clickRepository.getSumClickBySectionIDForMonth(year, month, sectionID);
+    }
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 
 //    public int getSumClickBySectionIDForDay(Date day , int sectionID){
 //        return clickRepository.getSumClickBySectionIDForDay(day, sectionID);

@@ -1,14 +1,21 @@
 package com.banner_management.backend.service;
+<<<<<<< HEAD
 import java.util.ArrayList;
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 import java.util.List;
 import java.util.NoSuchElementException;
 
 import javax.transaction.Transactional;
 
+<<<<<<< HEAD
 import com.banner_management.backend.dto.BannerInfoDto;
 import com.banner_management.backend.entity.BannerEntity;
 import com.banner_management.backend.entity.BannerMappingEntity;
 import com.banner_management.backend.repository.BannerMappingRepository;
+=======
+import com.banner_management.backend.entity.BannerEntity;
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 import com.banner_management.backend.repository.BannerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -23,9 +30,12 @@ public class BannerService  {
     @Autowired
     private BannerRepository repository;
 
+<<<<<<< HEAD
     @Autowired
     private BannerMappingRepository bannerMappingRepository;
 
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
     public List<BannerEntity> listAllBanner(){
         return repository.findAll();
     }
@@ -70,6 +80,7 @@ public class BannerService  {
         return banners;
     }
 
+<<<<<<< HEAD
     // New
     public List<BannerEntity> getBannerEnabledBySectionId(int sectionId){
         List<BannerEntity> banners = repository.getBannerEnableBySectionId(sectionId);
@@ -118,5 +129,7 @@ public class BannerService  {
         }
         return list;
     }
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 
 }

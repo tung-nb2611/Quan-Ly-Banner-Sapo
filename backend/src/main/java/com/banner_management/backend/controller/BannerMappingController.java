@@ -1,7 +1,10 @@
 
 package com.banner_management.backend.controller;
 
+<<<<<<< HEAD
 import com.banner_management.backend.dto.BannerInfoDto;
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 import com.banner_management.backend.dto.BannerMappingDto;
 import com.banner_management.backend.entity.BannerEntity;
 import com.banner_management.backend.entity.BannerMappingEntity;
@@ -9,13 +12,19 @@ import com.banner_management.backend.service.BannerMappingService;
 import com.banner_management.backend.service.BannerService;
 import com.banner_management.backend.service.ViewService;
 import org.springframework.beans.factory.annotation.Autowired;
+<<<<<<< HEAD
 import org.springframework.data.domain.Page;
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+<<<<<<< HEAD
 import java.util.NoSuchElementException;
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 
 
 @RestController
@@ -72,9 +81,16 @@ public class BannerMappingController {
 
     @GetMapping("/banner-mapping/percentage/{websiteID}")
     public BannerMappingDto getImageUrlByPercentage(@PathVariable("websiteID") int sectionId){
+<<<<<<< HEAD
 
         BannerMappingEntity bannerMappingEntity =  bannerMappingService.getBannerByPercentage(sectionId);
         BannerEntity bannerEntity = bannerService.getById(bannerMappingEntity.getBannerID());
+=======
+        BannerMappingEntity bannerMappingEntity =  bannerMappingService.getBannerByPercentage(sectionId);
+        System.out.println(" 12 : "+ bannerMappingEntity);
+        BannerEntity bannerEntity = bannerService.getById(bannerMappingEntity.getBannerID());
+        System.out.println("banner 123 : " + bannerEntity);
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
         if(bannerMappingEntity.getNumberView() == 0){
             bannerMappingEntity.setNumberView(1);
         }
@@ -88,6 +104,7 @@ public class BannerMappingController {
         System.out.println("banner Dto : "+ bannerMappingDto);
         return bannerMappingDto;
     }
+<<<<<<< HEAD
 
     //
     @PutMapping("/banner-status/update")
@@ -115,5 +132,7 @@ public class BannerMappingController {
         }
     }
 
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 }
 

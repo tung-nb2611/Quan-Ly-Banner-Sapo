@@ -86,6 +86,7 @@ public class WebsiteController {
         }
     }
 
+<<<<<<< HEAD
     @GetMapping("/websites/all")
     public ResponseEntity<List<WebsiteEntity>> getAllSection(){
         try{
@@ -96,4 +97,6 @@ public class WebsiteController {
         }
     }
 
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 }

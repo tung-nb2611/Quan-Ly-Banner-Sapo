@@ -111,6 +111,7 @@ public class BannerMappingService {
 
     }
 
+<<<<<<< HEAD
 
     public  int getSumClickInBannerBySectionId(int bannerID, int sectionID){
         return  bannerMappingRepository.getSumCliksByBannerIdInSectionId(bannerID,sectionID);
@@ -131,4 +132,6 @@ public class BannerMappingService {
     public List<BannerMappingEntity> getAllBannerStatus() {return bannerMappingRepository.findAll();}
 
 
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 }

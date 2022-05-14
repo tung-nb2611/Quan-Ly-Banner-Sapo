@@ -78,14 +78,24 @@ function BannerDetail(props) {
                                     <label htmlFor="sectionID">Ngày tạo </label>
                                     <input className="form-control" 
                                         type="text"
+<<<<<<< HEAD
                                         value={createAt} disabled 
+=======
+                                        value={createAt} 
+                                        disabled 
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
                                     />
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label htmlFor="lienket">Liên kết </label>
                                     <input className="form-control" 
                                         type="text"
+<<<<<<< HEAD
                                         value={urlLink} disabled 
+=======
+                                        value={urlLink} 
+                                        disabled 
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
                                     />
                                 </div>
                             </form>

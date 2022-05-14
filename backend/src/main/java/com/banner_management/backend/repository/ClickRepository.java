@@ -19,8 +19,13 @@ public interface ClickRepository extends JpaRepository<ClickEntity, Integer> {
     Integer getSumClickBySectionIDForYear(int year, int sectionID);
 
     // query tinh luong view theo tháng theo khu vuc
+<<<<<<< HEAD
     @Query(value = "SELECT (monthname(time_view)) AS  month , COUNT(*) AS clicks FROM cliks where section_id =?1 GROUP BY month ORDER BY month ASC", nativeQuery = true)
     Integer getSumClickBySectionIDForMonth( int sectionID);
+=======
+    @Query(value = "select count(id) from clicks where year(clicks.time_click) = ?1 and month(clicks.time_click) = ?2 and section_id = ?3", nativeQuery = true)
+    Integer getSumClickBySectionIDForMonth(int year, int month , int sectionID);
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 
 //    // query tinh luong view theo tuần theo khu vuc
 //    @Query(value = "select count(id) as number_click from views where month(views.time_view) = ?1 and section_id = ?2", nativeQuery = true)
@@ -30,6 +35,9 @@ public interface ClickRepository extends JpaRepository<ClickEntity, Integer> {
     @Query(value = "select count(id) from clicks where date(clicks.time_click) = ?1 and section_id = ?2", nativeQuery = true)
     Integer getSumClickBySectionIDForDay(Date day, int sectionID);
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
 }

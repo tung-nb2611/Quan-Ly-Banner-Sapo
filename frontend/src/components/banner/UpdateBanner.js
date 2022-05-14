@@ -14,7 +14,11 @@ function UpdateBanner(props) {
     let data = {}
     const linkState = useLocation();
     const history = useHistory();
+<<<<<<< HEAD
     console.log(linkState);
+=======
+
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
     if (typeof linkState.detailInfo !== 'undefined') {
         data = linkState.detailInfo;
     }
@@ -36,7 +40,63 @@ function UpdateBanner(props) {
         setImageUpload(e.target.files[0]);
 
     }
+<<<<<<< HEAD
     const saveBanner = (e) => {
+=======
+    const handleChangeValidateBannerCode = (e) => {
+        setBannerCode(e.target.value)
+        if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(e.target.value))) {
+            document.getElementById("bannerCode").style.display = "none";
+        }
+        else {
+            document.getElementById("bannerCode").style.display = "block";
+            document.getElementById("bannerCode").innerText = "Banner id không được chứa các kí tự đặc biệt";
+        }
+
+    }
+    const handleChangeValidateName = (e) => {
+        setName(e.target.value)
+        if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(e.target.value))) {
+            document.getElementById("name").style.display = "none";
+        }
+        else {
+            document.getElementById("name").style.display = "block";
+            document.getElementById("name").innerText = "Tên banner không được chứa các kí tự đặc biệt";
+        }
+
+    }
+    const validateBeforeUpdate = (e) => {
+        if (bannerCode.length === 0 || name.length === 0 || urlLink.length === 0) {
+            if (bannerID.length === 0) {
+                document.getElementById("bannerCode").style.display = "block";
+                document.getElementById("bannerCode").innerText = "Banner id không được để trống";
+            }
+            else {
+                document.getElementById("bannerCode").style.display = "none";
+            }
+
+            if (name.length === 0) {
+                document.getElementById("name").style.display = "block";
+                document.getElementById("name").innerText = "Tên banner không được để trống";
+            }
+            else {
+                document.getElementById("name").style.display = "none";
+            }
+            if (urlLink.length === 0) {
+                document.getElementById("url").style.display = "block";
+                document.getElementById("url").innerText = "Liên kết banner không được để trống";
+            }
+            else {
+                document.getElementById("url").style.display = "none";
+            }
+        }
+        else {
+            updateBanner(e);
+        }
+
+    }
+    const updateBanner = (e) => {
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
         e.preventDefault();
         if (imageUpload != null) {
             const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
@@ -101,6 +161,7 @@ function UpdateBanner(props) {
                             <form method="post" encType="multipart/form-data">
                                 <div className="form-group">
                                     <label htmlFor="bannerID">Mã banner</label>
+<<<<<<< HEAD
                                     <input className="form-control" 
                                         id="bannerID" 
                                         type="text"
@@ -124,15 +185,51 @@ function UpdateBanner(props) {
                                         value={urlLink || ''} 
                                         onChange={(e) => setUrlLink(e.target.value)} 
                                     />
+=======
+                                    <input className="form-control"
+                                        id="bannerID"
+                                        type="text"
+                                        placeholder="ex: 123..."
+                                        value={bannerCode} onChange={(e) => handleChangeValidateBannerCode(e)}
+                                    />
+                                    <p style={{ color: "red" }} id="bannerCode" ></p>
+                                </div>
+                                <div className="mt-3 form-group">
+                                    <label htmlFor="name">Tên banner</label>
+                                    <input className="form-control"
+                                        type="text"
+                                        placeholder="ex: quảng cáo cá tháng tư"
+                                        value={name} onChange={(e) => handleChangeValidateName(e)}
+                                    />
+                                    <p style={{ color: "red" }} id="name" ></p>
+                                </div>
+                                <div className="mt-3 form-group">
+                                    <label htmlFor="name">Liên kết</label>
+                                    <input className="form-control"
+                                        type="text"
+                                        placeholder=" Nhập liên kết url"
+                                        value={urlLink || ''}
+                                        onChange={(e) => setUrlLink(e.target.value)}
+                                    />
+                                    <p style={{ color: "red" }} id="url" ></p>
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label id="upload-label" htmlFor="upload">Chọn Hình Ảnh</label>
                                     <div className="custom-file">
+<<<<<<< HEAD
                                         <input id="upload" 
                                             type="file" 
                                             className="form-control border-0" 
                                             accept=".png,.gif,.jpg,.jpeg"
                                             onChange={getImage} 
+=======
+                                        <input id="upload"
+                                            type="file"
+                                            className="form-control border-0"
+                                            accept=".png,.gif,.jpg,.jpeg"
+                                            onChange={getImage}
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
                                         />
                                     </div>
                                 </div>
@@ -143,11 +240,19 @@ function UpdateBanner(props) {
                                 <h3 className="text-center">Ảnh minh họa</h3>
                             </div>
                             <div id="imgFrame">
+<<<<<<< HEAD
                                 <img className="img-rounded" src={imgUrl} alt="new_banner"/>
                             </div>
                             <div className="button">
                                 <button type="button" className="btn btn-outline-danger" name="btncancel" onClick={() => handClickReturn()}>Hủy</button>
                                 <button type="submit" className="btn btn-primary" name="btnsubmit" onClick={(e) => saveBanner(e)}>Chỉnh sửa</button>
+=======
+                                <img className="img-rounded" src={imgUrl} alt="new_banner" />
+                            </div>
+                            <div className="button">
+                                <button type="button" className="btn btn-outline-danger" name="btncancel" onClick={() => handClickReturn()}>Hủy</button>
+                                <button type="submit" className="btn btn-primary" name="btnsubmit" onClick={(e) => validateBeforeUpdate(e)}>Chỉnh sửa</button>
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
                             </div>
                         </div>
                     </div>

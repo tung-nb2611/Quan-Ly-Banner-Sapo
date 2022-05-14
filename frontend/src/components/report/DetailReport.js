@@ -23,7 +23,10 @@ function DetailReport(props) {
     let views = {}
     let clicks = {}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
     if (typeof linkState.detailInfo !== 'undefined') {
         data = linkState.detailInfo;
         views = linkState.views;
@@ -32,7 +35,11 @@ function DetailReport(props) {
 
     const [pageNumber, setPageNumber] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
+<<<<<<< HEAD
     const [bannerCode] = useState(data.id);
+=======
+    const [bannerCode] = useState(data.code);
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
     const [name] = useState(data.name);
     const [imgUrl] = useState(data.imgUrl); // Dùng để show ảnh
     const [click] = useState(views.number);
@@ -85,7 +92,11 @@ function DetailReport(props) {
                                     <label htmlFor="sectionID">Lượt Views </label>
                                     <input className="form-control" type="text"
 
+<<<<<<< HEAD
                                         value={views} disabled />
+=======
+                                        value={click} disabled />
+>>>>>>> 21a008dd5fd8e5676ff0c00d6ace9145ee0bba21
                                 </div>
                                 <div className="mt-2 form-group">
                                     <label htmlFor="lienket">Lượt clicks </label>
