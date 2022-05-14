@@ -25,5 +25,9 @@ class BannerService {
     getListStatus(sectionId, number) {
         return axios.get("http://localhost:8080/api/banners/rate/" + sectionId + "/" + number);
     }
+
+    getLisstBannerBySectionId(sectionId) {
+        return axios.get("http://localhost:8080/api/banners/filter/sectionID=" + sectionId);
+    }
 }
 export default new BannerService();

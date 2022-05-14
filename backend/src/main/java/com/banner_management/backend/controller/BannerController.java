@@ -61,6 +61,24 @@ public class BannerController {
         }
         return bannerMappingDtoList;
     }
+    @GetMapping("/banners/filter/sectionID={sectionID}")
+    public List<BannerMappingDto> getListBannerByWebsiteAndSection(@PathVariable("sectionID") int sectionID){
+
+        List<BannerMappingDto> bannerMappingDtoList = new ArrayList<>();
+
+        List<BannerMappingEntity> bannerMappingEntityList =  bannerMappingService.getListBannerBySectionID(sectionID);
+        for (int i = 0 ; i < bannerMappingEntityList.size() ; i ++){
+            BannerEntity bannerEntity = bannerService.getById(bannerMappingEntityList.get(i).getBannerID());
+            SectionEntity sectionEntity = sectionService.getById(bannerMappingEntityList.get(i).getSectionID());
+            WebsiteEntity websiteEntity = websiteService.getById(sectionEntity.getWebId());
+            BannerMappingDto bannerMappingDto = new BannerMappingDto(
+                    bannerEntity.getId(), bannerEntity.getName(), bannerEntity.getImgUrl(), bannerEntity.getUrl(),
+                    bannerMappingEntityList.get(i).getNumberView(),bannerMappingEntityList.get(i).getNumberClick(),
+                    bannerMappingEntityList.get(i).getSectionID(), websiteEntity.getName());
+            bannerMappingDtoList.add(bannerMappingDto);
+        }
+        return bannerMappingDtoList;
+    }
 
     // lấy một banner theo id
     @GetMapping("/banners/{id}")

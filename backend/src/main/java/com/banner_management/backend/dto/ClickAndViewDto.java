@@ -6,11 +6,13 @@ public class ClickAndViewDto {
     private int numberClick;
     private int numberView;
 
+
     public ClickAndViewDto(String webName, int sectionID, int numberClick, int numberView) {
         this.webName = webName;
         this.sectionID = sectionID;
         this.numberClick = numberClick;
         this.numberView = numberView;
+
     }
 
     @Override
@@ -20,8 +22,12 @@ public class ClickAndViewDto {
                 ", sectionID=" + sectionID +
                 ", numberClick=" + numberClick +
                 ", numberView=" + numberView +
+
                 '}';
     }
+
+
+
 
     public String getWebName() {
         return webName;

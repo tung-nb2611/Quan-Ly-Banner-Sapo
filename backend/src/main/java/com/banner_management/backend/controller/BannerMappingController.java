@@ -27,6 +27,11 @@ public class BannerMappingController {
 
     @Autowired
     private ViewService viewService;
+//     @GetMapping("/banner-mapping/clisk-views/{bannerID}")
+//         public  List<BannerMappingEntity> listBanerMapping (@PathVariable("bannerID") int bannerID){
+//         return  bannerMappingService.getSumBannerByBannerID(bannerID);
+//     }
+
 
     //  lấy random banner theo số lượng và khu vực
     @GetMapping("/banner-mapping/percentage/{sectionID}/{bannerID}")

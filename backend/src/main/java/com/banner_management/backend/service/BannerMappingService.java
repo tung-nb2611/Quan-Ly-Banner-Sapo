@@ -22,6 +22,8 @@ public class BannerMappingService {
     @Autowired
     BannerService bannerService;
 
+
+
     @Transactional
     public void save(BannerMappingEntity BannerMappingEntity){
         bannerMappingRepository.save(BannerMappingEntity);
@@ -40,10 +42,17 @@ public class BannerMappingService {
     public void updatePercentage(Integer percentage, Integer bannerID, Integer sectionID){
         bannerMappingRepository.updatePercentageAndTimeDisplay(percentage, bannerID, sectionID);
     }
-
+//lấy thông tin banner theo banerID
     public List<BannerMappingEntity> getListBannerByBannerID(int bannerID){
         return bannerMappingRepository.getListByBannerId(bannerID);
     }
+    //lấy list banner theo sectionID
+    public List<BannerMappingEntity> getListBannerBySectionID(int sectionID){
+        return bannerMappingRepository.getListBySectionId(sectionID);
+    }
+//    public List<BannerMappingEntity> getSumBannerByBannerID(int bannerID){
+//        return bannerMappingRepository.getSumCliksAndViewByBannerId(bannerID);
+//    }
 
     public BannerMappingEntity getBannerByPercentage(int sectionId){
         BannerMappingEntity newBannerMappingEntity = new BannerMappingEntity();
@@ -92,4 +101,14 @@ public class BannerMappingService {
     public int getSumClickInSectionID(int sectionID){
         return bannerMappingRepository.sumNumberClickInSectionID(sectionID);
     }
+
+    public int getSumViewInBannerTd(int bannerID){
+        return  bannerMappingRepository.getSumViewByBannerId(bannerID);
+
+    }
+    public int getSumClickInBannerTd(int bannerID){
+        return  bannerMappingRepository.getSumCliksByBannerId(bannerID);
+
+    }
+
 }

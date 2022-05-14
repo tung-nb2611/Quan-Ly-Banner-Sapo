@@ -15,6 +15,8 @@ public interface BannerMappingRepository extends JpaRepository<BannerMappingEnti
     @Query(value = "select * from banner_mapping where banner_id = ?1 and section_id = ?2 and percentage > 0", nativeQuery = true)
     BannerMappingEntity getPercentageByBannerIDAndSectionID(Integer bannerID, Integer sectionID);
 
+
+
     @Modifying
     @Query(value = "update banner_mapping set percentage = ?3 where state = 1 and banner_id = ?4 and section_id = ?5", nativeQuery = true)
     void updatePercentageAndTimeDisplay(Integer percentage, Integer bannerID, Integer sectionID);
@@ -23,7 +25,7 @@ public interface BannerMappingRepository extends JpaRepository<BannerMappingEnti
     @Query(value = "SELECT SUM(number_view) AS sum_number_view FROM banner_mapping where state != 0 and section_id = ?1", nativeQuery = true)
     Integer sumNumberViewInSectionID(int sectionID);
 
-    // lay tong luong view theo section
+    // lay tong luong Click theo section
     @Query(value = "SELECT SUM(number_click) AS sum_number_click FROM banner_mapping where state != 0 and section_id = ?1", nativeQuery = true)
     Integer sumNumberClickInSectionID(int sectionID);
 
@@ -34,4 +36,15 @@ public interface BannerMappingRepository extends JpaRepository<BannerMappingEnti
     // Lọc theo bannerID
     @Query(value = "select * from banner_mapping where banner_id = ?1", nativeQuery = true)
     List<BannerMappingEntity> getListByBannerId(Integer bannerId);
+
+    // Lọc theo sectionID
+    @Query(value = "select * from banner_mapping where section_id = ?1", nativeQuery = true)
+    List<BannerMappingEntity> getListBySectionId(Integer sectionId);
+
+
+    // Lọc theo bannerID
+    @Query(value = "SELECT  SUM(number_click) AS clicks  from banner_mapping where banner_id = ?1", nativeQuery = true)
+    Integer getSumCliksByBannerId(Integer bannerId);
+    @Query(value = "SELECT  SUM(number_view) AS views  from banner_mapping where banner_id = ?1", nativeQuery = true)
+    Integer getSumViewByBannerId(Integer bannerId);
 }

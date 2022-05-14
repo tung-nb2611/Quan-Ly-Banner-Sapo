@@ -32,7 +32,7 @@ function SectionListReport(props) {
                                     <label>Div: {data.divId}</label>
                                 </Col>
                                 <Col>
-                                    <Link to={"/banner/display/" + data.id}>
+                                    <Link to={"/banner/report/section/" + data.id}>
                                         <button className="section">
                                             <h4>chi tiết báo cáo</h4>
                                         </button>

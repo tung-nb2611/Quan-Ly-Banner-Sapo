@@ -30,6 +30,8 @@ import DetailReport from './components/report/DetailReport';
 
 import NotFound from './components/NotFound';
 import SectionListReport from './components/report/SectionListReport';
+import ListBannerInSection from './components/report/ListBannerInSection';
+
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -63,9 +65,9 @@ const App = () => {
           <Switch>
             {currentUser ? (
               <Layout logOut={logOut} showAdminBoard={showAdminBoard}>
-                <Route path="/">
+                {/* <Route path="/">
                   <Redirect to="/home" />
-                </Route>
+                </Route> */}
                 <Route exact path="/home">
                   <Home />
                 </Route>
@@ -84,6 +86,10 @@ const App = () => {
 
                 <Route path="/banner/display/:id">
                   <DisplayBanner />
+                </Route>
+
+                <Route path="/banner/report/section/:id">
+                  <ListBannerInSection />
                 </Route>
                 <Route path="/website">
                   <WebsiteList />
@@ -118,9 +124,9 @@ const App = () => {
               </Layout>
             ) : (
               <>
-                <Route path="/">
+                {/* <Route path="/">
                   <Redirect to='/login'></Redirect>
-                </Route>
+                </Route> */}
                 <Route exact path="/login">
                   <Login />
                 </Route>
