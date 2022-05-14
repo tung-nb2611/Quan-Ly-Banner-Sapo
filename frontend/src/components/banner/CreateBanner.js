@@ -113,7 +113,7 @@ function CreateBanner(props) {
                                         setSectionId(e.target.value)}}>
                                         <option hidden></option>
                                         {sectionList.map((section) => 
-                                            <option value={section.id} selected={(section.id == id) ? true : false}>{section.position_web}</option>
+                                            <option value={section.id} selected={(section.id == id) ? true : false}>{section.name}</option>
                                         )} 
                                     </select>
                                 </div>
@@ -121,7 +121,7 @@ function CreateBanner(props) {
                                     <label htmlFor="sector">Sector List</label>
                                 <select className='col-5' style={{ fontSize: "17px"}} onChange={(e) =>setSectorChoice(e.target.value)}>
                                     {sectorList.map((item) => 
-                                        <option value={item.div_id}>{item.div_id}</option>
+                                        <option value={item.div_id}>{item.divId}</option>
                                     )}
                                 </select>
                                 </div>
