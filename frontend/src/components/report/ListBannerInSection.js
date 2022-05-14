@@ -28,7 +28,6 @@ const ListBannerInSection = () => {
             <div className="list">
                 {displayBanner}
             </div>
-
         </div>
     );
 

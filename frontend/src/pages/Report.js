@@ -4,14 +4,25 @@ import ChoiceSection from "../components/report/ChoiceSection";
 import ListBannerInSection from "../components/report/ListBannerInSection";
 import ListBannerReport from "../components/report/ListBannerReport";
 import Views from "../components/report/Views";
+import * as BiIcons from "react-icons/bi";
 
 const Report = () => {
     return (
-        <div >
-            <ChoiceSection />
-            {/* <Views /> */}
-            {/* <ListBannerReport /> */}
-            {/* <ListBannerInSection /> */}
+        <div className=" p-3 d-flex flex-column gap-4">
+            <div className="d-inline-flex gap-3">
+                <h3>WEBSITE</h3>
+                <BiIcons.BiRightArrow className="mt-2"/>
+                <ChoiceSection />
+            </div>
+            <div>
+                <Views />
+            </div>
+            <div>
+                {/* <ListBannerReport /> */}
+            </div>
+            <div>
+                {/* <ListBannerInSection /> */}
+            </div>
         </div>
     );
 };

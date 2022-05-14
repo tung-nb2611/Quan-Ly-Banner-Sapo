@@ -1,4 +1,4 @@
-import '../../styles/section/DisplayBanner.css'
+import '../../styles/website/DisplayBanner.css'
 import React, { useContext, useState } from "react";
 import * as BiIcons from "react-icons/bi";
 import ListBannerChoice from '../banner/ListBannerChoice';
@@ -23,8 +23,8 @@ function DisplayBanner(props) {
     pathname: "/banner/create/" + id,
     section: section
   }
-	const backToSection = {
-    pathname: "/website" + id,
+	const backToSections = () => {
+    history.push('/websites/websiteId=' + id + '/sections')
   }
 
   const handleOnChangeChoice = (e) => {
@@ -85,73 +85,67 @@ function DisplayBanner(props) {
           <div className="pb-4 text-center">
             <h2>Quản lý hiển thị banner</h2>
           </div>
-          <div className="row">
-            <div className="col-sm-12 d-inline-flex">
-              <form >
-                  <div className="mt-2 col-12 form-group">
-                      <div className="col-2">
-                          <label htmlFor="bannerID">Khu vực hiển thị</label>
-                      </div>
-                      <div className="col-8">
-                          <input className="form-control text-center"
-                              value={id} disabled
-                          />
-                      </div>
-                  </div>
-                  <div className="mt-3 col-12 form-group">
-                      <div className="col-2">
-                          <label htmlFor="bannerID">Thời gian hiển thị (ngày)</label>
-                      </div>
-                      <div className="col-8">
-                          <input className="form-control text-center" id="bannerID" type="number"
-                              value={timeDisplay} onChange={(e) => setTimeDisplay(e.target.value)}
-                          />
-                      </div>
-                  </div>
-                  <div className='mt-3 col-12 form-group'>
-                      <div className='col-2'>
-                          <label htmlFor='bannerID'>Chế độ hiển thị</label>
-                      </div>
-                      <label className='col-12'>
-                          <select className='col-5' style={{ fontSize: "17px"}} onChange={(e) => handleOnChangeChoice(e)}>
-                              <option value="Random">Ngẫu nhiên</option>
-                              <option value="Percentage">Tỉ trọng</option>
-                          </select>
-                      </label>
-                  </div>
-            
-                  {/* <div className="mt-3 col-12 form-group">
-                      <div className="col-2">
-                          <label htmlFor="bannerID">Hiển thị ngẫu nhiên</label>
-                      </div>
-                      <label className="col-1">
-                          <input type="checkbox" checked={randomChecked} style={{ transform: "scale(1.5)", marginLeft: "5px" }}
-                              onChange={(e) => handleOnChangeChoice(e)}
-                          />
-                          <span className="checkmark"></span>
-                      </label>
-                  </div>
-                  <div className="mt-3 col-12 form-group">
-                      <div className="col-2">
-                          <label htmlFor="bannerID">Hiển thị theo tỉ trọng</label>
-                      </div>
-                      <label className="col-1">
-                          <input type="checkbox" style={{ transform: "scale(1.5)", marginLeft: "5px" }}
-                              checked={percentageChecked} onChange={(e) => handleOnChangeChoice(e)} />
-                          <span className="checkmark"></span>
-                      </label>
-                  </div>  */}
-              </form>
+          <form className='d-flex flex-column'>
+            <div className="mt-2 form-group">
+              <div className="col-3">
+                <label htmlFor="bannerID">Khu vực hiển thị</label>
+              </div>
+              <div className="col-3">
+                <input className="form-control text-center"
+                  value={id} disabled
+                />
+              </div>
             </div>
-          </div>
-          <div className="mt-3 col-10" id="showListBannerChoice">
+            <div className="mt-3 form-group">
+              <div className="col-3">
+                <label htmlFor="bannerID">Thời gian hiển thị (ngày)</label>
+              </div>
+              <div className="col-3">
+                <input className="form-control text-center" id="bannerID" type="number"
+                  value={timeDisplay} onChange={(e) => setTimeDisplay(e.target.value)}
+                />
+              </div>
+            </div>
+            <div className='mt-3 form-group'>
+              <div className='col-3'>
+                <label htmlFor='bannerID'>Chế độ hiển thị</label>
+              </div>
+              <label className='col-3'>
+                <select className='p-1 w-100 text-center' onChange={(e) => handleOnChangeChoice(e)}>
+                  <option value="Random">Ngẫu nhiên</option>
+                  <option value="Percentage">Tỉ trọng</option>
+                </select>
+              </label>
+            </div>
+        
+            {/* <div className="mt-3 col-12 form-group">
+                <div className="col-2">
+                    <label htmlFor="bannerID">Hiển thị ngẫu nhiên</label>
+                </div>
+                <label className="col-1">
+                    <input type="checkbox" checked={randomChecked} style={{ transform: "scale(1.5)", marginLeft: "5px" }}
+                        onChange={(e) => handleOnChangeChoice(e)}
+                    />
+                    <span className="checkmark"></span>
+                </label>
+            </div>
+            <div className="mt-3 col-12 form-group">
+                <div className="col-2">
+                    <label htmlFor="bannerID">Hiển thị theo tỉ trọng</label>
+                </div>
+                <label className="col-1">
+                    <input type="checkbox" style={{ transform: "scale(1.5)", marginLeft: "5px" }}
+                        checked={percentageChecked} onChange={(e) => handleOnChangeChoice(e)} />
+                    <span className="checkmark"></span>
+                </label>
+            </div>  */}
+          </form>
+          <div className="mt-3 col-12" id="showListBannerChoice">
             <ListBannerChoice id={id} ></ListBannerChoice>
           </div>
-          <div className="col-12">
-            <div className="button">
-              <button type="button" className="btn btn-cancel" name="btncancel" >Hủy</button>
-              <button type="submit" className="btn btn-add " name="btnsubmit" onClick={() => handleAddBannerForDisplay()} >Thêm banner</button>
-            </div>
+          <div className="button">
+            <button type="button" className="btn btn-outline-secondary mt-2 me-2" name="btncancel" onClick={() => backToSections()}>Hủy</button>
+            <button type="submit" className="btn btn-primary mt-2" name="btnsubmit" onClick={() => handleAddBannerForDisplay()} >Thêm banner</button>
           </div>
         </div>
       </div>

@@ -1,17 +1,8 @@
 import React, { useState, useEffect } from "react";
-
 import axios from "axios";
 import BannerService from "../../services/BannerService";
-
-
-
-
 import { Bar, Line } from 'react-chartjs-2';
-
 import ViewService from "../../services/views/ViewService";
-
-
-
 
 const Views = () => {
     const [category, setCategory] = useState([])
@@ -51,17 +42,8 @@ const Views = () => {
     //         console.log("age", age, salary)
     //     }).catch(e => {
     //         alert(e);
-
-
-
     //     });
-
-
     // }, []);
-
-
-
-
 
     var data = {
         labels: category,
