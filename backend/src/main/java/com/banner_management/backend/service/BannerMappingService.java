@@ -111,7 +111,14 @@ public class BannerMappingService {
 
     }
 
-    // New
+
+    public  int getSumClickInBannerBySectionId(int bannerID, int sectionID){
+        return  bannerMappingRepository.getSumCliksByBannerIdInSectionId(bannerID,sectionID);
+    }
+    public  int getSumViewInBannerBySectionId(int bannerID, int sectionID){
+        return  bannerMappingRepository.getSumViewsByBannerIdInSectionId(bannerID,sectionID);
+    }
+
     public List<BannerMappingEntity> getListBannerEnabledBySectionId(int sectionId){
         return bannerMappingRepository.getListBannerBySections(sectionId);
     }
@@ -122,5 +129,6 @@ public class BannerMappingService {
     }
 
     public List<BannerMappingEntity> getAllBannerStatus() {return bannerMappingRepository.findAll();}
+
 
 }

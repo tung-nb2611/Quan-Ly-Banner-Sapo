@@ -22,6 +22,10 @@ public class BannerMappingDto {
     }
 
     public BannerMappingDto(int id, String imgUrl, String url, int sectionID) {
+        this.id = id;
+        this.imgUrl = imgUrl;
+        this.url = url;
+        this.sectionID = sectionID;
     }
 
     @Override

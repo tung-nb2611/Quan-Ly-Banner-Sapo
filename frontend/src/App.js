@@ -107,7 +107,7 @@ const App = () => {
                     <SectionList />
                   </Route>
 
-                  <Route exact path="/banner/report/section=:id" >
+                  <Route exact path="/banner/report/section/:id" >
                     <ListBannerInSection />
                   </Route>
                   <Route exact path="/websites/websiteId=:webId/createSection" >
