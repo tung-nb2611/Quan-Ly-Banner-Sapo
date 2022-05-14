@@ -33,5 +33,9 @@ class BannerStatusService {
         return axios.get("http://localhost:8080/api/banner-status/percents/" + sectionId);
     }
 
+    updateBannerStatusList(bannerStatusArray){
+        return axios.put("http://localhost:8080/api/banner-status/update", bannerStatusArray);
+    }
+
 }
 export default new BannerStatusService();

@@ -60,7 +60,7 @@ const BannerHiddenStatus = ({ item, displayUtil, setH, banList }) => {
         <td className="text-center ">
           <select
             className="form-select text-center"
-            defaultValue={(typeof arrayItem === 'undefined') ? item.percentage : arrayItem.rate}
+            defaultValue={(typeof arrayItem === 'undefined') ? item.percentage : arrayItem.percentage}
             onChange={handlePercentageChange}
           >
             <option value="0">0</option>

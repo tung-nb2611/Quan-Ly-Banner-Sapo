@@ -8,10 +8,12 @@ import { CheckboxArrContext } from '../../context/CheckboxListContext';
 
 import { Link } from "react-router-dom";
 import ListBannerHidden from '../banner/ListBannerHidden';
+import { CheckboxContext } from '../../context/CheckboxContext';
 
 function DisplayBanner(props) {
 
     const arrContext = useContext(CheckboxArrContext);
+    const arrHiddenContext = useContext(CheckboxContext);
     let { id } = useParams();
     const [randomChecked, setRandomChecked] = useState(true);
     const [percentageChecked, setpercentageChecked] = useState(false);
@@ -45,32 +47,41 @@ function DisplayBanner(props) {
             alert("Thời gian hiển thị banner phải là một số dương");
             return;
         }
-        if (randomChecked === true) {
-
-            let today = new Date();
-
-            let bannerStatusItem = {
-                sectionID: id,
-                timeDisplay: today,
-            }
-            BannerStatusService.updateBannerStatusViaRandom(bannerStatusItem);
-
-        };
-        if (percentageChecked === true) {
+        
             let today = new Date();
             let bannerStatusArray = new Array();
-            for (let i = 0; i < arrContext.countArr.length; i++) {
+            for (let i = 0; i < arrContext.bannerArr.length; i++) {
                 let bannerStatusItem = {
-                    bannerID: arrContext.countArr[i].id,
-                    sectionID: id,
-                    percentage: arrContext.countArr[i].rate,
+                    bannerID: arrContext.bannerArr[i].bannerID,
+                    code: arrContext.bannerArr[i].code,
+                    id: arrContext.bannerArr[i].id,
+                    imgUrl: arrContext.bannerArr[i].imgUrl,
+                    name: arrContext.bannerArr[i].name,
+                    sectionID: arrContext.bannerArr[i].sectionID,
+                    percentage: arrContext.bannerArr[i].percentage,
                     timeDisplay: today,
+                    state: arrContext.bannerArr[i].state
                 }
                 bannerStatusArray.push(bannerStatusItem);
             }
 
-            BannerStatusService.updateBannerStatusViaPercentage(bannerStatusArray);
-        }
+            for (let i = 0; i < arrHiddenContext.hiddenArr.length; i++) {
+                let bannerStatusItem = {
+                    bannerID: arrHiddenContext.hiddenArr[i].bannerID,
+                    code: arrHiddenContext.hiddenArr[i].code,
+                    id: arrHiddenContext.hiddenArr[i].id,
+                    imgUrl: arrHiddenContext.hiddenArr[i].imgUrl,
+                    name: arrHiddenContext.hiddenArr[i].name,
+                    sectionID: arrHiddenContext.hiddenArr[i].sectionID,
+                    percentage: arrHiddenContext.hiddenArr[i].percentage,
+                    timeDisplay: today,
+                    state: arrHiddenContext.hiddenArr[i].state
+                }
+                bannerStatusArray.push(bannerStatusItem);
+            }
+
+            BannerStatusService.updateBannerStatusList(bannerStatusArray);
+        
     }
 
     return (
