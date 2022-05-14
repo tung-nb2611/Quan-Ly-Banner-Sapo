@@ -8,14 +8,10 @@ import Views from "../components/report/Views";
 const Report = () => {
     return (
         <div >
-            <ChoiceSection/>
+            <ChoiceSection />
             {/* <Views /> */}
-<<<<<<< HEAD
             {/* <ListBannerReport /> */}
             {/* <ListBannerInSection /> */}
-=======
-            <ListBannerReport />
->>>>>>> b356a4375f0b58bffc1076b5153d77a449162f9b
         </div>
     );
 };
