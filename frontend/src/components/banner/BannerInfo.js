@@ -6,17 +6,17 @@ import { useState } from "react";
 const BASE_URL = "http://localhost:8080/api/banners/";
 
 const BannerInfo = ({ bannerInfo, bannerList, setBannerList }) => {
-
   const [detailInfo, setDetailInfo] = useState(bannerInfo);
-
+  
   const updatePage = {
     pathname: "/banner/update/" + bannerInfo.code,
     detailInfo: detailInfo
-  }
+  };
+
   const bannerDetail = {
     pathname: "/banner/detail/" + bannerInfo.code,
     detailInfo: detailInfo
-  }
+  };
 
   const deleteConfirmation = () => {
     const confirm = window.confirm("Do you want to remove this banner?");

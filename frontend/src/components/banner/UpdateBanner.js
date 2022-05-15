@@ -154,12 +154,7 @@ function UpdateBanner(props) {
                 </div>
             </div>
         </div>
-
     );
-
-
 }
-
-
 
 export default UpdateBanner;
