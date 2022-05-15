@@ -22,6 +22,14 @@ class SectionService {
     // getWebsiteByPage(number){
     //     return axios.get(SECTION_API_SECTION_URL + '/page/' + number);
     // }
+
+    updateSectionStatus(section){
+        return axios.put(SECTION_API_SECTION_URL + '/status', section);
+    }
+
+    getSectionById(id){
+        return axios.get(SECTION_API_SECTION_URL + '/' + id);
+    }
 }
 
 export default new SectionService();

@@ -22,7 +22,6 @@ const CheckboxArrProvider = ({ children }) => {
     );
   };
 
-  console.log(bannerArr);
 
   const updateCheckboxArr = (id, value) => {
     const tempArr = countArr.map((banner) =>

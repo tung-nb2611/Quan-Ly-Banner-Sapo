@@ -5,8 +5,10 @@ import com.banner_management.backend.dto.BannerInfoDto;
 import com.banner_management.backend.dto.BannerMappingDto;
 import com.banner_management.backend.entity.BannerEntity;
 import com.banner_management.backend.entity.BannerMappingEntity;
+import com.banner_management.backend.entity.SectionEntity;
 import com.banner_management.backend.service.BannerMappingService;
 import com.banner_management.backend.service.BannerService;
+import com.banner_management.backend.service.SectionService;
 import com.banner_management.backend.service.ViewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -30,6 +32,9 @@ public class BannerMappingController {
     private BannerService bannerService;
 
     @Autowired
+    private SectionService sectionService;
+
+    @Autowired
     private ViewService viewService;
 //     @GetMapping("/banner-mapping/clisk-views/{bannerID}")
 //         public  List<BannerMappingEntity> listBanerMapping (@PathVariable("bannerID") int bannerID){
@@ -44,7 +49,7 @@ public class BannerMappingController {
         System.out.println("kiem tra : "+ bannerMappingEntity);
         BannerEntity bannerEntity = bannerService.getById(bannerMappingEntity.getBannerID());
         System.out.println("data : "+ bannerEntity);
-        return  bannerEntity;
+        return bannerEntity;
     }
 
     // cap nhat du lieu thoi gian bat dau khi chon random
@@ -72,21 +77,27 @@ public class BannerMappingController {
 
     @GetMapping("/banner-mapping/percentage/{websiteID}")
     public BannerMappingDto getImageUrlByPercentage(@PathVariable("websiteID") int sectionId){
+        // tim sectionId - lay thong tin xem cai section day dat la ti trong hay random ?
+        SectionEntity section = sectionService.getById(sectionId);
+        short status = section.getStatus();
+        // neu ti trong
 
-        BannerMappingEntity bannerMappingEntity =  bannerMappingService.getBannerByPercentage(sectionId);
-        BannerEntity bannerEntity = bannerService.getById(bannerMappingEntity.getBannerID());
-        if(bannerMappingEntity.getNumberView() == 0){
-            bannerMappingEntity.setNumberView(1);
-        }
-        else {
-            int countViews = bannerMappingEntity.getNumberView();
-            bannerMappingEntity.setNumberView(countViews + 1);
-        }
-        bannerMappingService.save(bannerMappingEntity);
-        BannerMappingDto bannerMappingDto = new BannerMappingDto(
-                bannerEntity.getId(), bannerEntity.getImgUrl(), bannerEntity.getUrl(),bannerMappingEntity.getSectionID() );
-        System.out.println("banner Dto : "+ bannerMappingDto);
-        return bannerMappingDto;
+            BannerMappingEntity bannerMappingEntity = bannerMappingService.getBannerByPercentage(sectionId);
+            BannerEntity bannerEntity = bannerService.getById(bannerMappingEntity.getBannerID());
+            if (bannerMappingEntity.getNumberView() == 0) {
+                bannerMappingEntity.setNumberView(1);
+            } else {
+                int countViews = bannerMappingEntity.getNumberView();
+                bannerMappingEntity.setNumberView(countViews + 1);
+            }
+            bannerMappingService.save(bannerMappingEntity);
+            BannerMappingDto bannerMappingDto = new BannerMappingDto(
+                    bannerEntity.getId(), bannerEntity.getImgUrl(), bannerEntity.getUrl(), bannerMappingEntity.getSectionID());
+            System.out.println("banner Dto : " + bannerMappingDto);
+            return bannerMappingDto;
+
+        // neu random
+        // chay getBannerByRandom
     }
 
     //
