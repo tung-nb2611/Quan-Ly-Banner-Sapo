@@ -47,4 +47,6 @@ public class ViewsController {
     public void insertViewBanner (@RequestBody ViewEntity viewEntity){
         viewService.save(viewEntity);
     }
+
+//    @GetMapping(/banners/views/{})
 }

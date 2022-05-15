@@ -28,7 +28,7 @@ public class ViewService {
 
     //lấy views theo bnner id
     public List<ViewEntity> getByBannerID(Integer bannerID){
-        return viewRepository.getByBannerByID(bannerID);
+        return viewRepository.getAllViewsByBannerByID(bannerID);
     }
 
     @Transactional

@@ -13,6 +13,7 @@ function ChoiceSection() {
         WebsiteService.getWebsiteByPageAndUserAdd("tung", currentPage).then((response) => {
             const info = response.data.content;
             setWebsiteList(info);
+            console.log("info", info);
         })
     }, [currentPage])
 
@@ -23,7 +24,7 @@ function ChoiceSection() {
             return (
                 <div className="web me-3" key={data.id}>
                     <Link className="btn" to={"/websites/websiteId=" + data.id + "/report"}>
-                        {data.name}
+                        <div className="title">{data.name}</div>
                     </Link>
                 </div>
             )
@@ -31,7 +32,7 @@ function ChoiceSection() {
     )
 
     return (
-        <div className="d-flex">            
+        <div className="d-flex">
             {displayWebsites}
         </div>
     )
