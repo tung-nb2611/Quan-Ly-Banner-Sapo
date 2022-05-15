@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
 import ReportBannerInfor from "./ReportBannerInfor";
-
 import axios from "axios";
 import PaginateList from "../PaginateList";
 
@@ -27,12 +25,16 @@ const ListBannerReport = () => {
     }, [currentPage]);
 
     const displayBanner = bannerList.map((bannerInfo) => {
-        return <ReportBannerInfor bannerInfo={bannerInfo} key={bannerInfo.id} bannerList={bannerList} setBannerList={setBannerList} />;
+        return (
+            <div className="col-md-12 col-lg-6 mb-3" key={bannerInfo.id}>
+                <ReportBannerInfor bannerInfo={bannerInfo} bannerList={bannerList} setBannerList={setBannerList} />;
+            </div>
+        );
     });
 
     return (
-        <div className="banner-list m-2">
-            <div className="list">
+        <div className="banner-list">
+            <div className="list d-flex row">
                 {displayBanner}
             </div>
             <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />

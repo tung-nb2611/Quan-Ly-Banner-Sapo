@@ -23,8 +23,6 @@ const Report = () => {
             </div>
             <div>
                 <Widget />
-
-
             </div>
             <div>
                 <Views />

@@ -34,7 +34,7 @@ const BannerList = () => {
   });
 
   return (
-    <div className="section-list">
+    <div className="banner-list">
       <div className="list d-flex row">
         {displayBanner}
       </div>
