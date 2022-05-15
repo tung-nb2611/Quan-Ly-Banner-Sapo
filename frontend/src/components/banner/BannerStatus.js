@@ -5,7 +5,6 @@ const BannerStatus = ({ item, displayUtil }) => {
   const bannerContext = useContext(CheckboxArrContext);
 
   const bannerArray = bannerContext.bannerArr;
-  console.log(bannerArray);
   const arrayItem = bannerArray.find((banner) => banner.id === item.id);
   // const [status, setStatus] = useState({
   //   id: arrayItem.id,
