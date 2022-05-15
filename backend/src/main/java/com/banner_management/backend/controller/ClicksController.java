@@ -12,6 +12,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -27,7 +28,7 @@ public class ClicksController {
     BannerMappingService bannerMappingService;
 
     @PostMapping("/banners/clicks")
-    public void updateClickBanner(@RequestBody ClickEntity clickEntity){
+    public void updateClickBanner(@Valid  @RequestBody ClickEntity clickEntity){
         System.out.println("check du lieu click nhan ve : "+ clickEntity);
         clickService.save(clickEntity);
         BannerMappingEntity bannerMappingEntity = bannerMappingService.getByBannerIDAndSectionID(clickEntity.getBannerId(), clickEntity.getSectionId());

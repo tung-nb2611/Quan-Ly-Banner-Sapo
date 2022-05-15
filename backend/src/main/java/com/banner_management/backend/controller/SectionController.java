@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -21,12 +22,12 @@ public class SectionController {
     private SectionService sectionService;
 
     @GetMapping("/websiteID={websiteID}/sections")
-    public List<SectionEntity> listSections(@PathVariable("websiteID") int webId) {
+    public List<SectionEntity> listSections(@Valid  @PathVariable("websiteID") int webId) {
         return sectionService.listSectionByWebsiteID(webId);
     }
 
     @GetMapping("/sections/page/websiteId={webId}/{page}")
-    public ResponseEntity<Page<SectionEntity>> getWebsiteListByPageAndUserAdd(@PathVariable("webId") int webId, @PathVariable("page") int page){
+    public ResponseEntity<Page<SectionEntity>> getWebsiteListByPageAndUserAdd(@Valid @PathVariable("webId") int webId, @PathVariable("page") int page){
         try {
             Page<SectionEntity> sections = sectionService.getSectionByPageAndWebsiteId(webId, page);
             return new ResponseEntity<>(sections, HttpStatus.OK);
@@ -36,7 +37,7 @@ public class SectionController {
     }
 
     @PostMapping("/sections")
-    public ResponseEntity<SectionEntity> addSection(@RequestBody SectionDto sectionDto){
+    public ResponseEntity<SectionEntity> addSection(@Valid @RequestBody SectionDto sectionDto){
         try {
             System.out.println(" section dto " + sectionDto);
             SectionEntity sectionEntity = new SectionEntity( sectionDto.getWebId(),sectionDto.getDivId());
@@ -50,7 +51,7 @@ public class SectionController {
     }
 
     @PutMapping("/sections/{id}")
-    public ResponseEntity<SectionEntity> updateSection(@RequestBody SectionEntity section, @PathVariable Integer id){
+    public ResponseEntity<SectionEntity> updateSection(@Valid @RequestBody SectionEntity section, @Valid @PathVariable Integer id){
         try{
             System.out.println("id: "+ id);
             System.out.println(section);
@@ -65,7 +66,7 @@ public class SectionController {
     }
 
     @DeleteMapping("/sections/{id}")
-    public ResponseEntity<SectionEntity> deleteSection(@PathVariable Integer id){
+    public ResponseEntity<SectionEntity> deleteSection(@Valid @PathVariable Integer id){
         try{
             sectionService.delete(id);
             return new ResponseEntity<>(HttpStatus.OK);
