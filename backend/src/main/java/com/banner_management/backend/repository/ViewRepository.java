@@ -32,13 +32,17 @@ public interface ViewRepository extends JpaRepository<ViewEntity, Integer> {
 
     // query tinh luong view theo tháng theo khu vuc
     @Query(value = "select count(id) from views where year(views.time_view) = ?1 and month(views.time_view) = ?2 and section_id = ?3", nativeQuery = true)
-    Integer getSumViewBySectionIDForMonth(int year, int month , int sectionID);
+    Integer getSumViewByForMonth(int year, int month , int sectionID);
 
 //    // query tinh luong view theo tuần theo khu vuc
 //    @Query(value = "select count(id) as number_click from views where month(views.time_view) = ?1 and section_id = ?2", nativeQuery = true)
 //    Integer getSumViewBySectionIDForWeek(int month, int sectionID);
 
-    // query tinh luong view theo tháng theo khu vuc
-    @Query(value = "select count(id) from views where date(views.time_view) = ?1 and section_id = ?2", nativeQuery = true)
-    Integer getSumViewBySectionIDForDay(Date day, int sectionID);
+//    // query tinh luong view theo tháng theo khu vuc
+//    @Query(value = "select count(id) from views where date(views.time_view) = ?1 and section_id = ?2", nativeQuery = true)
+//    Integer getSumViewBySectionIDForDay(Date day, int sectionID);
+
+    //Lấy tổng lượng view theo tháng
+    @Query(value ="SELECT (monthname(time_view)) AS  month , COUNT(*) AS views FROM views where section_id =?1 GROUP BY month ORDER BY month ASC",nativeQuery = true)
+    Integer getSumViewBySectionIDForMonth( int sectionID);
 }

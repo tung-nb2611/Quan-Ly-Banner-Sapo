@@ -6,13 +6,47 @@ public class ClickAndViewDto {
     private int numberClick;
     private int numberView;
     private  int bannerID;
+    private  String month;
+    private int year ;
 
+    public ClickAndViewDto(String name, int sectionID, int sumClick, int sumView, String monthName, int year) {
+        this.webName = name;
+        this.sectionID = sectionID;
+        this.numberClick = sumClick;
+        this.numberView = sumView;
+        this.month = monthName;
+        this.year = year;
+    }
 
-
-
+    @Override
+    public String toString() {
+        return "ClickAndViewDto{" +
+                "webName='" + webName + '\'' +
+                ", sectionID=" + sectionID +
+                ", numberClick=" + numberClick +
+                ", numberView=" + numberView +
+                ", month='" + month + '\'' +
+                ", year=" + year +
+                '}';
+    }
 
     public int getBannerID() {
         return bannerID;
+    }
+
+    public String getMonth() {
+        return month;
+    }
+
+    public void setMonth(String month) {
+        this.month = month;
+    }
+
+    public ClickAndViewDto(int sectionID, int numberView, int numberClick, String month) {
+        this.sectionID = sectionID;
+        this.numberView = numberView;
+        this.numberClick = numberClick;
+        this.month = month;
     }
 
     public void setBannerID(int bannerID) {
@@ -25,28 +59,20 @@ public class ClickAndViewDto {
         this.bannerID = bannerID;
     }
 
-    public ClickAndViewDto(String webName, int sectionID, int numberClick, int numberView, int bannerID) {
+    public int getYear() {
+        return year;
+    }
 
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    public ClickAndViewDto(String webName, int sectionID, int numberClick, int numberView, int bannerID) {
         this.webName = webName;
         this.sectionID = sectionID;
         this.numberClick = numberClick;
         this.numberView = numberView;
-
-
-
         this.bannerID = bannerID;
-
-    }
-
-    @Override
-    public String toString() {
-        return "ClickAndViewDto{" +
-                "webName='" + webName + '\'' +
-                ", sectionID=" + sectionID +
-                ", numberClick=" + numberClick +
-                ", numberView=" + numberView +
-          ", bannerID=" + bannerID +
-                '}';
     }
 
     public ClickAndViewDto(String webName, int sectionID, int numberClick, int numberView) {
@@ -56,7 +82,6 @@ public class ClickAndViewDto {
         this.numberView = numberView;
 
     }
-
 
 
     public String getWebName() {

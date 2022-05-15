@@ -55,11 +55,15 @@ public class ViewService {
         return viewRepository.getSumViewBySectionIDForYear(year, sectionID);
     }
 
-    public int getSumViewBySectionIDForMonth(int year, int month , int sectionID){
-        return viewRepository.getSumViewBySectionIDForMonth(year, month, sectionID);
+    public int getSumViewBySectionIDForMonth( int sectionID){
+        return viewRepository.getSumViewBySectionIDForMonth(sectionID);
     }
 
-    public int getSumViewBySectionIDForDay(Date day , int sectionID){
-        return viewRepository.getSumViewBySectionIDForDay(day, sectionID);
+    public int getSumViewByForMonth ( int year, int month, int sectionID){
+        return viewRepository.getSumViewByForMonth(year, month, sectionID);
     }
+
+//    public int getSumViewBySectionIDForDay(Date day , int sectionID){
+//        return viewRepository.getSumViewBySectionIDForDay(day, sectionID);
+//    }
 }

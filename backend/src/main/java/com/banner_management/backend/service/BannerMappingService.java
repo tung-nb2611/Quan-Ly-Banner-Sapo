@@ -109,9 +109,6 @@ public class BannerMappingService {
     public int getSumClickInBannerTd(int bannerID){
         return  bannerMappingRepository.getSumCliksByBannerId(bannerID);
 
-
-
-
     }
 
 
@@ -132,7 +129,6 @@ public class BannerMappingService {
     }
 
     public List<BannerMappingEntity> getAllBannerStatus() {return bannerMappingRepository.findAll();}
-
 
 
 }
