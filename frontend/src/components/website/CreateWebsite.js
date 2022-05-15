@@ -70,6 +70,7 @@ function CreateWebsite(props) {
             else {
                 document.getElementById("url").style.display = "none";
             }
+            return;
         }
         else {
             saveSection(e);
