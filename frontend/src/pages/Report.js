@@ -21,7 +21,13 @@ const Report = () => {
                 </div>
                 <h3>{date}</h3>
             </div>
+<<<<<<< HEAD
 
+=======
+            <div>
+                <Widget />
+            </div>
+>>>>>>> e8b8cb29929d8c672cca2d5e39e7df13d2750b73
             <div>
                 <Views />
             </div>
