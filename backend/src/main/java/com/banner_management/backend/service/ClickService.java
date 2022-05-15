@@ -26,13 +26,15 @@ public class ClickService {
     public int getSumClickBySectionIDForYear(int year, int sectionID){
         return clickRepository.getSumClickBySectionIDForYear(year, sectionID);
     }
-    public int getSumClickBySectionIDForMonth(int sectionID){
+
+    public int getSumClickBySectionIDForMonth( int sectionID){
         return clickRepository.getSumClickBySectionIDForMonth(sectionID);
     }
 
-//    public int getSumClickBySectionIDForMonth(int year, int month , int sectionID){
-//        return clickRepository.getSumClickBySectionIDForMonth(year, month, sectionID);
-//    }
+    public int getSumClickByForMonth(int year, int month , int sectionID){
+        return clickRepository.getSumClickByForMonth(year, month, sectionID);
+    }
+
 
 //    public  int getSumClickBySectionIdForMonth(int sectionID){
 //        return clickRepository.get
