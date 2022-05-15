@@ -15,6 +15,9 @@ class ReportService {
     getSumClickAndViewInBannerIdBySectionId(bannerID, sectionID) {
         return axios.get("http://localhost:8080/api/banners/report/click-and-view/" + sectionID + '/' + bannerID)
     }
+    getListClickandviewInmonth(sectionID) {
+        return axios.get("http://localhost:8080/api/banners/report/click-and-view/sectionID=" + sectionID + "/year=" + "2022" + "/" + "statics")
+    }
 }
 
 export default new ReportService();

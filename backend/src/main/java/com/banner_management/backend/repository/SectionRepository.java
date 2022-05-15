@@ -15,7 +15,8 @@ public interface SectionRepository extends JpaRepository<SectionEntity, Integer>
 
 
 
-
+    @Query(value = "select * from sections where id = ?1", nativeQuery = true)
+    SectionEntity getSectionById(int sectionId);
 
     @Query(value = "select * from sections where web_id = ?1", nativeQuery = true)
     List<SectionEntity> getSectionEntitiesByWebsiteID(int webId);

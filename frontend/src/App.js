@@ -61,7 +61,7 @@ const App = () => {
             {currentUser ?
               (
                 <Layout logOut={logOut} showAdminBoard={showAdminBoard}>
-                  <Redirect from="/" to="/home" />
+                  {/* <Redirect from="/" to="/home" /> */}
                   <Route exact path="/home">
                     <Home />
                   </Route>
@@ -108,13 +108,13 @@ const App = () => {
                     <DetailReport />
                   </Route>
                   <Route exact path="/user/manage">
-                    <UserManage/>
+                    <UserManage />
                   </Route>
                   <Route exact path="/user/create">
-                    <CreateUser/>
+                    <CreateUser />
                   </Route>
                   <Route path="/user/update/:code">
-                    <UpdateUser/>
+                    <UpdateUser />
                   </Route>
                   {/* <Route path="/user/update">
                     <UpdateUser/>
@@ -122,9 +122,9 @@ const App = () => {
                 </Layout>
               ) : (
                 <>
-                  <Route path="/">
+                  {/* <Route path="/">
                     <Redirect to='/login'></Redirect>
-                  </Route>
+                  </Route> */}
                   <Route exact path="/login">
                     <Login />
                   </Route>

@@ -18,7 +18,7 @@ public interface ViewRepository extends JpaRepository<ViewEntity, Integer> {
 
 
     @Query(value = "select * from views where banner_id = ?1 ", nativeQuery = true)
-    List<ViewEntity> getByBannerByID(Integer bannerID);
+    List<ViewEntity> getAllViewsByBannerByID(Integer bannerID);
 
 
     @Query(value = "select banner_id, sum(number) from views group by banner_id order by sum(number)", nativeQuery = true)

@@ -1,10 +1,11 @@
 import '../../styles/website/DisplayBanner.css'
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import * as BiIcons from "react-icons/bi";
 import ListBannerChoice from '../banner/ListBannerChoice';
 import { useHistory, useParams } from 'react-router-dom';
 import BannerStatusService from '../../services/BannerStatusService'
 import { CheckboxArrContext } from '../../context/CheckboxListContext';
+import SectionService from '../../services/section/SectionService';
 
 import { Link } from "react-router-dom";
 import ListBannerHidden from '../banner/ListBannerHidden';
@@ -15,11 +16,22 @@ function DisplayBanner(props) {
     const arrContext = useContext(CheckboxArrContext);
     const arrHiddenContext = useContext(CheckboxContext);
     let { id } = useParams();
-    const [randomChecked, setRandomChecked] = useState(true);
-    const [percentageChecked, setpercentageChecked] = useState(false);
     const [timeDisplay, setTimeDisplay] = useState(0);
     const [section, setSection] = useState([]);
+    const [sectionInfo, setSectionInfo] = useState();
     const history = useHistory();
+    const [randomChecked, setRandomChecked] = useState(true);
+    const [percentageChecked, setpercentageChecked] = useState(false);
+    const [random, setRandom] = useState();
+
+    useEffect(() => {
+        SectionService.getSectionById(id).then((response) => {
+            setSectionInfo(response.data);
+            setRandom(response.data.status);
+            setRandomChecked(response.data.status ? 0 : 1);
+            setpercentageChecked(response.data.status ? 1 : 0);
+        })
+    }, []);
 
     const createPage = {
         pathname: "/banner/create/" + id,
@@ -36,7 +48,6 @@ function DisplayBanner(props) {
     }
 
     const handleOnChangeChoice = (e) => {
-
         const choice = e.target.value;
         if (choice === "Percentage") {
             setRandomChecked(false);
@@ -89,6 +100,21 @@ function DisplayBanner(props) {
 
         BannerStatusService.updateBannerStatusList(bannerStatusArray);
 
+
+
+            BannerStatusService.updateBannerStatusList(bannerStatusArray);
+            
+            const section = {
+                id: sectionInfo.id,
+                divId: sectionInfo.divId,
+                webId: sectionInfo.webId,
+                status: randomChecked ? 0 : 1
+            }
+
+            SectionService.updateSectionStatus(section);
+            /// api luu random/percentage vao section list dua theo section id
+        
+
     }
 
     return (
@@ -127,9 +153,11 @@ function DisplayBanner(props) {
                                             <label htmlFor='bannerID'>Chế độ hiển thị</label>
                                         </div>
                                         <label className='col-12'>
-                                            <select className='col-5' style={{ fontSize: "17px" }} onChange={(e) => handleOnChangeChoice(e)}>
-                                                <option value="Random">Ngẫu nhiên</option>
-                                                <option value="Percentage">Tỉ trọng</option>
+
+                                            <select className='col-5' style={{ fontSize: "17px"}} onChange={(e) => handleOnChangeChoice(e)}>
+                                                <option value="Random" selected={randomChecked ? true : false} >Ngẫu nhiên</option>
+                                                <option value="Percentage" selected={percentageChecked ? true : false}>Tỉ trọng</option>
+
                                             </select>
                                         </label>
                                     </div>

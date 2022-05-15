@@ -48,4 +48,6 @@ public class ViewsController {
     public void insertViewBanner (@Valid @RequestBody ViewEntity viewEntity){
         viewService.save(viewEntity);
     }
+
+//    @GetMapping(/banners/views/{})
 }

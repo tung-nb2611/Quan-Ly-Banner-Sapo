@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.parameters.P;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -71,6 +72,30 @@ public class SectionController {
             sectionService.delete(id);
             return new ResponseEntity<>(HttpStatus.OK);
         }catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // Lay thong tin section theo id
+    @GetMapping("/sections/{id}")
+    public ResponseEntity<SectionEntity> getSectionById(@PathVariable("id") Integer id){
+        try{
+            SectionEntity section = sectionService.getById(id);
+            return new ResponseEntity<>(section, HttpStatus.OK);
+        } catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    // Update status cua section
+    @PutMapping("/sections/status")
+    public ResponseEntity<SectionEntity> updateSectionStatus(@RequestBody SectionEntity section){
+        try{
+            SectionEntity oldSection = sectionService.getById(section.getId());
+            oldSection.setStatus(section.getStatus());
+            sectionService.save(oldSection);
+            return new ResponseEntity<>(section, HttpStatus.OK);
+        } catch (NoSuchElementException e){
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }

@@ -25,6 +25,10 @@ public class SectionEntity {
     @NotEmpty(message = "Thiếu mã khu vực")
     private String divId;
 
+    @Column(name = "status", columnDefinition = "0")
+    private short status;
+
+
     public SectionEntity() {
     }
 
@@ -65,4 +69,8 @@ public class SectionEntity {
     public void setDivId(String divId) {
         this.divId = divId;
     }
+
+    public Short getStatus() {return status;}
+
+    public void setStatus(short status) {this.status = status;};
 }

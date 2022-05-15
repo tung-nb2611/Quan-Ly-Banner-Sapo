@@ -5,11 +5,12 @@ import { Link, useHistory } from "react-router-dom";
 // import '../../styles/banner/UpdateBanner.css';
 import * as BiIcons from "react-icons/bi";
 import { useLocation, useParams } from "react-router-dom";
-import ClickService from "../../services/clicks/ClickService";
+
 import DetailClick from "./DetailClick";
-import PaginateList from "../PaginateList";
+
 import '../../styles/report/DetailReport.css';
-import BannerService from "../../services/BannerService";
+
+import ViewService from "../../services/views/ViewService";
 
 
 function DetailReport(props) {
@@ -38,8 +39,9 @@ function DetailReport(props) {
     const [click] = useState(views.number);
     const [clickInfoList, setClickInfoList] = useState([]);
 
+
     useEffect(() => {
-        BannerService.getBannerById(data.id).then((response) => {
+        ViewService.getListView(data.id).then((response) => {
             const info = response.data.content;
 
             console.log("click innfo", info)
@@ -120,11 +122,11 @@ function DetailReport(props) {
                                         </tr>
                                     </thead>
                                     <tbody className="col-6 ">
-                                        {/* {
+                                        {
                                             clickInfoList.map((item) =>
                                                 <DetailClick key={item.id} clickInfo={item} />
                                             )
-                                        } */}
+                                        }
                                     </tbody>
                                 </table>
                             </div>
