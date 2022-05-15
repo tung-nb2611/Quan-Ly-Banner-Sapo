@@ -48,9 +48,10 @@ function CreateBanner(props) {
     setImageUpload(e.target.files[0]);
   }
   const handleChangeValidateBannerID = (e) => {
-    setBannerID(e.target.value)
+
     if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(e.target.value))) {
       document.getElementById("bannerID").style.display = "none";
+      setBannerID(e.target.value)
     }
     else {
       document.getElementById("bannerID").style.display = "block";
@@ -60,9 +61,10 @@ function CreateBanner(props) {
 
   }
   const handleChangeValidateName = (e) => {
-    setName(e.target.value)
+
     if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(e.target.value))) {
       document.getElementById("name").style.display = "none";
+      setName(e.target.value)
     }
     else {
       document.getElementById("name").style.display = "block";
@@ -75,7 +77,7 @@ function CreateBanner(props) {
       if (bannerID.length === 0) {
         document.getElementById("bannerID").style.display = "block";
         document.getElementById("bannerID").style.color = "red";
-        document.getElementById("bannerID").innerText = "Banner id không được để trống";
+        document.getElementById("bannerID").innerText = "Banner id không được để trống hoặc đang chứa kí tự không hợp lê";
       }
       else {
         document.getElementById("bannerID").style.display = "none";

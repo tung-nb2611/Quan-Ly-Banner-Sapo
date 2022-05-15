@@ -1,5 +1,6 @@
 package com.banner_management.backend.entity;
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
@@ -11,24 +12,21 @@ public class BannerMappingEntity {
     private Integer id;
 
     @Column(name = "banner_id", nullable = false)
-    @NotNull
+    @NotNull(message = "thiếu mã banner")
     private Integer bannerId;
 
     @Column(name = "section_id", nullable = false)
-    @NotNull
+    @NotNull(message = "Thiếu mã khu vực")
     private Integer sectionId;
 
     @Column(name = "state", nullable = false)
-    @NotNull
+    @NotNull(message = "Thiếu trạng thái hiển thị")
     private Short state;
 
     @Column(name = "percentage")
     private Integer percentage;
 
-
-
     @Column(name = "number_click", nullable = true , columnDefinition = "0")
-
     private Integer numberClick;
 
     @Column(name = "number_view", nullable = true, columnDefinition = "0")

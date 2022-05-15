@@ -16,6 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -36,15 +37,10 @@ public class BannerMappingController {
 
     @Autowired
     private ViewService viewService;
-//     @GetMapping("/banner-mapping/clisk-views/{bannerID}")
-//         public  List<BannerMappingEntity> listBanerMapping (@PathVariable("bannerID") int bannerID){
-//         return  bannerMappingService.getSumBannerByBannerID(bannerID);
-//     }
-
 
     //  lấy random banner theo số lượng và khu vực
     @GetMapping("/banner-mapping/percentage/{sectionID}/{bannerID}")
-    public BannerEntity listPercentageBannerStatus(@PathVariable("sectionID") int sectionID, @PathVariable("bannerID") int bannerID) {
+    public BannerEntity listPercentageBannerStatus(@PathVariable("sectionID") @Valid int sectionID, @PathVariable("bannerID") @Valid int bannerID) {
         BannerMappingEntity bannerMappingEntity = bannerMappingService.getByBannerIDAndSectionID(bannerID, sectionID);
         System.out.println("kiem tra : "+ bannerMappingEntity);
         BannerEntity bannerEntity = bannerService.getById(bannerMappingEntity.getBannerID());
@@ -54,7 +50,7 @@ public class BannerMappingController {
 
     // cap nhat du lieu thoi gian bat dau khi chon random
     @PutMapping("/banner-mapping/random/{id}")
-    public void updateBannerStatus (@RequestBody BannerMappingEntity bannerMappingEntity, @PathVariable("id") Integer id){
+    public void updateBannerStatus (@RequestBody BannerMappingEntity bannerMappingEntity, @PathVariable("id") @Valid Integer id){
         BannerMappingEntity existBannerMappingEntity = bannerMappingService.getById(id);
         System.out.println("banner status dau vao o day : "+ bannerMappingEntity);
         if(bannerMappingEntity.getSectionID() >= 0){
@@ -65,7 +61,7 @@ public class BannerMappingController {
 
 //     cap nhat du lieu khi chon hien thi theo ti trong
     @PutMapping("/banner-mapping/percentage")
-    public void updateBannerStatusOnPercentage(@RequestBody List<BannerMappingEntity> bannerMappingEntityList){
+    public void updateBannerStatusOnPercentage(@RequestBody @Valid List<BannerMappingEntity> bannerMappingEntityList){
         // du lieu can co bannerID, sectionID, percentage, timeDisplay, expired
         System.out.println("du lieu dau vao list : "+ bannerMappingEntityList);
         for(int i = 0; i < bannerMappingEntityList.size(); i++){
@@ -76,6 +72,9 @@ public class BannerMappingController {
     }
 
     @GetMapping("/banner-mapping/percentage/{websiteID}")
+
+
+
     public BannerMappingDto getImageUrlByPercentage(@PathVariable("websiteID") int sectionId){
         // tim sectionId - lay thong tin xem cai section day dat la ti trong hay random ?
         SectionEntity section = sectionService.getById(sectionId);
@@ -96,13 +95,14 @@ public class BannerMappingController {
             System.out.println("banner Dto : " + bannerMappingDto);
             return bannerMappingDto;
 
+
         // neu random
         // chay getBannerByRandom
     }
 
     //
     @PutMapping("/banner-status/update")
-    public void updateBannerStatus(@RequestBody List<BannerInfoDto> bannerDtoList){
+    public void updateBannerStatus(@RequestBody @Valid List<BannerInfoDto> bannerDtoList){
         System.out.println(bannerDtoList);
         for(int i = 0; i < bannerDtoList.size(); i++){
             BannerInfoDto bannerInfoDto = bannerDtoList.get(i);
