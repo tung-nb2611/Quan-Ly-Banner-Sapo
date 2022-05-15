@@ -7,7 +7,8 @@ public class ClickAndViewDto {
     private int numberView;
     private  int bannerID;
     private  String month;
-    private int year ;
+   private int year ;
+
 
     public ClickAndViewDto(String name, int sectionID, int sumClick, int sumView, String monthName, int year) {
         this.webName = name;
@@ -25,8 +26,10 @@ public class ClickAndViewDto {
                 ", sectionID=" + sectionID +
                 ", numberClick=" + numberClick +
                 ", numberView=" + numberView +
+
                 ", month='" + month + '\'' +
                 ", year=" + year +
+
                 '}';
     }
 
@@ -59,6 +62,7 @@ public class ClickAndViewDto {
         this.bannerID = bannerID;
     }
 
+
     public int getYear() {
         return year;
     }
@@ -66,6 +70,7 @@ public class ClickAndViewDto {
     public void setYear(int year) {
         this.year = year;
     }
+
 
     public ClickAndViewDto(String webName, int sectionID, int numberClick, int numberView, int bannerID) {
         this.webName = webName;

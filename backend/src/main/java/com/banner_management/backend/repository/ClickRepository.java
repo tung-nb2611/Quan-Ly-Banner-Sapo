@@ -26,6 +26,7 @@ public interface ClickRepository extends JpaRepository<ClickEntity, Integer> {
     @Query(value = "select count(id) from clicks where year(clicks.time_click) = ?1 and month(clicks.time_click) = ?2 and section_id = ?3", nativeQuery = true)
     Integer getSumClickByForMonth(int year, int month , int sectionID);
 
+
 //    // query tinh luong view theo tuần theo khu vuc
 //    @Query(value = "select count(id) as number_click from views where month(views.time_view) = ?1 and section_id = ?2", nativeQuery = true)
 //    Integer getSumViewBySectionIDForWeek(int month, int sectionID);

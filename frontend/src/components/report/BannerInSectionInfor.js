@@ -7,8 +7,6 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { GrView } from "@react-icons/all-files/gr/GrView";
 import { HiOutlineCursorClick } from "@react-icons/all-files/hi/HiOutlineCursorClick"
-
-
 import ReportService from "../../services/ReportService";
 
 // import BannerStatusService from "../../services/ReportService";
@@ -33,7 +31,6 @@ const BannerInSectionInfor = ({ bannerInfo, bannerList, setBannerList }) => {
 
     }
 
-
     useEffect(() => {
         // Lay thong tin view
         ReportService.getSumClickAndViewInBannerIdBySectionId(id, bannerInfo.id).then((response) => {
@@ -46,7 +43,6 @@ const BannerInSectionInfor = ({ bannerInfo, bannerList, setBannerList }) => {
 
         });
     }, []);
-
 
 
 

@@ -9,12 +9,6 @@ class SectionService {
 
     getSectionByPageAndWebsiteId(webId, number) {
         return axios.get(SECTION_API_SECTION_URL + '/page/websiteId=' + webId + '/' + number);
-
-    }
-
-    createSection(sectionItem) {
-        return axios.post(SECTION_API_SECTION_URL, sectionItem);
-
     }
 
     createSection(sectionItem) {

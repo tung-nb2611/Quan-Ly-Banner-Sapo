@@ -1,5 +1,6 @@
 package com.banner_management.backend.repository;
 
+import com.banner_management.backend.entity.ClickEntity;
 import com.banner_management.backend.entity.ViewEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -30,9 +31,11 @@ public interface ViewRepository extends JpaRepository<ViewEntity, Integer> {
     @Query(value = "select count(id) from views where year(views.time_view) = ?1 and section_id = ?2", nativeQuery = true)
     Integer getSumViewBySectionIDForYear(int year, int sectionID);
 
+
     // query tinh luong view theo tháng theo khu vuc
     @Query(value = "select count(id) from views where year(views.time_view) = ?1 and month(views.time_view) = ?2 and section_id = ?3", nativeQuery = true)
     Integer getSumViewByForMonth(int year, int month , int sectionID);
+
 
 //    // query tinh luong view theo tuần theo khu vuc
 //    @Query(value = "select count(id) as number_click from views where month(views.time_view) = ?1 and section_id = ?2", nativeQuery = true)
@@ -44,5 +47,7 @@ public interface ViewRepository extends JpaRepository<ViewEntity, Integer> {
 
     //Lấy tổng lượng view theo tháng
     @Query(value ="SELECT (monthname(time_view)) AS  month , COUNT(*) AS views FROM views where section_id =?1 GROUP BY month ORDER BY month ASC",nativeQuery = true)
+
     Integer getSumViewBySectionIDForMonth( int sectionID);
+
 }

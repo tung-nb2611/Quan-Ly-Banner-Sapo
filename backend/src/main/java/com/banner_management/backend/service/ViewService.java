@@ -1,5 +1,6 @@
 package com.banner_management.backend.service;
 
+import com.banner_management.backend.entity.ClickEntity;
 import com.banner_management.backend.entity.ViewEntity;
 import com.banner_management.backend.repository.ViewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,12 +56,14 @@ public class ViewService {
         return viewRepository.getSumViewBySectionIDForYear(year, sectionID);
     }
 
+
     public int getSumViewBySectionIDForMonth( int sectionID){
         return viewRepository.getSumViewBySectionIDForMonth(sectionID);
     }
 
     public int getSumViewByForMonth ( int year, int month, int sectionID){
         return viewRepository.getSumViewByForMonth(year, month, sectionID);
+
     }
 
 //    public int getSumViewBySectionIDForDay(Date day , int sectionID){

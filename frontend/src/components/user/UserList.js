@@ -29,18 +29,18 @@ const UserList = () => {
   }, [currentPage]);   
 
   const displayUser = userList.map((userInfo) => {
-    return <UserInfo userInfo={userInfo} key={userInfo.id} userList={userList} setUserList={setUserList}/>;
+    return (
+      <div className="col-md-12 col-lg-6 mb-3" key={userInfo.id}>
+        <UserInfo userInfo={userInfo} userList={userList} setUserList={setUserList}/>;
+      </div>
+    );
   });
   
   return (
     <div className="banner-list">
-      <Container className="list">
-        <Row>
-          <Col sm={12} lg={10}>
-            {displayUser}
-          </Col>
-        </Row>
-      </Container>
+      <div className="list d-flex row">
+        {displayUser}
+      </div>
       <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber}/>
     </div>
   );

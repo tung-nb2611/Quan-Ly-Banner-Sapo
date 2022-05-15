@@ -1,9 +1,7 @@
 package com.banner_management.backend.controller;
 
 import com.banner_management.backend.dto.ClickAndViewDto;
-import com.banner_management.backend.entity.BannerEntity;
-import com.banner_management.backend.entity.SectionEntity;
-import com.banner_management.backend.entity.WebsiteEntity;
+import com.banner_management.backend.entity.*;
 import com.banner_management.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -92,6 +90,7 @@ public class ReportController {
         return clickAndViewDto;
     }
 
+
     //lay api theo tung thang trong nam theo khu vuc
     // api lay tong view va click theo nam theo khu vuc
     @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}/statics")
@@ -105,13 +104,18 @@ public class ReportController {
         return clickAndViewDtoList;
     }
 
+
 //    // api lay tong view va click theo nam theo khu vuc
 //    @GetMapping("/banners/report/click-and-view/sectionID={sectionID}")
 //    public ClickAndViewDto getListViewAndClickSortByMount( @PathVariable("sectionID") int sectionID){
 //
 //        int sumView = viewService.getSumViewBySectionIDForMonth( sectionID);
 //        int sumClick = clickService.getSumClickBySectionIDForMonth( sectionID);
+
 //        string month = viewService.getSumViewBySectionIDForMonth(sectionID);
+
+//       ViewEntity viewEntity = viewService.getListMonth(viewService.getTimeView());
+
 //
 //        SectionEntity sectionEntity = sectionService.getById(sectionID);
 //
@@ -120,6 +124,7 @@ public class ReportController {
 //        ClickAndViewDto clickAndViewDto = new ClickAndViewDto(sectionID, sumClick, sumView, month);
 //        return clickAndViewDto;
 //    }
+
 
     // api lay tong view va click theo tháng theo khu vuc
     @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}/month={month}")
@@ -189,18 +194,9 @@ public class ReportController {
 
 
 
-//    // api lay tong view va click theo ngày theo khu vuc
-//    @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/date={date}")
-//    public ClickAndViewDto getListViewAndClickSortByDay(@PathVariable("date") Date date, @PathVariable("sectionID") int sectionID){
-//
-//        int sumView = viewService.getSumViewBySectionIDForDay(date, sectionID);
-//        int sumClick = clickService.getSumClickBySectionIDForDay(date, sectionID);
-//
-//        SectionEntity sectionEntity = sectionService.getById(sectionID);
-//        WebsiteEntity websiteEntity = websiteService.getById(sectionEntity.getWebId());
-//
-//        ClickAndViewDto clickAndViewDto = new ClickAndViewDto(
-//                websiteEntity.getName(), sectionID, sumClick, sumView);
-//        return clickAndViewDto;
-//    }
+
+
+
+
+
 }

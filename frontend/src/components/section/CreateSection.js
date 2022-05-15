@@ -1,20 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import '../../styles/banner/CreateBanner.css';
-
-
-
-
-// import BannerService from "../../services/SectionService";
+import '../../styles/website/CreateWebsite.css';
 import * as BiIcons from "react-icons/bi";
-// import { ref, uploadBytes, getDownloadURL, listAll, list } from "firebase/storage";
-// import { storage } from "../../common/Firebase";
-// import { v4 } from "uuid";
 
 import { useHistory } from "react-router-dom";
 import SectionService from "../../services/section/SectionService";
 import { useParams } from "react-router-dom";
-
 
 
 function CreateSection(props) {
@@ -38,7 +29,6 @@ function CreateSection(props) {
         )
     }
 
-
     const handleChangeValidateDivId = (e) => {
         setDivId(e.target.value)
         if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(e.target.value))) {
@@ -49,15 +39,10 @@ function CreateSection(props) {
             document.getElementById("divId").style.color = "red";
             document.getElementById("divId").innerText = "Tên thẻ div không được chứa các kí tự đặc biệt";
         }
-
-
-
     }
 
-
     return (
-
-        <div className="create-banner-container mx-3" >
+        <div className="create-website-container px-3" >
             <div className="header-top">
                 <p className="mt-3 text-left">
                     {props.showAdminBoard ? (<span>Admin</span>) : (<span>User</span>)}
@@ -69,36 +54,29 @@ function CreateSection(props) {
             <hr />
             <div className="container">
                 <div className="main-content">
-                    <div className="row">
-                        <div className="col-sm-12 pb-4">
-                            <h2>Thêm Mới Khu vực Banner</h2>
-                        </div>
-                        <div className="col-sm-6 left">
-                            <form>
-                                <div className="mt-3 form-group">
-                                    <label htmlFor="webId">Id website</label>
-
-                                    <input className="form-control" type="text"
-                                        value={webId} disabled
-                                    />
-                                </div>
-                                <div className="mt-3 form-group">
-                                    <label htmlFor="code">ID thẻ div</label>
-                                    <input className="form-control" type="text"
-                                        placeholder="Ví dụ: img"
-                                        value={divId || ''} onChange={(e) => handleChangeValidateDivId(e)}
-                                    />
-
-                                  
-                 </div>
-                            </form>
-                        </div>
-
-                        <div className="col-sm-6 right">
-                            <div className="button">
-                                <button type="button" className="btn btn-cancel" name="btncancel" onClick={() => handClickReturn()} >Hủy</button>
-                                <button type="submit" className="btn btn-add " name="btnsubmit" onClick={(e) => saveSection(e)}>Thêm section</button>
+                    <div className="pb-4 text-center">
+                        <h2>Thêm Mới Khu vực Banner</h2>
+                    </div>
+                    <div className="website-form">
+                        <form>
+                            <div className="mt-3 form-group">
+                                <label htmlFor="webId">Id website</label>
+                                <input className="form-control" type="text"
+                                    value={webId} disabled
+                                />
                             </div>
+                            <div className="mt-3 form-group">
+                                <label htmlFor="code">ID thẻ div</label>
+                                <input className="form-control" type="text"
+                                    placeholder="Ví dụ: img"
+                                    value={divId || ''} onChange={(e) => handleChangeValidateDivId(e)}
+                                />
+                                <p id="divId"></p>
+                            </div>
+                        </form>
+                        <div className="button">
+                            <button type="button" className="btn btn-outline-secondary mt-2 me-2" name="btncancel" onClick={() => handClickReturn()} >Hủy</button>
+                            <button type="submit" className="btn btn-primary mt-2" name="btnsubmit" onClick={(e) => saveSection(e)}>Thêm section</button>
                         </div>
                     </div>
                 </div>

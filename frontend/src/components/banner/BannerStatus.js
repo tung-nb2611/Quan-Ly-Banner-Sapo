@@ -5,7 +5,6 @@ const BannerStatus = ({ item, displayUtil }) => {
   const bannerContext = useContext(CheckboxArrContext);
 
   const bannerArray = bannerContext.bannerArr;
-  console.log(bannerArray);
   const arrayItem = bannerArray.find((banner) => banner.id === item.id);
   // const [status, setStatus] = useState({
   //   id: arrayItem.id,
@@ -28,11 +27,9 @@ const BannerStatus = ({ item, displayUtil }) => {
   const changeRate = (rate) => {
     console.log(status);
     setStatus((prevState) => ({
-
       id: prevState.id,
       rate: rate,
       state: prevState.state,
-
     }));
     bannerContext.updateBannerArr(status.id, rate);
   };
@@ -59,45 +56,7 @@ const BannerStatus = ({ item, displayUtil }) => {
       <th className="text-center code">{item.id}</th>
       <td className="text-center name">{item.name}</td>
       <td className="text-center image">
-
-        <img
-          src={item.imgUrl}
-          width={300}
-          height={120}
-          alt={""}
-        />
-      </td>
-      <td className="text-center">
-        <select className="form-select text-center mt-4" onChange={changeRate} defaultValue={item.percentage} value={status.rate}>
-          <option value="0">0</option>
-          <option value="10">10</option>
-          <option value="20">20</option>
-          <option value="30">30</option>
-          <option value="40">40</option>
-          <option value="50">50</option>
-          <option value="60">60</option>
-          <option value="70">70</option>
-          <option value="80">80</option>
-          <option value="90">90</option>
-        </select>
-      </td>
-      <td className="text-center checkbox">
-        <input
-          type="checkbox"
-          style={{ transform: "scale(1.5)" }}
-          id={item.id}
-          defaultChecked={
-            checkboxArray.indexOf(
-              checkboxArray.find((banner) => {
-                return banner.id === item.id;
-              })
-            ) > -1
-          }
-          onChange={(e) => handleClickBox(e, item.id)}
-        />
-
         <img src={item.imgUrl} width={300} height={80} alt={""} />
-
       </td>
       {displayUtil.random ? (
         <td></td>

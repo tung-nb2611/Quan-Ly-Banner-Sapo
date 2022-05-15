@@ -15,22 +15,6 @@ export const SidebarDataAdmin = [
         title: "Quản lý người dùng",
         path: "/user/manage/",
         icon: <BiIcons.BiUser size={24} />,
-        iconClosed: <BiIcons.BiChevronRight size={24} />,
-        iconOpened: <BiIcons.BiChevronDown size={24} />,
-        subNav: [
-            {
-                title: "Thêm mới người dùng",
-                path: "/user/create",
-                icon: <AiIcons.AiOutlineGlobal size={24} />,
-                cName: "sub-nav",
-            },
-            // {
-            //     title: "Cập nhật người dùng",
-            //     path: "/user/update/",
-            //     icon: <MdIcons.MdManageSearch size={24} />,
-            //     cName: "sub-nav",
-            // },
-        ]
     }
 ];
 
@@ -49,6 +33,5 @@ export const SidebarData = [
         title: "Quản lý banner",
         path: "/banner/manage",
         icon: <MdIcons.MdPictureInPicture size={24} />,
-    },
-
+    }
 ];

@@ -32,8 +32,8 @@ class BannerStatusService {
         return axios.get("http://localhost:8080/api/banner-mapping/" + bannerID);
     }
 
-
-
-
+    updateBannerStatusList(bannerStatusArray){
+        return axios.put("http://localhost:8080/api/banner-status/update", bannerStatusArray);
+    }
 }
 export default new BannerStatusService();
