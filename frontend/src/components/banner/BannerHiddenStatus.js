@@ -2,8 +2,9 @@ import { CheckboxContext } from "../../context/CheckboxContext";
 import { useContext, useEffect, useState } from "react";
 import { CheckboxArrContext } from "../../context/CheckboxListContext";
 
-const BannerHiddenStatus = ({ item, displayUtil, setH, banList }) => {
+const BannerHiddenStatus = ({ item, displayUtil }) => {
   const hiddenBannerContext = useContext(CheckboxContext);
+  const bannerContext = useContext(CheckboxArrContext);
 
   const hiddenBannerArray = hiddenBannerContext.hiddenArr;
   const arrayItem = hiddenBannerArray.find((banner) => banner.id === item.id);
@@ -29,13 +30,21 @@ const BannerHiddenStatus = ({ item, displayUtil, setH, banList }) => {
   };
 
   const handleCheckbox = (state) => {
-    setStatus((prevState) => ({
-      id: prevState.id,
-      rate: prevState.rate,
-      state: state,
-    }));
-    hiddenBannerContext.updateBannerState(status.id, state);
-    // bannerContext.addBannerArr(arrayItem);
+    const newState = {
+      bannerID: arrayItem.bannerID,
+      code: arrayItem.code,
+      id: arrayItem.id,
+      imgUrl: arrayItem.imgUrl,
+      name: arrayItem.name,
+      percentage: arrayItem.percentage,
+      sectionID: arrayItem.sectionID,
+      state: arrayItem.state == 1 ? 0 : 1,
+      url: arrayItem.url
+    }
+    console.log(newState);
+    
+    hiddenBannerContext.removeBannerState(status.id);
+    bannerContext.addBannerArr(newState);
   };
 
   const changeState = (e) => {
@@ -45,6 +54,11 @@ const BannerHiddenStatus = ({ item, displayUtil, setH, banList }) => {
       handleCheckbox(0);
     }
   } 
+
+  // Kiểm tra xem sau khi bấm ẩn thì banner còn trong hiddenBannerList
+  // hay không. Nếu không thì không hiển thị gì cả
+ if(typeof arrayItem == 'undefined')
+ return (<></>);
 
   return (
     <tr className="item" key={item.id}>

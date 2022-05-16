@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 import { CheckboxArrContext } from "../../context/CheckboxListContext";
+import { CheckboxContext } from "../../context/CheckboxContext";
 
 const BannerStatus = ({ item, displayUtil }) => {
   const bannerContext = useContext(CheckboxArrContext);
+  const hiddenBannerContext = useContext(CheckboxContext);
 
   const bannerArray = bannerContext.bannerArr;
   const arrayItem = bannerArray.find((banner) => banner.id === item.id);
@@ -35,13 +37,22 @@ const BannerStatus = ({ item, displayUtil }) => {
   };
 
   const handleCheckbox = (state) => {
-    setStatus((prevState) => ({
-      id: prevState.id,
-      rate: prevState.rate,
-      state: state,
-    }));
-    bannerContext.updateBannerState(status.id, state);
-    // bannerContext.addBannerArr(arrayItem);
+    const newState = {
+      bannerID: arrayItem.bannerID,
+      code: arrayItem.code,
+      id: arrayItem.id,
+      imgUrl: arrayItem.imgUrl,
+      name: arrayItem.name,
+      percentage: arrayItem.percentage,
+      sectionID: arrayItem.sectionID,
+      state: arrayItem.state == 1 ? 0 : 1,
+      url: arrayItem.url
+    }
+    console.log(newState);
+    
+
+    hiddenBannerContext.addBannerArr(newState);
+    bannerContext.removeBannerState(status.id);
   };
 
   const changeState = (e) => {
@@ -50,6 +61,9 @@ const BannerStatus = ({ item, displayUtil }) => {
       handleCheckbox(1);
     }
   };
+
+  if(typeof arrayItem == 'undefined')
+  return (<></>);
 
   return (
     <tr className="item" key={item.id}>
