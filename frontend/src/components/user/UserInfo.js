@@ -28,9 +28,9 @@ const UserInfo = ({ userInfo, userList, setUserList }) => {
     }
   };
 
-  const handleShowInfo = (userInfo) => {
-    alert("thong tin:", userInfo.code)
-  };
+  // const handleShowInfo = (userInfo) => {
+  //   alert("thong tin:", userInfo.code)
+  // };
 
   return (
     <div className="banner-info p-3">
