@@ -49,7 +49,7 @@ function WebsiteList(props) {
                 <h2>
                     Quản lý Websites
                 </h2>
-                <Link className="btn btn-primary section-create" to={"/website/create"}>
+                <Link className="btn btn-primary section-create" to={"/websites/create"}>
                     <h4>Thêm mới website</h4>
                 </Link>
             </div>

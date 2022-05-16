@@ -90,7 +90,7 @@ const App = () => {
                   <Route exact path="/report">
                     <Report />
                   </Route>
-                  <Route exact path="/website/create">
+                  <Route exact path="/websites/create">
                     <CreateWebsite showAdminBoard={showAdminBoard} />
                   </Route>
                   <Route exact path="/websites/manage">

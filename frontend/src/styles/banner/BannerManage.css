@@ -2,5 +2,9 @@
     height: fit-content;
 }
 .manage .link{
-    border-radius: 5px;
+    border-radius: 10px;
+    transition: transform 250ms;
+}
+.manage .link:hover{
+    transform: scale(1.05);
 }
