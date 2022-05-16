@@ -28,10 +28,6 @@ const UserInfo = ({ userInfo, userList, setUserList }) => {
     }
   };
 
-  // const handleShowInfo = (userInfo) => {
-  //   alert("thong tin:", userInfo.code)
-  // };
-
   return (
     <div className="banner-info p-3">
       <div className="row align-middle">
@@ -40,9 +36,9 @@ const UserInfo = ({ userInfo, userList, setUserList }) => {
           <p>{userInfo.name}</p>
         </div>
         <div className="button-choice col-sm-12 col-md-6 col-xl-4">
-          <Link type="button" className="btn btn-secondary btn-block" to={userDetail}>Show</Link>
-          <Link type="button" className="btn btn-outline-primary w-100" to={updatePage}>Update</Link>
-          <button type="button" className="btn btn-outline-danger w-100" onClick={deleteConfirmation}>Delete</button>
+          <Link type="button" className="btn btn-secondary btn-block" to={userDetail}>Chi tiết</Link>
+          <Link type="button" className="btn btn-outline-primary w-100" to={updatePage}>Cập nhật</Link>
+          <button type="button" className="btn btn-outline-danger w-100" onClick={deleteConfirmation}>Xóa</button>
         </div>
       </div >
     </div>

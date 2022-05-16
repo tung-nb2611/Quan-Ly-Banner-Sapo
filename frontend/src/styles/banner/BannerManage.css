@@ -3,6 +3,7 @@
 }
 .manage .link{
     border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     transition: transform 250ms;
 }
 .manage .link:hover{
