@@ -6,7 +6,7 @@ function Website({ data }) {
     <div className="section-info p-3">
       <div className="row">
         <div className="detail-info col-12 col-sm-8">
-          <label> Section:{data.id} </label>
+
           <label> Web name: {data.name} </label>
           <label> Url: {data.url} </label>
         </div>

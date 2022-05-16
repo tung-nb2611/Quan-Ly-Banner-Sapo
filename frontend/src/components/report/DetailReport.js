@@ -11,6 +11,8 @@ import DetailClick from "./DetailClick";
 import '../../styles/report/DetailReport.css';
 
 import ViewService from "../../services/views/ViewService";
+import ClickService from "../../services/clicks/ClickService";
+import DetailView from "./DetailView";
 
 
 function DetailReport(props) {
@@ -38,10 +40,21 @@ function DetailReport(props) {
     const [imgUrl] = useState(data.imgUrl); // Dùng để show ảnh
     const [click] = useState(views.number);
     const [clickInfoList, setClickInfoList] = useState([]);
+    const [viewInfoList, setViewInfoList] = useState([]);
+    const [showInfo, setShowInfo] = useState([])
     console.log('123:', data.id);
 
     useEffect(() => {
         ViewService.getListView(data.id).then((response) => {
+            const info = response.data;
+
+            console.log("views innfo", info)
+            setViewInfoList(info);
+
+        })
+    }, []);
+    useEffect(() => {
+        ClickService.getClickInfoByBannerId(data.id).then((response) => {
             const info = response.data;
 
             console.log("click innfo", info)
@@ -106,32 +119,76 @@ function DetailReport(props) {
                             </div>
                         </div>
                         <br />
+                        <div>
+                            <button onClick={() => setShowInfo(false)}>
+                                Views
+                            </button>
+                            <button onClick={() => setShowInfo(true)}>
+                                Clicks
+                            </button>
+                        </div>
                         <div className="">
-                            <div className="">
-                                <table className="table">
-                                    <thead>
+                            <div className="info">
+                                {showInfo === false ? (
+                                    <div>
 
-                                        <tr className="col-6 bg-info">
-                                            <th className="col-2 text-center"> ID khu vực  Hiển Thị </th>
+                                        <table className="table">
+                                            <thead>
 
-                                            <th className="col-2 text-center"> browerName</th>
-                                            <th className="col-1 text-center" >Thời gian Click</th>
-                                            <th className="col-2 text-center"> Người thực hiện</th>
+                                                <tr className="col-6 bg-info">
+                                                    <th className="col-2 text-center"> ID khu vực  Hiển Thị </th>
+
+                                                    <th className="col-2 text-center"> browerName</th>
+                                                    <th className="col-1 text-center" >Thời gian Click</th>
+                                                    <th className="col-2 text-center"> Người thực hiện</th>
 
 
 
 
 
-                                        </tr>
-                                    </thead>
-                                    <tbody className="col-6 ">
-                                        {
-                                            clickInfoList.map((item) =>
-                                                <DetailClick key={item.id} clickInfo={item} />
-                                            )
-                                        }
-                                    </tbody>
-                                </table>
+                                                </tr>
+                                            </thead>
+                                            <tbody className="col-6 ">
+                                                {
+                                                    viewInfoList.map((item) =>
+                                                        <DetailView key={item.id} viewInfoList={item} />
+                                                    )
+                                                }
+                                            </tbody>
+
+                                        </table>;
+                                    </div>
+                                ) : (
+                                    <div>
+
+                                        <table className="table">
+                                            <thead>
+
+                                                <tr className="col-6 bg-info">
+                                                    <th className="col-2 text-center"> ID khu vực  Hiển Thị </th>
+
+                                                    <th className="col-2 text-center"> browerName</th>
+                                                    <th className="col-1 text-center" >Thời gian Click</th>
+                                                    <th className="col-2 text-center"> Người thực hiện</th>
+
+
+
+
+
+                                                </tr>
+                                            </thead>
+
+                                            <tbody className="col-6 ">
+                                                {
+                                                    clickInfoList.map((item) =>
+                                                        <DetailClick key={item.id} clickInfoList={item} />
+                                                    )
+                                                }
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                )
+                                }
                             </div>
 
                         </div>
