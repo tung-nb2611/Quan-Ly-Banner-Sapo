@@ -8,6 +8,17 @@ import { useParams } from "react-router-dom";
 import { GrView } from "@react-icons/all-files/gr/GrView";
 import { HiOutlineCursorClick } from "@react-icons/all-files/hi/HiOutlineCursorClick"
 import ReportService from "../../services/ReportService";
+import { Bar } from 'react-chartjs-2';
+import {
+    AreaChart,
+    LineChart,
+    Area,
+    XAxis,
+    CartesianGrid,
+    Tooltip,
+    ResponsiveContainer,
+} from "recharts";
+import ReportSection from "../char/charInSection/ReportSection";
 
 // import BannerStatusService from "../../services/ReportService";
 // const BASE_URL = "http://localhost:8080/api/banners/";
@@ -23,6 +34,8 @@ const BannerInSectionInfor = ({ bannerInfo, bannerList, setBannerList }) => {
     const [clicks, setClicks] = useState([]);
     let { id } = useParams();
 
+
+
     const reportDetail = {
         pathname: "/views/detail/" + bannerInfo.code,
         detailInfo: detailInfo,
@@ -30,6 +43,8 @@ const BannerInSectionInfor = ({ bannerInfo, bannerList, setBannerList }) => {
         clicks: clicks
 
     }
+
+
 
     useEffect(() => {
         // Lay thong tin view
@@ -51,8 +66,12 @@ const BannerInSectionInfor = ({ bannerInfo, bannerList, setBannerList }) => {
 
     return (
         <>
+
+
             <div className="banner-info m-4 p-3">
+
                 <Row>
+
                     <Col xs={6} md={6} lg={3} xl={3} className="detail-info">
                         <label>NAME</label>
                         <p>{bannerInfo.name}</p>

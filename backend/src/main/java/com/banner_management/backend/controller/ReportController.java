@@ -6,6 +6,7 @@ import com.banner_management.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
@@ -33,21 +34,17 @@ public class ReportController {
     ClickService clickService;
     //lấy theo banner
     @GetMapping("/banners/report/click-and-view/bannerID={bannerID}")
-    public  ClickAndViewDto getListSumClickAndViewByBannerID(@PathVariable("bannerID") int bannerID){
+    public  ClickAndViewDto getListSumClickAndViewByBannerID(@Valid  @PathVariable("bannerID") int bannerID){
         int sumView = bannerMappingService.getSumViewInBannerTd(bannerID);
         int sumClick = bannerMappingService.getSumClickInBannerTd(bannerID);
         BannerEntity bannerEntity = bannerService.getById (bannerID);
-
-
         ClickAndViewDto clickAndViewDto = new ClickAndViewDto(bannerID, sumClick, sumView);
         return clickAndViewDto;
     }
 
-
-
 //lấy theo khu vực
     @GetMapping("/banners/report/click-and-view/sectionID={sectionID}")
-    public ClickAndViewDto getListSumClickAndViewBySectionID(@PathVariable("sectionID") int sectionID){
+    public ClickAndViewDto getListSumClickAndViewBySectionID(@Valid @PathVariable("sectionID") int sectionID){
 
         int sumView = bannerMappingService.getSumViewInSectionID(sectionID);
         int sumClick = bannerMappingService.getSumClickInSectionID(sectionID);
@@ -62,7 +59,7 @@ public class ReportController {
     }
     //lấy thông tin  banner theo khu vực
     @GetMapping("/banners/report/click-and-view/{sectionID}/{bannerID}")
-    public ClickAndViewDto getListSumClickAndViewBySectionID(@PathVariable("sectionID") int sectionID,@PathVariable("bannerID") int bannerID){
+    public ClickAndViewDto getListSumClickAndViewBySectionID(@Valid @PathVariable("sectionID") int sectionID,@Valid @PathVariable("bannerID") int bannerID){
 
         int sumView = bannerMappingService.getSumViewInBannerBySectionId(bannerID,sectionID);
         int sumClick = bannerMappingService.getSumClickInBannerBySectionId(bannerID,sectionID);
@@ -77,7 +74,7 @@ public class ReportController {
 
     // api lay tong view va click theo nam theo khu vuc
     @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}")
-    public ClickAndViewDto getListViewAndClickSortByYear(@PathVariable("year") int year, @PathVariable("sectionID") int sectionID){
+    public ClickAndViewDto getListViewAndClickSortByYear(@Valid @PathVariable("year") int year,@Valid @PathVariable("sectionID") int sectionID){
 
         int sumView = viewService.getSumViewBySectionIDForYear(year, sectionID);
         int sumClick = clickService.getSumClickBySectionIDForYear(year, sectionID);
@@ -86,7 +83,7 @@ public class ReportController {
         WebsiteEntity websiteEntity = websiteService.getById(sectionEntity.getWebId());
 
         ClickAndViewDto clickAndViewDto = new ClickAndViewDto(
-                websiteEntity.getName(), sectionID, sumClick, sumView);
+                websiteEntity.getName(), sectionID, sumClick, sumView,year);
         return clickAndViewDto;
     }
 
@@ -94,7 +91,7 @@ public class ReportController {
     //lay api theo tung thang trong nam theo khu vuc
     // api lay tong view va click theo nam theo khu vuc
     @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}/statics")
-    public List<ClickAndViewDto> getListViewAndClickSortByMonth(@PathVariable("year") int year, @PathVariable("sectionID") int sectionID){
+    public List<ClickAndViewDto> getListViewAndClickSortByMonth(@Valid @PathVariable("year") int year,@Valid @PathVariable("sectionID") int sectionID){
 
         List<ClickAndViewDto> clickAndViewDtoList = new ArrayList<>();
     for (int i = 1 ; i <= 12 ; i ++){
@@ -128,7 +125,7 @@ public class ReportController {
 
     // api lay tong view va click theo tháng theo khu vuc
     @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}/month={month}")
-    public ClickAndViewDto getListViewAndClickSortByMonth(@PathVariable("month") int month, @PathVariable("year") int year, @PathVariable("sectionID") int sectionID){
+    public ClickAndViewDto getListViewAndClickSortByMonth(@Valid @PathVariable("month") int month,@Valid @PathVariable("year") int year,@Valid @PathVariable("sectionID") int sectionID){
         int sumView = viewService.getSumViewByForMonth(year, month, sectionID);
         int sumClick = clickService.getSumClickByForMonth(year, month, sectionID);
 
@@ -191,12 +188,5 @@ public class ReportController {
         System.out.println("dto : "+ clickAndViewDto);
         return clickAndViewDto;
     }
-
-
-
-
-
-
-
 
 }

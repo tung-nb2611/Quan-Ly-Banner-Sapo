@@ -21,11 +21,7 @@ const Report = () => {
                 </div>
                 <h3>{date}</h3>
             </div>
-            <div>
-                <Widget />
 
-
-            </div>
             <div>
                 <Views />
             </div>

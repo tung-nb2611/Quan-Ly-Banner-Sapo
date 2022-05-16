@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -17,10 +18,11 @@ public class SectionEntity {
 
     @Column(name = "web_id")
     @NotNull
+    @NotEmpty(message = "Thiếu mã trang web")
     private  int webId;
 
     @Column(name = "div_id")
-    @NotNull
+    @NotEmpty(message = "Thiếu mã khu vực")
     private String divId;
 
     @Column(name = "status", columnDefinition = "0")

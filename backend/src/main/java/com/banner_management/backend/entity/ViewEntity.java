@@ -1,6 +1,8 @@
 package com.banner_management.backend.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
 @Entity
@@ -12,18 +14,23 @@ public class ViewEntity {
     private int Id;
 
     @Column(name = "banner_id")
-    private int bannerID;
+    @NotNull(message = "Thiếu mã bannner")
+    private Integer bannerID;
 
     @Column(name = "section_id")
-    private int sectionID;
+    @NotNull(message = "Thiếu mã khu vực")
+    private Integer sectionID;
 
     @Column(name = "time_view")
+    @NotNull(message = "Thiếu thời gian xem banner")
     private Timestamp timeView;
 
     @Column(name = "browser_name")
+    @NotEmpty(message = "Thiếu tên trình duyệt")
     private String browserName;
 
     @Column(name = "user_view")
+    @NotEmpty(message = "Thiếu người xem")
     private String userView;
 
     public ViewEntity() {

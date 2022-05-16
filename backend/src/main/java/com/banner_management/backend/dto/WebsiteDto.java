@@ -1,9 +1,17 @@
 package com.banner_management.backend.dto;
 
+import javax.validation.constraints.NotEmpty;
+
 public class WebsiteDto {
+
+    @NotEmpty(message = "Thiếu tên trang web")
     private String name;
+
+    @NotEmpty(message = "Thiếu mã trang web")
     private String code;
+    @NotEmpty(message = "Thiếu liên kết trang web")
     private String url;
+    @NotEmpty(message = "Thiếu người tạo trang web")
     private String userAdd;
 
     public WebsiteDto(String name, String code, String url, String userAdd) {

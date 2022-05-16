@@ -17,6 +17,18 @@ function CreateSection(props) {
         history.push('/websites/websiteId=' + webId + '/sections');
     }
 
+    const handleValidateBeforeAdd = (e) => {
+        if (divId.length === 0) {
+            document.getElementById("divId").style.display = "block";
+            document.getElementById("divId").style.color = "red";
+            document.getElementById("divId").innerText = "Tên thẻ div không được để trống";
+            return;
+        }
+        else {
+            document.getElementById("divId").style.display = "none";
+            saveSection(e);
+        }
+    }
     const saveSection = (e) => {
         e.preventDefault();
         let sectionItem = {
@@ -30,9 +42,10 @@ function CreateSection(props) {
     }
 
     const handleChangeValidateDivId = (e) => {
-        setDivId(e.target.value)
+
         if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(e.target.value))) {
             document.getElementById("divId").style.display = "none";
+            setDivId(e.target.value)
         }
         else {
             document.getElementById("divId").style.display = "block";
@@ -71,12 +84,12 @@ function CreateSection(props) {
                                     placeholder="Ví dụ: img"
                                     value={divId || ''} onChange={(e) => handleChangeValidateDivId(e)}
                                 />
-                                <p id="divId"></p>
+                                <p id="divId" className="mt-3"></p>
                             </div>
                         </form>
                         <div className="button">
                             <button type="button" className="btn btn-outline-secondary mt-2 me-2" name="btncancel" onClick={() => handClickReturn()} >Hủy</button>
-                            <button type="submit" className="btn btn-primary mt-2" name="btnsubmit" onClick={(e) => saveSection(e)}>Thêm section</button>
+                            <button type="submit" className="btn btn-primary mt-2" name="btnsubmit" onClick={(e) => handleValidateBeforeAdd(e)}>Thêm section</button>
                         </div>
                     </div>
                 </div>

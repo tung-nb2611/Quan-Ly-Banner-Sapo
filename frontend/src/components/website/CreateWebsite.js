@@ -32,9 +32,10 @@ function CreateWebsite(props) {
     }
 
     const handleChangeValidateWebsiteName = (e) => {
-        setWebsiteName(e.target.value)
+
         if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(e.target.value))) {
             document.getElementById("websiteName").style.display = "none";
+            setWebsiteName(e.target.value)
         }
         else {
             document.getElementById("websiteName").style.display = "block";
@@ -70,6 +71,7 @@ function CreateWebsite(props) {
             else {
                 document.getElementById("url").style.display = "none";
             }
+            return;
         }
         else {
             saveSection(e);

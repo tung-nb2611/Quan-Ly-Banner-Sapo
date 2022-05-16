@@ -45,15 +45,16 @@ function WebsiteList(props) {
 
     return (
         <div className="section-list p-3">
-            <h2>
-                Danh sách các Websites
-            </h2>
-            <hr/>
-            <Link to={"/website/create"}>
-                <button className="section-create p-2">
+            <div className="d-flex justify-content-between">
+                <h2>
+                    Quản lý Websites
+                </h2>
+                <Link className="btn btn-primary section-create" to={"/website/create"}>
                     <h4>Thêm mới website</h4>
-                </button>
-            </Link>
+                </Link>
+            </div>
+            <hr/>
+            <h4 className="text-center pb-1">Danh sách các websites</h4>
             <div className="list d-flex row mt-3">
                 {displayWebsites}
             </div>
