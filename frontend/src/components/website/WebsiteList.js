@@ -15,7 +15,7 @@ function WebsiteList(props) {
 
     let user = JSON.parse(window.localStorage.getItem("user"));
     useEffect(() => {
-        if (user.roles === '["ROLE_USER"]') {
+        if (user.roles[0] === 'ROLE_USER') {
             WebsiteService.getWebsiteByPageAndUserAdd(user.username, currentPage).then((response) => {
                 const info = response.data.content;
                 const pageNum = response.data.totalPages;
@@ -53,7 +53,7 @@ function WebsiteList(props) {
                     <h4>Thêm mới website</h4>
                 </Link>
             </div>
-            <hr/>
+            <hr />
             <h4 className="text-center pb-1">Danh sách các websites</h4>
             <div className="list d-flex row mt-3">
                 {displayWebsites}

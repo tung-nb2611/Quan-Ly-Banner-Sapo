@@ -44,7 +44,7 @@ public class ReportController {
 
 //lấy theo khu vực
     @GetMapping("/banners/report/click-and-view/sectionID={sectionID}")
-    public ClickAndViewDto getListSumClickAndViewBySectionID(@Valid @PathVariable("sectionID") int sectionID){
+    public List<ClickAndViewDto> getListSumClickAndViewBySectionID(@Valid @PathVariable("sectionID") int sectionID){
 
         int sumView = bannerMappingService.getSumViewInSectionID(sectionID);
         int sumClick = bannerMappingService.getSumClickInSectionID(sectionID);
@@ -52,10 +52,11 @@ public class ReportController {
         SectionEntity sectionEntity = sectionService.getById(sectionID);
         WebsiteEntity websiteEntity = websiteService.getById(sectionEntity.getWebId());
 
-
+        List<ClickAndViewDto> clickAndViewDtoList = new ArrayList<>();
         ClickAndViewDto clickAndViewDto = new ClickAndViewDto(
                 websiteEntity.getName(), sectionID, sumClick, sumView);
-        return clickAndViewDto;
+        clickAndViewDtoList.add(clickAndViewDto);
+        return clickAndViewDtoList;
     }
     //lấy thông tin  banner theo khu vực
     @GetMapping("/banners/report/click-and-view/{sectionID}/{bannerID}")

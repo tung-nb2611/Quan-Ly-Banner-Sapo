@@ -57,4 +57,8 @@ public interface ViewRepository extends JpaRepository<ViewEntity, Integer> {
 
     Integer getSumViewBySectionIDForMonth( int sectionID);
 
+    // tổng lượng views tại trang web by month
+
+//    @Query(value="")
+
 }

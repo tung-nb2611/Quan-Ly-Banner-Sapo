@@ -15,13 +15,14 @@ function CreateBanner(props) {
   // id đâng
   const passedInfo = useLocation();
   const websiteId = passedInfo.websiteId;
+  console.log(id)
   const history = useHistory();
   const [imageUpload, setImageUpload] = useState(null);
   const [bannerID, setBannerID] = useState('');
   const [name, setName] = useState('');
   const [imgPreview, setImgPreview] = useState('');
   const [urlLink, setUrlLink] = useState('');
-  const [sectionId, setSectionId] = useState(websiteId);
+  const [sectionId, setSectionId] = useState(id);
 
   const [sectionList, setSectionList] = useState([]);
   const [sectorList, setSectorList] = useState([]);
@@ -35,7 +36,7 @@ function CreateBanner(props) {
 
   useEffect(() => {
     if (typeof sectionId !== 'undefined' && sectionId !== '') {
-      SectorService.getSectorBySectionId(sectionId).then((response) => {
+      SectorService.getSectorBySectionId(websiteId).then((response) => {
         setSectorList(response.data);
       })
     } else {
