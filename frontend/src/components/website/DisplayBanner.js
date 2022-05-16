@@ -16,7 +16,6 @@ function DisplayBanner(props) {
     const arrContext = useContext(CheckboxArrContext);
     const arrHiddenContext = useContext(CheckboxContext);
     let { id } = useParams();
-    const [timeDisplay, setTimeDisplay] = useState(0);
     const [section, setSection] = useState([]);
     const [sectionInfo, setSectionInfo] = useState();
     const history = useHistory();
@@ -60,10 +59,6 @@ function DisplayBanner(props) {
     }
     
     const handleAddBannerForDisplay = () => {
-        if (timeDisplay <= 0) {
-            alert("Thời gian hiển thị banner phải là một số dương");
-            return;
-        }
         
         // Dùng 2 lần for do: có 2 array - 1 cái chứa banner đã ẩn và 1 cái chứa banner đang được hiển thị
             let today = new Date();
@@ -142,16 +137,6 @@ function DisplayBanner(props) {
                                             />
                                         </div>
                                     </div>
-                                    <div className="mt-3 col-12 form-group">
-                                        <div className="col-2">
-                                            <label htmlFor="bannerID">Thời gian hiển thị (ngày)</label>
-                                        </div>
-                                        <div className="col-8">
-                                            <input className="form-control text-center" id="bannerID" type="number"
-                                                value={timeDisplay} onChange={(e) => setTimeDisplay(e.target.value)}
-                                            />
-                                        </div>
-                                    </div>
                                     <div className='mt-3 col-12 form-group'>
                                         <div className='col-2'>
                                             <label htmlFor='bannerID'>Chế độ hiển thị</label>
@@ -176,7 +161,7 @@ function DisplayBanner(props) {
                         <div className="col-12">
                           <div className="button">
                           <button type="button" className="btn btn-outline-secondary mt-2 me-2" name="btncancel" onClick={() => backToSections()}>Hủy</button>
-                          <button type="submit" className="btn btn-primary mt-2" name="btnsubmit" onClick={() => handleAddBannerForDisplay()} >Thêm banner</button>
+                          <button type="submit" className="btn btn-primary mt-2" name="btnsubmit" onClick={() => handleAddBannerForDisplay()} >Lưu thông tin</button>
                           </div>
                         </div>
                     </div>
