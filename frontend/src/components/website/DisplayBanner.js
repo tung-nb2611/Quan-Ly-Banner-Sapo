@@ -110,18 +110,18 @@ function DisplayBanner(props) {
 
 
 
-            BannerStatusService.updateBannerStatusList(bannerStatusArray);
-            
-            const section = {
-                id: sectionInfo.id,
-                divId: sectionInfo.divId,
-                webId: sectionInfo.webId,
-                status: randomChecked ? 0 : 1
-            }
+        BannerStatusService.updateBannerStatusList(bannerStatusArray);
 
-            SectionService.updateSectionStatus(section);
-            /// api luu random/percentage vao section list dua theo section id
-        
+        const section = {
+            id: sectionInfo.id,
+            divId: sectionInfo.divId,
+            webId: sectionInfo.webId,
+            status: randomChecked ? 0 : 1
+        }
+
+        SectionService.updateSectionStatus(section);
+        /// api luu random/percentage vao section list dua theo section id
+
 
     }
 
@@ -162,7 +162,7 @@ function DisplayBanner(props) {
                                         </div>
                                         <label className='col-12'>
 
-                                            <select className='col-5' style={{ fontSize: "17px"}} onChange={(e) => handleOnChangeChoice(e)}>
+                                            <select className='col-5' style={{ fontSize: "17px" }} onChange={(e) => handleOnChangeChoice(e)}>
                                                 <option value="Random" selected={randomChecked ? true : false} >Ngẫu nhiên</option>
                                                 <option value="Percentage" selected={percentageChecked ? true : false}>Tỉ trọng</option>
 
@@ -181,10 +181,10 @@ function DisplayBanner(props) {
                         </div>
                         <div className="col-12">
 
-                          <div className="button">
-                          <button type="button" className="btn btn-outline-secondary mt-2 me-2" name="btncancel" onClick={() => backToSections()}>Hủy</button>
-                          <button type="submit" className="btn btn-primary mt-2" name="btnsubmit" onClick={() => handleAddBannerForDisplay()} >Lưu thông tin</button>
-                          </div>
+                            <div className="button">
+                                <button type="button" className="btn btn-outline-secondary mt-2 me-2" name="btncancel" onClick={() => backToSections()}>Hủy</button>
+                                <button type="submit" className="btn btn-primary mt-2" name="btnsubmit" onClick={() => handleAddBannerForDisplay()} >Lưu thông tin</button>
+                            </div>
 
                         </div>
                     </div>

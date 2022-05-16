@@ -66,6 +66,11 @@ public class ViewService {
 
     }
 
+    public int getSumViewByMonth ( int year, int month){
+        return viewRepository.getSumViewByMonth(year, month);
+
+    }
+
 //    public int getSumViewBySectionIDForDay(Date day , int sectionID){
 //        return viewRepository.getSumViewBySectionIDForDay(day, sectionID);
 //    }
