@@ -125,7 +125,7 @@ const App = () => {
                   {/* <Route path="/">
                     <Redirect to='/login'></Redirect>
                   </Route> */}
-                  <Route exact path="/login">
+                  <Route exact path="/">
                     <Login />
                   </Route>
                 </>
