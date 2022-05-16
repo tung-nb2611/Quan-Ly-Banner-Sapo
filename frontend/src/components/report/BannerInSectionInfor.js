@@ -53,9 +53,7 @@ const BannerInSectionInfor = ({ bannerInfo, bannerList, setBannerList }) => {
             console.log("res123", response)
             setViews(data.numberView);
             setClicks(data.numberClick)
-
             // console.log("views", data.numberView)
-
         });
     }, []);
 

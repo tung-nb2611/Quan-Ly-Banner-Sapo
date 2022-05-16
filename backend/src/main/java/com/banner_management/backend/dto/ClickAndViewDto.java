@@ -88,6 +88,12 @@ public class ClickAndViewDto {
 
     }
 
+    public ClickAndViewDto(int numberClick, int numberView, String month, int year) {
+        this.numberClick = numberClick;
+        this.numberView = numberView;
+        this.month = month;
+        this.year = year;
+    }
 
     public String getWebName() {
         return webName;

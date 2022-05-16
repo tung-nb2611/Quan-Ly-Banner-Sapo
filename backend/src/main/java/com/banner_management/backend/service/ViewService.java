@@ -66,8 +66,10 @@ public class ViewService {
 
     }
 
+
     public Integer getViewNumberByWebSite(int websiteID, int year, int month){
         return viewRepository.getViewNumberByWebSite(websiteID, year, month);
+
     }
 
 //    public int getSumViewBySectionIDForDay(Date day , int sectionID){

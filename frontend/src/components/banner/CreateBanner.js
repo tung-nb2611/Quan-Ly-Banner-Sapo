@@ -7,12 +7,15 @@ import * as BiIcons from "react-icons/bi";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../common/Firebase";
 import { v4 } from "uuid";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, useLocation } from "react-router-dom";
 import SectionService from "../../services/section/SectionService"
 
 function CreateBanner(props) {
   let { id } = useParams();
-
+  // id đâng
+  const passedInfo = useLocation();
+  const websiteId = passedInfo.websiteId;
+  console.log(id)
   const history = useHistory();
   const [imageUpload, setImageUpload] = useState(null);
   const [bannerID, setBannerID] = useState('');
@@ -20,6 +23,7 @@ function CreateBanner(props) {
   const [imgPreview, setImgPreview] = useState('');
   const [urlLink, setUrlLink] = useState('');
   const [sectionId, setSectionId] = useState(id);
+
   const [sectionList, setSectionList] = useState([]);
   const [sectorList, setSectorList] = useState([]);
   const [sectorChoice, setSectorChoice] = useState('');
@@ -32,13 +36,13 @@ function CreateBanner(props) {
 
   useEffect(() => {
     if (typeof sectionId !== 'undefined' && sectionId !== '') {
-      SectorService.getSectorBySectionId(sectionId).then((response) => {
+      SectorService.getSectorBySectionId(websiteId).then((response) => {
         setSectorList(response.data);
       })
     } else {
       console.log("nothing");
     }
-  }, [sectionId])
+  }, [sectionId]);
 
 
   const getImage = (e) => {
@@ -47,75 +51,7 @@ function CreateBanner(props) {
     } else console.log("file not found");
     setImageUpload(e.target.files[0]);
   }
-  const handleChangeValidateBannerID = (e) => {
 
-    if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(e.target.value))) {
-      document.getElementById("bannerID").style.display = "none";
-      setBannerID(e.target.value)
-    }
-    else {
-      document.getElementById("bannerID").style.display = "block";
-      document.getElementById("bannerID").style.color = "red";
-      document.getElementById("bannerID").innerText = "Banner id không được chứa các kí tự đặc biệt";
-    }
-
-  }
-  const handleChangeValidateName = (e) => {
-
-    if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(e.target.value))) {
-      document.getElementById("name").style.display = "none";
-      setName(e.target.value)
-    }
-    else {
-      document.getElementById("name").style.display = "block";
-      document.getElementById("name").style.color = "red";
-      document.getElementById("name").innerText = "Tên banner không được chứa các kí tự đặc biệt";
-    }
-  }
-  const validateBeforeAdd = (e) => {
-    if (bannerID.length === 0 || name.length === 0 || urlLink.length === 0 || imgPreview === 0) {
-      if (bannerID.length === 0) {
-        document.getElementById("bannerID").style.display = "block";
-        document.getElementById("bannerID").style.color = "red";
-        document.getElementById("bannerID").innerText = "Banner id không được để trống hoặc đang chứa kí tự không hợp lê";
-      }
-      else {
-        document.getElementById("bannerID").style.display = "none";
-      }
-
-      if (name.length === 0) {
-        document.getElementById("name").style.display = "block";
-        document.getElementById("name").style.color = "red";
-        document.getElementById("name").innerText = "Tên banner không được để trống";
-      }
-      else {
-        document.getElementById("name").style.display = "none";
-      }
-      if (urlLink.length === 0) {
-        document.getElementById("url").style.display = "block";
-        document.getElementById("url").style.color = "red";
-        document.getElementById("url").innerText = "Liên kết không được để trống";
-      }
-      else {
-        document.getElementById("url").style.display = "none";
-      }
-
-      if (imgPreview.length === 0) {
-        document.getElementById("image").style.display = "block";
-        document.getElementById("image").style.color = "red";
-        document.getElementById("image").innerText = "Tên banner không được để trống";
-      }
-      else {
-        document.getElementById("image").style.display = "none";
-      }
-      return;
-    }
-    else {
-      console.log("co chay vao day");
-      saveBanner(e);
-    }
-
-  }
   const handClickReturn = () => {
     history.push('/banner/manage');
   }
@@ -152,6 +88,8 @@ function CreateBanner(props) {
     }
 
   }
+
+
   return (
     <div className="create-banner-container px-3">
       <div className="header-top">
@@ -177,14 +115,18 @@ function CreateBanner(props) {
               <form className="form">
                 <div className="form-group">
                   <label className="col-3" htmlFor="sectionId">Tên trang web</label>
-                  <select className="col-9" style={{ fontSize: "17px" }} defaultValue={'DEFAULT'}
-                    onChange={(e) => { setSectionId(e.target.value); }}>
-                    <option value="DEFAULT" disabled>Choose a website ...</option>
+                  <select
+                    className="col-9"
+                    style={{ fontSize: "17px" }}
+                    onChange={(e) => {
+                      setSectionId(e.target.value);
+                    }}
+                  >
                     <option hidden></option>
                     {sectionList.map((section) => (
                       <option
                         value={section.id}
-                        selected={section.id == id ? true : false}
+                        selected={section.id == websiteId ? true : false}
                       >
                         {section.name}
                       </option>
@@ -193,62 +135,63 @@ function CreateBanner(props) {
                 </div>
                 <div className="mt-3 form-group">
                   <label className="col-3" htmlFor="sector">Sector List</label>
-                  <select className="col-9" style={{ fontSize: "17px" }}
+                  <select
+                    className="col-9"
+                    style={{ fontSize: "17px" }}
                     onChange={(e) => setSectorChoice(e.target.value)}
                   >
                     {sectorList.map((item) => (
-                      <option value={item.id}>{item.divId}</option>
+                      <option value={item.id}
+                        selected={item.id == id ? true : false}
+                      >{item.divId}</option>
                     ))}
                   </select>
                 </div>
-
-                <div className="mt-3 form-group d-flex">
-                  <label className="col-3" htmlFor="bannerID">Mã banner</label>
-                  <div className="col-9">
-                    <input className="form-control" type="text" placeholder="ex: B10"
-                      value={bannerID} onChange={(e) => handleChangeValidateBannerID(e)} />
-                    <p id="bannerID" className="mt-3" ></p>
-                  </div>
+                <div className="mt-3 form-group">
+                  <label htmlFor="bannerID">Mã banner</label>
+                  <input
+                    className="form-control"
+                    id="bannerID"
+                    type="text"
+                    name="bannerID"
+                    placeholder="ex: B10"
+                    value={bannerID}
+                    onChange={(e) => setBannerID(e.target.value)}
+                  />
                 </div>
-                <div className="mt-3 form-group d-flex">
-                  <label className="col-3" htmlFor="name">Tên banner</label>
-                  <div className="col-9">
-                    <input
-                      className="form-control"
-                      type="text"
-                      placeholder="Ví dụ: Cá tháng tư"
-                      value={name}
-                      onChange={(e) => handleChangeValidateName(e)} />
-                    <p id="name" className="mt-3"></p>
-                  </div>
+                <div className="mt-3 form-group">
+                  <label htmlFor="name">Tên banner</label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="Ví dụ: Cá tháng tư"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                  />
                 </div>
-                <div className="mt-3 form-group d-flex">
-                  <label className="col-3" htmlFor="name">Nhập liên kết</label>
-                  <div className="col-9">
+                <div className="mt-3 form-group">
+                  <label htmlFor="name">Nhập liên kết</label>
+                  <input
+                    className="form-control"
+                    type="text"
+                    placeholder="Liên kết url"
+                    value={urlLink}
+                    onChange={(e) => setUrlLink(e.target.value)}
+                  />
+                </div>
+                <div className="mt-3 form-group">
+                  <label id="upload-label" htmlFor="upload">
+                    Chọn Hình Ảnh
+                  </label>
+                  <div className="custom-file">
                     <input
-                      className="form-control"
-                      type="text"
-                      placeholder="Liên kết url"
-                      value={urlLink}
-                      onChange={(e) => setUrlLink(e.target.value)}
+                      id="upload"
+                      type="file"
+                      className="form-control border-0"
+                      accept=".png,.gif,.jpg,.jpeg"
+                      onChange={getImage}
                     />
-                    <p id="url" className="mt-3"></p>
                   </div>
-                </div>
-                <div className="mt-3 form-group d-flex">
-                  <label id="upload-label" className="col-3" htmlFor="upload"> Chọn Hình Ảnh </label>
-                  <div className="col-9">
-                    <div className="custom-file">
-                      <input
-                        type="file"
-                        className="form-control border-0"
-                        accept=".png,.gif,.jpg,.jpeg"
-                        onChange={getImage}
-                      />
-                      <p id="image" className="mt-3"></p>
-                    </div>
-                  </div>
-
                 </div>
               </form>
             </div>
@@ -277,7 +220,7 @@ function CreateBanner(props) {
                   type="submit"
                   className="btn btn-primary"
                   name="btnsubmit"
-                  onClick={(e) => validateBeforeAdd(e)}
+                  onClick={(e) => saveBanner(e)}
                 >
                   Thêm banner
                 </button>

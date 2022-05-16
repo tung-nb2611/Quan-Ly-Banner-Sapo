@@ -7,14 +7,14 @@ import BannerHiddenStatus from "./BannerHiddenStatus";
 
 const ListBannerHidden = (props) => {
   const hiddenBannerList = useContext(CheckboxContext);
-  const hiddenList = hiddenBannerList.HiddenArr;
+  const hiddenList = hiddenBannerList.hiddenArr;
   let { id } = useParams();
   const [bannerHidden, setBannerHidden] = useState([]);
 
   useEffect(() => {
     BannerDtoService.getBannerHiddenBySectionID(id).then((response) => {
-      hiddenBannerList.setHiddenArr(response.data);
       setBannerHidden(response.data);
+      hiddenBannerList.setHiddenArr(response.data);
     });
   }, [id]);
 

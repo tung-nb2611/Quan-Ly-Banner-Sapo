@@ -44,5 +44,11 @@ public class ClicksController {
         bannerMappingService.save(bannerMappingEntity);
     }
 
+    // lấy thông tin clicks theo bannerID
+    @GetMapping("/banners/Clicks/{bannerID}")
+    public  List<ClickEntity> getAllClickByBannerID(@Valid  @PathVariable("bannerID") int bannerID){
+        return clickService.getSumClickbyBannerID(bannerID);
+    }
+
 }
 

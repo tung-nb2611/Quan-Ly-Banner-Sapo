@@ -1,16 +1,15 @@
 import { createContext, useState } from "react";
 
-// Sử dụng để khi chuyển trang (phần phân trang) thì 
-// tổng số lượng checkbox được tích vẫn được lưu lại
+// Lưu trữ các banner có state là 0: Ẩn
 const CheckboxContext = createContext();
 
 const CheckboxProvider = ({ children }) => {
-    const [count, setCount] = useState(0);
     const [hiddenArr, setHiddenArr] = useState([]);
 
-    const setCheckboxCount = (clickNumber) => {
-        setCount(clickNumber);
-    }
+
+    const addBannerArr = (bannerInfo) => {
+        setHiddenArr((state) => [...state, bannerInfo]);
+      }
 
     const updateBannerArr = (id, value) => {
         const tempArr = hiddenArr.map(banner => banner.id === id ? { ...banner, percentage: value } : banner);
@@ -22,6 +21,8 @@ const CheckboxProvider = ({ children }) => {
         setHiddenArr(tempArr);
     }
 
+    console.log(hiddenArr);
+
     const removeBannerState = (id) => {
         setHiddenArr(
             hiddenArr.filter((item) => {
@@ -31,13 +32,12 @@ const CheckboxProvider = ({ children }) => {
     };
 
     const checkboxCount = {
-        count,
-        setCheckboxCount,
         hiddenArr,
         setHiddenArr,
         updateBannerArr,
         updateBannerState,
-        removeBannerState
+        removeBannerState,
+        addBannerArr
     }
 
 

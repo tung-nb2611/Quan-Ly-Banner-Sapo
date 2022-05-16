@@ -47,7 +47,7 @@ public class ReportController {
 
 //lấy theo khu vực
     @GetMapping("/banners/report/click-and-view/sectionID={sectionID}")
-    public ClickAndViewDto getListSumClickAndViewBySectionID(@Valid @PathVariable("sectionID") int sectionID){
+    public List<ClickAndViewDto> getListSumClickAndViewBySectionID(@Valid @PathVariable("sectionID") int sectionID){
 
         int sumView = bannerMappingService.getSumViewInSectionID(sectionID);
         int sumClick = bannerMappingService.getSumClickInSectionID(sectionID);
@@ -55,10 +55,11 @@ public class ReportController {
         SectionEntity sectionEntity = sectionService.getById(sectionID);
         WebsiteEntity websiteEntity = websiteService.getById(sectionEntity.getWebId());
 
-
+        List<ClickAndViewDto> clickAndViewDtoList = new ArrayList<>();
         ClickAndViewDto clickAndViewDto = new ClickAndViewDto(
                 websiteEntity.getName(), sectionID, sumClick, sumView);
-        return clickAndViewDto;
+        clickAndViewDtoList.add(clickAndViewDto);
+        return clickAndViewDtoList;
     }
     //lấy thông tin  banner theo khu vực
     @GetMapping("/banners/report/click-and-view/{sectionID}/{bannerID}")
@@ -86,7 +87,7 @@ public class ReportController {
         WebsiteEntity websiteEntity = websiteService.getById(sectionEntity.getWebId());
 
         ClickAndViewDto clickAndViewDto = new ClickAndViewDto(
-                websiteEntity.getName(), sectionID, sumClick, sumView);
+                websiteEntity.getName(), sectionID, sumClick, sumView,year);
         return clickAndViewDto;
     }
 
@@ -103,9 +104,7 @@ public class ReportController {
     }
         return clickAndViewDtoList;
     }
-
-
-//    // api lay tong view va click theo nam theo khu vuc
+    //    // api lay tong view va click theo nam theo khu vuc
 //    @GetMapping("/banners/report/click-and-view/sectionID={sectionID}")
 //    public ClickAndViewDto getListViewAndClickSortByMount( @PathVariable("sectionID") int sectionID){
 //
@@ -124,8 +123,6 @@ public class ReportController {
 //        ClickAndViewDto clickAndViewDto = new ClickAndViewDto(sectionID, sumClick, sumView, month);
 //        return clickAndViewDto;
 //    }
-
-
     // api lay tong view va click theo tháng theo khu vuc
     @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}/month={month}")
     public ClickAndViewDto getListViewAndClickSortByMonth(@Valid @PathVariable("month") int month,@Valid @PathVariable("year") int year,@Valid @PathVariable("sectionID") int sectionID){
@@ -188,6 +185,83 @@ public class ReportController {
         }
         ClickAndViewDto clickAndViewDto = new ClickAndViewDto(
                 websiteEntity.getName(), sectionID, sumClick, sumView, monthName, year);
+        System.out.println("dto : "+ clickAndViewDto);
+        return clickAndViewDto;
+    }
+    // api lay tong view va click theo tháng
+
+    // api lay tong view va click theo nam theo khu vuc
+    @GetMapping("/banners/report/click-and-view/year={year}/statics")
+    public List<ClickAndViewDto> getListViewAndClickInMonth(@Valid @PathVariable("year") int year){
+
+        List<ClickAndViewDto> clickAndViewDtoList = new ArrayList<>();
+        for (int i = 1 ; i <= 12 ; i ++){
+            ClickAndViewDto clickAndViewDto = getListViewAndClickByMonth(i, year);
+            clickAndViewDtoList.add(clickAndViewDto);
+        }
+        return clickAndViewDtoList;
+    }
+    @GetMapping("/banners/report/click-and-view/year={year}/month={month}")
+    public ClickAndViewDto getListViewAndClickByMonth(@Valid @PathVariable("month") int month,@Valid @PathVariable("year") int year){
+        int sumView = viewService.getSumViewByMonth(year, month);
+        int sumClick = clickService.getSumClickByMonth(year, month);
+
+
+
+        String monthName = "";
+        switch (month){
+            case 1:{
+                monthName="Tháng một";
+                break;
+            }
+            case 2:{
+                monthName="Tháng hai";
+                break;
+            }
+            case 3:{
+                monthName="Tháng ba";
+                break;
+            }
+            case 4:{
+                monthName="Tháng bốn";
+                break;
+            }
+            case 5:{
+                monthName="Tháng năm";
+                break;
+            }
+            case 6:{
+                monthName="Tháng sáu";
+                break;
+            }
+            case 7:{
+                monthName="Tháng bảy";
+                break;
+            }
+            case 8:{
+                monthName="Tháng tám";
+                break;
+            }
+            case 9:{
+                monthName="Tháng chín";
+                break;
+            }
+            case 10:{
+                monthName="Tháng mười";
+                break;
+            }
+            case 11:{
+                monthName="Tháng mười một";
+                break;
+            }
+            case 12:{
+                monthName="Tháng mười hai";
+                break;
+            }
+
+        }
+        ClickAndViewDto clickAndViewDto = new ClickAndViewDto(
+                 sumClick, sumView, monthName, year);
         System.out.println("dto : "+ clickAndViewDto);
         return clickAndViewDto;
     }

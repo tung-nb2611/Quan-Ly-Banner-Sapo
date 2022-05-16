@@ -19,6 +19,10 @@
     width: 100%;
     margin-top: 10%;
     min-height: 50%;
+    transition: transform 200ms;
+}
+.section-info .button a button:hover{
+    transform: scale(1.05);
 }
 
 .section-info .detail-info label{

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReportBannerInfor from "./ReportBannerInfor";
-<<<<<<< HEAD
+
 import { Line } from 'react-chartjs-2';
-=======
->>>>>>> e8b8cb29929d8c672cca2d5e39e7df13d2750b73
+
 import axios from "axios";
 import PaginateList from "../PaginateList";
 import { useParams } from "react-router-dom";
@@ -33,15 +32,13 @@ const ListBannerReport = () => {
     }, [currentPage]);
 
     const displayBanner = bannerList.map((bannerInfo) => {
-<<<<<<< HEAD
-        return <ReportBannerInfor bannerInfo={bannerInfo} key={bannerInfo.id} bannerList={bannerList} setBannerList={setBannerList} />
-=======
+
         return (
             <div className="col-md-12 col-lg-6 mb-3" key={bannerInfo.id}>
                 <ReportBannerInfor bannerInfo={bannerInfo} bannerList={bannerList} setBannerList={setBannerList} />;
             </div>
         );
->>>>>>> e8b8cb29929d8c672cca2d5e39e7df13d2750b73
+
     });
 
     return (

@@ -1,12 +1,13 @@
-const DetailClick = ({ clickInfo }) => {
+const DetailClick = ({ clickInfoList }) => {
 
     return (
         <tr>
-            <td>{clickInfo.userClick}</td>
+            <td>{clickInfoList.sectionId}</td>
 
-            <td>{clickInfo.sectionID}</td>
+            <td>{clickInfoList.browserName}</td>
 
-            <td>{clickInfo.timeClick}</td>
+            <td>{clickInfoList.timeClick}</td>
+            <td>{clickInfoList.userClick}</td>
 
 
         </tr>

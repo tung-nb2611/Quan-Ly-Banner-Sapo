@@ -28,21 +28,21 @@ const UserInfo = ({ userInfo, userList, setUserList }) => {
     }
   };
 
-  const handleShowInfo = (userInfo) => {
-    alert("thong tin:", userInfo.code)
-  };
+  // const handleShowInfo = (userInfo) => {
+  //   alert("thong tin:", userInfo.code)
+  // };
 
   return (
     <div className="banner-info p-3">
       <div className="row align-middle">
-        <div className="detail-info col-sm-12 order-sm-6 col-xl-8">
+        <div className="detail-info col-sm-12 col-md-6 col-xl-8">
           <label>Name</label>
           <p>{userInfo.name}</p>
         </div>
-        <div className="button-choice col-sm-12 order-sm-6 col-xl-4">
-          <Link type="button" className="btn btn-secondary btn-block" to={userDetail}>Hide Show</Link>
-          <button type="button" className="btn btn-secondary"><Link to={updatePage}>Update</Link></button>
-          <button type="button" className="btn btn-danger" onClick={deleteConfirmation}>Delete</button>
+        <div className="button-choice col-sm-12 col-md-6 col-xl-4">
+          <Link type="button" className="btn btn-secondary btn-block" to={userDetail}>Show</Link>
+          <Link type="button" className="btn btn-outline-primary w-100" to={updatePage}>Update</Link>
+          <button type="button" className="btn btn-outline-danger w-100" onClick={deleteConfirmation}>Delete</button>
         </div>
       </div >
     </div>

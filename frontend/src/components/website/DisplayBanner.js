@@ -2,7 +2,9 @@ import '../../styles/website/DisplayBanner.css'
 import React, { useContext, useEffect, useState } from "react";
 import * as BiIcons from "react-icons/bi";
 import ListBannerChoice from '../banner/ListBannerChoice';
-import { useHistory, useParams } from 'react-router-dom';
+
+import { useHistory , useParams, useLocation } from 'react-router-dom';
+
 import BannerStatusService from '../../services/BannerStatusService'
 import { CheckboxArrContext } from '../../context/CheckboxListContext';
 import SectionService from '../../services/section/SectionService';
@@ -13,16 +15,19 @@ import { CheckboxContext } from '../../context/CheckboxContext';
 
 function DisplayBanner(props) {
 
+    const webId = useLocation();
     const arrContext = useContext(CheckboxArrContext);
     const arrHiddenContext = useContext(CheckboxContext);
     let { id } = useParams();
-    const [timeDisplay, setTimeDisplay] = useState(0);
     const [section, setSection] = useState([]);
     const [sectionInfo, setSectionInfo] = useState();
     const history = useHistory();
     const [randomChecked, setRandomChecked] = useState(true);
     const [percentageChecked, setpercentageChecked] = useState(false);
     const [random, setRandom] = useState();
+    const [websiteId, setWebsiteId] = useState(webId.state.webId);
+
+    console.log(websiteId);
 
     useEffect(() => {
         SectionService.getSectionById(id).then((response) => {
@@ -35,7 +40,8 @@ function DisplayBanner(props) {
 
     const createPage = {
         pathname: "/banner/create/" + id,
-        section: section
+        section: section,
+        websiteId: websiteId
     }
 
     const backToSections = () => {
@@ -60,10 +66,12 @@ function DisplayBanner(props) {
     }
 
     const handleAddBannerForDisplay = () => {
-        if (timeDisplay <= 0) {
-            alert("Thời gian hiển thị banner phải là một số dương");
-            return;
-        }
+
+        // if (timeDisplay <= 0) {
+        //     alert("Thời gian hiển thị banner phải là một số dương");
+        //     return;
+        // }
+
 
         // Dùng 2 lần for do: có 2 array - 1 cái chứa banner đã ẩn và 1 cái chứa banner đang được hiển thị
         let today = new Date();
@@ -102,18 +110,18 @@ function DisplayBanner(props) {
 
 
 
-            BannerStatusService.updateBannerStatusList(bannerStatusArray);
-            
-            const section = {
-                id: sectionInfo.id,
-                divId: sectionInfo.divId,
-                webId: sectionInfo.webId,
-                status: randomChecked ? 0 : 1
-            }
+        BannerStatusService.updateBannerStatusList(bannerStatusArray);
 
-            SectionService.updateSectionStatus(section);
-            /// api luu random/percentage vao section list dua theo section id
-        
+        const section = {
+            id: sectionInfo.id,
+            divId: sectionInfo.divId,
+            webId: sectionInfo.webId,
+            status: randomChecked ? 0 : 1
+        }
+
+        SectionService.updateSectionStatus(section);
+        /// api luu random/percentage vao section list dua theo section id
+
 
     }
 
@@ -154,7 +162,7 @@ function DisplayBanner(props) {
                                         </div>
                                         <label className='col-12'>
 
-                                            <select className='col-5' style={{ fontSize: "17px"}} onChange={(e) => handleOnChangeChoice(e)}>
+                                            <select className='col-5' style={{ fontSize: "17px" }} onChange={(e) => handleOnChangeChoice(e)}>
                                                 <option value="Random" selected={randomChecked ? true : false} >Ngẫu nhiên</option>
                                                 <option value="Percentage" selected={percentageChecked ? true : false}>Tỉ trọng</option>
 
@@ -172,10 +180,12 @@ function DisplayBanner(props) {
                             <ListBannerHidden id={id} displayUtil={displayUtil}></ListBannerHidden>
                         </div>
                         <div className="col-12">
+
                             <div className="button">
                                 <button type="button" className="btn btn-outline-secondary mt-2 me-2" name="btncancel" onClick={() => backToSections()}>Hủy</button>
-                                <button type="submit" className="btn btn-primary mt-2" name="btnsubmit" onClick={() => handleAddBannerForDisplay()} >Thêm banner</button>
+                                <button type="submit" className="btn btn-primary mt-2" name="btnsubmit" onClick={() => handleAddBannerForDisplay()} >Lưu thông tin</button>
                             </div>
+
                         </div>
                     </div>
                 </div>
