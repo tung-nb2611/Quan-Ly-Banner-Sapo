@@ -2,16 +2,17 @@ import React, { useState } from "react";
 import '../../styles/banner/UpdateBanner.css';
 import UserService from "../../services/UserService";
 import * as BiIcons from "react-icons/bi";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, useHistory, Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
 function UpdateUser(props) {
     let data = {}
+    const history = useHistory();
     const linkState = useLocation();
     console.log(linkState);
     if (typeof linkState.detailInfo !== 'undefined') {
         data = linkState.detailInfo;
-        console.log(data);
+       console.log(data);
     }
     const [userID, setUserID] = useState(data.id);
     const { register, handleSubmit, watch, formState: { errors } } = useForm({
@@ -23,12 +24,12 @@ function UpdateUser(props) {
             phone: data.phone,
         },
     });
-    console.log(register.name);
     const onSubmit = data => {
         updateUser(data);
+        console.log("check");
     };
     const handleCancel = () => {
-        props.history.push('/user/manage');
+        history.push('/user/manage');
     }
     const updateUser = (data) => {
         let userItem = {
@@ -39,7 +40,7 @@ function UpdateUser(props) {
             phone: data.phone,
         }
         UserService.updateUser(userItem, userID).then(res => {
-            props.history.push('/user/manage');
+            history.push('/user/manage');
         })
     }
     return (
@@ -109,7 +110,7 @@ function UpdateUser(props) {
                                     {errors.username && errors.username.type === "maxLength" && <span>Max length is 20</span>}
                                 </div>
                                 <button type="button" className="btn btn-outline-danger" name="btncancel" onClick={() => handleCancel()} >Hủy</button>
-                                <button type="submit" className="btn btn-primary " name="btnsubmit" >Thêm người dùng</button>
+                                <button type="submit" className="btn btn-primary " name="btnsubmit" >Chỉnh sửa</button>
                             </form>
                         </div>
                     </div>
