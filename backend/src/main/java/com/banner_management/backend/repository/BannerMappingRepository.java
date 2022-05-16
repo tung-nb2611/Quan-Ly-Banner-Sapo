@@ -61,7 +61,4 @@ public interface BannerMappingRepository extends JpaRepository<BannerMappingEnti
     List<BannerMappingEntity> getListBannerHiddenBySections(Integer sectionId);
 
 
-
-
-
 }

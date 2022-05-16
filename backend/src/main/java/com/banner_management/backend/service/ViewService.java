@@ -66,8 +66,9 @@ public class ViewService {
 
     }
 
-    public int getSumViewByMonth ( int year, int month){
-        return viewRepository.getSumViewByMonth(year, month);
+
+    public Integer getViewNumberByWebSite(int websiteID, int year, int month){
+        return viewRepository.getViewNumberByWebSite(websiteID, year, month);
 
     }
 
