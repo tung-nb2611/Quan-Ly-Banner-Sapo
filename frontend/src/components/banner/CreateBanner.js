@@ -7,22 +7,23 @@ import * as BiIcons from "react-icons/bi";
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../common/Firebase";
 import { v4 } from "uuid";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, useLocation } from "react-router-dom";
 import SectionService from "../../services/section/SectionService"
 
 function CreateBanner(props) {
-  let { id } = useParams();
 
-  const history = useHistory();
-  const [imageUpload, setImageUpload] = useState(null);
-  const [bannerID, setBannerID] = useState('');
-  const [name, setName] = useState('');
-  const [imgPreview, setImgPreview] = useState('');
-  const [urlLink, setUrlLink] = useState('');
-  const [sectionId, setSectionId] = useState(id);
-  const [sectionList, setSectionList] = useState([]);
-  const [sectorList, setSectorList] = useState([]);
-  const [sectorChoice, setSectorChoice] = useState('');
+    let { id } = useParams();
+    // id đâng
+    const passedInfo = useLocation();
+    const websiteId = passedInfo.websiteId;
+    const history = useHistory();
+    const [imageUpload, setImageUpload] = useState(null);
+    const [bannerID, setBannerID] = useState('');
+    const [name, setName] = useState('');
+    const [imgPreview, setImgPreview] = useState('');
+    const [urlLink, setUrlLink] = useState('');
+    const [sectionId, setSectionId] = useState(websiteId);
+
 
   useEffect(() => {
     SectionService.getAllSections().then((response) => {
@@ -100,6 +101,8 @@ function CreateBanner(props) {
         document.getElementById("url").style.display = "none";
       }
 
+
+
       if (imgPreview.length === 0) {
         document.getElementById("image").style.display = "block";
         document.getElementById("image").style.color = "red";
@@ -152,6 +155,7 @@ function CreateBanner(props) {
     }
 
   }
+
   return (
     <div className="create-banner-container px-3">
       <div className="header-top">
@@ -184,7 +188,7 @@ function CreateBanner(props) {
                     {sectionList.map((section) => (
                       <option
                         value={section.id}
-                        selected={section.id == id ? true : false}
+                        selected={section.id == websiteId ? true : false}
                       >
                         {section.name}
                       </option>
@@ -197,7 +201,9 @@ function CreateBanner(props) {
                     onChange={(e) => setSectorChoice(e.target.value)}
                   >
                     {sectorList.map((item) => (
-                      <option value={item.id}>{item.divId}</option>
+                      <option value={item.id}
+                              selected={item.id == id ? true : false}
+                        >{item.divId}</option>
                     ))}
                   </select>
                 </div>

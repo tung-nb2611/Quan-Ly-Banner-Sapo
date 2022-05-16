@@ -15,7 +15,6 @@ const ListBannerChoice = (props) => {
 
   useEffect(() => {
     BannerDtoService.getBannerEnabledBySectionID(id).then((response) => {
-      console.log(response);
       setBannerEnabled(response.data);
       bannerListContext.setBannerArr(response.data);
     })
