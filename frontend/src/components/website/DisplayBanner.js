@@ -2,7 +2,9 @@ import '../../styles/website/DisplayBanner.css'
 import React, { useContext, useEffect, useState } from "react";
 import * as BiIcons from "react-icons/bi";
 import ListBannerChoice from '../banner/ListBannerChoice';
-import { useHistory, useParams } from 'react-router-dom';
+
+import { useHistory , useParams, useLocation } from 'react-router-dom';
+
 import BannerStatusService from '../../services/BannerStatusService'
 import { CheckboxArrContext } from '../../context/CheckboxListContext';
 import SectionService from '../../services/section/SectionService';
@@ -13,6 +15,7 @@ import { CheckboxContext } from '../../context/CheckboxContext';
 
 function DisplayBanner(props) {
 
+    const webId = useLocation();
     const arrContext = useContext(CheckboxArrContext);
     const arrHiddenContext = useContext(CheckboxContext);
     let { id } = useParams();
@@ -22,6 +25,9 @@ function DisplayBanner(props) {
     const [randomChecked, setRandomChecked] = useState(true);
     const [percentageChecked, setpercentageChecked] = useState(false);
     const [random, setRandom] = useState();
+    const [websiteId, setWebsiteId] = useState(webId.state.webId);
+
+    console.log(websiteId);
 
     useEffect(() => {
         SectionService.getSectionById(id).then((response) => {
@@ -34,7 +40,8 @@ function DisplayBanner(props) {
 
     const createPage = {
         pathname: "/banner/create/" + id,
-        section: section
+        section: section,
+        websiteId: websiteId
     }
 
     const backToSections = () => {
