@@ -20,6 +20,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 @CrossOrigin(origins = "*")
 @RequestMapping("/api")
@@ -45,7 +47,7 @@ public class BannerController {
 
     // api lọc banner theo website và khu vực
     @GetMapping("/banners/report/filter/bannerID={bannerID}")
-    public List<BannerMappingDto> getListBannerGroupByWebsiteAndSection(@PathVariable("bannerID") int bannerID){
+    public List<BannerMappingDto> getListBannerGroupByWebsiteAndSection(@PathVariable("bannerID") @Valid int bannerID){
 
         List<BannerMappingDto> bannerMappingDtoList = new ArrayList<>();
 
@@ -63,7 +65,7 @@ public class BannerController {
         return bannerMappingDtoList;
     }
     @GetMapping("/banners/filter/sectionID={sectionID}")
-    public List<BannerMappingDto> getListBannerByWebsiteAndSection(@PathVariable("sectionID") int sectionID){
+    public List<BannerMappingDto> getListBannerByWebsiteAndSection(@PathVariable("sectionID") @Valid int sectionID){
 
         List<BannerMappingDto> bannerMappingDtoList = new ArrayList<>();
 
@@ -83,7 +85,7 @@ public class BannerController {
 
     // lấy một banner theo id
     @GetMapping("/banners/{id}")
-    public ResponseEntity<BannerEntity> getBannerById(@PathVariable Integer id){
+    public ResponseEntity<BannerEntity> getBannerById(@PathVariable @Valid Integer id){
         try{
             BannerEntity bannerEntity = bannerService.getById(id);
             return new ResponseEntity<BannerEntity>(bannerEntity, HttpStatus.OK);
@@ -94,7 +96,7 @@ public class BannerController {
 
     // tạo mới một banner
     @PostMapping("/banners")
-    public ResponseEntity<BannerEntity> addBanner(@RequestBody BannerDto bannerDto){
+    public ResponseEntity<BannerEntity> addBanner(@RequestBody @Valid BannerDto bannerDto){
         try {
             System.out.println(" banner dto " + bannerDto);
             BannerEntity bannerEntity = new BannerEntity(bannerDto.getCode(), bannerDto.getName(), bannerDto.getImgUrl(),
@@ -113,7 +115,7 @@ public class BannerController {
 
     // cập nhật một banner theo id
     @PutMapping("/banners/{id}")
-    public ResponseEntity<BannerEntity> updateBannerById (@RequestBody BannerEntity banner, @PathVariable Integer id){
+    public ResponseEntity<BannerEntity> updateBannerById (@RequestBody @Valid BannerEntity banner, @PathVariable @Valid Integer id){
         try{
             System.out.println("id: "+ id);
             System.out.println(banner);
@@ -147,7 +149,7 @@ public class BannerController {
     }
     // Lay thong tin theo trang
     @GetMapping("/banners/page/{number}")
-    public ResponseEntity<Page<BannerEntity>> getBannerPage(@PathVariable(value="number") int number){
+    public ResponseEntity<Page<BannerEntity>> getBannerPage(@PathVariable(value="number") @Valid int number){
         try{
             Page<BannerEntity> banners = bannerService.getBannerPage(number);
             return new ResponseEntity<>(banners, HttpStatus.OK);
@@ -157,7 +159,7 @@ public class BannerController {
     }
 
     @GetMapping("/banners/rate/{sectionID}/{number}")
-    public ResponseEntity<Page<BannerEntity>> getBannerStatusPage(@PathVariable("sectionID") int sectionId, @PathVariable("number") int number ){
+    public ResponseEntity<Page<BannerEntity>> getBannerStatusPage(@PathVariable("sectionID") @Valid int sectionId, @PathVariable("number") @Valid int number ){
         try{
             Page<BannerEntity> banners = bannerService.getBannerStatusPage(sectionId, number);
             return new ResponseEntity<>(banners, HttpStatus.OK);
@@ -168,7 +170,7 @@ public class BannerController {
 
     // Lay thong tin banner
     @GetMapping("/banners/list/enabled/{sectionID}")
-    public ResponseEntity<List<BannerEntity>> getBannerEnabledBySectionId(@PathVariable("sectionID") int sectionId ){
+    public ResponseEntity<List<BannerEntity>> getBannerEnabledBySectionId(@PathVariable("sectionID") @Valid int sectionId ){
         try{
             List<BannerEntity> banners = bannerService.getBannerEnabledBySectionId(sectionId);
             return new ResponseEntity<>(banners, HttpStatus.OK);
@@ -179,7 +181,7 @@ public class BannerController {
 
     // Lay thong tin banner hidden
     @GetMapping("/banners/dto/hidden/{sectionID}")
-    public ResponseEntity<List<BannerInfoDto>> getBannerHiddenBySectionId(@PathVariable("sectionID") int sectionId){
+    public ResponseEntity<List<BannerInfoDto>> getBannerHiddenBySectionId(@PathVariable("sectionID") @Valid int sectionId){
         try{
             List<BannerInfoDto> banners = bannerService.getBannerHidden(sectionId);
             return new ResponseEntity<>(banners, HttpStatus.OK);
@@ -189,7 +191,7 @@ public class BannerController {
     }
 
     @GetMapping("/banners/dto/enabled/{sectionID}")
-    public ResponseEntity<List<BannerInfoDto>> getBannerDtoEnabledBySectionId(@PathVariable("sectionID") int sectionId ){
+    public ResponseEntity<List<BannerInfoDto>> getBannerDtoEnabledBySectionId(@PathVariable("sectionID") @Valid int sectionId ){
         try{
             List<BannerInfoDto> banners = bannerService.getBannerEnabled(sectionId);
             return new ResponseEntity<>(banners, HttpStatus.OK);

@@ -42,9 +42,10 @@ function CreateSection(props) {
     }
 
     const handleChangeValidateDivId = (e) => {
-        setDivId(e.target.value)
+
         if (!(/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?]/.test(e.target.value))) {
             document.getElementById("divId").style.display = "none";
+            setDivId(e.target.value)
         }
         else {
             document.getElementById("divId").style.display = "block";

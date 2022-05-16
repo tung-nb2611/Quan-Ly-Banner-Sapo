@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 
 @Entity
@@ -16,19 +17,19 @@ public class WebsiteEntity {
     private int id;
 
     @Column(name = "name")
-    @NotNull
+    @NotEmpty(message = "thiếu tên website")
     private  String name;
 
     @Column(name = "url")
-    @NotNull
+    @NotEmpty(message = "thiếu liên kết trang web")
     private String url;
 
     @Column(name = "user_add")
-    @NotNull
+    @NotEmpty(message = "Thiếu người tạo trang web")
     private String userAdd;
 
     @Column(name = "code")
-    @NotNull
+    @NotEmpty(message = "Thiếu mã trang web")
     private String code;
 
     public WebsiteEntity() {
