@@ -22,7 +22,9 @@ public class WebsiteService {
         return websiteRepository.findAll();
     }
 
-
+    public List<WebsiteEntity> getAllWebsite(){
+        return websiteRepository.findAll();
+    }
 
     public List<WebsiteEntity> listWebsiteByUserAdd(String userAdd) {
         return websiteRepository.getWebsiteEntitiesByUserAdd(userAdd);

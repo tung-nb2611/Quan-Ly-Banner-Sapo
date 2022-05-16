@@ -1,14 +1,17 @@
 package com.banner_management.backend.controller;
 
 import com.banner_management.backend.dto.ClickAndViewDto;
+import com.banner_management.backend.dto.ViewDto;
 import com.banner_management.backend.entity.*;
 import com.banner_management.backend.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -189,4 +192,85 @@ public class ReportController {
         return clickAndViewDto;
     }
 
+
+    @GetMapping("/banners/views/statics/{year}/{month}")
+    public HashMap<String, Integer> getDataFromViewDto (@PathVariable("year") Integer year, @PathVariable("month") Integer month){
+       List<WebsiteEntity> websiteEntityList = websiteService.getAllWebsite();
+        System.out.println("check list 1 :"+ websiteEntityList);
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        List<String> webName = new ArrayList<>();
+        for(int i = 0 ; i < websiteEntityList.size() ; i++){
+            WebsiteEntity websiteEntity = websiteService.getById(websiteEntityList.get(i).getId());
+            webName.add(websiteEntity.getName());
+            int numberView =  viewService.getViewNumberByWebSite(websiteEntity.getId(),year, month);
+            map.put(websiteEntity.getName(), numberView);
+        }
+        System.out.println("hashmap :"+ map);
+        System.out.println("key :"+ map.keySet());
+        System.out.println("value :"+ map.values());
+        return map;
+    }
+
+    @GetMapping("/banners/views/statics/{year}")
+    public List<ViewDto> getWebViewSortByYear(@PathVariable("year") int year){
+        List<ViewDto> viewDtoList = new ArrayList<>();
+
+        for(int i = 1 ; i <= 12 ; i++){
+            HashMap<String, Integer> newMap = getDataFromViewDto(year, i);
+            String month = null;
+            switch (i){
+                case 1:{
+                    month="Tháng 1";
+                    break;
+                }
+                case 2:{
+                    month="Tháng 2";
+                    break;
+                }
+                case 3:{
+                    month="Tháng 3";
+                    break;
+                }
+                case 4:{
+                    month="Tháng 4";
+                    break;
+                }
+                case 5:{
+                    month="Tháng 5";
+                    break;
+                }
+                case 6:{
+                    month="Tháng 6";
+                    break;
+                }
+                case 7:{
+                    month="Tháng 7";
+                    break;
+                }
+                case 8:{
+                    month="Tháng 8";
+                    break;
+                }
+                case 9:{
+                    month="Tháng 9";
+                    break;
+                }
+                case 10:{
+                    month="Tháng 10";
+                    break;
+                }
+                case 11:{
+                    month="Tháng 11";
+                    break;
+                }
+                case 12:{
+                    month="Tháng 12";
+                    break;
+                }
+            }
+            ViewDto viewDto = new ViewDto(newMap, month);
+            viewDtoList.add(viewDto);
+        }
+        return viewDtoList;
+    }
 }

@@ -60,6 +60,4 @@ public interface BannerMappingRepository extends JpaRepository<BannerMappingEnti
     @Query(value = "select * from banner_mapping left join banners on banner_mapping.banner_id = banners.id where banner_mapping.section_id = ?1 and state = 0", nativeQuery = true)
     List<BannerMappingEntity> getListBannerHiddenBySections(Integer sectionId);
 
-
-
 }

@@ -47,7 +47,8 @@ public interface ViewRepository extends JpaRepository<ViewEntity, Integer> {
 
     //Lấy tổng lượng view theo tháng
     @Query(value ="SELECT (monthname(time_view)) AS  month , COUNT(*) AS views FROM views where section_id =?1 GROUP BY month ORDER BY month ASC",nativeQuery = true)
-
     Integer getSumViewBySectionIDForMonth( int sectionID);
 
+    @Query(value = "SELECT count(views.id) from views left join sections on views.section_id = sections.id left join websites on sections.web_id = websites.id where websites.id = ?1 and year(views.time_view) = ?2 and month(views.time_view) = ?3", nativeQuery = true)
+    Integer getViewNumberByWebSite(int websiteID, int year, int month);
 }
