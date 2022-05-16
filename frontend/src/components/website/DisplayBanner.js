@@ -60,10 +60,10 @@ function DisplayBanner(props) {
 
     const handleAddBannerForDisplay = () => {
 
-        if (timeDisplay <= 0) {
-            alert("Thời gian hiển thị banner phải là một số dương");
-            return;
-        }
+        // if (timeDisplay <= 0) {
+        //     alert("Thời gian hiển thị banner phải là một số dương");
+        //     return;
+        // }
 
 
         // Dùng 2 lần for do: có 2 array - 1 cái chứa banner đã ẩn và 1 cái chứa banner đang được hiển thị

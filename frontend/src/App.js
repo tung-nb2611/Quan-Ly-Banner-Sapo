@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route, Redirect, Link } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -122,10 +122,10 @@ const App = () => {
                 </Layout>
               ) : (
                 <>
-                  {/* <Route path="/">
-                    <Redirect to='/login'></Redirect>
-                  </Route> */}
                   <Route exact path="/">
+                    <Link to='/login'>link to login</Link>
+                  </Route>
+                  <Route exact path="/login">
                     <Login />
                   </Route>
                 </>
