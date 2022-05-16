@@ -2,7 +2,9 @@ import '../../styles/website/DisplayBanner.css'
 import React, { useContext, useEffect, useState } from "react";
 import * as BiIcons from "react-icons/bi";
 import ListBannerChoice from '../banner/ListBannerChoice';
+
 import { useHistory , useParams, useLocation } from 'react-router-dom';
+
 import BannerStatusService from '../../services/BannerStatusService'
 import { CheckboxArrContext } from '../../context/CheckboxListContext';
 import SectionService from '../../services/section/SectionService';
@@ -42,9 +44,9 @@ function DisplayBanner(props) {
         websiteId: websiteId
     }
 
-	const backToSections = () => {
-    history.push('/websites/websiteId=' + id + '/sections')
-  }
+    const backToSections = () => {
+        history.push('/websites/websiteId=' + id + '/sections')
+    }
 
     const displayUtil = {
         random: randomChecked,
@@ -62,41 +64,51 @@ function DisplayBanner(props) {
             setpercentageChecked(false);
         }
     }
-    
-    const handleAddBannerForDisplay = () => {
-        
-        // Dùng 2 lần for do: có 2 array - 1 cái chứa banner đã ẩn và 1 cái chứa banner đang được hiển thị
-            let today = new Date();
-            let bannerStatusArray = new Array();
-            for (let i = 0; i < arrContext.bannerArr.length; i++) {
-                let bannerStatusItem = {
-                    bannerID: arrContext.bannerArr[i].bannerID,
-                    code: arrContext.bannerArr[i].code,
-                    id: arrContext.bannerArr[i].id,
-                    imgUrl: arrContext.bannerArr[i].imgUrl,
-                    name: arrContext.bannerArr[i].name,
-                    sectionID: arrContext.bannerArr[i].sectionID,
-                    percentage: arrContext.bannerArr[i].percentage,
-                    timeDisplay: today,
-                    state: arrContext.bannerArr[i].state
-                }
-                bannerStatusArray.push(bannerStatusItem);
-            }
 
-            for (let i = 0; i < arrHiddenContext.hiddenArr.length; i++) {
-                let bannerStatusItem = {
-                    bannerID: arrHiddenContext.hiddenArr[i].bannerID,
-                    code: arrHiddenContext.hiddenArr[i].code,
-                    id: arrHiddenContext.hiddenArr[i].id,
-                    imgUrl: arrHiddenContext.hiddenArr[i].imgUrl,
-                    name: arrHiddenContext.hiddenArr[i].name,
-                    sectionID: arrHiddenContext.hiddenArr[i].sectionID,
-                    percentage: arrHiddenContext.hiddenArr[i].percentage,
-                    timeDisplay: today,
-                    state: arrHiddenContext.hiddenArr[i].state
-                }
-                bannerStatusArray.push(bannerStatusItem);
+    const handleAddBannerForDisplay = () => {
+
+        // if (timeDisplay <= 0) {
+        //     alert("Thời gian hiển thị banner phải là một số dương");
+        //     return;
+        // }
+
+
+        // Dùng 2 lần for do: có 2 array - 1 cái chứa banner đã ẩn và 1 cái chứa banner đang được hiển thị
+        let today = new Date();
+        let bannerStatusArray = new Array();
+        for (let i = 0; i < arrContext.bannerArr.length; i++) {
+            let bannerStatusItem = {
+                bannerID: arrContext.bannerArr[i].bannerID,
+                code: arrContext.bannerArr[i].code,
+                id: arrContext.bannerArr[i].id,
+                imgUrl: arrContext.bannerArr[i].imgUrl,
+                name: arrContext.bannerArr[i].name,
+                sectionID: arrContext.bannerArr[i].sectionID,
+                percentage: arrContext.bannerArr[i].percentage,
+                timeDisplay: today,
+                state: arrContext.bannerArr[i].state
             }
+            bannerStatusArray.push(bannerStatusItem);
+        }
+
+        for (let i = 0; i < arrHiddenContext.hiddenArr.length; i++) {
+            let bannerStatusItem = {
+                bannerID: arrHiddenContext.hiddenArr[i].bannerID,
+                code: arrHiddenContext.hiddenArr[i].code,
+                id: arrHiddenContext.hiddenArr[i].id,
+                imgUrl: arrHiddenContext.hiddenArr[i].imgUrl,
+                name: arrHiddenContext.hiddenArr[i].name,
+                sectionID: arrHiddenContext.hiddenArr[i].sectionID,
+                percentage: arrHiddenContext.hiddenArr[i].percentage,
+                timeDisplay: today,
+                state: arrHiddenContext.hiddenArr[i].state
+            }
+            bannerStatusArray.push(bannerStatusItem);
+        }
+
+        BannerStatusService.updateBannerStatusList(bannerStatusArray);
+
+
 
             BannerStatusService.updateBannerStatusList(bannerStatusArray);
             
@@ -110,6 +122,7 @@ function DisplayBanner(props) {
             SectionService.updateSectionStatus(section);
             /// api luu random/percentage vao section list dua theo section id
         
+
     }
 
     return (
@@ -142,14 +155,17 @@ function DisplayBanner(props) {
                                             />
                                         </div>
                                     </div>
+
                                     <div className='mt-3 col-12 form-group'>
                                         <div className='col-2'>
                                             <label htmlFor='bannerID'>Chế độ hiển thị</label>
                                         </div>
                                         <label className='col-12'>
+
                                             <select className='col-5' style={{ fontSize: "17px"}} onChange={(e) => handleOnChangeChoice(e)}>
                                                 <option value="Random" selected={randomChecked ? true : false} >Ngẫu nhiên</option>
                                                 <option value="Percentage" selected={percentageChecked ? true : false}>Tỉ trọng</option>
+
                                             </select>
                                         </label>
                                     </div>
@@ -164,10 +180,12 @@ function DisplayBanner(props) {
                             <ListBannerHidden id={id} displayUtil={displayUtil}></ListBannerHidden>
                         </div>
                         <div className="col-12">
+
                           <div className="button">
                           <button type="button" className="btn btn-outline-secondary mt-2 me-2" name="btncancel" onClick={() => backToSections()}>Hủy</button>
                           <button type="submit" className="btn btn-primary mt-2" name="btnsubmit" onClick={() => handleAddBannerForDisplay()} >Lưu thông tin</button>
                           </div>
+
                         </div>
                     </div>
                 </div>
@@ -176,3 +194,4 @@ function DisplayBanner(props) {
     );
 }
 export default DisplayBanner;
+

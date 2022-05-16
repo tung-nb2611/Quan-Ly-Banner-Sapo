@@ -5,11 +5,12 @@ import { Link, useHistory } from "react-router-dom";
 // import '../../styles/banner/UpdateBanner.css';
 import * as BiIcons from "react-icons/bi";
 import { useLocation, useParams } from "react-router-dom";
-import ClickService from "../../services/clicks/ClickService";
+
 import DetailClick from "./DetailClick";
-import PaginateList from "../PaginateList";
+
 import '../../styles/report/DetailReport.css';
-import BannerService from "../../services/BannerService";
+
+import ViewService from "../../services/views/ViewService";
 
 
 function DetailReport(props) {
@@ -37,10 +38,11 @@ function DetailReport(props) {
     const [imgUrl] = useState(data.imgUrl); // Dùng để show ảnh
     const [click] = useState(views.number);
     const [clickInfoList, setClickInfoList] = useState([]);
+    console.log('123:', data.id);
 
     useEffect(() => {
-        BannerService.getBannerById(data.id).then((response) => {
-            const info = response.data.content;
+        ViewService.getListView(data.id).then((response) => {
+            const info = response.data;
 
             console.log("click innfo", info)
             setClickInfoList(info);
@@ -110,9 +112,12 @@ function DetailReport(props) {
                                     <thead>
 
                                         <tr className="col-6 bg-info">
+                                            <th className="col-2 text-center"> ID khu vực  Hiển Thị </th>
+
+                                            <th className="col-2 text-center"> browerName</th>
                                             <th className="col-1 text-center" >Thời gian Click</th>
                                             <th className="col-2 text-center"> Người thực hiện</th>
-                                            <th className="col-2 text-center"> ID Trang Web Hiển Thị </th>
+
 
 
 
@@ -120,11 +125,11 @@ function DetailReport(props) {
                                         </tr>
                                     </thead>
                                     <tbody className="col-6 ">
-                                        {/* {
+                                        {
                                             clickInfoList.map((item) =>
                                                 <DetailClick key={item.id} clickInfo={item} />
                                             )
-                                        } */}
+                                        }
                                     </tbody>
                                 </table>
                             </div>

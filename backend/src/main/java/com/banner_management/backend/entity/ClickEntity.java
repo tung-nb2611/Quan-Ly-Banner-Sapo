@@ -3,6 +3,7 @@ package com.banner_management.backend.entity;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
@@ -15,15 +16,15 @@ public class ClickEntity {
     private int ID;
 
     @Column(name = "banner_id", nullable = false)
-    @NotNull
-    private int bannerId;
+    @NotNull(message = "Thiếu mã banner")
+    private Integer bannerId;
 
     @Column(name = "section_id", nullable = false)
-    @NotNull
-    private int sectionId;
+    @NotNull(message = "Thiếu mã khu vực")
+    private Integer sectionId;
 
     @Column(name = "browser_name")
-    @NotNull
+    @NotEmpty(message = "Thiếu tên trình duyệt")
     private String browserName;
 
     @Column(name = "time_click")
@@ -31,7 +32,7 @@ public class ClickEntity {
     private Timestamp timeClick;
 
     @Column(name = "user_click")
-    @NotNull
+    @NotEmpty(message = "Thiếu tên người click")
     private String userClick;
 
     public ClickEntity() {

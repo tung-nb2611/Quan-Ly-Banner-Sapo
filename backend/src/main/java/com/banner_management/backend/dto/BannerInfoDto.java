@@ -1,16 +1,33 @@
 package com.banner_management.backend.dto;
 
-import java.sql.Timestamp;
+
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 public class BannerInfoDto {
+
     private int id;
+
+    @NotNull(message = "Thiếu id banner")
     private int bannerID;
+
+    @NotEmpty(message = "Thiếu mã banner")
     private String code;
+
+    @NotEmpty(message = "Thiếu tên banner")
     private String name;
+
+    @NotEmpty(message = "Thiếu ảnh")
     private String imgUrl;
+
+    @NotNull(message = "Thiếu mã khu vực")
     private int sectionID;
+
+    @NotEmpty(message = "Thiếu liên kết ảnh")
     private String url;
+
     private short state;
+
     private int percentage;
 
     public BannerInfoDto(int id, int bannerID, String code, String name, String imgUrl, int sectionID, String url,

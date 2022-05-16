@@ -30,7 +30,7 @@ const UserList = () => {
 
   const displayUser = userList.map((userInfo) => {
     return (
-      <div className="col-md-12 col-lg-6 mb-3" key={userInfo.id}>
+      <div className="col-md-12 col-lg-6 col-xl-4 mb-3" key={userInfo.id}>
         <UserInfo userInfo={userInfo} userList={userList} setUserList={setUserList}/>;
       </div>
     );

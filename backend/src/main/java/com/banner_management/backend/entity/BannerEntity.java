@@ -1,6 +1,7 @@
 package com.banner_management.backend.entity;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 
@@ -12,15 +13,15 @@ public class BannerEntity {
     private int id;
 
     @Column(name = "code" , nullable = false, length = 255)
-    @NotNull
+    @NotEmpty(message = "Thiếu mã banner")
     private String code;
 
     @Column(name = "name", nullable = false)
-    @NotNull
+    @NotEmpty(message = "Thiếu tên banner")
     private String name;
 
     @Column(name = "img_url", nullable = false)
-
+    @NotEmpty(message = "Thiếu ảnh")
     private String imgUrl;
 
     @Column(name = "user_add" , nullable = false)
@@ -38,6 +39,7 @@ public class BannerEntity {
     private Timestamp modifiedAt;
 
     @Column(name = "url")
+    @NotEmpty(message = "Thiếu liên kết ảnh")
     private String url;
 
     public BannerEntity() {

@@ -2,11 +2,12 @@ const DetailClick = ({ clickInfo }) => {
 
     return (
         <tr>
-            <td>{clickInfo.userClick}</td>
-
             <td>{clickInfo.sectionID}</td>
 
-            <td>{clickInfo.timeClick}</td>
+            <td>{clickInfo.browserName}</td>
+
+            <td>{clickInfo.timeView}</td>
+            <td>{clickInfo.userView}</td>
 
 
         </tr>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, Redirect } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -11,6 +11,7 @@ import UserManage from "./pages/UserManage";
 import Report from './pages/Report';
 import BannerManage from "./pages/BannerManage";
 import Layout from './components/dashboard/Layout';
+import LinkToLogin from './components/authentication/LinkToLogin'
 import Login from "./components/authentication/Login";
 import Home from "./components/authentication/Home";
 import CreateBanner from "./components/banner/CreateBanner";
@@ -61,7 +62,7 @@ const App = () => {
             {currentUser ?
               (
                 <Layout logOut={logOut} showAdminBoard={showAdminBoard}>
-                  <Redirect from="/" to="/home" />
+                  {/* <Redirect from="/" to="/home" /> */}
                   <Route exact path="/home">
                     <Home />
                   </Route>
@@ -89,7 +90,7 @@ const App = () => {
                   <Route exact path="/report">
                     <Report />
                   </Route>
-                  <Route exact path="/website/create">
+                  <Route exact path="/websites/create">
                     <CreateWebsite showAdminBoard={showAdminBoard} />
                   </Route>
                   <Route exact path="/websites/manage">
@@ -108,13 +109,13 @@ const App = () => {
                     <DetailReport />
                   </Route>
                   <Route exact path="/user/manage">
-                    <UserManage/>
+                    <UserManage />
                   </Route>
                   <Route exact path="/user/create">
-                    <CreateUser/>
+                    <CreateUser />
                   </Route>
                   <Route path="/user/update/:code">
-                    <UpdateUser/>
+                    <UpdateUser />
                   </Route>
                   {/* <Route path="/user/update">
                     <UpdateUser/>
@@ -122,8 +123,8 @@ const App = () => {
                 </Layout>
               ) : (
                 <>
-                  <Route path="/">
-                    <Redirect to='/login'></Redirect>
+                  <Route exact path="/">
+                    <LinkToLogin />
                   </Route>
                   <Route exact path="/login">
                     <Login />

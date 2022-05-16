@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -24,27 +25,29 @@ public class ViewsController {
 
     // lay luot view cua banner dua theo khu vuc
     @GetMapping("/banners/views/{bannerID}")
-    public List<ViewEntity> getViewsBannerByid(@PathVariable("bannerID") int bannerID){
+    public List<ViewEntity> getViewsBannerByid(@Valid  @PathVariable("bannerID") int bannerID){
         return viewService.getByBannerID(bannerID);
     }
 
 
 // lay luot view cua banner dua theo khu vuc
     @GetMapping("/banners/views/{sectionID}/{bannerID}")
-    public ViewEntity getViewsBannerInSection(@PathVariable("sectionID") int sectionID, @PathVariable("bannerID") int bannerID){
+    public ViewEntity getViewsBannerInSection(@Valid @PathVariable("sectionID") int sectionID,@Valid @PathVariable("bannerID") int bannerID){
         return viewService.getByBannerIDAndSectionID(bannerID,sectionID);
     }
 
 
     @GetMapping("/banners/views/banner/{bannerId}")
-    public int getViewsByBannerId(@PathVariable("bannerId") int bannerId){
+    public int getViewsByBannerId(@Valid @PathVariable("bannerId") int bannerId){
             return viewService.getViewsByBannerId(bannerId);
     }
 
     //
 
     @PostMapping("/banners/views")
-    public void insertViewBanner (@RequestBody ViewEntity viewEntity){
+    public void insertViewBanner (@Valid @RequestBody ViewEntity viewEntity){
         viewService.save(viewEntity);
     }
+
+//    @GetMapping(/banners/views/{})
 }

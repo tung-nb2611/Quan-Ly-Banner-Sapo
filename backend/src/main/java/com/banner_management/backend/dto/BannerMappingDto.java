@@ -1,13 +1,29 @@
 package com.banner_management.backend.dto;
 
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 public class BannerMappingDto {
+
     private int id;
+
+    @NotEmpty(message = "Thiếu tên banner")
     private String name;
+
+    @NotEmpty(message = "Thiếu ảnh")
     private String imgUrl;
+
+    @NotEmpty(message = "Thiếu liên kết ảnh")
     private String url;
+
+
     private int numberView;
     private int numberClick;
+
+    @NotNull(message = "Thiếu mã khu vực")
     private int sectionID;
+
+    @NotEmpty(message = "Thiếu tên website")
     private String webName;
 
     public BannerMappingDto(int id, String name, String imgUrl, String url, int numberView, int numberClick, int sectionID, String webName) {

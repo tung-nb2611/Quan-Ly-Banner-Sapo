@@ -49,7 +49,7 @@ function SectionListReport(props) {
 	return (
 		<div className="section-list p-3">
 			<h3>
-				Báo cáo thông tin cho mỗi website
+				Báo cáo thông tin cho website
 			</h3>
 			<hr/>
 			<div className="list ms-0 w-100 d-flex row">
