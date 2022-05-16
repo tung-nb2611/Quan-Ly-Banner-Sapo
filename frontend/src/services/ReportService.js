@@ -18,6 +18,10 @@ class ReportService {
     getListClickandviewInmonth(sectionID) {
         return axios.get("http://localhost:8080/api/banners/report/click-and-view/sectionID=" + sectionID + "/year=" + "2022" + "/" + "statics")
     }
+    getListClickandviewInYear(sectionID) {
+        return axios.get("http://localhost:8080/api/banners/report/click-and-view/sectionID=" + sectionID + "/year=" + "2022")
+    }
+
 }
 
 export default new ReportService();

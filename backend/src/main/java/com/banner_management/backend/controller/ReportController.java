@@ -83,7 +83,7 @@ public class ReportController {
         WebsiteEntity websiteEntity = websiteService.getById(sectionEntity.getWebId());
 
         ClickAndViewDto clickAndViewDto = new ClickAndViewDto(
-                websiteEntity.getName(), sectionID, sumClick, sumView);
+                websiteEntity.getName(), sectionID, sumClick, sumView,year);
         return clickAndViewDto;
     }
 
