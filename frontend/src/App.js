@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Switch, Route, Redirect, Link } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
@@ -11,6 +11,7 @@ import UserManage from "./pages/UserManage";
 import Report from './pages/Report';
 import BannerManage from "./pages/BannerManage";
 import Layout from './components/dashboard/Layout';
+import LinkToLogin from './components/authentication/LinkToLogin'
 import Login from "./components/authentication/Login";
 import Home from "./components/authentication/Home";
 import CreateBanner from "./components/banner/CreateBanner";
@@ -123,7 +124,7 @@ const App = () => {
               ) : (
                 <>
                   <Route exact path="/">
-                    <Link to='/login'>link to login</Link>
+                    <LinkToLogin />
                   </Route>
                   <Route exact path="/login">
                     <Login />
