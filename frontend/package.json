@@ -23,6 +23,7 @@
     "react-img-zoom": "^0.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "5.0.1",
+    "react-spring": "^9.4.5",
     "react-validation": "^3.0.7",
     "recharts": "^2.1.9",
     "source-map": "^0.7.3",

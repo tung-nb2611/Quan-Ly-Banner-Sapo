@@ -2,7 +2,6 @@ import "../../styles/banner/BannerInfo.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import Zoom from 'react-img-zoom'
 
 const BASE_URL = "http://localhost:8080/api/banners/";
 
@@ -28,7 +27,26 @@ const BannerInfo = ({ bannerInfo, bannerList, setBannerList }) => {
       setBannerList(bannerList.filter(info => info.id !== bannerInfo.id));
     }
   };
+// xử lý xem trước ảnh
+  // const [isPreview, setIsPreview] = useState(false);
+  // const [preview, setPreview] = useState("");
+  // const handleOpen = (e) => {
+  //   setIsPreview(true);
+  //   setPreview(e.target.src)
+  // }
 
+  // const handleClose = () => {
+  //   setIsPreview(false);
+  // }
+  // const renderPreviewFile = (source) => {
+  //   return (
+  //     <div className="img-preview">
+  //       <img src={source} alt="" />
+  //       <CgIcons.CgCloseR size={24} className="cls" onClick={handleClose} />
+  //     </div>
+  //   )
+  // }
+  
   return (
     <div className="banner-info p-3">
       <div className="row align-middle">
@@ -37,12 +55,10 @@ const BannerInfo = ({ bannerInfo, bannerList, setBannerList }) => {
           <p>{bannerInfo.name}</p>
         </div>
         <div className="image-container col-sm-12 order-sm-2 col-md-12 order-md-3 col-xl-6 order-xl-2">
-          {/* <img className="rounded mx-auto d-block pt-2" src={bannerInfo.imgUrl} alt={bannerInfo.code}/> */}
-          <Zoom
-            img={bannerInfo.imgUrl}
-            zoomScale={2}
-            width={200}
-            height={150}
+          <img 
+            className="rounded mx-auto d-block pt-2" 
+            src={bannerInfo.imgUrl} 
+            alt={bannerInfo.code}
           />
         </div>
         <div className="button-choice col-sm-12 order-sm-3 col-md-6 order-md-2 col-xl-3 order-xl-3">
