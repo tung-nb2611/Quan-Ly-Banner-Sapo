@@ -13,20 +13,20 @@ const Views = () => {
     const [chart, setChart] = useState({})
     const [bannerName, setBannerName] = useState([])
     useEffect(() => {
-        let Viewws = []
-        let Name = []
-        let Click = []
-        ReportService.getSumClicksAndViewsInMounth().then(res => {
+        let View1 = []
+        let month = []
+        let View2 = []
+        ViewService.getListSumViewsInWebsite().then(res => {
             console.log(res);
             for (const dataObj of res.data) {
-                Viewws.push(parseInt(dataObj.numberView));
+                View1.push(dataObj.webView.sapoWeb);
                 console.log('viewsdata', dataObj);
-                Name.push(dataObj.month)
-                Click.push(parseInt(dataObj.numberClick))
+                month.push(dataObj.month)
+                View2.push(dataObj.webView.sapofnb);
             }
-            setData2(Viewws)
-            setCategory(Name)
-            setData1(Click)
+            setData2(View1)
+            setCategory(month)
+            setData1(View2)
         })
     }, []);
 

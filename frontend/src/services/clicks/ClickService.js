@@ -12,7 +12,7 @@ class ClickService {
 
     // Lấy thông tin của từng click chuột của mỗi banner
     getClickInfoByBannerId(bannerId) {
-        return axios.get("http://localhost:8080/api/banners/Clicks" + '/' + bannerId);
+        return axios.get("http://localhost:8080/api/banners/click" + '/' + bannerId);
     }
 
     // Lấy thông tin của từng click chuột của mỗi banner và có phân trang

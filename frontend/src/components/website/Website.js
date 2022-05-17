@@ -8,8 +8,8 @@ function Website({ data }) {
         <div className="detail-info col-12 col-sm-8">
 
 
-          <label> Web name: {data.name} </label>
-          <label> Url: {data.url} </label>
+          <label> Tên Website: {data.name} </label>
+          <label> Đường dẫn: {data.url} </label>
 
         </div>
         <div className="button col-12 col-sm-4">

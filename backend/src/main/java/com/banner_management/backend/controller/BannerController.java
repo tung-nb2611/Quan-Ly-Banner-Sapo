@@ -104,7 +104,7 @@ public class BannerController {
             System.out.println("banner : " + bannerEntity);
             bannerService.save(bannerEntity);
             System.out.println("banner id : "+ bannerEntity.getId());
-            BannerMappingEntity bannerMappingEntity = new BannerMappingEntity(0,bannerEntity.getId(),bannerDto.getSectionID(), (short) 1,10);
+            BannerMappingEntity bannerMappingEntity = new BannerMappingEntity(0,bannerEntity.getId(),bannerDto.getSectionID(), (short) 1,10,0,0);
             System.out.println("banner mapping : " + bannerMappingEntity);
             bannerMappingService.save(bannerMappingEntity);
             return new ResponseEntity<BannerEntity>(bannerEntity, HttpStatus.OK);

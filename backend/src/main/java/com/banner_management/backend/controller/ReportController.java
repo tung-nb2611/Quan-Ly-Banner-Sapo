@@ -294,7 +294,7 @@ public class ReportController {
     }
 
     // api dem luot view theo 12 thang cua tung website
-    @GetMapping("/banners/views/statics/?year={year}")
+    @GetMapping("/banners/views/statics/year={year}")
     public List<ViewDto> getWebViewSortByYear(@PathVariable("year") int year){
         List<ViewDto> viewDtoList = new ArrayList<>();
         for(int i = 1 ; i <= 12 ; i++){

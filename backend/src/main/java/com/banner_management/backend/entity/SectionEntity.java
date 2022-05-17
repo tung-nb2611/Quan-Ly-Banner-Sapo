@@ -17,8 +17,7 @@ public class SectionEntity {
     private int id;
 
     @Column(name = "web_id")
-    @NotNull
-    @NotEmpty(message = "Thiếu mã trang web")
+    @NotNull(message = "Thiếu mã trang web")
     private  int webId;
 
     @Column(name = "div_id")

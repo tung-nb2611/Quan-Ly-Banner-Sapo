@@ -24,6 +24,9 @@ class ReportService {
     getSumClicksAndViewsInMounth() {
         return axios.get("http://localhost:8080/api/banners/report/click-and-view/year=2022/statics")
     }
+    getSumSectionbyWebID(webID) {
+        return axios.get("http://localhost:8080/api/banners/views/static/website=" + webID + "/" + "year=2022")
+    }
 
 }
 

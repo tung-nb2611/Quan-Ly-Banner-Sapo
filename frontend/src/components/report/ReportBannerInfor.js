@@ -51,10 +51,10 @@ const ReportBannerInfor = ({ bannerInfo, bannerList, setBannerList }) => {
                     <div>{clicks} <HiOutlineCursorClick /></div>
                 </div>
                 <div className="image-container col-sm-12 order-sm-2 col-md-12 order-md-3 col-xl-6 order-xl-2">
-                    <img className="rounded mx-auto d-block py-2" src={bannerInfo.imgUrl} alt={bannerInfo.code}/>
+                    <img className="rounded mx-auto d-block py-2" src={bannerInfo.imgUrl} alt={bannerInfo.code} />
                 </div>
                 <div className="button-choice col-sm-12 order-sm-3 col-md-4 order-md-2 col-xl-3 order-xl-3">
-                    <Link type="button" className="btn btn-secondary btn-block w-100" to={reportDetail}>Show</Link>
+                    <Link type="button" className="btn btn-secondary btn-block w-100" to={reportDetail}>Hiện Chi tiết</Link>
                 </div>
             </div>
         </div >

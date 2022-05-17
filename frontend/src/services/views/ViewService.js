@@ -10,7 +10,7 @@ class ViewService {
     }
     getListSumViewsInWebsite() {
 
-        return axios.get("http://localhost:8080/api//banners/views/statics/?year=2022")
+        return axios.get("http://localhost:8080/api/banners/views/statics/year=2022")
     }
 }
 export default new ViewService();

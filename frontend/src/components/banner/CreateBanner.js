@@ -16,7 +16,7 @@ function CreateBanner(props) {
   // id đâng
   const passedInfo = useLocation();
   const websiteId = passedInfo.websiteId;
-  console.log(id);
+
   const history = useHistory();
   const [imageUpload, setImageUpload] = useState(null);
   const [bannerID, setBannerID] = useState("");
@@ -76,7 +76,7 @@ function CreateBanner(props) {
       uploadBytes(imageRef, imageUpload).then((snapshot) => {
         getDownloadURL(snapshot.ref).then((url) => {
           let currentDay = new Date();
-          let userAdd = "Luong Van Minh";
+          let userAdd = user.username;
           let bannerItem = {
             sectionID: sectionId,
             code: bannerID,
@@ -148,7 +148,7 @@ function CreateBanner(props) {
                   <select
                     className="col-9"
                     style={{ fontSize: "17px" }}
-                    onChange={(e) => setSectorChoice(e.target.value)}
+                    onChange={(e) => setSectionId(e.target.value)}
                   >
                     {sectorList.map((item) => (
                       <option
@@ -216,8 +216,9 @@ function CreateBanner(props) {
               <div id="imgFrame">
                 <img
                   className="img-rounded img-thumbnail"
-                  src={imgPreview}
-                  alt=""
+                  src={typeof imgPreview == "" ? "" : imgPreview}
+                  alt={typeof imgPreview == "" ? "img" : imgPreview}
+
                 />
               </div>
               <div className="button">

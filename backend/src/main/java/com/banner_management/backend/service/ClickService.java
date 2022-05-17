@@ -1,6 +1,7 @@
 package com.banner_management.backend.service;
 
 import com.banner_management.backend.entity.ClickEntity;
+import com.banner_management.backend.entity.ViewEntity;
 import com.banner_management.backend.repository.ClickRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,6 +37,8 @@ public class ClickService {
         return clickRepository.getSumClickByForMonth(year, month, sectionID);
     }
 
+    public List<ClickEntity> getClicksByBannerID(Integer bannerID){
+        return clickRepository.getAllClicksByBannerByID(bannerID);}
 
 //    public  int getSumClickBySectionIdForMonth(int sectionID){
 //        return clickRepository.get

@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import * as BiIcons from "react-icons/bi";
 import ListBannerChoice from '../banner/ListBannerChoice';
 
-import { useHistory , useParams, useLocation } from 'react-router-dom';
+import { useHistory, useParams, useLocation } from 'react-router-dom';
 
 import BannerStatusService from '../../services/BannerStatusService'
 import { CheckboxArrContext } from '../../context/CheckboxListContext';
@@ -137,7 +137,7 @@ function DisplayBanner(props) {
             </div> */}
             <div className="header-top d-flex justify-content-between mt-3">
                 <p className="mt-2 mb-0 text-left">
-                    {props.showAdminBoard ? (<span>Admin</span>) : (<span>User</span>)}
+                    {props.showAdminBoard ? (<span>Admin</span>) : (<span>Admin</span>)}
                     <BiIcons.BiChevronRight size={18} /> Quản lý hiển thị banner trong khu vực
                     {/* <Link className="text-decoration-none" to="/websites/manage">  </Link> */}
                 </p>
@@ -145,7 +145,7 @@ function DisplayBanner(props) {
                     Thêm mới khu vực
                 </Link>
             </div>
-            <hr/>
+            <hr />
             <div className="container">
                 <div className="main-content">
                     <div className="pb-4 text-center">
