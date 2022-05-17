@@ -14,6 +14,10 @@ class WebsiteService {
     createWebsite(websiteItem) {
         return axios.post(WEBSITE_API_SECTION_URL, websiteItem);
     }
+
+    getWebsiteByUserAdd(userAdd){
+        return axios.get(WEBSITE_API_SECTION_URL + '/user=' + userAdd);
+    }
 }
 
 export default new WebsiteService();
