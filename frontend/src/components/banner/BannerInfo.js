@@ -56,7 +56,7 @@ const BannerInfo = ({ bannerInfo, bannerList, setBannerList }) => {
         </div>
         <div className="image-container col-sm-12 order-sm-2 col-md-12 order-md-3 col-xl-6 order-xl-2">
           <img 
-            className="rounded mx-auto d-block pt-2" 
+            className="rounded mx-auto d-block" 
             src={bannerInfo.imgUrl} 
             alt={bannerInfo.code}
           />

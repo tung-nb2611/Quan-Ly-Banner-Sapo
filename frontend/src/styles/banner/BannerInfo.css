@@ -23,6 +23,13 @@
 }
 .image-container img{
     object-fit: fill;
+    max-height: 180px;
+}
+
+.image-container img:hover{
+    transform: scale(1.5);
+    border: gray 1px solid;
+    z-index: 1;
 }
 
 /* .image-preview{

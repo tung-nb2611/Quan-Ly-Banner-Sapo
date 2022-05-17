@@ -19,6 +19,7 @@ import UpdateBanner from "./components/banner/UpdateBanner";
 import BannerDetail from './components/banner/BannerDetail';
 import CreateUser from "./components/user/CreateUser";
 import UpdateUser from "./components/user/UpdateUser";
+import UserDetail from "./components/user/UserDetail";
 import DetailReport from './components/report/DetailReport';
 import SectionListReport from './components/report/SectionListReport';
 import ListBannerInSection from './components/report/ListBannerInSection';
@@ -114,6 +115,9 @@ const App = () => {
                   </Route>
                   <Route exact path="/user/create">
                     <CreateUser />
+                  </Route>
+                  <Route path="/user/detail/:id" >
+                    <UserDetail />
                   </Route>
                   <Route path="/user/update/:code">
                     <UpdateUser />
