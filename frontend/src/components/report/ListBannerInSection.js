@@ -211,7 +211,8 @@ const ListBannerInSection = () => {
                 </button>
 
                 <div class="tab-content">
-                    <>{showChar === false ? (
+                    <>
+                    {showChar === false ? (
                         <div id="Bar" style={{ width: '80%', height: '50vh' }}>
                             <Bar
                                 data={dataMouth}

@@ -190,81 +190,81 @@ public class ReportController {
     }
     // api lay tong view va click theo tháng
 
-    // api lay tong view va click theo nam theo khu vuc
-    @GetMapping("/banners/report/click-and-view/year={year}/statics")
-    public List<ClickAndViewDto> getListViewAndClickInMonth(@Valid @PathVariable("year") int year){
-
-        List<ClickAndViewDto> clickAndViewDtoList = new ArrayList<>();
-        for (int i = 1 ; i <= 12 ; i ++){
-            ClickAndViewDto clickAndViewDto = getListViewAndClickByMonth(i, year);
-            clickAndViewDtoList.add(clickAndViewDto);
-        }
-        return clickAndViewDtoList;
-    }
-    @GetMapping("/banners/report/click-and-view/year={year}/month={month}")
-    public ClickAndViewDto getListViewAndClickByMonth(@Valid @PathVariable("month") int month,@Valid @PathVariable("year") int year){
-        int sumView = viewService.getSumViewByMonth(year, month);
-        int sumClick = clickService.getSumClickByMonth(year, month);
-
-
-
-        String monthName = "";
-        switch (month){
-            case 1:{
-                monthName="Tháng một";
-                break;
-            }
-            case 2:{
-                monthName="Tháng hai";
-                break;
-            }
-            case 3:{
-                monthName="Tháng ba";
-                break;
-            }
-            case 4:{
-                monthName="Tháng bốn";
-                break;
-            }
-            case 5:{
-                monthName="Tháng năm";
-                break;
-            }
-            case 6:{
-                monthName="Tháng sáu";
-                break;
-            }
-            case 7:{
-                monthName="Tháng bảy";
-                break;
-            }
-            case 8:{
-                monthName="Tháng tám";
-                break;
-            }
-            case 9:{
-                monthName="Tháng chín";
-                break;
-            }
-            case 10:{
-                monthName="Tháng mười";
-                break;
-            }
-            case 11:{
-                monthName="Tháng mười một";
-                break;
-            }
-            case 12:{
-                monthName="Tháng mười hai";
-                break;
-            }
-
-        }
-        ClickAndViewDto clickAndViewDto = new ClickAndViewDto(
-                 sumClick, sumView, monthName, year);
-        System.out.println("dto : "+ clickAndViewDto);
-        return clickAndViewDto;
-    }
+//    // api lay tong view va click theo nam theo khu vuc
+//    @GetMapping("/banners/report/click-and-view/year={year}/statics")
+//    public List<ClickAndViewDto> getListViewAndClickInMonth(@Valid @PathVariable("year") int year){
+//
+//        List<ClickAndViewDto> clickAndViewDtoList = new ArrayList<>();
+//        for (int i = 1 ; i <= 12 ; i ++){
+//            ClickAndViewDto clickAndViewDto = getListViewAndClickByMonth(i, year);
+//            clickAndViewDtoList.add(clickAndViewDto);
+//        }
+//        return clickAndViewDtoList;
+//    }
+//    @GetMapping("/banners/report/click-and-view/year={year}/month={month}")
+//    public ClickAndViewDto getListViewAndClickByMonth(@Valid @PathVariable("month") int month,@Valid @PathVariable("year") int year){
+//        int sumView = viewService.getyear, month);
+//        int sumClick = clickService.getSumClickByMonth(year, month);
+//
+//
+//
+//        String monthName = "";
+//        switch (month){
+//            case 1:{
+//                monthName="Tháng một";
+//                break;
+//            }
+//            case 2:{
+//                monthName="Tháng hai";
+//                break;
+//            }
+//            case 3:{
+//                monthName="Tháng ba";
+//                break;
+//            }
+//            case 4:{
+//                monthName="Tháng bốn";
+//                break;
+//            }
+//            case 5:{
+//                monthName="Tháng năm";
+//                break;
+//            }
+//            case 6:{
+//                monthName="Tháng sáu";
+//                break;
+//            }
+//            case 7:{
+//                monthName="Tháng bảy";
+//                break;
+//            }
+//            case 8:{
+//                monthName="Tháng tám";
+//                break;
+//            }
+//            case 9:{
+//                monthName="Tháng chín";
+//                break;
+//            }
+//            case 10:{
+//                monthName="Tháng mười";
+//                break;
+//            }
+//            case 11:{
+//                monthName="Tháng mười một";
+//                break;
+//            }
+//            case 12:{
+//                monthName="Tháng mười hai";
+//                break;
+//            }
+//
+//        }
+//        ClickAndViewDto clickAndViewDto = new ClickAndViewDto(
+//                 sumClick, sumView, monthName, year);
+//        System.out.println("dto : "+ clickAndViewDto);
+//        return clickAndViewDto;
+//    }
 
 
     @GetMapping("/banners/views/statics/{year}/{month}")
