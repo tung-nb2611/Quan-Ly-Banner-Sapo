@@ -22,8 +22,13 @@ public class WebsiteController {
     private WebsiteService websiteService;
 
     @GetMapping("/websites/user={userAdd}")
-    public List<WebsiteEntity> listWebsite(@Valid  @PathVariable("userAdd") String userAdd) {
-        return websiteService.listWebsiteByUserAdd(userAdd);
+    public ResponseEntity<List<WebsiteEntity>> listWebsite(@Valid  @PathVariable("userAdd") String userAdd) {
+        try {
+            List<WebsiteEntity> websites = websiteService.listWebsiteByUserAdd(userAdd);
+            return new ResponseEntity<>(websites, HttpStatus.OK);
+        } catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("/websites/page/{page}")
@@ -96,5 +101,7 @@ public class WebsiteController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+
 
 }

@@ -158,6 +158,17 @@ public class BannerController {
         }
     }
 
+    @GetMapping("/banners/page/user={userAdd}/{number}")
+    public ResponseEntity<Page<BannerEntity>> getBannerByUserAdd(@PathVariable(value="userAdd") @Valid String userAdd, @PathVariable(value="number") @Valid int number){
+        try{
+            Page<BannerEntity> banners = bannerService.getBannerPageByUserAdd(userAdd, number);
+            return new ResponseEntity<>(banners, HttpStatus.OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
+
     @GetMapping("/banners/rate/{sectionID}/{number}")
     public ResponseEntity<Page<BannerEntity>> getBannerStatusPage(@PathVariable("sectionID") @Valid int sectionId, @PathVariable("number") @Valid int number ){
         try{

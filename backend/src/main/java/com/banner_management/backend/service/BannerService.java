@@ -70,6 +70,13 @@ public class BannerService  {
         return banners;
     }
 
+    public Page<BannerEntity> getBannerPageByUserAdd(String userAdd, int number){
+        PagingAndSortingRepository<BannerEntity, Integer> bannerEntity = repository;
+        Pageable pageNumber = PageRequest.of(number, 8);
+        Page<BannerEntity> banners = repository.getBannerByUserAdd(userAdd, pageNumber);
+        return banners;
+    }
+
     // New
     public List<BannerEntity> getBannerEnabledBySectionId(int sectionId){
         List<BannerEntity> banners = repository.getBannerEnableBySectionId(sectionId);
