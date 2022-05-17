@@ -21,14 +21,14 @@ public class UserService  {
     @Autowired
     private UserRepository repository;
 
-    public int checkUsernameExist(String userName){
-        return repository.checkUsername(userName);
-//        return repository.checkUsername();
-    }
-
-    public int checkEmailExist(String email ){
-        return repository.checkEmail(email);
-    }
+//    public int checkUsernameExist(String userName){
+//        return repository.checkUsername(userName);
+////        return repository.checkUsername();
+//    }
+//
+//    public int checkEmailExist(String email ){
+//        return repository.checkEmail(email);
+//    }
 
     public List<User> listAllUser(){
         return repository.findAll();

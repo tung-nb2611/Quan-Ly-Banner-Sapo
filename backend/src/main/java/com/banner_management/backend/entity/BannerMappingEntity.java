@@ -38,6 +38,14 @@ public class BannerMappingEntity {
         this.state = state;
     }
 
+    public BannerMappingEntity(Integer id,  Integer bannerId,  Integer sectionId,  Short state, Integer percentage) {
+        this.id = id;
+        this.bannerId = bannerId;
+        this.sectionId = sectionId;
+        this.state = state;
+        this.percentage = percentage;
+    }
+
     public int getId() {
         return id;
     }

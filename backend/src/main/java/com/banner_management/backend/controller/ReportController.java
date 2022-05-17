@@ -192,7 +192,7 @@ public class ReportController {
         System.out.println("dto : "+ clickAndViewDto);
         return clickAndViewDto;
     }
-<<<<<<< HEAD
+
     // api lay tong view va click theo tháng
 
 //    // api lay tong view va click theo nam theo khu vuc
@@ -271,8 +271,7 @@ public class ReportController {
 //        return clickAndViewDto;
 //    }
 
-=======
->>>>>>> 74b5574875e97d4bc73b7d3d0b43afd8c4d1fc76
+
 
     // api dem so luot view theo 1 thang cua website
     @GetMapping("/banners/views/statics/{year}/{month}")

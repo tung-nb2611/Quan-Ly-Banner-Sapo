@@ -210,17 +210,9 @@ const ListBannerInSection = () => {
                 <button className="btn btn-success m-2" onClick={() => setShowChar(true)}>
                     Năm
                 </button>
-<<<<<<< HEAD
-
-                <div class="tab-content">
-                    <>
-                    {showChar === false ? (
-                        <div id="Bar" style={{ width: '80%', height: '50vh' }}>
-=======
                 <div class="tab-content p-3 mt-2">
                     {showChar === false ? (
                         <div id="Bar" style={{ width: '100%', height: '70vh' }}>
->>>>>>> 74b5574875e97d4bc73b7d3d0b43afd8c4d1fc76
                             <Bar
                                 data={dataMouth}
                                 height={400}
