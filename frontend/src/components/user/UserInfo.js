@@ -19,7 +19,7 @@ const UserInfo = ({ userInfo, userList, setUserList }) => {
   };
 
   const deleteConfirmation = () => {
-    const confirm = window.confirm("Do you want to remove this user?");
+    const confirm = window.confirm("Bạn có muốn xóa người dùng này?");
     if (confirm === true) {
       axios
         .delete(BASE_URL + userInfo.id)
@@ -37,11 +37,11 @@ const UserInfo = ({ userInfo, userList, setUserList }) => {
       <div className="row align-middle">
         <div className="detail-info col-sm-12 order-sm-6 col-xl-8">
           <label>Name</label>
-          <p>{userInfo.username}</p>
+          <p>{userInfo.name}</p>
         </div>
         <div className="button-choice col-sm-12 order-sm-6 col-xl-4">
           <Link type="button" className="btn btn-secondary btn-block" to={userDetail}>Hiện thông tin chi tiết</Link>
-          <button type="button" className="btn btn-secondary"><Link to={updatePage}>Cập nhật </Link></button>
+          <button type="button" className="btn btn-secondary"><Link to={updatePage}>Chỉnh sửa</Link></button>
           <button type="button" className="btn btn-danger" onClick={deleteConfirmation}>Xóa</button>
         </div>
       </div >

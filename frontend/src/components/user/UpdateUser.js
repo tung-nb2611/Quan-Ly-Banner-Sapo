@@ -15,7 +15,7 @@ function UpdateUser(props) {
        console.log(data);
     }
     const [userID, setUserID] = useState(data.id);
-    const { register, handleSubmit, watch, formState: { errors } } = useForm({
+    const { register, getValues, handleSubmit, watch, formState: { errors } } = useForm({
         defaultValues: {        
             name: data.name,
             email: data.email,
@@ -26,10 +26,30 @@ function UpdateUser(props) {
     });
     const onSubmit = data => {
         updateUser(data);
-        console.log("check");
     };
     const handleCancel = () => {
         history.push('/user/manage');
+    }
+    const [checkUsernameExist, setCheckUsernameExist] = useState();
+
+    let usernameIsAvai = () => {
+        UserService.checkUsername(getValues("username")).then((response) => {
+            setCheckUsernameExist(response.data);
+        })
+        if (checkUsernameExist == userID) return false
+        if (checkUsernameExist == 0) return false
+        return true
+    }
+
+    const [checkEmailExist, setCheckUEmailExist] = useState();
+
+    let emailIsAvai = () => {
+        UserService.checkEmail(getValues("email")).then((response) => {
+            setCheckUEmailExist(response.data);
+        })
+        if (checkEmailExist == userID) return false
+        if (checkEmailExist == 0) return false
+        return true
     }
     const updateUser = (data) => {
         let userItem = {
@@ -69,9 +89,9 @@ function UpdateUser(props) {
                                         defaultValue={register.name}
                                         {...register("name", { required: true, minLength: 6, maxLength: 20 })}
                                     />
-                                    {errors.name && errors.name.type === "required" && <span>This is required</span>}
-                                    {errors.name && errors.name.type === "minLength" && <span>Min length is 6</span>}
-                                    {errors.name && errors.name.type === "maxLength" && <span>Max length is 20</span>}
+                                    {errors.name && errors.name.type === "required" && <span>Mục này còn trống</span>}
+                                    {errors.name && errors.name.type === "minLength" && <span>Chiều dài tối thiểu là 6</span>}
+                                    {errors.name && errors.name.type === "maxLength" && <span>Chiều dài tối đa là 20</span>}
                                 </div>
 
                                 <div className="mt-3 form-group">
@@ -79,11 +99,12 @@ function UpdateUser(props) {
                                     <input className="form-control" type="email" id="email" name="email"
                                         placeholder="ex: sapo1@gmail.com"
                                         defaultValue={register.email}
-                                        {...register("email", { required: true, maxLength: 50, pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })}
+                                        {...register("email", { required: true, maxLength: 50, validate: emailIsAvai, pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })}
                                     />
-                                    {errors.email && errors.email.type === "required" && <span>This is required</span>}
-                                    {errors.email && errors.email.type === "maxLength" && <span>Max length is 50</span>}
-                                    {errors.email && errors.email.type === "pattern" && <span>This is an email</span>}
+                                    {errors.email && errors.email.type === "required" && <span>Mục này còn trống</span>}
+                                    {errors.email && errors.email.type === "maxLength" && <span>Chiều dài tối đa là 50</span>}
+                                    {errors.email && errors.email.type === "pattern" && <span>Đây là email</span>}
+                                    {errors.email && errors.email.type === "validate" && <span>Email đã tồn tại</span>}
                                 </div>
 
                                 <div className="mt-3 form-group">
@@ -93,9 +114,9 @@ function UpdateUser(props) {
                                         defaultValue={register.phone}
                                         {...register("phone", { required: true, minLength: 6, maxLength: 15 })}
                                     />
-                                    {errors.phone && errors.phone.type === "required" && <span>This is required</span>}
-                                    {errors.phone && errors.phone.type === "minLength" && <span>Min length is 6</span>}
-                                    {errors.phone && errors.phone.type === "maxLength" && <span>Max length is 15</span>}
+                                    {errors.phone && errors.phone.type === "required" && <span>Mục này còn trống</span>}
+                                    {errors.phone && errors.phone.type === "minLength" && <span>Chiều dài tối thiểu là 6</span>}
+                                    {errors.phone && errors.phone.type === "maxLength" && <span>Chiều dài tối đa là 15</span>}
                                 </div>
 
                                 <div className="mt-3 form-group">
@@ -103,11 +124,12 @@ function UpdateUser(props) {
                                     <input className="form-control" type="text" id="username" name="username"
                                         placeholder="ex: sapo1"
                                         defaultValue={register.username}
-                                        {...register("username", { required: true, minLength: 6, maxLength: 20})}
+                                        {...register("username", { required: true, minLength: 6, maxLength: 20, validate: usernameIsAvai })}
                                     />
-                                    {errors.username && errors.username.type === "required" && <span>This is required</span>}
-                                    {errors.username && errors.username.type === "minLength" && <span>Min length is 6</span>}
-                                    {errors.username && errors.username.type === "maxLength" && <span>Max length is 20</span>}
+                                    {errors.username && errors.username.type === "required" && <span>Mục này còn trống</span>}
+                                    {errors.username && errors.username.type === "minLength" && <span>Chiều dài tối thiểu là 6</span>}
+                                    {errors.username && errors.username.type === "maxLength" && <span>Chiều dài tối đa là 20</span>}
+                                    {errors.username && errors.username.type === "validate" && <span>Username đã tồn tại</span>}
                                 </div>
                                 <button type="button" className="btn btn-outline-danger" name="btncancel" onClick={() => handleCancel()} >Hủy</button>
                                 <button type="submit" className="btn btn-primary " name="btnsubmit" >Chỉnh sửa</button>

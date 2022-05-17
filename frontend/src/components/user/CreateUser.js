@@ -7,7 +7,7 @@ import { Controller, useForm } from "react-hook-form";
 import { useHistory, Link } from 'react-router-dom';
 
 function CreateUser(props) {
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
+    const { register, getValues, handleSubmit, watch, formState: { errors } } = useForm();
     const onSubmit = data => {
         saveUser(data);
     };
@@ -17,7 +17,7 @@ function CreateUser(props) {
     }
     const saveUser = (data) => {
         let userItem = {
-            name: data.username,
+            name: data.name,
             email: data.email,
             username: data.username,
             password: data.password,
@@ -29,33 +29,35 @@ function CreateUser(props) {
             history.push('/user/manage');
         })
     }
+    const [checkUsernameExist, setCheckUsernameExist] = useState();
 
-    UserService.checkUsername("cuongpc0128").then((response) => {
-        const checkID = response.data;
-        console.log(checkID === 0);
-
-    })
-    let usernameIsAvai = (username) => {
-        if (!username) {
-            return false;
-        }
-        UserService.checkUsername(username).then((response) => {
-            const checkID = response.data;
-            console.log(checkID);
-            return checkID !== 0;
+    let usernameIsAvai = () => {
+        UserService.checkUsername(getValues("username")).then((response) => {
+            setCheckUsernameExist(response.data);
         })
+        return checkUsernameExist == 0;
     }
 
+    const [checkEmailExist, setCheckUEmailExist] = useState();
+
+    let emailIsAvai = () => {
+        UserService.checkEmail(getValues("email")).then((response) => {
+            setCheckUEmailExist(response.data);
+        })
+
+        return checkEmailExist == 0;
+    }
+    // console.log(usernameIsAvai())
     return (
         <div className="create-banner-container px-3" >
             <div className="header-top">
-                <p className="mt-4 text-left"> Admin
-                    <BiIcons.BiChevronRight size={18} />
+                <p className="mt-4 text-left"> Admin 
+                    <BiIcons.BiChevronRight size={18} /> 
                     <Link className="text-decoration-none" to="/user/manage"> Quản lý người dùng </Link>
                     <BiIcons.BiChevronRight size={18} /> Thêm người dùng
                 </p>
             </div>
-            <hr />
+            <hr/>
             <div className="container">
                 <div className="main-content">
                     <div className="pb-4 text-center">
@@ -79,22 +81,23 @@ function CreateUser(props) {
                                     <label htmlFor="password">Email</label>
                                     <input className="form-control" id="email" type="text" name="email"
                                         placeholder="ex: sapo123@gmail.com"
-
-                                        {...register("email", { required: true, maxLength: 50, pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })}
+                                
+                                        {...register("email", { required: true, maxLength: 50, validate: emailIsAvai, pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })}
                                     />
                                     {errors.email && errors.email.type === "required" && <span>This is required</span>}
                                     {errors.email && errors.email.type === "maxLength" && <span>Max length is 50</span>}
                                     {errors.email && errors.email.type === "pattern" && <span>This is an email</span>}
+                                    {errors.email && errors.email.type === "validate" && <span>Emmail already exists</span>}
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label htmlFor="password">Password</label>
-                                    <input
+                                    <input 
                                         className="form-control" id="password" type="password" name="password"
                                         {...register("password", { required: true, minLength: 6, maxLength: 50 })}
                                     />
-                                    {errors.username && errors.username.type === "required" && <span>This is required</span>}
-                                    {errors.username && errors.username.type === "minLength" && <span>Min length is 6</span>}
-                                    {errors.username && errors.username.type === "maxLength" && <span>Max length is 50</span>}
+                                    {errors.password && errors.password.type === "required" && <span>This is required</span>}
+                                    {errors.password && errors.password.type === "minLength" && <span>Min length is 6</span>}
+                                    {errors.password && errors.password.type === "maxLength" && <span>Max length is 50</span>}
                                 </div>
                             </div>
 
@@ -118,7 +121,7 @@ function CreateUser(props) {
                                     {errors.username && errors.username.type === "required" && <span>This is required</span>}
                                     {errors.username && errors.username.type === "minLength" && <span>Min length is 6</span>}
                                     {errors.username && errors.username.type === "maxLength" && <span>Max length is 20</span>}
-                                    {/* {errors.username.type === "validate" && <span>CUONGPC0128</span>} */}
+                                    {errors.username && errors.username.type === "validate" && <span>Username already exists</span>}
                                 </div>
                                 <div className="mt-3 form-group chossing-role d-flex flex-column">
                                     <label htmlFor="username">Role</label>

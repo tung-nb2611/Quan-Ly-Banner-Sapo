@@ -13,14 +13,14 @@ function UserDetail(props) {
     const history = useHistory();
     const linkState = useLocation();
     let data = {}
-
+    
     if (typeof linkState.detailInfo !== 'undefined') {
 
         data = linkState.detailInfo;
         console.log(data);
     }
 
-    const [name, setName] = useState(data.username);
+    const [name, setName] = useState(data.name);
     const [email, setEmail] = useState(data.email);
     const [phone, setPhone] = useState(data.phone);
     const [role, setRole] = useState(data.roles);
@@ -49,40 +49,40 @@ function UserDetail(props) {
                             <input className="form-control" type="text"
                                 placeholder="ex: 123..."
                                 value={name}
-                                disabled
+                                disabled 
                             />
                         </div>
                         <div className="mt-3 form-group">
                             <label htmlFor="name">Số điện thoại người dùng</label>
-                            <input className="form-control"
+                            <input className="form-control" 
                                 type="text"
                                 placeholder="ex: quảng cáo cá tháng tư"
                                 value={phone}
-                                disabled
+                                disabled 
                             />
                         </div>
                         <div className="mt-3 form-group">
                             <label htmlFor="sectionID">Email người dùng</label>
-                            <input className="form-control"
+                            <input className="form-control" 
                                 type="text"
-                                value={email}
-                                disabled
+                                value={email} 
+                                disabled 
                             />
                         </div>
                         <div className="mt-3 form-group">
                             <label htmlFor="sectionID">Role</label>
-                            <input className="form-control"
+                            <input className="form-control" 
                                 type="text"
-                                value={role[0].name}
-                                disabled
+                                value={role[0].name} 
+                                disabled 
                             />
                         </div>
                         <div className="mt-3 form-group">
                             <label htmlFor="sectionID">Username</label>
-                            <input className="form-control"
+                            <input className="form-control" 
                                 type="text"
-                                value={username}
-                                disabled
+                                value={username} 
+                                disabled 
                             />
                         </div>
                     </form>

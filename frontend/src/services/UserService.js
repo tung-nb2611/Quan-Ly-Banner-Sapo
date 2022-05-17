@@ -29,5 +29,8 @@ class UserService {
     checkUsername(username){
         return axios.get(USER_API_BASE_URL + '/check_username/' + username);
     }
+    checkEmail(email){
+        return axios.get(USER_API_BASE_URL + '/check_email/' + email);
+    }
 }
 export default new UserService();
