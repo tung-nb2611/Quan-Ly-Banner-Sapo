@@ -76,7 +76,7 @@ public class ViewService {
     }
 
 
-//    public int getSumViewBySectionIDForDay(Date day , int sectionID){
-//        return viewRepository.getSumViewBySectionIDForDay(day, sectionID);
-//    }
+    public int getSumViewBySectionIDForDay(Date day , int sectionID){
+        return viewRepository.getSumViewBySectionIDForDay(day, sectionID);
+    }
 }

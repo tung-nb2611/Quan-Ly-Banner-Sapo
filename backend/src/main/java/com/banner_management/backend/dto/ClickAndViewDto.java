@@ -8,15 +8,10 @@ public class ClickAndViewDto {
     private  int bannerID;
     private  String month;
    private int year ;
+    private String date;
 
-
-    public ClickAndViewDto(String name, int sectionID, int sumClick, int sumView, String monthName, int year) {
-        this.webName = name;
-        this.sectionID = sectionID;
-        this.numberClick = sumClick;
-        this.numberView = sumView;
-        this.month = monthName;
-        this.year = year;
+    public String getDate() {
+        return date;
     }
 
     @Override
@@ -26,11 +21,34 @@ public class ClickAndViewDto {
                 ", sectionID=" + sectionID +
                 ", numberClick=" + numberClick +
                 ", numberView=" + numberView +
-
+                ", bannerID=" + bannerID +
                 ", month='" + month + '\'' +
                 ", year=" + year +
-
+                ", date='" + date + '\'' +
                 '}';
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public ClickAndViewDto(String name, int sectionID, int sumClick, int sumView, int year, String month, String dayOfMonth) {
+        this.webName = name;
+        this.sectionID = sectionID;
+        this.numberClick = sumClick;
+        this.numberView = sumView;
+        this.year = year;
+        this.month = month;
+        this.date = dayOfMonth;
+    }
+
+    public ClickAndViewDto(String name, int sectionID, int sumClick, int sumView, String monthName, int year) {
+        this.webName = name;
+        this.sectionID = sectionID;
+        this.numberClick = sumClick;
+        this.numberView = sumView;
+        this.month = monthName;
+        this.year = year;
     }
 
     public int getBannerID() {
