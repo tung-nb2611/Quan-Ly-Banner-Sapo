@@ -6,8 +6,8 @@ import * as BiIcons from "react-icons/bi";
 import { useLocation } from "react-router-dom";
 
 
-function BannerDetail(props) {
-
+function UserDetail(props) {
+    console.log(props)
     // Vấn đề: Access link trực tiếp thì sẽ không có id
     // Lấy thông tin banner được chọn để cho vào state của component Update thông tin
     const history = useHistory();
@@ -20,10 +20,12 @@ function BannerDetail(props) {
         console.log(data);
     }
 
-    const [userCode, setUserCode] = useState(data.code);
-    const [name, setName] = useState(data.name);
-    const [createAt, setCreateAt] = useState(data.createAt);
-    const [role, setRole] = useState(data.role)
+    const [name, setName] = useState(data.username);
+    const [email, setEmail] = useState(data.email);
+    const [phone, setPhone] = useState(data.phone);
+    const [role, setRole] = useState(data.roles);
+    const [username, setUsername] = useState(data.username);
+
 
     return (
         <div className="update-banner-container px-3">
@@ -43,32 +45,49 @@ function BannerDetail(props) {
                     </div>
                     <form method="post" encType="multipart/form-data">
                         <div className="form-group">
-                            <label htmlFor="bannerID">Mã người dùng</label>
+                            <label htmlFor="bannerID">Tên người dùng</label>
                             <input className="form-control" type="text"
                                 placeholder="ex: 123..."
-                                value={userCode}
-                                disabled 
+                                value={name}
+                                disabled
                             />
                         </div>
                         <div className="mt-3 form-group">
-                            <label htmlFor="name">Tên người dùng</label>
-                            <input className="form-control" 
+                            <label htmlFor="name">Số điện thoại người dùng</label>
+                            <input className="form-control"
                                 type="text"
                                 placeholder="ex: quảng cáo cá tháng tư"
-                                value={name}
-                                disabled 
+                                value={phone}
+                                disabled
                             />
                         </div>
                         <div className="mt-3 form-group">
-                            <label htmlFor="sectionID">Ngày tạo</label>
-                            <input className="form-control" 
+                            <label htmlFor="sectionID">Email người dùng</label>
+                            <input className="form-control"
                                 type="text"
-                                value={createAt} disabled 
+                                value={email}
+                                disabled
+                            />
+                        </div>
+                        <div className="mt-3 form-group">
+                            <label htmlFor="sectionID">Role</label>
+                            <input className="form-control"
+                                type="text"
+                                value={role[0].name}
+                                disabled
+                            />
+                        </div>
+                        <div className="mt-3 form-group">
+                            <label htmlFor="sectionID">Username</label>
+                            <input className="form-control"
+                                type="text"
+                                value={username}
+                                disabled
                             />
                         </div>
                     </form>
-                    <div className="button">
-                        <button type="button" className="btn btn-secondary" name="btncancel" onClick={() => history.push("/banner/manage")}>Quay lại</button>
+                    <div className="button d-flex justify-content-end mt-3">
+                        <button type="button" className="btn btn-secondary btn-block w-25" name="btncancel" onClick={() => history.push("/user/manage")}>Quay lại</button>
                     </div>
                 </div>
             </div>
@@ -80,4 +99,4 @@ function BannerDetail(props) {
 
 
 
-export default BannerDetail;
+export default UserDetail;

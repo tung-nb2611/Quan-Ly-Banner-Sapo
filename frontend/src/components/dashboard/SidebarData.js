@@ -19,13 +19,9 @@ export const SidebarDataAdmin = [
 ];
 
 export const SidebarData = [
+
     {
-        title: "Tổng quan",
-        path: "/home",
-        icon: <AiIcons.AiOutlineHome size={24} />
-    },
-    {
-        title: "Quản lý khu vực",
+        title: "Quản lý Website",
         path: "/websites/manage",
         icon: <BiIcons.BiCollection size={24} />,
     },

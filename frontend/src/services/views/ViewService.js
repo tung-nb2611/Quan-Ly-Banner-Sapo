@@ -8,5 +8,9 @@ class ViewService {
     getView() {
         return axios.get(BANNER_API_BASE_URL)
     }
+    getListSumViewsInWebsite() {
+
+        return axios.get("http://localhost:8080/api/banners/views/statics/year=2022")
+    }
 }
 export default new ViewService();

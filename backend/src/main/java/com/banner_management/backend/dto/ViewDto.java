@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ViewDto {
+
 //    private HashMap<String, Integer> web;
     private List<HashMap<String, Object>> web;
     private String month;
@@ -21,12 +22,17 @@ public class ViewDto {
 
     public void setWeb(List<HashMap<String, Object>> web) {
         this.web = web;
+
+
     }
+
 
     @Override
     public String toString() {
         return "ViewDto{" +
+
                 "web=" + web +
+
                 ", month='" + month + '\'' +
                 '}';
     }

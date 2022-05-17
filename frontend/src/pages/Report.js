@@ -12,26 +12,18 @@ const Report = () => {
     const current = new Date();
     const date = `${current.getDate()}/${current.getMonth() + 1}/${current.getFullYear()}`;
     return (
-        <div className="p-3 d-flex flex-column gap-4">
+        <div className="p-3 d-flex flex-column gap-2">
             <div className="header d-flex justify-content-between">
                 <div className="d-inline-flex gap-3">
-
                     <h3>Trang Web</h3>
                     <BiIcons.BiRightArrow className="mt-2" />
-
-                  
                     <ChoiceSection />
                 </div>
                 <h3>{date}</h3>
             </div>
-
-            <div>
+            <div className="container">
                 <CharViewAndClik />
-            </div>
-            <div>
-                <ListBannerReport />
-            </div>
-            <div>
+                {/* <ListBannerReport /> */}
                 {/* <ListBannerInSection /> */}
             </div>
         </div>

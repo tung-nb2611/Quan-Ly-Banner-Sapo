@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import '../../styles/banner/CreateBanner.css';
+import "../../styles/banner/CreateBanner.css";
 import BannerService from "../../services/BannerService";
 import SectorService from "../../services/sector/SectorService";
 import * as BiIcons from "react-icons/bi";
@@ -8,67 +8,78 @@ import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 import { storage } from "../../common/Firebase";
 import { v4 } from "uuid";
 import { useHistory, useParams, useLocation } from "react-router-dom";
-import SectionService from "../../services/section/SectionService"
+import SectionService from "../../services/section/SectionService";
+import WebsiteService from "../../services/website/WebsiteService";
 
 function CreateBanner(props) {
   let { id } = useParams();
   // id đâng
   const passedInfo = useLocation();
   const websiteId = passedInfo.websiteId;
-  console.log(id)
+
   const history = useHistory();
   const [imageUpload, setImageUpload] = useState(null);
-  const [bannerID, setBannerID] = useState('');
-  const [name, setName] = useState('');
-  const [imgPreview, setImgPreview] = useState('');
-  const [urlLink, setUrlLink] = useState('');
+  const [bannerID, setBannerID] = useState("");
+  const [name, setName] = useState("");
+  const [imgPreview, setImgPreview] = useState("");
+  const [urlLink, setUrlLink] = useState("");
   const [sectionId, setSectionId] = useState(id);
-
+  const [websiteID, setWebsiteID] = useState(websiteId);
   const [sectionList, setSectionList] = useState([]);
   const [sectorList, setSectorList] = useState([]);
-  const [sectorChoice, setSectorChoice] = useState('');
+  const [sectorChoice, setSectorChoice] = useState("");
+  console.log("web", websiteId)
+  console.log("web123", websiteID)
+
+  let user = JSON.parse(window.localStorage.getItem("user"));
 
   useEffect(() => {
-    SectionService.getAllSections().then((response) => {
-      setSectionList(response.data);
-    })
+    if (user.roles[0] === "ROLE_USER") {
+      WebsiteService.getWebsiteByUserAdd(user.username).then((response) => {
+        const info = response.data;
+        setSectionList(info);
+      });
+    } else {
+      WebsiteService.getAllWebsite().then((response) => {
+        setSectionList(response.data);
+      });
+    }
   }, []);
 
   useEffect(() => {
-    if (typeof sectionId !== 'undefined' && sectionId !== '') {
-      SectorService.getSectorBySectionId(websiteId).then((response) => {
+    if (typeof sectionId !== "undefined" && sectionId !== "") {
+      SectorService.getSectorByWebsiteId(websiteID).then((response) => {
         setSectorList(response.data);
-      })
+      });
     } else {
       console.log("nothing");
     }
-  }, [sectionId]);
-
+  }, [websiteID]);
 
   const getImage = (e) => {
     if (e.target.files[0]) {
-      setImgPreview(URL.createObjectURL(e.target.files[0]));  //đặt bản xem trước 
+      setImgPreview(URL.createObjectURL(e.target.files[0])); //đặt bản xem trước
     } else console.log("file not found");
     setImageUpload(e.target.files[0]);
-  }
+  };
 
   const handClickReturn = () => {
-    history.push('/banner/manage');
-  }
+    history.push("/banner/manage");
+  };
 
   const saveBanner = (e) => {
     e.preventDefault();
     if (imageUpload == null) {
       console.log("No Image");
       return;
-    }
-    else {
+    } else {
       console.log("Start");
       const imageRef = ref(storage, `images/${imageUpload.name + v4()}`);
       uploadBytes(imageRef, imageUpload).then((snapshot) => {
         getDownloadURL(snapshot.ref).then((url) => {
           let currentDay = new Date();
-          let userAdd = "Luong Van Minh";
+          let userAdd = user.username;
+          console.log(sectionId);
           let bannerItem = {
             sectionID: sectionId,
             code: bannerID,
@@ -76,19 +87,20 @@ function CreateBanner(props) {
             imgUrl: url,
             userAdd: userAdd,
             createAt: currentDay,
-            url: urlLink
-          }
-          console.log('banner => ', bannerItem);
-          BannerService.createBanner(bannerItem).then(res => {
-            history.push('/banner/manage');
-          })
+            url: urlLink,
+          };
+          console.log("banner => ", bannerItem);
+          BannerService.createBanner(bannerItem).then((res) => {
+            history.push({
+              pathname: "/banner/display/" + sectionId,
+              state: { webId: websiteID }
+            });
+          });
         });
       });
       console.log("Finish ?");
     }
-
-  }
-
+  };
 
   return (
     <div className="create-banner-container px-3">
@@ -114,19 +126,21 @@ function CreateBanner(props) {
             <div className="col-md-12 col-lg-6 pb-5">
               <form className="form">
                 <div className="form-group">
-                  <label className="col-3" htmlFor="sectionId">Tên trang web</label>
+                  <label className="col-3" htmlFor="sectionId">
+                    Tên trang web
+                  </label>
                   <select
                     className="col-9"
                     style={{ fontSize: "17px" }}
                     onChange={(e) => {
-                      setSectionId(e.target.value);
+                      setWebsiteID(e.target.value);
                     }}
                   >
                     <option hidden></option>
                     {sectionList.map((section) => (
                       <option
                         value={section.id}
-                        selected={section.id == websiteId ? true : false}
+                        selected={section.id == websiteID ? true : false}
                       >
                         {section.name}
                       </option>
@@ -134,16 +148,22 @@ function CreateBanner(props) {
                   </select>
                 </div>
                 <div className="mt-3 form-group">
-                  <label className="col-3" htmlFor="sector">Sector List</label>
+                  <label className="col-3" htmlFor="sector">
+                    Sector List
+                  </label>
                   <select
                     className="col-9"
                     style={{ fontSize: "17px" }}
-                    onChange={(e) => setSectorChoice(e.target.value)}
+                    onChange={(e) => (setSectionId(e.target.value))}
                   >
+                    <option hidden></option>
                     {sectorList.map((item) => (
-                      <option value={item.id}
+                      <option
+                        value={item.id}
                         selected={item.id == id ? true : false}
-                      >{item.divId}</option>
+                      >
+                        {item.divId}
+                      </option>
                     ))}
                   </select>
                 </div>
@@ -203,8 +223,9 @@ function CreateBanner(props) {
               <div id="imgFrame">
                 <img
                   className="img-rounded img-thumbnail"
-                  src={imgPreview}
-                  alt=""
+                  src={imgPreview == "" ? "https://www.viet247.net/images/noimage_food_viet247.jpg" : imgPreview}
+
+
                 />
               </div>
               <div className="button">

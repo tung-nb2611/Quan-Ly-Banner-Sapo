@@ -26,6 +26,10 @@ class BannerService {
         return axios.get("http://localhost:8080/api/banners/rate/" + sectionId + "/" + number);
     }
 
+    getBannerByUserAdd(userAdd, number){
+        return axios.get(BANNER_API_BASE_URL + '/page/user=' + userAdd + '/' + number);
+    }
+
     getLisstBannerBySectionId(sectionId) {
         return axios.get("http://localhost:8080/api/banners/filter/sectionID=" + sectionId);
     }

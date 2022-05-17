@@ -8,15 +8,13 @@ function Website({ data }) {
         <div className="detail-info col-12 col-sm-8">
 
 
-          <label> Web name: {data.name} </label>
-          <label> Url: {data.url} </label>
+          <label> Tên Website: {data.name} </label>
+          <label> Đường dẫn: {data.url} </label>
 
         </div>
         <div className="button col-12 col-sm-4">
-          <Link to={"/websites/websiteId=" + data.id + "/sections"}>
-            <button className="section">
+          <Link className="btn btn-block btn-success" to={"/websites/websiteId=" + data.id + "/sections"}>
               Các khu vực banner của trang web
-            </button>
           </Link>
         </div>
       </div>

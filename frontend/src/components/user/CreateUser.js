@@ -17,13 +17,14 @@ function CreateUser(props) {
     }
     const saveUser = (data) => {
         let userItem = {
-            name: data.name,
+            name: data.username,
             email: data.email,
             username: data.username,
             password: data.password,
             phone: data.phone,
             role: [data.role],
         }
+        console.log(data)
         UserService.createUser(userItem).then(res => {
             history.push('/user/manage');
         })
@@ -48,13 +49,13 @@ function CreateUser(props) {
     return (
         <div className="create-banner-container px-3" >
             <div className="header-top">
-                <p className="mt-4 text-left"> Admin 
-                    <BiIcons.BiChevronRight size={18} /> 
+                <p className="mt-4 text-left"> Admin
+                    <BiIcons.BiChevronRight size={18} />
                     <Link className="text-decoration-none" to="/user/manage"> Quản lý người dùng </Link>
                     <BiIcons.BiChevronRight size={18} /> Thêm người dùng
                 </p>
             </div>
-            <hr/>
+            <hr />
             <div className="container">
                 <div className="main-content">
                     <div className="pb-4 text-center">
@@ -78,7 +79,7 @@ function CreateUser(props) {
                                     <label htmlFor="password">Email</label>
                                     <input className="form-control" id="email" type="text" name="email"
                                         placeholder="ex: sapo123@gmail.com"
-                                
+
                                         {...register("email", { required: true, maxLength: 50, pattern: /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/ })}
                                     />
                                     {errors.email && errors.email.type === "required" && <span>This is required</span>}
@@ -87,7 +88,7 @@ function CreateUser(props) {
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label htmlFor="password">Password</label>
-                                    <input 
+                                    <input
                                         className="form-control" id="password" type="password" name="password"
                                         {...register("password", { required: true, minLength: 6, maxLength: 50 })}
                                     />
@@ -122,8 +123,8 @@ function CreateUser(props) {
                                 <div className="mt-3 form-group chossing-role d-flex flex-column">
                                     <label htmlFor="username">Role</label>
                                     <select {...register("role")} className="w-25">
-                                        <option className="option" value="User">User</option>
-                                        <option className="option" value="Admin">Admin</option>
+                                        <option className="option" value="user">User</option>
+                                        <option className="option" value="admin">Admin</option>
                                     </select>
                                 </div>
                                 <div className="button">

@@ -5,7 +5,10 @@
 }
 
 .update-banner-container .container .main-content {
-  margin: 0 50px 100px 50px;
+  margin: 0 50px 10px 50px;
+}
+.update-banner-container .container .main-content label{
+  font-size: 20px;
 }
 
 .update-banner-container .container .main-content h2 {
@@ -14,24 +17,19 @@
 
 .update-banner-container .container .main-content .row #imgFrame {
   width: 100%;
-  max-width: 400px;
-  height: 100%;
-  max-height: 240px;
-
   display: flex;
   justify-content: center;
-  margin: 0 auto;
   border: 1px dashed black;
 }
 
 .update-banner-container .container .main-content .row #imgFrame img {
-  height: 100%;
   width: 100%;
+  max-width: none;
 }
 
 .update-banner-container .container .main-content .row .button {
   display: flex;
-  margin-top: 50px;
+  padding-top: 10px;
   justify-content: right;
   flex-wrap: wrap;
 }

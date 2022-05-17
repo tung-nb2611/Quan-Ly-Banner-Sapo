@@ -10,12 +10,12 @@ function ChoiceSection() {
     const [currentPage, setCurrentPage] = useState(0);
 
     useEffect(() => {
-        WebsiteService.getWebsiteByPageAndUserAdd("tung", currentPage).then((response) => {
-            const info = response.data.content;
+        WebsiteService.getAllWebsite().then((response) => {
+            const info = response.data;
             setWebsiteList(info);
             console.log("info", info);
         })
-    }, [currentPage])
+    }, [])
 
     console.log(websiteList);
 

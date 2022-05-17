@@ -19,6 +19,7 @@ import UpdateBanner from "./components/banner/UpdateBanner";
 import BannerDetail from './components/banner/BannerDetail';
 import CreateUser from "./components/user/CreateUser";
 import UpdateUser from "./components/user/UpdateUser";
+import UserDetail from "./components/user/UserDetail";
 import DetailReport from './components/report/DetailReport';
 import SectionListReport from './components/report/SectionListReport';
 import ListBannerInSection from './components/report/ListBannerInSection';
@@ -28,6 +29,7 @@ import CreateWebsite from './components/website/CreateWebsite';
 import CreateSection from './components/section/CreateSection';
 import SectionList from './components/section/SectionList';
 import SapoWeb from './dashboard/SapoWeb';
+import UpdateSection from './components/section/UpdateSection';
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -114,8 +116,14 @@ const App = () => {
                   <Route exact path="/user/create">
                     <CreateUser />
                   </Route>
+                  <Route path="/user/detail/:id" >
+                    <UserDetail />
+                  </Route>
                   <Route path="/user/update/:code">
                     <UpdateUser />
+                  </Route>
+                  <Route path="/websites/websiteId=:webId/sectionId=:sectionId/update" >
+                    <UpdateSection />
                   </Route>
                   {/* <Route path="/user/update">
                     <UpdateUser/>

@@ -23,7 +23,9 @@ function UpdateBanner(props) {
     const [bannerCode, setBannerCode] = useState(data.code);
     const [name, setName] = useState(data.name);
     const [imgUrl, setImgUrl] = useState(data.imgUrl);
-    const [urlLink, setUrlLink] = useState(data.url)
+    const [urlLink, setUrlLink] = useState(data.url);
+    const [userAdd, setUserAdd] = useState(data.userAdd);
+    const [createAt, setCreateAt] = useState(data.createAt);
     const handClickReturn = () => {
         history.push('/banner/manage');
     }
@@ -50,7 +52,9 @@ function UpdateBanner(props) {
                         code: bannerCode,
                         name: name,
                         imgUrl: url,
+                        userAdd: userAdd,
                         userFix: userFix,
+                        createAt: createAt,
                         modifiedAt: currentDay,
                         url: urlLink
                     }
@@ -68,7 +72,10 @@ function UpdateBanner(props) {
                 id: bannerID,
                 code: bannerCode,
                 name: name,
+                imgUrl: imgUrl,
+                userAdd: userAdd,
                 userFix: userFix,
+                createAt: createAt,
                 modifiedAt: currentDay,
                 url: urlLink
             }
@@ -101,8 +108,8 @@ function UpdateBanner(props) {
                             <form method="post" encType="multipart/form-data">
                                 <div className="form-group">
                                     <label htmlFor="bannerID">Mã banner</label>
-                                    <input className="form-control" 
-                                        id="bannerID" 
+                                    <input className="form-control"
+                                        id="bannerID"
                                         type="text"
                                         placeholder="ex: 123..."
                                         value={bannerCode} onChange={(e) => setBannerCode(e.target.value)}
@@ -110,29 +117,29 @@ function UpdateBanner(props) {
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label htmlFor="name">Tên banner</label>
-                                    <input className="form-control" 
+                                    <input className="form-control"
                                         type="text"
                                         placeholder="ex: quảng cáo cá tháng tư"
-                                        value={name} onChange={(e) => setName(e.target.value)} 
+                                        value={name} onChange={(e) => setName(e.target.value)}
                                     />
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label htmlFor="name">Liên kết</label>
-                                    <input className="form-control" 
-                                        type="text" 
+                                    <input className="form-control"
+                                        type="text"
                                         placeholder=" Nhập liên kết url"
-                                        value={urlLink || ''} 
-                                        onChange={(e) => setUrlLink(e.target.value)} 
+                                        value={urlLink || ''}
+                                        onChange={(e) => setUrlLink(e.target.value)}
                                     />
                                 </div>
                                 <div className="mt-3 form-group">
                                     <label id="upload-label" htmlFor="upload">Chọn Hình Ảnh</label>
                                     <div className="custom-file">
-                                        <input id="upload" 
-                                            type="file" 
-                                            className="form-control border-0" 
+                                        <input id="upload"
+                                            type="file"
+                                            className="form-control border-0"
                                             accept=".png,.gif,.jpg,.jpeg"
-                                            onChange={getImage} 
+                                            onChange={getImage}
                                         />
                                     </div>
                                 </div>
@@ -143,7 +150,7 @@ function UpdateBanner(props) {
                                 <h3 className="text-center">Ảnh minh họa</h3>
                             </div>
                             <div id="imgFrame">
-                                <img className="img-rounded" src={imgUrl} alt="new_banner"/>
+                                <img className="img-rounded" src={imgUrl} alt="new_banner" />
                             </div>
                             <div className="button">
                                 <button type="button" className="btn btn-outline-danger" name="btncancel" onClick={() => handClickReturn()}>Hủy</button>

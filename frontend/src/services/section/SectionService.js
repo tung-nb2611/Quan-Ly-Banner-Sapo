@@ -15,7 +15,7 @@ class SectionService {
         return axios.post(SECTION_API_SECTION_URL, sectionItem);
     }
 
-    getAllSections(){
+    getAllSections() {
         return axios.get('http://localhost:8080/api/websites/all');
     }
 
@@ -23,12 +23,21 @@ class SectionService {
     //     return axios.get(SECTION_API_SECTION_URL + '/page/' + number);
     // }
 
-    updateSectionStatus(section){
+    updateSectionStatus(section) {
         return axios.put(SECTION_API_SECTION_URL + '/status', section);
     }
 
-    getSectionById(id){
+    getSectionById(id) {
         return axios.get(SECTION_API_SECTION_URL + '/' + id);
+    }
+    updateSection(sectionItem, sectionId) {
+        return axios.put(SECTION_API_SECTION_URL + '/' + sectionId, sectionItem, sectionId)
+    }
+    deleteSection(id) {
+        return axios.delete(SECTION_API_SECTION_URL + '/' + id)
+    }
+    getDivId(id) {
+        return axios.get(SECTION_API_SECTION_URL + '/' + id + '/getDiv')
     }
 }
 

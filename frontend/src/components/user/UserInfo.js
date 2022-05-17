@@ -9,12 +9,12 @@ const UserInfo = ({ userInfo, userList, setUserList }) => {
   const [detailInfo, setDetailInfo] = useState(userInfo);
 
   const updatePage = {
-    pathname: "/user/update/" + userInfo.code,
+    pathname: "/user/update/" + userInfo.id,
     detailInfo: detailInfo
   };
 
   const userDetail = {
-    pathname: "/user/detail/" + userInfo.code,
+    pathname: "/user/detail/" + userInfo.id,
     detailInfo: detailInfo
   };
 
@@ -28,21 +28,17 @@ const UserInfo = ({ userInfo, userList, setUserList }) => {
     }
   };
 
-  // const handleShowInfo = (userInfo) => {
-  //   alert("thong tin:", userInfo.code)
-  // };
-
   return (
     <div className="banner-info p-3">
-      <div className="row align-middle">
-        <div className="detail-info col-sm-12 col-md-6 col-xl-8">
+      <div className="row">
+        <div className="detail-info col-sm-12 col-xl-7">
           <label>Name</label>
-          <p>{userInfo.name}</p>
+          <p>{userInfo.username}</p>
         </div>
-        <div className="button-choice col-sm-12 col-md-6 col-xl-4">
-          <Link type="button" className="btn btn-secondary btn-block" to={userDetail}>Show</Link>
-          <Link type="button" className="btn btn-outline-primary w-100" to={updatePage}>Update</Link>
-          <button type="button" className="btn btn-outline-danger w-100" onClick={deleteConfirmation}>Delete</button>
+        <div className="button-choice col-sm-12 col-xl-5">
+          <Link className="btn btn-primary btn-block" to={userDetail}>Hiện thông tin chi tiết</Link>
+          <Link className="btn btn-outline-secondary btn-block" to={updatePage}>Cập nhật </Link>
+          <button type="button" className="btn btn-outline-danger w-100" onClick={deleteConfirmation}>Xóa</button>
         </div>
       </div >
     </div>
