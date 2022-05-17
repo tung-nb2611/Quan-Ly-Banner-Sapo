@@ -102,13 +102,13 @@ function BannerDetail(props) {
                                 <h3 className="text-center">Hình ảnh Banner</h3>
                             </div>
                             <div id="imgFrame">
-                                <img className="img-rounded" alt="ảnh banner" src={imgUrl} />
-                                {/* <Zoom
+                                {/* <img className="img-rounded" alt="ảnh banner" src={imgUrl} /> */}
+                                <Zoom
                                     img={imgUrl}
                                     zoomScale={2}
                                     width={400}
                                     height={300}
-                                /> */}
+                                />
                             </div>
                             <div className="button">
                                 {/* <button type="button" className="btn btn-primary" onClick={openModal} imgUrl={imgUrl}>Xem banner</button> */}
