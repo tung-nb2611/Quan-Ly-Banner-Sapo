@@ -28,6 +28,8 @@ function CreateBanner(props) {
   const [sectionList, setSectionList] = useState([]);
   const [sectorList, setSectorList] = useState([]);
   const [sectorChoice, setSectorChoice] = useState("");
+  console.log("web", websiteId)
+  console.log("web123", websiteID)
 
   let user = JSON.parse(window.localStorage.getItem("user"));
 
@@ -77,6 +79,7 @@ function CreateBanner(props) {
         getDownloadURL(snapshot.ref).then((url) => {
           let currentDay = new Date();
           let userAdd = user.username;
+          console.log(sectionId);
           let bannerItem = {
             sectionID: sectionId,
             code: bannerID,
@@ -88,7 +91,10 @@ function CreateBanner(props) {
           };
           console.log("banner => ", bannerItem);
           BannerService.createBanner(bannerItem).then((res) => {
-            history.push("/banner/manage");
+            history.push({
+              pathname: "/banner/display/" + sectionId,
+              state: { webId: websiteID }
+            });
           });
         });
       });
@@ -148,8 +154,9 @@ function CreateBanner(props) {
                   <select
                     className="col-9"
                     style={{ fontSize: "17px" }}
-                    onChange={(e) => setSectionId(e.target.value)}
+                    onChange={(e) => (setSectionId(e.target.value))}
                   >
+                    <option hidden></option>
                     {sectorList.map((item) => (
                       <option
                         value={item.id}
@@ -216,8 +223,8 @@ function CreateBanner(props) {
               <div id="imgFrame">
                 <img
                   className="img-rounded img-thumbnail"
-                  src={typeof imgPreview == "" ? "" : imgPreview}
-                  alt={typeof imgPreview == "" ? "img" : imgPreview}
+                  src={imgPreview == "" ? "https://www.viet247.net/images/noimage_food_viet247.jpg" : imgPreview}
+
 
                 />
               </div>

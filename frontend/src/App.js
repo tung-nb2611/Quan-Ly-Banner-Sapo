@@ -28,6 +28,7 @@ import CreateWebsite from './components/website/CreateWebsite';
 import CreateSection from './components/section/CreateSection';
 import SectionList from './components/section/SectionList';
 import SapoWeb from './dashboard/SapoWeb';
+import UpdateSection from './components/section/UpdateSection';
 
 const App = () => {
   const [showAdminBoard, setShowAdminBoard] = useState(false);
@@ -116,6 +117,9 @@ const App = () => {
                   </Route>
                   <Route path="/user/update/:code">
                     <UpdateUser />
+                  </Route>
+                  <Route path="/websites/websiteId=:webId/sectionId=:sectionId/update" >
+                    <UpdateSection />
                   </Route>
                   {/* <Route path="/user/update">
                     <UpdateUser/>

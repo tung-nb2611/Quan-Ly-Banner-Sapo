@@ -21,10 +21,10 @@ const Report = () => {
                 </div>
                 <h3>{date}</h3>
             </div>
-            
+
             <div className="container">
                 <CharViewAndClik />
-                <ListBannerReport />
+                {/* <ListBannerReport /> */}
                 {/* <ListBannerInSection /> */}
             </div>
         </div>

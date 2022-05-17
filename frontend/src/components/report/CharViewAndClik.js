@@ -19,8 +19,8 @@ const Views = () => {
         ViewService.getListSumViewsInWebsite().then(res => {
             console.log(res);
             for (const dataObj of res.data) {
-                View1.push(dataObj.webView.sapoWeb);
-                console.log('viewsdata', dataObj);
+                View1.push(dataObj);
+                console.log('viewsdata', dataObj.webView);
                 month.push(dataObj.month)
                 View2.push(dataObj.webView.sapofnb);
             }
@@ -30,77 +30,23 @@ const Views = () => {
         })
     }, []);
 
-    console.log("Views", category, data2);
+    console.log("Views", category,);
 
     var data = {
         labels: category,
         datasets: [
-            {
-                label: 'SapoWeb',
-                data: data2,
+            data2.map((dataObj) => ({
+                label: dataObj.webView,
+                data: dataObj.webView,
                 borderColor: [
-                    "red",
-
-                    "red",
-
-                    "red",
-                    "red",
-                    "red",
-                    "red",
-
-                    "red",
-                    "red",
-                    "red",
-                    "red",
-
-                    "red",
-                    "red",
-                    "red",
-                    "red",
-                    "red",
-
-                    "red",
-                    "red",
-                    "red",
-                    "red",
-                    "red",
-
-                    "red",
-                    "red",
-
-                ],
+                    "red",],
                 borderWidth: 1,
                 fill: false
-            },
-            {
-                label: 'SapoFnb',
-                data: data1,
-                borderColor: [
-                    "blue",
-                    "blue",
-                    "blue",
-                    "blue",
-                    "blue",
-                    "blue",
-                    "blue",
-                    "blue",
-                    "blue",
-                    "blue",
-                    "blue",
-                    "blue",
-                    "blue",
-                    "blue",
-                    "blue",
-                    "blue",
-                ],
-                borderWidth: 1,
-                fill: false
-            },
 
-
+            })),
         ]
     };
-
+    console.log("test", data)
     var options = {
         maintainAspectRatio: false,
         title: {

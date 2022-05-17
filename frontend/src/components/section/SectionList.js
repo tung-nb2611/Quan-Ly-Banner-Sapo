@@ -5,9 +5,9 @@ import Section from "./Section";
 import PaginateList from '../PaginateList';
 import SectionService from "../../services/section/SectionService";
 import { useParams } from "react-router-dom";
-import {Link} from'react-router-dom';
+import { Link } from 'react-router-dom';
 function SectionList(props) {
-    let {webId} = useParams();
+    let { webId } = useParams();
     const [sectionList, setSectionList] = useState([]);
     const [pageNumber, setPageNumber] = useState(0);
     const [currentPage, setCurrentPage] = useState(0);
@@ -25,7 +25,7 @@ function SectionList(props) {
         (data) => {
             return (
                 <div className="col-md-12 col-lg-6 mb-3" key={data.id}>
-                    <Section data={data} />
+                    <Section data={data} sectionList={sectionList} setSectionList={setSectionList} />
                 </div>
             )
         }
@@ -41,12 +41,12 @@ function SectionList(props) {
                     <h4>Thêm mới khu vực</h4>
                 </Link>
             </div>
-            <hr/>
+            <hr />
             <h4 className="text-center pb-2">Danh sách các khu vực</h4>
             <div className="list d-flex row mt-3">
                 {displaySections}
             </div>
-            <PaginateList currentPage={currentPage} setCurrentPage={setCurrentPage} pageNumber={pageNumber} />
+
         </div>
     )
 

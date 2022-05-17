@@ -36,7 +36,14 @@ public class SectionController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
-
+    @GetMapping("/sections/{id}/getDiv")
+    public String getDivIdBySectionId(@PathVariable Integer id) {
+        try {
+            return sectionService.findDivIdBySectionId(id);
+        } catch (NoSuchElementException e) {
+            return e.getMessage();
+        }
+    }
     @PostMapping("/sections")
     public ResponseEntity<SectionEntity> addSection(@Valid @RequestBody SectionDto sectionDto){
         try {
