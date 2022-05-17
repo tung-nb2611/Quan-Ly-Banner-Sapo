@@ -38,7 +38,7 @@ function CreateBanner(props) {
         setSectionList(info);
       });
     } else {
-      SectionService.getAllSections().then((response) => {
+      WebsiteService.getAllWebsite().then((response) => {
         setSectionList(response.data);
       });
     }
@@ -46,7 +46,7 @@ function CreateBanner(props) {
 
   useEffect(() => {
     if (typeof sectionId !== "undefined" && sectionId !== "") {
-      SectorService.getSectorBySectionId(websiteID).then((response) => {
+      SectorService.getSectorByWebsiteId(websiteID).then((response) => {
         setSectorList(response.data);
       });
     } else {
@@ -134,7 +134,7 @@ function CreateBanner(props) {
                     {sectionList.map((section) => (
                       <option
                         value={section.id}
-                        selected={section.id == websiteId ? true : false}
+                        selected={section.id == websiteID ? true : false}
                       >
                         {section.name}
                       </option>
