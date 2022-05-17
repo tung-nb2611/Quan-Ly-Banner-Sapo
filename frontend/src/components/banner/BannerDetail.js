@@ -5,6 +5,7 @@ import BannerService from "../../services/BannerService";
 import * as BiIcons from "react-icons/bi";
 import { useLocation } from "react-router-dom";
 import Zoom from 'react-img-zoom';
+import { Modal } from '../../components/Modal';
 
 function BannerDetail(props) {
 
@@ -28,6 +29,12 @@ function BannerDetail(props) {
     // const [imgName, setImgName] = useState(data.imgUrl);
     const [createAt, setCreateAt] = useState(data.createAt);
     const [urlLink, setUrlLink] = useState(data.url)
+
+
+    const [showModal, setShowModal] = useState(false);
+    const openModal = () => {
+      setShowModal(prev => !prev);
+    };
 
     return (
         <div className="update-banner-container px-3">
@@ -104,14 +111,15 @@ function BannerDetail(props) {
                                 />
                             </div>
                             <div className="button">
+                                {/* <button type="button" className="btn btn-primary" onClick={openModal} imgUrl={imgUrl}>Xem banner</button> */}
                                 <button type="button" className="btn btn-secondary" name="btncancel" onClick={() => history.push("/banner/manage")}>Quay lại</button>
                             </div>
                         </div>
                     </div>
                 </div>
+                <Modal showModal={showModal} setShowModal={setShowModal} />
             </div>
         </div>
-
     );
 
 

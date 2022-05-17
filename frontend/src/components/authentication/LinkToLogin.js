@@ -16,7 +16,7 @@ const LinkToLogin = () => {
           </div>
           <h1>Trang quản lý banner</h1>
           <h5>Đăng nhập vào tài khoản của bạn</h5>
-          <Link className="btn btn-block btn-primary linktologin" to='/login'>Link to login</Link>
+          <Link className="btn btn-block btn-primary linktologin" to='/login'>Go to login</Link>
         </div>
       </div>
     </div>

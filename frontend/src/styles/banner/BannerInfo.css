@@ -25,6 +25,10 @@
     object-fit: fill;
 }
 
+/* .image-preview{
+    z-index: 2;
+} */
+
 .button-choice{
     display: flex;
     flex-direction: column;

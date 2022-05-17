@@ -5,7 +5,10 @@
 }
 
 .update-banner-container .container .main-content {
-  margin: 0 50px 100px 50px;
+  margin: 0 50px 10px 50px;
+}
+.update-banner-container .container .main-content label{
+  font-size: 20px;
 }
 
 .update-banner-container .container .main-content h2 {
