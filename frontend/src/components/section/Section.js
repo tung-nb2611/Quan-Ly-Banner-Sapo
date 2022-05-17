@@ -19,33 +19,23 @@ function Section({ data, sectionList, setSectionList }) {
   return (
     <div className="section-info p-3">
       <div className="row">
-        <div className="detail-info col-12 col-sm-8">
+        <div className="detail-info col-12 col-sm-7">
           <label> Section: <span>{data.id}</span></label>
           <label> Web_id: <span>{data.webId}</span></label>
           <label> Div: <span>{data.divId}</span></label>
         </div>
-        <div className="btnSection">
-          <div className="button col-12 col-sm-4">
-            <Link to={{ pathname: "/banner/display/" + data.id, state: { webId } }}>
-              <button className="section">
+        <div className="col-12 col-sm-5 btnSection ">
+            <Link className="btn btn-block btn-primary" 
+              to={{ pathname: "/banner/display/" + data.id, state: { webId } }}>
                 Quản lý hiển thị banner
-              </button>
             </Link>
-          </div>
-          <div className="button col-12 col-sm-4">
-            <Link to={"/websites/websiteId=" + data.webId + "/sectionId=" + data.id + "/update"}>
-              <button className="section">
+            <Link className="btn btn-block btn-outline-secondary" 
+              to={"/websites/websiteId=" + data.webId + "/sectionId=" + data.id + "/update"}>
                 Sửa khu vực
-              </button>
             </Link>
-          </div>
-          <div className="button col-12 col-sm-4">
-
-            <button className="section" onClick={deleteConfirmation}>
+            <button className="btn btn-block btn-outline-danger w-100" onClick={deleteConfirmation}>
               Xóa khu vực
             </button>
-
-          </div>
         </div>
       </div>
     </div>

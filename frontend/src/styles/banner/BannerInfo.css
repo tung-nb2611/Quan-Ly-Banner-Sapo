@@ -32,10 +32,6 @@
     z-index: 1;
 }
 
-/* .image-preview{
-    z-index: 2;
-} */
-
 .button-choice{
     display: flex;
     flex-direction: column;

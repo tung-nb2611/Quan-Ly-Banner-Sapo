@@ -27,25 +27,6 @@ const BannerInfo = ({ bannerInfo, bannerList, setBannerList }) => {
       setBannerList(bannerList.filter(info => info.id !== bannerInfo.id));
     }
   };
-// xử lý xem trước ảnh
-  // const [isPreview, setIsPreview] = useState(false);
-  // const [preview, setPreview] = useState("");
-  // const handleOpen = (e) => {
-  //   setIsPreview(true);
-  //   setPreview(e.target.src)
-  // }
-
-  // const handleClose = () => {
-  //   setIsPreview(false);
-  // }
-  // const renderPreviewFile = (source) => {
-  //   return (
-  //     <div className="img-preview">
-  //       <img src={source} alt="" />
-  //       <CgIcons.CgCloseR size={24} className="cls" onClick={handleClose} />
-  //     </div>
-  //   )
-  // }
   
   return (
     <div className="banner-info p-3">
@@ -62,8 +43,8 @@ const BannerInfo = ({ bannerInfo, bannerList, setBannerList }) => {
           />
         </div>
         <div className="button-choice col-sm-12 order-sm-3 col-md-6 order-md-2 col-xl-3 order-xl-3">
-          <Link type="button" className="btn btn-secondary btn-block" to={bannerDetail}>Chi tiết</Link>
-          <Link type="button" className="btn btn-outline-primary btn-block" to={updatePage}>Cập nhật</Link>
+          <Link type="button" className="btn btn-primary btn-block" to={bannerDetail}>Chi tiết</Link>
+          <Link type="button" className="btn btn-outline-secondary btn-block" to={updatePage}>Cập nhật</Link>
           <button type="button" className="btn btn-outline-danger btn-block w-100" onClick={deleteConfirmation}>Xóa</button>
         </div>
       </div>
