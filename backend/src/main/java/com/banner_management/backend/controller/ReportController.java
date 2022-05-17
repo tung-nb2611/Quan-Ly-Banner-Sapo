@@ -76,33 +76,16 @@ public class ReportController {
                 websiteEntity.getName(), sectionID, sumClick, sumView, bannerID);
         return clickAndViewDto;
     }
-
-    // api lay tong view va click theo nam theo khu vuc
-    @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}")
-    public ClickAndViewDto getListViewAndClickSortByYear(@Valid @PathVariable("year") int year,@Valid @PathVariable("sectionID") int sectionID){
-
-        int sumView = viewService.getSumViewBySectionIDForYear(year, sectionID);
-        int sumClick = clickService.getSumClickBySectionIDForYear(year, sectionID);
-
-        SectionEntity sectionEntity = sectionService.getById(sectionID);
-        WebsiteEntity websiteEntity = websiteService.getById(sectionEntity.getWebId());
-
-        ClickAndViewDto clickAndViewDto = new ClickAndViewDto(
-                websiteEntity.getName(), sectionID, sumClick, sumView);
-        return clickAndViewDto;
-    }
-
-
     //lay api theo tung thang trong nam theo khu vuc
     // api lay tong view va click theo nam theo khu vuc
     @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}/statics")
     public List<ClickAndViewDto> getListViewAndClickSortByMonth(@Valid @PathVariable("year") int year,@Valid @PathVariable("sectionID") int sectionID){
 
         List<ClickAndViewDto> clickAndViewDtoList = new ArrayList<>();
-    for (int i = 1 ; i <= 12 ; i ++){
-        ClickAndViewDto clickAndViewDto = getListViewAndClickSortByMonth(i, year, sectionID);
-        clickAndViewDtoList.add(clickAndViewDto);
-    }
+        for (int i = 1 ; i <= 12 ; i ++){
+            ClickAndViewDto clickAndViewDto = getListViewAndClickSortByMonth(i, year, sectionID);
+            clickAndViewDtoList.add(clickAndViewDto);
+        }
         return clickAndViewDtoList;
     }
 
@@ -172,6 +155,24 @@ public class ReportController {
         System.out.println("dto : "+ clickAndViewDto);
         return clickAndViewDto;
     }
+
+//
+//    // api lay tong view va click theo nam theo khu vuc
+//    @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}")
+//    public ClickAndViewDto getListViewAndClickSortByYear(@Valid @PathVariable("year") int year,@Valid @PathVariable("sectionID") int sectionID){
+//
+//        int sumView = viewService.getSumViewBySectionIDForYear(year, sectionID);
+//        int sumClick = clickService.getSumClickBySectionIDForYear(year, sectionID);
+//
+//        SectionEntity sectionEntity = sectionService.getById(sectionID);
+//        WebsiteEntity websiteEntity = websiteService.getById(sectionEntity.getWebId());
+//
+//        ClickAndViewDto clickAndViewDto = new ClickAndViewDto(
+//                websiteEntity.getName(), sectionID, sumClick, sumView);
+//        return clickAndViewDto;
+//    }
+
+
 
     // api lay tong view va click theo tháng
 

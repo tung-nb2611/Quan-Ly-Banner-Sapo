@@ -4,7 +4,8 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
 import ViewService from "../../services/views/ViewService";
 import ReportService from "../../services/ReportService";
-import '../../styles/report/ChartViewAndClick.css'
+import '../../styles/report/ChartViewAndClick.css';
+import DatePicker from "react-datepicker";
 
 const Views = () => {
     const [category, setCategory] = useState([])
@@ -12,6 +13,8 @@ const Views = () => {
     const [data2, setData2] = useState([])
     const [chart, setChart] = useState({})
     const [bannerName, setBannerName] = useState([])
+    const [startDate, setStartDate] = useState(new Date("2014/02/08"));
+    const [endDate, setEndDate] = useState(new Date("2014/02/10"));
     useEffect(() => {
         let View1 = []
         let month = []
@@ -30,7 +33,7 @@ const Views = () => {
         })
     }, []);
 
-    console.log("Views", category,);
+    // console.log("Views", category,);
 
     var data = {
         labels: category,
@@ -66,13 +69,36 @@ const Views = () => {
     }
 
     return (
-        <div className="chart my-3" style={{ width: '100%', height: '65vh' }}>
-            <Line
-                data={data}
-                height={400}
-                options={options}
-            />
-        </div>
+        <>
+            <div>
+                <DatePicker
+                    selected={startDate}
+                    onChange={(date) => setStartDate(date)}
+                    selectsStart
+                    startDate={startDate}
+                    endDate={endDate}
+                />
+                <DatePicker
+                    selected={endDate}
+                    onChange={(date) => setEndDate(date)}
+                    selectsEnd
+                    startDate={startDate}
+                    endDate={endDate}
+                    minDate={startDate}
+                />
+            </div>
+
+            <div className="chart my-3" style={{ width: '100%', height: '65vh' }}>
+                <Line
+                    data={data}
+                    height={400}
+                    options={options}
+                />
+            </div>
+
+
+
+        </>
     )
 }
 

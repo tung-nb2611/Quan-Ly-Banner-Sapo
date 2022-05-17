@@ -52,55 +52,7 @@ function SectionListReport(props) {
 
 
 
-	const displayViews = data2.map((info) => {
 
-		console.log("webView:", info.webView)
-		var data = {
-			labels: category,
-			datasets: [
-				{
-					label: 'img',
-					data: info.webView,
-					borderColor: [
-						"red",
-
-						"red",
-
-						"red",
-						"red",
-						"red",
-						"red",
-
-						"red",
-						"red",
-						"red",
-						"red",
-
-						"red",
-						"red",
-						"red",
-						"red",
-						"red",
-
-						"red",
-						"red",
-						"red",
-						"red",
-						"red",
-
-						"red",
-						"red",
-
-					],
-					borderWidth: 1,
-					fill: false
-				},
-
-
-
-			]
-		};
-	})
 
 	console.log("data2", data2)
 	var data = {
@@ -225,7 +177,7 @@ function SectionListReport(props) {
 							</div>
 							<div className="button col-12 col-sm-6">
 								<Link className="btn btn-block btn-outline-primary w-100" to={"/banner/report/section/" + data.id}>
-										Chi tiết báo cáo
+									Chi tiết báo cáo
 								</Link>
 							</div>
 						</div>
@@ -240,7 +192,7 @@ function SectionListReport(props) {
 			<h3>
 				Báo cáo thông tin cho website
 			</h3>
-			<hr/>
+			<hr />
 			<div className="list ms-0 w-100 d-flex row">
 				{displaySections}
 			</div>
