@@ -217,17 +217,15 @@ function SectionListReport(props) {
 	const displaySections = sectionList.map(
 		(data) => {
 			return (
-				<div className="col-md-6 col-lg-4 mb-3" key={data.id}>
+				<div className="col-md-6 col-lg-4 mb-3 ps-0" key={data.id}>
 					<div className="section-info p-3">
 						<div className="row">
 							<div className="detail-info col-12 col-sm-6">
 								<label>Div: {data.divId}</label>
 							</div>
 							<div className="button col-12 col-sm-6">
-								<Link to={"/banner/report/section/" + data.id}>
-									<button className="section mt-0">
-										chi tiết báo cáo
-									</button>
+								<Link className="btn btn-block btn-outline-primary w-100" to={"/banner/report/section/" + data.id}>
+										Chi tiết báo cáo
 								</Link>
 							</div>
 						</div>
@@ -242,11 +240,11 @@ function SectionListReport(props) {
 			<h3>
 				Báo cáo thông tin cho website
 			</h3>
-			<hr />
+			<hr/>
 			<div className="list ms-0 w-100 d-flex row">
 				{displaySections}
 			</div>
-			<div className="chart my-3" style={{ width: '100%', height: '70vh' }}>
+			<div className="chart my-1" style={{ width: '100%', height: '65vh' }}>
 				<Line
 					data={data}
 					height={400}

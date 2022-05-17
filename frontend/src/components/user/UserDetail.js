@@ -86,8 +86,8 @@ function UserDetail(props) {
                             />
                         </div>
                     </form>
-                    <div className="button">
-                        <button type="button" className="btn btn-secondary" name="btncancel" onClick={() => history.push("/user/manage")}>Quay lại</button>
+                    <div className="button d-flex justify-content-end mt-3">
+                        <button type="button" className="btn btn-secondary btn-block w-25" name="btncancel" onClick={() => history.push("/user/manage")}>Quay lại</button>
                     </div>
                 </div>
             </div>

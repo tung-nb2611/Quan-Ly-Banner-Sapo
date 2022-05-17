@@ -13,10 +13,8 @@ function Website({ data }) {
 
         </div>
         <div className="button col-12 col-sm-4">
-          <Link to={"/websites/websiteId=" + data.id + "/sections"}>
-            <button className="section">
+          <Link className="btn btn-block btn-success" to={"/websites/websiteId=" + data.id + "/sections"}>
               Các khu vực banner của trang web
-            </button>
           </Link>
         </div>
       </div>

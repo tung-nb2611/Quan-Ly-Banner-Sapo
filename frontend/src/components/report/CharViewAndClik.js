@@ -66,7 +66,7 @@ const Views = () => {
     }
 
     return (
-        <div className="chart my-3" style={{ width: '100%', height: '70vh' }}>
+        <div className="chart my-3" style={{ width: '100%', height: '65vh' }}>
             <Line
                 data={data}
                 height={400}
