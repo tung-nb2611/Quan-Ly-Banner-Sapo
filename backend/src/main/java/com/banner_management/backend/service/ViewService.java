@@ -6,6 +6,7 @@ import com.banner_management.backend.repository.ViewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.transaction.Transactional;
 import java.sql.Date;
 import java.util.List;
@@ -66,11 +67,14 @@ public class ViewService {
 
     }
 
-
     public Integer getViewNumberByWebSite(int websiteID, int year, int month){
         return viewRepository.getViewNumberByWebSite(websiteID, year, month);
-
     }
+
+    public Integer getViewNumberByWebsiteAndSectionID(int websiteID, int sectionID, int year, int month){
+        return viewRepository.getViewNumberByWebsiteAndSectionID(websiteID, sectionID, year, month);
+    }
+
 
 //    public int getSumViewBySectionIDForDay(Date day , int sectionID){
 //        return viewRepository.getSumViewBySectionIDForDay(day, sectionID);
