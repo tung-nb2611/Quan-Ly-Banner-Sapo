@@ -5,56 +5,36 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ViewDto {
-    private HashMap<String, Integer> webView;
 
-    private String webname;
-    private Integer numberView;
+//    private HashMap<String, Integer> web;
+    private List<HashMap<String, Object>> web;
     private String month;
 
-    public ViewDto(String webname, int numberView, String month) {
-        this.webname = webname;
-        this.numberView = numberView;
-        this.month = month;
+
+    public ViewDto(List<HashMap<String, Object>> viewDtoList, String monthName) {
+        this.web = viewDtoList;
+        this.month = monthName;
     }
 
-    public String getWebname() {
-        return webname;
+    public List<HashMap<String, Object>> getWeb() {
+        return web;
     }
 
-    public void setWebname(String webname) {
-        this.webname = webname;
-    }
+    public void setWeb(List<HashMap<String, Object>> web) {
+        this.web = web;
 
-    public Integer getNumberView() {
-        return numberView;
-    }
 
-    public void setNumberView(Integer numberView) {
-        this.numberView = numberView;
-    }
-
-    public ViewDto(HashMap<String, Integer> webView, String month) {
-        this.webView = webView;
-        this.month = month;
     }
 
 
     @Override
     public String toString() {
         return "ViewDto{" +
-                "webView=" + webView +
-                ", webname='" + webname + '\'' +
-                ", numberView=" + numberView +
+
+                "web=" + web +
+
                 ", month='" + month + '\'' +
                 '}';
-    }
-
-    public HashMap<String, Integer> getWebView() {
-        return webView;
-    }
-
-    public void setWebView(HashMap<String, Integer> webView) {
-        this.webView = webView;
     }
 
     public String getMonth() {
