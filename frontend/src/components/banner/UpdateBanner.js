@@ -23,7 +23,9 @@ function UpdateBanner(props) {
     const [bannerCode, setBannerCode] = useState(data.code);
     const [name, setName] = useState(data.name);
     const [imgUrl, setImgUrl] = useState(data.imgUrl);
-    const [urlLink, setUrlLink] = useState(data.url)
+    const [urlLink, setUrlLink] = useState(data.url);
+    const [userAdd, setUserAdd] = useState(data.userAdd);
+    const [createAt, setCreateAt] = useState(data.createAt);
     const handClickReturn = () => {
         history.push('/banner/manage');
     }
@@ -50,7 +52,9 @@ function UpdateBanner(props) {
                         code: bannerCode,
                         name: name,
                         imgUrl: url,
+                        userAdd: userAdd,
                         userFix: userFix,
+                        createAt: createAt,
                         modifiedAt: currentDay,
                         url: urlLink
                     }
@@ -68,7 +72,10 @@ function UpdateBanner(props) {
                 id: bannerID,
                 code: bannerCode,
                 name: name,
+                imgUrl: " ",
+                userAdd: userAdd,
                 userFix: userFix,
+                createAt: createAt,
                 modifiedAt: currentDay,
                 url: urlLink
             }
