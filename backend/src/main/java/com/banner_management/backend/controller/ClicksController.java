@@ -3,6 +3,7 @@ package com.banner_management.backend.controller;
 
 import com.banner_management.backend.entity.BannerMappingEntity;
 import com.banner_management.backend.entity.ClickEntity;
+import com.banner_management.backend.entity.ViewEntity;
 import com.banner_management.backend.service.BannerMappingService;
 import com.banner_management.backend.service.BannerService;
 import com.banner_management.backend.service.ClickService;
@@ -42,6 +43,10 @@ public class ClicksController {
             bannerMappingEntity.setNumberClick(numberClick + 1);
         }
         bannerMappingService.save(bannerMappingEntity);
+    }
+    @GetMapping("/banners/click/{bannerID}")
+    public List<ClickEntity> getClicksBannerByid(@Valid  @PathVariable("bannerID") int bannerID){
+        return clickService.getClicksByBannerID(bannerID);
     }
 
 }

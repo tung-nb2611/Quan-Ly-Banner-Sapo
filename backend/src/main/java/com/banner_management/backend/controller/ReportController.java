@@ -14,6 +14,7 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 @RestController
@@ -76,7 +77,6 @@ public class ReportController {
                 websiteEntity.getName(), sectionID, sumClick, sumView, bannerID);
         return clickAndViewDto;
     }
-
     // api lay tong view va click theo nam theo khu vuc
     @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}")
     public ClickAndViewDto getListViewAndClickSortByYear(@Valid @PathVariable("year") int year,@Valid @PathVariable("sectionID") int sectionID){
@@ -91,8 +91,6 @@ public class ReportController {
                 websiteEntity.getName(), sectionID, sumClick, sumView);
         return clickAndViewDto;
     }
-
-
     //lay api theo tung thang trong nam theo khu vuc
     // api lay tong view va click theo nam theo khu vuc
     @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}/statics")
@@ -105,29 +103,6 @@ public class ReportController {
     }
         return clickAndViewDtoList;
     }
-
-
-//    // api lay tong view va click theo nam theo khu vuc
-//    @GetMapping("/banners/report/click-and-view/sectionID={sectionID}")
-//    public ClickAndViewDto getListViewAndClickSortByMount( @PathVariable("sectionID") int sectionID){
-//
-//        int sumView = viewService.getSumViewBySectionIDForMonth( sectionID);
-//        int sumClick = clickService.getSumClickBySectionIDForMonth( sectionID);
-
-//        string month = viewService.getSumViewBySectionIDForMonth(sectionID);
-
-//       ViewEntity viewEntity = viewService.getListMonth(viewService.getTimeView());
-
-//
-//        SectionEntity sectionEntity = sectionService.getById(sectionID);
-//
-//
-//
-//        ClickAndViewDto clickAndViewDto = new ClickAndViewDto(sectionID, sumClick, sumView, month);
-//        return clickAndViewDto;
-//    }
-
-
     // api lay tong view va click theo tháng theo khu vuc
     @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}/month={month}")
     public ClickAndViewDto getListViewAndClickSortByMonth(@Valid @PathVariable("month") int month,@Valid @PathVariable("year") int year,@Valid @PathVariable("sectionID") int sectionID){
@@ -193,7 +168,6 @@ public class ReportController {
         System.out.println("dto : "+ clickAndViewDto);
         return clickAndViewDto;
     }
-
     // api dem so luot view theo 1 thang cua website
     @GetMapping("/banners/views/statics/{year}/{month}")
     public HashMap<String, Integer> getDataFromViewDto (@PathVariable("year") Integer year, @PathVariable("month") Integer month){
@@ -213,69 +187,141 @@ public class ReportController {
         return map;
     }
 
+    //api lay thong tin view cua mot thang theo cua mot website
+//    @GetMapping("/banners/views/statics/{websiteID}/{year}/{month}")
+//    public ViewDto getDataViewByMonthInWebsiteID (@PathVariable("websiteID") int websiteID, @PathVariable("year") Integer year, @PathVariable("month") Integer month){
+//        WebsiteEntity websiteEntity = websiteService.getById(websiteID);
+//        int numberView =  viewService.getViewNumberByWebSite(websiteEntity.getId(),year, month);
+//        String monthName = "";
+//        switch (month){
+//            case 1:{
+//                monthName="Tháng một";
+//                break;
+//            }
+//            case 2:{
+//                monthName="Tháng hai";
+//                break;
+//            }
+//            case 3:{
+//                monthName="Tháng ba";
+//                break;
+//            }
+//            case 4:{
+//                monthName="Tháng bốn";
+//                break;
+//            }
+//            case 5:{
+//                monthName="Tháng năm";
+//                break;
+//            }
+//            case 6:{
+//                monthName="Tháng sáu";
+//                break;
+//            }
+//            case 7:{
+//                monthName="Tháng bảy";
+//                break;
+//            }
+//            case 8:{
+//                monthName="Tháng tám";
+//                break;
+//            }
+//            case 9:{
+//                monthName="Tháng chín";
+//                break;
+//            }
+//            case 10:{
+//                monthName="Tháng mười";
+//                break;
+//            }
+//            case 11:{
+//                monthName="Tháng mười một";
+//                break;
+//            }
+//            case 12:{
+//                monthName="Tháng mười hai";
+//                break;
+//            }
+//
+//        }
+//        ViewDto viewDto = new ViewDto(websiteEntity.getName(), numberView, monthName);
+//        return viewDto;
+//    }
+    //api lay thong tin view cua 12 thang theo cua mot website
+//    @GetMapping("/banners/views/statics/websiteID={websiteID}/{year}")
+//    public List<ViewDto> getDataViewInWebsiteID (@PathVariable("websiteID") int websiteID, @PathVariable("year") Integer year){
+//       List<ViewDto> viewDtoList = new ArrayList<>();
+//       for(int i = 1 ; i <= 12 ; i++){
+//           ViewDto newViewDto = getDataViewByMonthInWebsiteID(websiteID, year, i);
+//           viewDtoList.add((newViewDto));
+//       }
+//       return viewDtoList;
+//    }
+
     // api dem luot view theo 12 thang cua tung website
-    @GetMapping("/banners/views/statics/?year={year}")
+    @GetMapping("/banners/views/statics/year={year}")
     public List<ViewDto> getWebViewSortByYear(@PathVariable("year") int year){
         List<ViewDto> viewDtoList = new ArrayList<>();
         for(int i = 1 ; i <= 12 ; i++){
             HashMap<String, Integer> newMap = getDataFromViewDto(year, i);
             String month = null;
-            switch (i){
-                case 1:{
-                    month="Tháng 1";
-                    break;
-                }
-                case 2:{
-                    month="Tháng 2";
-                    break;
-                }
-                case 3:{
-                    month="Tháng 3";
-                    break;
-                }
-                case 4:{
-                    month="Tháng 4";
-                    break;
-                }
-                case 5:{
-                    month="Tháng 5";
-                    break;
-                }
-                case 6:{
-                    month="Tháng 6";
-                    break;
-                }
-                case 7:{
-                    month="Tháng 7";
-                    break;
-                }
-                case 8:{
-                    month="Tháng 8";
-                    break;
-                }
-                case 9:{
-                    month="Tháng 9";
-                    break;
-                }
-                case 10:{
-                    month="Tháng 10";
-                    break;
-                }
-                case 11:{
-                    month="Tháng 11";
-                    break;
-                }
-                case 12:{
-                    month="Tháng 12";
-                    break;
-                }
-            }
-            ViewDto viewDto = new ViewDto(newMap, month);
-            viewDtoList.add(viewDto);
+//            switch (i){
+//                case 1:{
+//                    month="Tháng 1";
+//                    break;
+//                }
+//                case 2:{
+//                    month="Tháng 2";
+//                    break;
+//                }
+//                case 3:{
+//                    month="Tháng 3";
+//                    break;
+//                }
+//                case 4:{
+//                    month="Tháng 4";
+//                    break;
+//                }
+//                case 5:{
+//                    month="Tháng 5";
+//                    break;
+//                }
+//                case 6:{
+//                    month="Tháng 6";
+//                    break;
+//                }
+//                case 7:{
+//                    month="Tháng 7";
+//                    break;
+//                }
+//                case 8:{
+//                    month="Tháng 8";
+//                    break;
+//                }
+//                case 9:{
+//                    month="Tháng 9";
+//                    break;
+//                }
+//                case 10:{
+//                    month="Tháng 10";
+//                    break;
+//                }
+//                case 11:{
+//                    month="Tháng 11";
+//                    break;
+//                }
+//                case 12:{
+//                    month="Tháng 12";
+//                    break;
+//                }
+//            }
+//            ViewDto viewDto = new ViewDto(newMap, month);
+//            viewDtoList.add(viewDto);
         }
         return viewDtoList;
     }
 
+    // api tra ve các section co trong mot website
     @GetMapping("/banners/views/static/website={websiteID}/year={year}/month={month}")
     public HashMap<String, Integer> getWebViewSortByWebSiteAndMonth(@PathVariable("websiteID") int websiteID, @PathVariable("month") int month, @PathVariable("year") int year){
         List<SectionEntity> sectionEntityList = sectionService.listSectionByWebsiteID(websiteID);
@@ -287,9 +333,6 @@ public class ReportController {
             int numberView =  viewService.getViewNumberByWebsiteAndSectionID(websiteID,sectionEntityList.get(i).getId(),year, month);
             map.put(sectionEntityList.get(i).getDivId(), numberView);
         }
-        System.out.println("hashmap :"+ map);
-        System.out.println("key :"+ map.keySet());
-        System.out.println("value :"+ map.values());
         return map;
     }
 
@@ -349,8 +392,8 @@ public class ReportController {
                     break;
                 }
             }
-            ViewDto viewDto = new ViewDto(newMap, month);
-            viewDtoList.add(viewDto);
+//            ViewDto viewDto = new ViewDto(newMap, month);
+//            viewDtoList.add(viewDto);
         }
         return viewDtoList;
     }
@@ -426,4 +469,85 @@ public class ReportController {
         return clickAndViewDtoList;
     }
 
+
+        //api lấy tên website và số lượng view trong một tháng
+        @GetMapping("/banners/reports/statics/view/year={year}/month={month}")
+        public ViewDto getData1(@PathVariable("year") int year, @PathVariable("month") int month){
+            // lay ra tat ca cac website dang co
+            List<WebsiteEntity> websiteEntityList = websiteService.getAllWebsite();
+            List<HashMap<String, Object>> viewDtoList = new ArrayList<>();
+            for(int i = 0 ; i< websiteEntityList.size() ; i ++){
+                String webName = websiteEntityList.get(i).getName();
+                int numberView = viewService.getViewNumberByWebSite(websiteEntityList.get(i).getId(), year, month);
+                HashMap<String, Object> newMap = new HashMap<>();
+                newMap.put("webName", webName);
+                newMap.put("numberView", numberView);
+                viewDtoList.add(newMap);
+            }
+            String monthName = "";
+            switch (month){
+                case 1:{
+                    monthName="Tháng một";
+                    break;
+                }
+                case 2:{
+                    monthName="Tháng hai";
+                    break;
+                }
+                case 3:{
+                    monthName="Tháng ba";
+                    break;
+                }
+                case 4:{
+                    monthName="Tháng bốn";
+                    break;
+                }
+                case 5:{
+                    monthName="Tháng năm";
+                    break;
+                }
+                case 6:{
+                    monthName="Tháng sáu";
+                    break;
+                }
+                case 7:{
+                    monthName="Tháng bảy";
+                    break;
+                }
+                case 8:{
+                    monthName="Tháng tám";
+                    break;
+                }
+                case 9:{
+                    monthName="Tháng chín";
+                    break;
+                }
+                case 10:{
+                    monthName="Tháng mười";
+                    break;
+                }
+                case 11:{
+                    monthName="Tháng mười một";
+                    break;
+                }
+                case 12:{
+                    monthName="Tháng mười hai";
+                    break;
+                }
+
+            }
+            ViewDto viewDto = new ViewDto(viewDtoList, monthName);
+        return  viewDto;
+    }
+
+        //api lay ten website va so luong view trong mot nam
+        @GetMapping("/banners/reports/statics/view/year={year}")
+        public List<ViewDto> getData2(@PathVariable("year") int year){
+            List<ViewDto> viewDtoList = new ArrayList<>();
+            for(int i = 1 ; i <= 12 ; i++){
+                ViewDto viewDto = getData1(year, i);
+                viewDtoList.add(viewDto);
+            }
+            return viewDtoList;
+        }
 }

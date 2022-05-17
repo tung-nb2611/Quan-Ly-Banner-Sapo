@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface WebsiteRepository extends JpaRepository<WebsiteEntity, Integer> {
+public interface    WebsiteRepository extends JpaRepository<WebsiteEntity, Integer> {
 
     //
     @Query(value = "select * from websites where user_add = ?1", nativeQuery = true)
@@ -22,6 +22,8 @@ public interface WebsiteRepository extends JpaRepository<WebsiteEntity, Integer>
     //
     @Query(value = "select * from websites", nativeQuery = true)
     Page<WebsiteEntity> getWebsiteByPage(Pageable pageable);
+
+
 
 
 }

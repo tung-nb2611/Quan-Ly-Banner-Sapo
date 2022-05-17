@@ -33,7 +33,9 @@ public class SectionService {
         Page<SectionEntity> sections = ((SectionRepository) sectionRepo).getSectionByPageAndWebsiteId(webId, PageRequest.of(number, 5));
         return sections;
     }
-
+    public String findDivIdBySectionId(Integer sectionId) {
+        return sectionRepository.getDivIdBySectionId(sectionId);
+    }
     @Transactional
     public void save(SectionEntity sectionEntity) {
         sectionRepository.save(sectionEntity);

@@ -104,7 +104,8 @@ public class BannerController {
             System.out.println("banner : " + bannerEntity);
             bannerService.save(bannerEntity);
             System.out.println("banner id : "+ bannerEntity.getId());
-            BannerMappingEntity bannerMappingEntity = new BannerMappingEntity(bannerEntity.getId(),bannerDto.getSectionID(), (short) 1);
+            BannerMappingEntity bannerMappingEntity = new BannerMappingEntity(0,bannerEntity.getId()
+                    ,bannerDto.getSectionID(), (short) 1,10,0,0);
             System.out.println("banner mapping : " + bannerMappingEntity);
             bannerMappingService.save(bannerMappingEntity);
             return new ResponseEntity<BannerEntity>(bannerEntity, HttpStatus.OK);
@@ -157,6 +158,17 @@ public class BannerController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+    @GetMapping("/banners/page/user={userAdd}/{number}")
+    public ResponseEntity<Page<BannerEntity>> getBannerByUserAdd(@PathVariable(value="userAdd") @Valid String userAdd, @PathVariable(value="number") @Valid int number){
+        try{
+            Page<BannerEntity> banners = bannerService.getBannerPageByUserAdd(userAdd, number);
+            return new ResponseEntity<>(banners, HttpStatus.OK);
+        } catch(NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+    
 
     @GetMapping("/banners/rate/{sectionID}/{number}")
     public ResponseEntity<Page<BannerEntity>> getBannerStatusPage(@PathVariable("sectionID") @Valid int sectionId, @PathVariable("number") @Valid int number ){

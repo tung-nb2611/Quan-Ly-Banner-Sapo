@@ -79,4 +79,12 @@ public class ViewService {
     public int getSumViewBySectionIDForDay(Date day , int sectionID){
         return viewRepository.getSumViewBySectionIDForDay(day, sectionID);
     }
+
+    public int getNumberViewFromDayToDay(Date dateBegin, Date dateEnd){
+       return viewRepository.getNumberViewFromDayToDay(dateBegin, dateEnd);
+    }
+
+    public int getNumberViewForDayByWebsite(Date date, int websiteID){
+        return viewRepository.getNumberViewForDayByWebsite(date, websiteID);
+    }
 }

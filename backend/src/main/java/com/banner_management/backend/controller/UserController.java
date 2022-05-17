@@ -41,23 +41,23 @@ public class UserController {
     @GetMapping("/users/check_username/{username}")
     public int checkUsername(@PathVariable String username) {
         return userService.checkUsernameExist(username);
-// \       return +username+"1";
+//          return +username+"1";
     }
 
     @GetMapping("/users/check_email/{email}")
     public int checkEmail(@PathVariable String email) {
         return userService.checkEmailExist(email);
     }
-//    // tạo mới một User
-//    @PostMapping("/users")
-//    public ResponseEntity<User> addUser(@RequestBody User user){
-//        try {
-//            userService.save(user);
-//            return new ResponseEntity<User>(user, HttpStatus.OK);
-//        }catch (NoSuchElementException e){
-//            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-//        }
-//    }
+    // tạo mới một User
+    @PostMapping("/users")
+    public ResponseEntity<User> addUser(@RequestBody User user){
+        try {
+            userService.save(user);
+            return new ResponseEntity<User>(user, HttpStatus.OK);
+        }catch (NoSuchElementException e){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 
 
 

@@ -23,4 +23,6 @@ public interface SectionRepository extends JpaRepository<SectionEntity, Integer>
 
     @Query(value = "select * from sections where web_id = ?1", nativeQuery = true)
     Page<SectionEntity> getSectionByPageAndWebsiteId(int webId, Pageable pageable);
+    @Query(value = "select div_id from sections where id = ?1", nativeQuery = true)
+    String getDivIdBySectionId(int sectionId);
 }
