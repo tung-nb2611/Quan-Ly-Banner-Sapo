@@ -15,23 +15,16 @@ const Report = () => {
         <div className="p-3 d-flex flex-column gap-4">
             <div className="header d-flex justify-content-between">
                 <div className="d-inline-flex gap-3">
-
                     <h3>Trang Web</h3>
                     <BiIcons.BiRightArrow className="mt-2" />
-
-                  
                     <ChoiceSection />
                 </div>
                 <h3>{date}</h3>
             </div>
-
-            <div>
+            
+            <div className="container">
                 <CharViewAndClik />
-            </div>
-            <div>
                 <ListBannerReport />
-            </div>
-            <div>
                 {/* <ListBannerInSection /> */}
             </div>
         </div>

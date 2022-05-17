@@ -4,6 +4,7 @@ import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js';
 import { Bar, Line } from 'react-chartjs-2';
 import ViewService from "../../services/views/ViewService";
 import ReportService from "../../services/ReportService";
+import '../../styles/report/ChartViewAndClick.css'
 
 const Views = () => {
     const [category, setCategory] = useState([])
@@ -105,14 +106,11 @@ const Views = () => {
         title: {
             display: true,
             text: "Lượng View tháng tại năm 2022",
-
             fontSize: 25,
-
         },
         scales: {
         },
         legend: {
-
             display: true,
             position: "bottom",
             labels: {
@@ -122,7 +120,7 @@ const Views = () => {
     }
 
     return (
-        <div style={{ width: '100%', height: '50vh' }}>
+        <div className="chart my-3" style={{ width: '100%', height: '70vh' }}>
             <Line
                 data={data}
                 height={400}

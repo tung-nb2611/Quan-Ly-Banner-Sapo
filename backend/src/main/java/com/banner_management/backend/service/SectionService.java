@@ -23,6 +23,7 @@ public class SectionService {
         return sectionRepository.getSectionEntitiesByWebsiteID(webId);
     }
 
+
     public SectionEntity getWebsiteIDBySectionID(int sectionID){
         return sectionRepository.getById(sectionID);
     }

@@ -7,7 +7,8 @@ import { useLocation, useParams } from "react-router-dom";
 import { Line, Bar } from 'react-chartjs-2';
 import ReportService from "../../services/ReportService";
 import Tab from 'react-bootstrap/Tab';
-import Tabs from 'react-bootstrap/Tabs'
+import Tabs from 'react-bootstrap/Tabs';
+import '../../styles/report/ListBannerInSection.css'
 
 const ListBannerInSection = () => {
     const [data2, setData2] = useState([]);
@@ -188,32 +189,38 @@ const ListBannerInSection = () => {
         });
 
     }, []);
+
     const displayBanner = bannerList.map((bannerInfo) => {
         return (
             <>
                 <div className="col-md-12 col-lg-6 mb-3" key={bannerInfo.id}>
                     <BannerInSectionInfor bannerInfo={bannerInfo} bannerList={bannerList} setBannerList={setBannerList} />;
                 </div>
-
             </>
         );
     });
+
     console.log("year:", dataYear, dataYear1, dataYear2)
     return (
-        <div className="banner-list m-2">
-            <div className="char">
-
-                <button onClick={() => setShowChar(false)}>
+        <div className="list-banner-section p-2">
+            <div className="char container">
+                <button className="btn btn-success m-2" onClick={() => setShowChar(false)}>
                     Tháng
                 </button>
-                <button onClick={() => setShowChar(true)}>
+                <button className="btn btn-success m-2" onClick={() => setShowChar(true)}>
                     Năm
                 </button>
+<<<<<<< HEAD
 
                 <div class="tab-content">
                     <>
                     {showChar === false ? (
                         <div id="Bar" style={{ width: '80%', height: '50vh' }}>
+=======
+                <div class="tab-content p-3 mt-2">
+                    {showChar === false ? (
+                        <div id="Bar" style={{ width: '100%', height: '70vh' }}>
+>>>>>>> 74b5574875e97d4bc73b7d3d0b43afd8c4d1fc76
                             <Bar
                                 data={dataMouth}
                                 height={400}
@@ -221,28 +228,19 @@ const ListBannerInSection = () => {
                             />
                         </div>
                     ) : (
-                        <div id="line" style={{ width: '80%', height: '50vh' }}>
+                        <div id="line" style={{ width: '100%', height: '70vh' }}>
                             <Line
                                 data={dataYear}
                                 height={400}
                                 options={optionsYear}
                             />
-
-
                         </div>
-                    )
-                    }
-
-
-                    </>
-
-
+                    )}
                 </div>
             </div>
             <div className="list">
                 {displayBanner}
             </div>
-
         </div>
     );
 

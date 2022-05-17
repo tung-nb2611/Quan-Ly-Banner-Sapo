@@ -24,6 +24,7 @@ function CreateUser(props) {
             phone: data.phone,
             role: [data.role],
         }
+        console.log(data)
         UserService.createUser(userItem).then(res => {
             history.push('/user/manage');
         })
@@ -122,8 +123,8 @@ function CreateUser(props) {
                                 <div className="mt-3 form-group chossing-role d-flex flex-column">
                                     <label htmlFor="username">Role</label>
                                     <select {...register("role")} className="w-25">
-                                        <option className="option" value="User">User</option>
-                                        <option className="option" value="Admin">Admin</option>
+                                        <option className="option" value="user">User</option>
+                                        <option className="option" value="admin">Admin</option>
                                     </select>
                                 </div>
                                 <div className="button">

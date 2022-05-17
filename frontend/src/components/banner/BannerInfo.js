@@ -2,6 +2,7 @@ import "../../styles/banner/BannerInfo.css";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Zoom from 'react-img-zoom'
 
 const BASE_URL = "http://localhost:8080/api/banners/";
 
@@ -36,12 +37,18 @@ const BannerInfo = ({ bannerInfo, bannerList, setBannerList }) => {
           <p>{bannerInfo.name}</p>
         </div>
         <div className="image-container col-sm-12 order-sm-2 col-md-12 order-md-3 col-xl-6 order-xl-2">
-          <img className="rounded mx-auto d-block pt-2" src={bannerInfo.imgUrl} alt={bannerInfo.code}/>
+          {/* <img className="rounded mx-auto d-block pt-2" src={bannerInfo.imgUrl} alt={bannerInfo.code}/> */}
+          <Zoom
+            img={bannerInfo.imgUrl}
+            zoomScale={2}
+            width={200}
+            height={150}
+          />
         </div>
         <div className="button-choice col-sm-12 order-sm-3 col-md-6 order-md-2 col-xl-3 order-xl-3">
-          <Link type="button" className="btn btn-secondary btn-block" to={bannerDetail}>Show</Link>
-          <Link type="button" className="btn btn-outline-primary btn-block" to={updatePage}>Update</Link>
-          <button type="button" className="btn btn-outline-danger btn-block w-100" onClick={deleteConfirmation}>Delete</button>
+          <Link type="button" className="btn btn-secondary btn-block" to={bannerDetail}>Chi tiết</Link>
+          <Link type="button" className="btn btn-outline-primary btn-block" to={updatePage}>Cập nhật</Link>
+          <button type="button" className="btn btn-outline-danger btn-block w-100" onClick={deleteConfirmation}>Xóa</button>
         </div>
       </div>
     </div >

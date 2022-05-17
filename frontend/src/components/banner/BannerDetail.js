@@ -4,7 +4,7 @@ import '../../styles/banner/UpdateBanner.css';
 import BannerService from "../../services/BannerService";
 import * as BiIcons from "react-icons/bi";
 import { useLocation } from "react-router-dom";
-
+import Zoom from 'react-img-zoom';
 
 function BannerDetail(props) {
 
@@ -95,7 +95,13 @@ function BannerDetail(props) {
                                 <h3 className="text-center">Hình ảnh Banner</h3>
                             </div>
                             <div id="imgFrame">
-                                <img className="img-rounded" alt="ảnh banner" src={imgUrl} />
+                                {/* <img className="img-rounded" alt="ảnh banner" src={imgUrl} /> */}
+                                <Zoom
+                                    img={imgUrl}
+                                    zoomScale={2}
+                                    width={400}
+                                    height={300}
+                                />
                             </div>
                             <div className="button">
                                 <button type="button" className="btn btn-secondary" name="btncancel" onClick={() => history.push("/banner/manage")}>Quay lại</button>
