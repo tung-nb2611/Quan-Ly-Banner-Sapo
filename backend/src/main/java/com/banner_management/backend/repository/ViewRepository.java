@@ -56,4 +56,10 @@ public interface ViewRepository extends JpaRepository<ViewEntity, Integer> {
     //lay luong view theo thang theo section cua website
     @Query(value = "SELECT count(views.id) from views left join sections on views.section_id = sections.id  where sections.web_id = ?1 and sections.id = ?2 and year(views.time_view) = ?3 and month(views.time_view) = ?4", nativeQuery = true)
     Integer getViewNumberByWebsiteAndSectionID(int websiteID, int sectionID, int year, int month);
+
+    @Query(value = "select count(views.id) from views where date(views.time_view) >= ?1 and date(views.time_view) <= ?2", nativeQuery = true)
+    Integer getNumberViewFromDayToDay(Date dateBegin, Date dateEnd);
+
+    @Query(value = "select count(views.id) from views left join sections on views.section_id = sections.id where date(views.time_view) = ?1 and sections.web_id = ?2", nativeQuery = true)
+    Integer getNumberViewForDayByWebsite(Date date, Integer websiteID);
 }

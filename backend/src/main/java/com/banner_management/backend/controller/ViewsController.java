@@ -2,11 +2,13 @@ package com.banner_management.backend.controller;
 
 import com.banner_management.backend.entity.ViewEntity;
 import com.banner_management.backend.service.ViewService;
+import org.springdoc.core.converters.models.PageableAsQueryParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import javax.validation.Valid;
+import java.sql.Date;
 import java.util.List;
 
 
@@ -42,12 +44,16 @@ public class ViewsController {
             return viewService.getViewsByBannerId(bannerId);
     }
 
-    //
+    @GetMapping("/banners/views/from-date={dateBegin}/to-date={dateEnd}")
+    public int getList(@PathVariable("dateBegin") Date dateBegin, @PathVariable("dateEnd") Date dateEnd){
+        return viewService.getNumberViewFromDayToDay(dateBegin, dateEnd);
+    }
+
 
     @PostMapping("/banners/views")
     public void insertViewBanner (@Valid @RequestBody ViewEntity viewEntity){
         viewService.save(viewEntity);
     }
 
-//    @GetMapping(/banners/views/{})
+
 }
