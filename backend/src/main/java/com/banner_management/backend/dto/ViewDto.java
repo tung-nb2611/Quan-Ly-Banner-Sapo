@@ -6,6 +6,7 @@ import java.util.List;
 
 public class ViewDto {
     private HashMap<String, Integer> webView;
+
     private String month;
 
     public ViewDto(HashMap<String, Integer> webView, String month) {

@@ -37,13 +37,6 @@ public interface ViewRepository extends JpaRepository<ViewEntity, Integer> {
     Integer getSumViewByForMonth(int year, int month , int sectionID);
 
 
-    // query tinh luong view theo tháng
-    @Query(value = "select count(id) from views where year(views.time_view) = ?1 and month(views.time_view) = ?2 ", nativeQuery = true)
-    Integer getSumViewByMonth(int year, int month );
-
-
-
-
 //    // query tinh luong view theo tuần theo khu vuc
 //    @Query(value = "select count(id) as number_click from views where month(views.time_view) = ?1 and section_id = ?2", nativeQuery = true)
 //    Integer getSumViewBySectionIDForWeek(int month, int sectionID);
@@ -56,8 +49,11 @@ public interface ViewRepository extends JpaRepository<ViewEntity, Integer> {
     @Query(value ="SELECT (monthname(time_view)) AS  month , COUNT(*) AS views FROM views where section_id =?1 GROUP BY month ORDER BY month ASC",nativeQuery = true)
     Integer getSumViewBySectionIDForMonth( int sectionID);
 
-
+    // lay luong view theo thang cua website
     @Query(value = "SELECT count(views.id) from views left join sections on views.section_id = sections.id left join websites on sections.web_id = websites.id where websites.id = ?1 and year(views.time_view) = ?2 and month(views.time_view) = ?3", nativeQuery = true)
     Integer getViewNumberByWebSite(int websiteID, int year, int month);
 
+    //lay luong view theo thang theo section cua website
+    @Query(value = "SELECT count(views.id) from views left join sections on views.section_id = sections.id  where sections.web_id = ?1 and sections.id = ?2 and year(views.time_view) = ?3 and month(views.time_view) = ?4", nativeQuery = true)
+    Integer getViewNumberByWebsiteAndSectionID(int websiteID, int sectionID, int year, int month);
 }
