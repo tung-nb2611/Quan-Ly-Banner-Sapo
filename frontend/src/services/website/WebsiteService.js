@@ -18,6 +18,10 @@ class WebsiteService {
     getWebsiteByUserAdd(userAdd){
         return axios.get(WEBSITE_API_SECTION_URL + '/user=' + userAdd);
     }
+
+    getAllWebsite(){
+        return axios.get(WEBSITE_API_SECTION_URL +'/all');
+    }
 }
 
 export default new WebsiteService();

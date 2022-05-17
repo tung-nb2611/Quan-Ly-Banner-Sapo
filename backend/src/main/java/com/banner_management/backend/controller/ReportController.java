@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -372,7 +373,6 @@ public class ReportController {
         return map;
     }
 
-    // api phan theo section
     @GetMapping("/banners/views/static/website={websiteID}/year={year}")
     public List<ViewDto> getWebViewSortByWebSite(@PathVariable("websiteID") int websiteID, @PathVariable("year") int year){
         List<ViewDto> viewDtoList = new ArrayList<>();
@@ -435,5 +435,75 @@ public class ReportController {
         return viewDtoList;
     }
 
+    // api lay tong view va click theo ngày theo khu vuc trong 1 ngay
+    @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/date={date}")
+    public ClickAndViewDto getListViewAndClickSortByDay(@Valid @PathVariable("date") Date date, @Valid @PathVariable("sectionID") int sectionID){
+        String[] time = date.toString().split("-");
+        int sumView = viewService.getSumViewBySectionIDForDay( date, sectionID);
+        int sumClick = clickService.getSumClickBySectionIDForDay(date, sectionID);
+        SectionEntity sectionEntity = sectionService.getById(sectionID);
+        WebsiteEntity websiteEntity = websiteService.getById(sectionEntity.getWebId());
+
+        String dayOfMonth = time[2] + "/" + time[1];
+        int year = Integer.parseInt(time[0]);
+        ClickAndViewDto clickAndViewDto = new ClickAndViewDto(
+                websiteEntity.getName(), sectionID, sumClick, sumView, year, time[1], dayOfMonth);
+        return clickAndViewDto;
+    }
+    // api lay tong view va click theo ngày theo khu vuc trong 1 thang
+    @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}/month={month}/statics")
+    public List<ClickAndViewDto> getListViewAndClickByMonth(@Valid @PathVariable("year") int year, @Valid @PathVariable("month") int month, @Valid @PathVariable("sectionID") int sectionID){
+        List<ClickAndViewDto> clickAndViewDtoList = new ArrayList<>();
+        int numberDay ;
+        if (year % 4 == 0) {
+            if (year % 100 == 0) {
+                if (year % 400 == 0) {
+                    numberDay = 29;
+                } else {
+                    numberDay = 28;
+                }
+            } else {
+                numberDay = 29;
+            }
+        } else {
+            numberDay = 28;
+        }
+        if(month == 2){
+            numberDay = 28;
+        }
+        if(month == 1 || month == 3 ||  month == 5 ||  month == 7 ||  month == 8||  month == 10 ||  month == 12){
+            numberDay = 31;
+        }
+        if(month == 4 || month == 6 ||  month == 9 ||  month == 11){
+            numberDay = 30;
+        }
+
+        for (int i = 1 ; i <= numberDay ; i ++){
+            String timeTemp = null;
+            if(month < 10){
+                if(i<10){
+                    timeTemp = year + "-0" + month +"-0"+ i;
+                }
+                else {
+                    timeTemp = year + "-0" + month +"-"+ i;
+                }
+            }
+            else if(month > 10){
+                if(i<10){
+                    timeTemp = year + "-" + month +"-0"+ i;
+                }
+                else {
+                    timeTemp = year + "-" + month +"-"+ i;
+                }
+            }
+
+            LocalDate localDate = LocalDate.parse(timeTemp);
+            Date date = Date.valueOf(localDate);
+            System.out.println("day : "+ Date.valueOf(localDate));
+            ClickAndViewDto clickAndViewDto = getListViewAndClickSortByDay(date, sectionID);
+            clickAndViewDtoList.add(clickAndViewDto);
+        }
+        return clickAndViewDtoList;
+    }
 
 }
