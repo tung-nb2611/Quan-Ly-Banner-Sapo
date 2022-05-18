@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { CheckboxArrContext } from "../../context/CheckboxListContext";
 import { CheckboxContext } from "../../context/CheckboxContext";
+import "../../styles/banner/ListBannerChoice.css";
 
 const BannerStatus = ({ item, displayUtil }) => {
   const bannerContext = useContext(CheckboxArrContext);
@@ -45,7 +46,7 @@ const BannerStatus = ({ item, displayUtil }) => {
       name: arrayItem.name,
       percentage: arrayItem.percentage,
       sectionID: arrayItem.sectionID,
-      state: arrayItem.state == 1 ? 0 : 1,
+      state: arrayItem.state === 1 ? 0 : 1,
       url: arrayItem.url
     }
     console.log(newState);

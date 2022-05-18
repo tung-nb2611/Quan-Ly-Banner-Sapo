@@ -5,7 +5,7 @@
 }
 
 .display-banner-container .header-top .adder{
-  height: -moz-fit-content;
+  /* height: -moz-fit-content; */
   height: fit-content;
 }
 
@@ -42,13 +42,13 @@
 }
 @media (max-width: 720px) {
   .display-banner-container .container .main-content .button {
-      display: flex;
-      justify-content: center;
-      flex-direction: column;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
   }
 }
 
 .display-banner-container .container .main-content .button .btn-outline-secondary,
 .display-banner-container .container .main-content .button .btn-primary {
-    min-width: 150px;
+  min-width: 150px;
 }

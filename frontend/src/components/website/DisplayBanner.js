@@ -151,7 +151,6 @@ function DisplayBanner(props) {
                     <div className="pb-4 text-center">
                         <h2>Quản lý hiển thị banner</h2>
                     </div>
-                    {/* <div className="row"> */}
                     <form className="form row">
                         <div className="form-group col-sm-12 col-lg-6 mb-2">
                             <div className="col-5">
@@ -175,7 +174,6 @@ function DisplayBanner(props) {
                             </label>
                         </div>
                     </form>
-                    {/* </div> */}
                     <div id="showListBannerChoice">
                         <ListBannerChoice id={id} displayUtil={displayUtil}></ListBannerChoice>
                     </div>

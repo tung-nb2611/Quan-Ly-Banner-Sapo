@@ -21,11 +21,11 @@ const ListBannerChoice = (props) => {
   }, [id]);
 
   return (
-    <div className="banner-list-choice-container">
+    <div className="banner-list-choice-container my-2">
       <table className="table">
         {props.displayUtil.random ? (
           <thead>
-            <tr className=" col-12 bg-info">
+            <tr className="table-head">
               <th className="col-2  text-center">Mã </th>
               <th className="col-3  text-center">Tên</th>
               <th className="col-5  text-center">Ảnh banner</th>
@@ -36,14 +36,13 @@ const ListBannerChoice = (props) => {
           </thead>
         ) : (
           <thead>
-            <tr className=" col-12 bg-info">
+            <tr className="table-head">
               <th className="col-2  text-center">Mã </th>
               <th className="col-2  text-center">Tên</th>
               <th className="col-4  text-center">Ảnh banner</th>
               <th className="col-2  text-center">Tỉ trọng (%)</th>
               <th className="col-2  text-center">Ẩn</th>
               <th></th>
-
             </tr>
           </thead>
         )}

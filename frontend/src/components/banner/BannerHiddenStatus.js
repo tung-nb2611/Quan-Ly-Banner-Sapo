@@ -1,6 +1,7 @@
 import { CheckboxContext } from "../../context/CheckboxContext";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { CheckboxArrContext } from "../../context/CheckboxListContext";
+import "../../styles/banner/ListBannerChoice.css";
 
 const BannerHiddenStatus = ({ item, displayUtil }) => {
   const hiddenBannerContext = useContext(CheckboxContext);
@@ -38,7 +39,7 @@ const BannerHiddenStatus = ({ item, displayUtil }) => {
       name: arrayItem.name,
       percentage: arrayItem.percentage,
       sectionID: arrayItem.sectionID,
-      state: arrayItem.state == 1 ? 0 : 1,
+      state: arrayItem.state === 1 ? 0 : 1,
       url: arrayItem.url
     }
     console.log(newState);
@@ -57,8 +58,8 @@ const BannerHiddenStatus = ({ item, displayUtil }) => {
 
   // Kiểm tra xem sau khi bấm ẩn thì banner còn trong hiddenBannerList
   // hay không. Nếu không thì không hiển thị gì cả
- if(typeof arrayItem == 'undefined')
- return (<></>);
+  if(typeof arrayItem == 'undefined')
+  return (<></>);
 
   return (
     <tr className="item" key={item.id}>

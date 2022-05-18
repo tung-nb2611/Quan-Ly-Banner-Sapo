@@ -1,15 +1,11 @@
 
 import React, { useState, useEffect } from "react";
 import { Link, useHistory } from "react-router-dom";
-
 // import '../../styles/banner/UpdateBanner.css';
 import * as BiIcons from "react-icons/bi";
 import { useLocation, useParams } from "react-router-dom";
-
 import DetailClick from "./DetailClick";
-
 import '../../styles/report/DetailReport.css';
-
 import ViewService from "../../services/views/ViewService";
 import ClickService from "../../services/clicks/ClickService";
 import DetailView from "./DetailView";
@@ -131,50 +127,33 @@ function DetailReport(props) {
                             <div className="info">
                                 {showInfo === false ? (
                                     <div>
-
                                         <table className="table">
                                             <thead>
-
-                                                <tr className="col-6 bg-info">
+                                                <tr className="col-6">
                                                     <th className="col-2 text-center"> ID khu vực  Hiển Thị </th>
-
                                                     <th className="col-2 text-center"> browerName</th>
                                                     <th className="col-1 text-center" >Thời gian Click</th>
                                                     <th className="col-2 text-center"> Người thực hiện</th>
-
-
-
-
-
                                                 </tr>
                                             </thead>
-                                            <tbody className="col-6 ">
+                                            <tbody className="col-6">
                                                 {
                                                     viewInfoList.map((item) =>
                                                         <DetailView key={item.id} viewInfoList={item} />
                                                     )
                                                 }
                                             </tbody>
-
                                         </table>;
                                     </div>
                                 ) : (
                                     <div>
-
                                         <table className="table">
                                             <thead>
-
-                                                <tr className="col-6 bg-info">
+                                                <tr className="col-6">
                                                     <th className="col-2 text-center"> ID khu vực  Hiển Thị </th>
-
                                                     <th className="col-2 text-center"> browerName</th>
                                                     <th className="col-1 text-center" >Thời gian Click</th>
                                                     <th className="col-2 text-center"> Người thực hiện</th>
-
-
-
-
-
                                                 </tr>
                                             </thead>
 
