@@ -19,37 +19,61 @@ const Views = () => {
         let View1 = []
         let month = []
         let View2 = []
-        ViewService.getListSumViewsInWebsite().then(res => {
+        ViewService.getLisViewInMonth().then(res => {
             console.log(res);
             for (const dataObj of res.data) {
-                View1.push(dataObj);
-                console.log('viewsdata', dataObj.webView);
+                console.log("test:", dataObj.web.length)
+                for (let i = 0; i < dataObj.web.length; i++) {
+
+                    View1.push(dataObj.web[i]);
+
+
+                    View2.push(dataObj.web[i].numberView);
+                }
                 month.push(dataObj.month)
-                View2.push(dataObj.webView.sapofnb);
             }
             setData2(View1)
-            setCategory(month)
-            setData1(View2)
+            // setCategory(month)
+            // setData1(View2)
         })
     }, []);
+    console.log("data2:", data2)
+    const test = (data2) => {
+        let view = [];
 
-    // console.log("Views", category,);
+        let Arr = new Array();
+        let Arr2 = new Array();
+        for (let i = 0; i < data2.length; i++) {
+            Arr.push(data2[i].webName);
+            Arr2.push(data2[i].numberView);
+            view.push(Arr);
+        }
+
+
+
+
+        console.log("1:", Arr, Arr2);
+    }
 
     var data = {
         labels: category,
         datasets: [
-            data2.map((dataObj) => ({
-                label: dataObj.webView,
-                data: dataObj.webView,
+            {
+
+                label: Arr,
+                data: Arr2,
                 borderColor: [
                     "red",],
                 borderWidth: 1,
-                fill: false
+                fill: false,
 
-            })),
+            },
+
+
+
         ]
     };
-    console.log("test", data)
+
     var options = {
         maintainAspectRatio: false,
         title: {
@@ -66,8 +90,14 @@ const Views = () => {
                 fontSize: 25,
             },
         },
-    }
+    };
 
+    // setChart(data);
+    // setData1(options);
+
+
+    console.log(data1)
+    test(data2)
     return (
         <>
             <div>

@@ -77,8 +77,7 @@ public class ReportController {
                 websiteEntity.getName(), sectionID, sumClick, sumView, bannerID);
         return clickAndViewDto;
     }
-<<<<<<< HEAD
-=======
+
     // api lay tong view va click theo nam theo khu vuc
     @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}")
     public ClickAndViewDto getListViewAndClickSortByYear(@Valid @PathVariable("year") int year,@Valid @PathVariable("sectionID") int sectionID){
@@ -93,7 +92,7 @@ public class ReportController {
                 websiteEntity.getName(), sectionID, sumClick, sumView);
         return clickAndViewDto;
     }
->>>>>>> 91b836e0af97124fec14737e72a97ad53f608cb3
+
     //lay api theo tung thang trong nam theo khu vuc
     // api lay tong view va click theo nam theo khu vuc
     @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}/statics")
@@ -173,7 +172,7 @@ public class ReportController {
         return clickAndViewDto;
     }
 
-<<<<<<< HEAD
+
 //
 //    // api lay tong view va click theo nam theo khu vuc
 //    @GetMapping("/banners/report/click-and-view/sectionID={sectionID}/year={year}")
@@ -191,8 +190,7 @@ public class ReportController {
 //    }
 
 
-=======
->>>>>>> 91b836e0af97124fec14737e72a97ad53f608cb3
+
 
     // api lay tong view va click theo tháng
 
